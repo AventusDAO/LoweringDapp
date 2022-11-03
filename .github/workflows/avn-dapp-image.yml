@@ -1,0 +1,43 @@
+name: avn-dapp docker image
+
+on:
+  push:
+    branches: [master, feat/*, bug/*]
+  pull_request:
+    branches:
+      - master
+
+env:
+  ECR_REPO_URL: 189013141504.dkr.ecr.eu-west-2.amazonaws.com/dapps/avn-dapp
+
+jobs:
+  build-dapp:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the avn-dapp Docker image
+        run: docker build . --tag $ECR_REPO_URL:${GITHUB_SHA::8}
+      - name: Configure AWS credentials from TestNet
+        if: github.event_name == 'push'
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.TESTNET_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TESTNET_AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-2
+      - name: Build latest tag (only on master)
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        run: |
+          docker tag $ECR_REPO_URL:${GITHUB_SHA::8} $ECR_REPO_URL:latest
+      - name: Build feature docker tag, using git feature branch
+        if: startsWith(github.ref, 'refs/heads/feat/') && github.event_name == 'push'
+        run: |
+          docker tag $ECR_REPO_URL:${GITHUB_SHA::8} $ECR_REPO_URL:${GITHUB_REF##*/}
+      - name: Login to the AWS registry
+        if: github.event_name == 'push'
+        run: |
+          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 189013141504.dkr.ecr.eu-west-2.amazonaws.com
+      - name: Push the image to the registry
+        if: github.event_name == 'push'
+        run: |
+          docker push -a $ECR_REPO_URL

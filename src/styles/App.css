@@ -1,0 +1,281 @@
+.token {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.swal-text {
+  text-align: center;
+}
+
+.small-line {
+  line-height: 0.1;
+}
+
+.nav-tabs>.nav-item>.active {
+  background-color: #F2F1F1;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  color: #1d2733;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.maintitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px
+}
+
+
+.bottom {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%
+}
+
+/* Card Styling */
+.card {
+  width: 100%;
+  margin-bottom: 5px;
+  padding-left: 0;
+}
+
+.thin-card {
+  width: 80%;
+  margin: auto;
+}
+
+.card-header {
+  background-color: transparent;
+}
+
+.information {
+  line-height: 15px;
+}
+
+.information b {
+  color: #5100FF;
+}
+
+.mobile-nav-card {
+  display: none;
+}
+
+.mobile-info-card {
+  display: none;
+}
+
+.card-author {
+  font-size: small;
+  /* margin-bottom: 5px; */
+}
+
+.card-status {
+  font-size: small;
+  background-color: #5100FF;
+  border-radius: 15px;
+  color: white;
+  font-weight: bold;
+  padding: 5px
+}
+
+.card-author b {
+  color: #5100FF
+}
+
+.card-meta-data {
+  font-size: small;
+}
+
+.card-meta-data b {
+  color: #5100FF
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card-bottom-images img {
+  width: 20px;
+  margin-right: 15px;
+}
+
+.nav {
+  border-bottom: 0px
+}
+
+.active {
+  background-color: #F2F1F1;
+  border-radius: 5px;
+}
+
+/* Button Styling */
+.contact-btn {
+  background-color: #F65925;
+  color: #ffffff;
+  border-color: #F65925
+}
+
+.connect-button {
+  font-weight: bold;
+  background-color: #5100FF;
+  color: #ffffff;
+  border-color: #5100FF
+}
+
+.lift-button {
+  background-color: #5100FF;
+  color: #ffffff;
+  border-color: #5100FF
+}
+
+.btn {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.btn:hover {
+  background-color: #FFD6C9;
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: #5100FF;
+  font-size: 12px;
+  border: 1px solid #5100FF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.header-background {
+  background-color: #F2F1F1;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #1D2733;
+  color: white;
+  bottom: 0;
+}
+
+.img-footer {
+  width: 100px
+}
+
+.eth-account {
+  background-color: #FFD6C9;
+}
+
+.form-container {
+  max-width: 60%;
+  position: relative;
+}
+
+.fetch-container {
+  max-width: 60%;
+  position: relative;
+}
+
+.tab-pane {
+  padding: 100px;
+}
+
+.select-button {
+  display: flex;
+  width: 20%;
+}
+
+@media print,
+screen and (max-width: 1400px) {
+  .form-container {
+    max-width: 80%;
+  }
+}
+
+@media print,
+screen and (max-width: 1100px) {
+  .form-container {
+    max-width: 100%;
+  }
+
+  .bottom {
+    bottom: 0;
+    left: 0;
+    margin-top: 20px;
+    position: absolute;
+  }
+}
+
+/* @media screen and (max-width:500px) {
+  .select-button {
+    width: 70%
+  }
+} */
+
+@media print,
+screen and (max-width: 420px) {
+
+  .body {
+    position: relative;
+  }
+
+  .account-info {
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  /* Button styles */
+
+  .btn {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .metamask-button {
+    margin-bottom: 20px;
+  }
+
+  /* Form Styles */
+
+  .form-container {
+    max-width: 100%;
+  }
+
+  .form-headers {
+    font-size: 80%;
+  }
+
+  .tab-pane {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .account-info {
+    font-size: 7px;
+    font-weight: 500;
+  }
+
+  .select-button {
+    width: 80%
+  }
+
+  .form-container {
+    max-width: 100%;
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,14 @@
+{
+    "proposals": [
+        {
+            "uuid": "f6130a95-57c8-4ef0-8b71-0a77ce6f9320",
+            "title": "Test merklePath",
+            "hash": "leaf data 1"
+        },
+        {
+            "uuid": "f6130a95-57c8-4ef0-8b71-0a77ce6f932d",
+            "title": "Test merklePath",
+            "hash": "leaf data 2"
+        }
+    ]
+}
