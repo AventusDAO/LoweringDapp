@@ -52,6 +52,11 @@ function BalanceForm() {
                 >
                     Sign and Query Balance
                 </button>
+                <div style={{ fontSize: "13px" }}>
+                    <br />
+                    Note: Your wallet will prompt you once to sign and approve
+                    the query operation required to query your balance.
+                </div>
             </form>
         </div>
     );

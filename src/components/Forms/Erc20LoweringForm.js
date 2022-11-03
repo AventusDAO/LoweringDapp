@@ -105,8 +105,9 @@ function Erc20LoweringForm() {
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
-                    Note: Metamask will request 2 transactions, one to approve
-                    your tokens for lifting followed by another to lift.
+                    Note: Your wallet will prompt your three times to sign and
+                    approve the multiple operations required to execute this
+                    transaction.
                 </div>
             </form>
         </div>
