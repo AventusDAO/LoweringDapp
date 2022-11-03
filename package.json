@@ -1,5 +1,5 @@
 {
-    "name": "lifting",
+    "name": "lower",
     "version": "1.0.0",
     "description": "Lower tokens from Aventus to Ethereum.",
     "main": "index.js",
