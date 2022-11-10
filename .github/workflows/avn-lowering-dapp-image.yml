@@ -1,4 +1,4 @@
-name: avn-dapp docker image
+name: avn lowering dapp docker image
 
 on:
   push:
@@ -8,16 +8,16 @@ on:
       - master
 
 env:
-  ECR_REPO_URL: 189013141504.dkr.ecr.eu-west-2.amazonaws.com/dapps/avn-dapp
+  ECR_REPO_URL: 189013141504.dkr.ecr.eu-west-2.amazonaws.com/dapps/avn-lowering-dapp
 
 jobs:
-  build-dapp:
+  build-lowering-dapp:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Build the avn-dapp Docker image
-        run: docker build . --tag $ECR_REPO_URL:${GITHUB_SHA::8}
+      - uses: actions/checkout@v3
+      - name: Build the build-lowering-dapp Docker image
+        run: docker build . --tag $ECR_REPO_URL:${GITHUB_SHA::7}
       - name: Configure AWS credentials from TestNet
         if: github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v1
@@ -28,11 +28,11 @@ jobs:
       - name: Build latest tag (only on master)
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         run: |
-          docker tag $ECR_REPO_URL:${GITHUB_SHA::8} $ECR_REPO_URL:latest
+          docker tag $ECR_REPO_URL:${GITHUB_SHA::7} $ECR_REPO_URL:latest
       - name: Build feature docker tag, using git feature branch
         if: startsWith(github.ref, 'refs/heads/feat/') && github.event_name == 'push'
         run: |
-          docker tag $ECR_REPO_URL:${GITHUB_SHA::8} $ECR_REPO_URL:${GITHUB_REF##*/}
+          docker tag $ECR_REPO_URL:${GITHUB_SHA::7} $ECR_REPO_URL:${GITHUB_REF##*/}
       - name: Login to the AWS registry
         if: github.event_name == 'push'
         run: |
