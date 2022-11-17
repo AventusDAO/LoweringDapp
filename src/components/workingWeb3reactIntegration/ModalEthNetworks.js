@@ -45,7 +45,7 @@ function ModalEthNetworks() {
     async function connect(connector_name, wallet) {
         try {
             await activate(wallet);
-            localStorage.setItem("isWalletConnected", true);
+            localStorage.setItem("isEthWalletConnected", true);
             localStorage.setItem("connector", connector_name);
         } catch (err) {
             metamaskMissingErrorHandler();
@@ -55,7 +55,7 @@ function ModalEthNetworks() {
     useEffect(() => {
         const connectWalletOnPageLoad = async () => {
             if (
-                localStorage?.getItem("isWalletConnected") === "true" &&
+                localStorage?.getItem("isEthWalletConnected") === "true" &&
                 localStorage?.getItem("connector")
             ) {
                 try {

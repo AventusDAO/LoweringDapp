@@ -31,7 +31,20 @@ async function lowerSubmitHandler(
     } else {
         const method = "proxyTokenLower";
         try {
-            sendTransaction(sender, params, method, AVN_GATEWAY_URL);
+            const request_id = await sendTransaction(
+                sender,
+                params,
+                method,
+                AVN_GATEWAY_URL
+            );
+            swal.fire({
+                title: "Success!",
+                icon: "success",
+                text: request_id,
+                confirmButtonText: "Saved it!",
+                allowOutsideClick: false,
+                footer: "Save this request ID above. You'll need it to withdraw your tokens on Ethereum.",
+            });
         } catch (e) {
             console.error(e);
         }
@@ -88,7 +101,6 @@ async function querySubmitHandler(requestId, account, avn_contract, networkId) {
             icon: "success",
             showDenyButton: true,
             allowOutsideClick: false,
-            showCancelButton: true,
             confirmButtonText: "Withdraw",
             denyButtonText: `Don't Withdraw`,
         }).then((result) => {

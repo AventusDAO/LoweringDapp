@@ -22,9 +22,9 @@ function substrateNotDetected(name) {
     });
 }
 
-function stakingError(err) {
+function lowerError(err) {
     return swal.fire({
-        title: "Vote Status",
+        title: "Lower Status",
         text: err,
         allowOutsideClick: false,
         icon: "info",
@@ -153,7 +153,7 @@ export {
     isZeroErrorHandler,
     networkErrorHandler,
     substrateNotDetected,
-    stakingError,
+    lowerError,
     invalidSubstrateSignature,
     substrateConnectFailure,
     gatewayAccessError,

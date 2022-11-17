@@ -11,25 +11,6 @@ function QueryForm() {
 
     return (
         <div className="container form-container" style={{ minHeight: "100%" }}>
-            <ul
-                className="nav nav-tabs justify-content-center form-headers"
-                id="myTab"
-                role="tablist"
-            >
-                <li className="nav-item" role="presentation">
-                    <button
-                        className="nav-link"
-                        id="non-avt-tab"
-                        data-bs-toggle="tab"
-                        data-bs-target="#non-avt-tab-pane"
-                        type="button"
-                        role="tab"
-                        aria-controls="non-avt-tab-pane"
-                        aria-selected="true"
-                        onFocus={() => clearValues()}
-                    ></button>
-                </li>
-            </ul>
             <div
                 className="row mx-auto align-self-center text-center tab-content justify-center"
                 id="myTabContent"
@@ -63,6 +44,10 @@ function QueryForm() {
                             <div className="col-sm-10">
                                 <input
                                     size="83"
+                                    style={{
+                                        marginLeft: "5px",
+                                        marginRight: "105px",
+                                    }}
                                     type="text"
                                     required
                                     className="form-control"

@@ -3,7 +3,7 @@ import { substrateConnectFailure } from "./errorHandlers";
 import { signAndSendMessage } from "./signAndSendMessage";
 import { queryJsonRpcRequest } from "./jsonRpcRequest";
 
-async function queryHandler(account, token, method, AVN_GATEWAY_URL) {
+async function balanceHandler(account, token, method, AVN_GATEWAY_URL) {
     const url = `${AVN_GATEWAY_URL}query`;
     const params = {
         accountId: account.address,
@@ -12,7 +12,17 @@ async function queryHandler(account, token, method, AVN_GATEWAY_URL) {
     if (!account.address) {
         substrateConnectFailure();
     } else {
-        await signAndSendMessage(account, params, method, url);
+        swal.fire({
+            title: "Need Your Signature!",
+            text: "This signature will authenticate you to query the balance of your account",
+            confirmButtonText: "Sign",
+            showDenyButton: true,
+            denyButtonText: "Don't Sign",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                signAndSendMessage(account, params, method, url);
+            }
+        });
     }
 }
 
@@ -74,4 +84,4 @@ async function checkRequestId(requestId, sender, url) {
     }
 }
 
-export { queryHandler, basicQueryHandler, checkRequestId };
+export { balanceHandler, basicQueryHandler, checkRequestId };

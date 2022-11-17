@@ -1,21 +1,20 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { capitaliseFirstLetter } from "../../functions/randomFunctions";
 import { substrateNotDetected } from "../../functions/errorHandlers";
 import { addressSlicer } from "../../functions/randomFunctions";
+import { web3Enable } from "@polkadot/extension-dapp";
 
-async function connectSpecificWallet(name, setPolkAccounts) {
+async function connectSpecificWallet(name) {
     try {
         const specific_extension = window.injectedWeb3[name];
         const extension = await specific_extension.enable();
         const accounts = await extension.accounts.get();
         const signRaw = await extension?.signer?.signRaw;
-        localStorage.setItem("polkadotWalletConnected", true);
         accounts.forEach((account) => {
             account.signer = signRaw;
             account.source = name;
         });
-        // setAllAccounts
         return accounts;
     } catch (err) {
         substrateNotDetected(name);
@@ -23,6 +22,29 @@ async function connectSpecificWallet(name, setPolkAccounts) {
 }
 
 function WalletExtensions() {
+    const { setSender } = useContext(stateContext);
+
+    const checkIfAnAccountIsConnected = useCallback(async () => {
+        const user = localStorage.getItem("user");
+        const active_extension = localStorage.getItem("active_extension");
+
+        if (user && active_extension) {
+            try {
+                await web3Enable("Aventus Lowering Dapp");
+                const accounts = await connectSpecificWallet(active_extension);
+                for (let i = 0; i < accounts.length; i++) {
+                    if (accounts[i].address === user) {
+                        setSender(accounts[i]);
+                    }
+                }
+            } catch (err) {}
+        }
+    }, [setSender]);
+
+    useEffect(() => {
+        checkIfAnAccountIsConnected();
+    }, [checkIfAnAccountIsConnected]);
+
     return (
         <div
             className="modal fade"
@@ -58,6 +80,14 @@ function ModalExtensions() {
     const { setPolkAccounts, polkAccounts, sender, setSender } =
         useContext(stateContext);
 
+    function disconnectSubstrateWallet() {
+        setSender("");
+        setPolkAccounts("");
+        localStorage.clear();
+    }
+
+    useEffect(() => {}, [setSender]);
+
     const wallets = ["polkadot-js", "talisman", "subwallet-js"];
 
     return (
@@ -75,6 +105,10 @@ function ModalExtensions() {
                                 onClick={() => {
                                     connectSpecificWallet(wallet).then(
                                         (accounts) => {
+                                            localStorage.setItem(
+                                                "active_extension",
+                                                wallet
+                                            );
                                             setPolkAccounts(accounts);
                                         }
                                     );
@@ -119,12 +153,8 @@ function ModalExtensions() {
                     <div key={account.address} data-bs-dismiss="modal">
                         <div className="row">
                             <div
-                                className="btn card"
+                                className="btn card-modal card"
                                 style={{ borderRadius: "15px" }}
-                                onClick={() => {
-                                    setSender(account);
-                                    localStorage.setItem("sender", sender);
-                                }}
                             >
                                 <div className="row">
                                     <div
@@ -162,14 +192,33 @@ function ModalExtensions() {
                                         style={{ marginRight: "-15px" }}
                                     >
                                         {sender.address === account.address &&
-                                            sender.source ===
-                                                account.source && (
-                                                <div className="text-end">
-                                                    <span className="card-status">
-                                                        Active
-                                                    </span>
-                                                </div>
-                                            )}
+                                        sender.source === account.source ? (
+                                            <div className="text-end">
+                                                <button
+                                                    className="disconnect-btn card-status"
+                                                    onClick={
+                                                        disconnectSubstrateWallet
+                                                    }
+                                                >
+                                                    Disconnect
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <div className="text-end">
+                                                <button
+                                                    className="account-connect-button"
+                                                    onClick={() => {
+                                                        setSender(account);
+                                                        localStorage.setItem(
+                                                            "user",
+                                                            account.address
+                                                        );
+                                                    }}
+                                                >
+                                                    Connect
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

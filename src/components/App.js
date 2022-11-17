@@ -1,12 +1,15 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { Route, useLocation, Routes } from "react-router-dom";
 import "../styles/App.css";
 import Networks from "../config/Networks.json";
 import ABI from "../config/abi.json";
 import LoadWeb3 from "../functions/loadWeb3";
-import PageHeader from "./PageHeader";
 import { networkErrorHandler } from "../functions/errorHandlers";
 import { stateContext } from "../Contexts/Context";
-import HomePage from "./HomePage";
+import WithdrawPage from "./WithdrawPage";
+import LoweringForm from "./Forms/LoweringForm";
+import BalanceForm from "./Forms/BalanceForm";
+import NotFound from "./Extras/NotFound";
 
 const GOERLI_ID = 5;
 const ETHEREUM_MAINNET_ID = 1;
@@ -107,16 +110,13 @@ function App() {
                     setPOLK_AVT_CONTRACT_ADDRESS,
                 }}
             >
-                <PageHeader />
-                <div className="container-fluid mt-4">
-                    <div className="row">
-                        <main role="main" className="text-center">
-                            <div className="content mr-auto ml-auto">
-                                <HomePage />
-                            </div>
-                        </main>
-                    </div>
-                </div>
+                <Routes>
+                    <Route path="/" element={<LoweringForm />} />
+                    <Route path="/balance" element={<BalanceForm />} />
+                    <Route path="/withdraw" element={<WithdrawPage />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+
                 {/* <Footer /> */}
             </stateContext.Provider>
         </div>

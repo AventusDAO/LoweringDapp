@@ -33,7 +33,7 @@ function Ethereum() {
     async function disconnect() {
         try {
             deactivate();
-            localStorage.setItem("isWalletConnected", false);
+            localStorage.setItem("isEthWalletConnected", false);
             localStorage.setItem("connector", "");
         } catch (ex) {
             console.log(ex);

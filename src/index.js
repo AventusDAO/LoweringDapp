@@ -2,19 +2,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap";
 import App from "./components/App";
 import { createRoot } from "react-dom/client";
-import { Web3ReactProvider } from "@web3-react/core";
-import { Web3Provider } from "@ethersproject/providers";
-
-function getLibrary(provider) {
-    return new Web3Provider(provider);
-}
+import { BrowserRouter as Router } from "react-router-dom";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
-    <Web3ReactProvider getLibrary={getLibrary}>
+    <Router>
         <App />
-    </Web3ReactProvider>
+    </Router>
 );
 
 // If you want your app to work offline and load faster, you can change

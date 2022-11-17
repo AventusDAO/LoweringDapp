@@ -41,12 +41,10 @@ async function signAndSendMessage(account, params, method, url) {
                     id: 1,
                 }),
             }).then((response) => {
-                console.log(response);
                 if (response.status === 200) {
                     response
                         .json()
                         .then((res) => {
-                            console.log(res);
                             return swal.fire({
                                 title: "Token Balance",
                                 text: res.result,
