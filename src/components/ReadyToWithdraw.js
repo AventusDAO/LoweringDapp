@@ -1,71 +1,111 @@
-import { withdrawSubmitHandler } from "../functions/submitHandlers";
-import React from "react";
-import useFetch from "./Extras/useFetch";
+import { backendQueryHandler } from "../functions/backendQuery";
+import React, { useContext } from "react";
+import { stateContext } from "../Contexts/Context";
+import { addressSlicer } from "../functions/randomFunctions";
 
-const ReadyToWithdraw = () => {
-    const { data } = useFetch("http://localhost:8000/proposals");
-    console.log(data);
+const ReadyToWithdraw = (data) => {
+    const lowers = data.lowers;
+    const { account, networkId, avn_contract } = useContext(stateContext);
+
     return (
-        <div
-            className="container fetch-container"
-            style={{ minHeight: "100%" }}
-        >
-            <h1>Tokens ready to be withdrawn</h1>
-            <small>Click on any to execute the lower transaction.</small>
-            <br />
-            <small>
-                Question: How will people know if their transaction is in which
-                lower below?
-            </small>
-            {data &&
-                data.map((lowerTx) => (
-                    <div key={lowerTx.id}>
-                        <div className="row">
-                            <div
-                                className="btn card"
-                                style={{
-                                    borderRadius: "15px",
-                                    marginBottom: "5px",
-                                    marginTop: "5px",
-                                }}
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    console.log("withdraw tx submitted");
-                                    withdrawSubmitHandler(
-                                        lowerTx.leaf,
-                                        lowerTx.merklePath
-                                    );
-                                }}
-                            >
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="text-start">
-                                            <span className="card-status">
-                                                {lowerTx.title}
-                                            </span>
+        <>
+            <div className="accordion" id="accordionExample">
+                {lowers && (
+                    <div>
+                        <h1 className="maintitle">
+                            Tokens ready to be withdrawn
+                        </h1>
+                        <small>
+                            Click on any to execute the lower transaction.
+                        </small>
+                        <br />
+                        {lowers.map((tx) => (
+                            <div key={tx.recipient}>
+                                <div className="accordion-item">
+                                    <h2
+                                        className="accordion-header"
+                                        id="headingOne"
+                                    >
+                                        <button
+                                            className="accordion-button"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne"
+                                            aria-expanded="false"
+                                            aria-controls="collapseOne"
+                                        >
+                                            Recipient:{" "}
+                                            {addressSlicer(tx.recipient, 8, 34)}
+                                        </button>
+                                    </h2>
+                                    <div
+                                        id="collapseOne"
+                                        className="accordion-collapse collapse"
+                                        aria-labelledby="headingOne"
+                                        data-bs-parent="#accordionExample"
+                                    >
+                                        <div className="accordion-body">
+                                            <ul className="list-group">
+                                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                                    Sender:{" "}
+                                                    {addressSlicer(
+                                                        tx.address,
+                                                        8,
+                                                        34
+                                                    )}
+                                                </li>
+                                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                                    Recipient:{" "}
+                                                    {addressSlicer(
+                                                        tx.recipient,
+                                                        8,
+                                                        34
+                                                    )}
+                                                </li>
+                                                <li className="list-group-item d-flex justify-content-between align-items-center">
+                                                    Amount: {tx.amount}
+                                                </li>
+                                            </ul>
+                                            <div className="row">
+                                                <div className="col">
+                                                    {tx.status === "Ready" ? (
+                                                        <span className="badge bg-success rounded-pill">
+                                                            {tx.status}
+                                                        </span>
+                                                    ) : (
+                                                        <span className="badge bg-danger rounded-pill">
+                                                            {tx.status}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                <div className="col">
+                                                    <button
+                                                        className="connect-button btn badge rounded-pill"
+                                                        onClick={() => {
+                                                            backendQueryHandler(
+                                                                tx.address,
+                                                                tx.leaf,
+                                                                tx.merkle_path,
+                                                                account,
+                                                                avn_contract,
+                                                                networkId
+                                                            );
+                                                        }}
+                                                    >
+                                                        withdraw
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <b
-                                    style={{
-                                        color: "#5100FF",
-                                        fontWeight: 700,
-                                    }}
-                                >
-                                    {/* {account.meta.name} */}
-                                </b>{" "}
-                                <p
-                                    style={{
-                                        fontWeight: "normal",
-                                    }}
-                                >
-                                    {/* {account.address} */}
-                                </p>
+                                <br />
                             </div>
-                        </div>
+                        ))}
                     </div>
-                ))}
-        </div>
+                )}
+            </div>
+        </>
     );
 };
 

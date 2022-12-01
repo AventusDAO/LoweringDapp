@@ -9,6 +9,7 @@ import { useWeb3React, Web3ReactProvider } from "@web3-react/core";
 import Web3 from "web3";
 import { addressSlicer } from "../../functions/randomFunctions";
 
+//TODO will re-evaluate usefulness
 const GOERLI_ID = 5;
 const ETHEREUM_MAINNET_ID = 1;
 

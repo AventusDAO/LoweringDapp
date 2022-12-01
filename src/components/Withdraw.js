@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import NotFound from "./Extras/NotFound";
 import useFetch from "./Extras/useFetch";
 import EthereumPageHeader from "./PageHeaders/EthereumPageHeader";
-import WithdrawReady from "./WithdrawReady";
+import ReadyToWithdraw from "./ReadyToWithdraw";
 
 const Withdraw = () => {
     const { address } = useParams();
@@ -25,7 +25,7 @@ const Withdraw = () => {
                 ) : (
                     <div>
                         <br />
-                        <WithdrawReady lowers={data} />
+                        <ReadyToWithdraw lowers={data} />
                     </div>
                 )}
             </div>

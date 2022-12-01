@@ -4,7 +4,6 @@ import Erc20LoweringForm from "./lowerForms/Erc20LoweringForm";
 import Erc777LoweringForm from "./lowerForms/Erc777LoweringForm";
 import EthLoweringForm from "./lowerForms/EthLoweringForm";
 import { formContext } from "../../Contexts/Context";
-// import EthereumPageHeader from "./EthereumPageHeader";
 import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
 
 function LoweringForm() {

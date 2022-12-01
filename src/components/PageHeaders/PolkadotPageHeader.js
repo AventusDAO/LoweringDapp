@@ -5,14 +5,7 @@ import PolkadotJS from "../Polkadot/PolkadotJS";
 import { Link } from "react-router-dom";
 
 function PolkadotPageHeader({ title, description }) {
-    const {
-        account,
-        networkId,
-        switchChecked,
-        setSwitchChecked,
-        setNetwork_state,
-        setTestnet_state,
-    } = useContext(stateContext);
+    const { setNetwork_state } = useContext(stateContext);
 
     return (
         <div className="header-background">
