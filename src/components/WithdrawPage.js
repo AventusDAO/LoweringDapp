@@ -1,6 +1,7 @@
-import EthereumPageHeader from "./EthereumPageHeader";
-import QueryForm from "./Forms/QueryForm";
+import EthereumPageHeader from "./PageHeaders/EthereumPageHeader";
+import LowerQueryForm from "./Forms/LowerQueryForm";
 
+// Sets up the withdraw page by combining both the header and the query form
 const WithdrawPage = () => {
     return (
         <>
@@ -9,7 +10,7 @@ const WithdrawPage = () => {
                 <div className="row">
                     <main role="main" className="text-center">
                         <div className="content mr-auto ml-auto">
-                            <QueryForm />
+                            <LowerQueryForm />
                         </div>
                     </main>
                 </div>

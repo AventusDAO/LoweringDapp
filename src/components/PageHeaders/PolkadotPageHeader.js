@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { stateContext } from "../Contexts/Context";
-import aventus_logo from "../assets/img/aventus-logo.svg";
-import Ethereum from "./Ethereum";
+import { stateContext } from "../../Contexts/Context";
+import aventus_logo from "../../assets/img/aventus-logo.svg";
+import PolkadotJS from "../Polkadot/PolkadotJS";
 import { Link } from "react-router-dom";
 
-function EthereumPageHeader() {
+function PolkadotPageHeader({ title, description }) {
     const {
         account,
         networkId,
@@ -93,78 +93,65 @@ function EthereumPageHeader() {
                     </div>
                 </nav>
                 <div className="row py-lg-3 align-self-center mx-auto">
+                    <div className="text-center">
+                        <h1 className="maintitle align-self-center">{title}</h1>
+                        <p className="text-center">{description}</p>
+                    </div>
+                    <small className="text-black text-left text-center">
+                        {<PolkadotJS />}
+                    </small>
+                    <div
+                        className="mx-auto py-lg-2"
+                        style={{ marginTop: "10px" }}
+                    >
+                        <div className="mx-auto headerLinks">
+                            <Link
+                                style={{
+                                    color: "black",
+                                    textDecoration: "none",
+                                }}
+                                to="/"
+                            >
+                                Lower Token{" "}
+                            </Link>
+                            <Link
+                                style={{
+                                    color: "black",
+                                    textDecoration: "none",
+                                }}
+                                to="/balance"
+                            >
+                                Balance{" "}
+                            </Link>
+                            <Link
+                                style={{
+                                    color: "black",
+                                    textDecoration: "none",
+                                }}
+                                to="/withdraw"
+                            >
+                                Withdraw Token{" "}
+                            </Link>
+                        </div>
+                    </div>
                     <div>
-                        <div className="text-center">
-                            <h1 className="maintitle">Query & Withdraw</h1>
-                            <p className="text-center">
-                                Withdraw ready tokens to Ethereum
-                            </p>
-                        </div>
-                        <small className="text-black text-left text-center">
-                            {
-                                <Ethereum
-                                    account={account}
-                                    networkId={networkId}
-                                />
-                            }
-                        </small>
-                        <div
-                            className="mx-auto py-lg-3"
-                            style={{ marginTop: "10px" }}
-                        >
-                            <div className="mx-auto headerLinks">
-                                <Link
-                                    style={{
-                                        color: "black",
-                                        textDecoration: "none",
-                                    }}
-                                    to="/"
-                                >
-                                    Lower Token{" "}
-                                </Link>
-                                <Link
-                                    style={{
-                                        color: "black",
-                                        textDecoration: "none",
-                                    }}
-                                    to="/balance"
-                                >
-                                    Balance{" "}
-                                </Link>
-                                <Link
-                                    style={{
-                                        color: "black",
-                                        textDecoration: "none",
-                                    }}
-                                    to="/withdraw"
-                                >
-                                    Withdraw Token{" "}
-                                </Link>
-                            </div>
-                        </div>
-                        <div>
-                            {networkId === 5 && (
-                                <div className="select-button text-center align-self-center mx-auto">
-                                    <select
-                                        className="form-select row"
-                                        aria-label="aventus test networks"
-                                        id="lang"
-                                        onChange={(e) =>
-                                            setTestnet_state(e.target.value)
-                                        }
-                                    >
-                                        <option
-                                            defaultValue
-                                            value="Public_Testnet"
-                                        >
-                                            AvN Public Testnet
-                                        </option>
-                                        <option value="DEV">
-                                            AvN Development
-                                        </option>
-                                    </select>
-                                </div>
-                            )}
+                        <div className="select-button text-center align-self-center mx-auto">
+                            <select
+                                className="form-select row"
+                                aria-label="aventus test networks"
+                                id="lang"
+                                onChange={(e) =>
+                                    setNetwork_state(e.target.value)
+                                }
+                            >
+                                <option defaultValue value="Mainnet">
+                                    AvN Mainnet
+                                </option>
+                                <option value="Public_Testnet">
+                                    AvN Public Testnet
+                                </option>
+                                <option value="DEV">AvN Development</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -173,4 +160,4 @@ function EthereumPageHeader() {
     );
 }
 
-export default EthereumPageHeader;
+export default PolkadotPageHeader;

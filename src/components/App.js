@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Route, useLocation, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "../styles/App.css";
 import Networks from "../config/Networks.json";
 import ABI from "../config/abi.json";
@@ -10,6 +10,7 @@ import WithdrawPage from "./WithdrawPage";
 import LoweringForm from "./Forms/LoweringForm";
 import BalanceForm from "./Forms/BalanceForm";
 import NotFound from "./Extras/NotFound";
+import Withdraw from "./Withdraw";
 
 const GOERLI_ID = 5;
 const ETHEREUM_MAINNET_ID = 1;
@@ -114,10 +115,9 @@ function App() {
                     <Route path="/" element={<LoweringForm />} />
                     <Route path="/balance" element={<BalanceForm />} />
                     <Route path="/withdraw" element={<WithdrawPage />} />
+                    <Route path="/lowers/:address" element={<Withdraw />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
-
-                {/* <Footer /> */}
             </stateContext.Provider>
         </div>
     );

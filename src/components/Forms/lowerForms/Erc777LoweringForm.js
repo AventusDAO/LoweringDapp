@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { formContext, stateContext } from "../../Contexts/Context";
-import { lowerSubmitHandler } from "../../functions/submitHandlers";
+import { formContext, stateContext } from "../../../Contexts/Context";
+import { lowerSubmitHandler } from "../../../functions/submitHandlers";
 
-function Erc20LoweringForm() {
+function Erc777LoweringForm() {
     const { token, setToken, amount, setAmount, t1Recipient, setT1Recipient } =
         useContext(formContext);
     const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
@@ -10,9 +10,9 @@ function Erc20LoweringForm() {
     return (
         <div
             className="tab-pane py-3 fade"
-            id="non-avt-tab-pane"
+            id="erc777-tab-pane"
             role="tabpanel"
-            aria-labelledby="non-avt-tab"
+            aria-labelledby="erc777-tab"
             tabIndex="0"
         >
             <form
@@ -105,7 +105,7 @@ function Erc20LoweringForm() {
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
-                    Note: Your wallet will prompt your three times to sign and
+                    Note: Your wallet will prompt you a few times to sign and
                     approve the multiple operations required to execute this
                     transaction.
                 </div>
@@ -114,4 +114,4 @@ function Erc20LoweringForm() {
     );
 }
 
-export default Erc20LoweringForm;
+export default Erc777LoweringForm;

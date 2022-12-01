@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
-import { formContext, stateContext } from "../../Contexts/Context";
-import { lowerSubmitHandler } from "../../functions/submitHandlers";
+import { formContext, stateContext } from "../../../Contexts/Context";
+import { lowerSubmitHandler } from "../../../functions/submitHandlers";
 
-function AvtLoweringForm() {
+function EthLoweringForm() {
     const { amount, setAmount, t1Recipient, setT1Recipient } =
         useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, POLK_AVT_CONTRACT_ADDRESS } =
-        useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
+
+    const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
     return (
         <div
-            className="tab-pane py-3 fade show active"
-            id="avt-tab-pane"
+            className="tab-pane py-3 fade"
+            id="eth-tab-pane"
             role="tabpanel"
-            aria-labelledby="avt-tab"
+            aria-labelledby="eth-tab"
             tabIndex="0"
         >
             <form
@@ -22,7 +23,7 @@ function AvtLoweringForm() {
                     event.preventDefault();
                     lowerSubmitHandler(
                         sender,
-                        POLK_AVT_CONTRACT_ADDRESS,
+                        ETH_CONTRACT_ADDRESS,
                         amount,
                         t1Recipient,
                         AVN_GATEWAY_URL,
@@ -84,7 +85,7 @@ function AvtLoweringForm() {
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
-                    Note: Your wallet will prompt your three times to sign and
+                    Note: Your wallet will prompt you a few times to sign and
                     approve the multiple operations required to execute this
                     transaction.
                 </div>
@@ -93,4 +94,4 @@ function AvtLoweringForm() {
     );
 }
 
-export default AvtLoweringForm;
+export default EthLoweringForm;

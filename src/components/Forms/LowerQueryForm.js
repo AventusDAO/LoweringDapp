@@ -1,13 +1,14 @@
-import React, { useState, useContext } from "react";
-import { stateContext } from "../../Contexts/Context";
-import { querySubmitHandler } from "../../functions/submitHandlers";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function QueryForm() {
-    const [UUID, setUUID] = useState("");
-    const { account, networkId, avn_contract } = useContext(stateContext);
-    function clearValues() {
-        setUUID("");
-    }
+/*
+Form to take in the user's search item. The search item could be: sender address, sender public key, recipient eth address.
+Currentlh includes some dummy code until the backend is set up
+*/
+
+function LowerQueryForm() {
+    const navigate = useNavigate();
+    const [address, setAddress] = useState("");
 
     return (
         <div className="container form-container" style={{ minHeight: "100%" }}>
@@ -25,13 +26,7 @@ function QueryForm() {
                     <form
                         onSubmit={(event) => {
                             event.preventDefault();
-                            console.log(UUID, account, avn_contract, networkId);
-                            querySubmitHandler(
-                                UUID,
-                                account,
-                                avn_contract,
-                                networkId
-                            );
+                            navigate(`/lowers/${address}`); //dummy code until the backend is set up
                         }}
                     >
                         <div className="row mb-3">
@@ -39,24 +34,19 @@ function QueryForm() {
                                 htmlFor="UUID"
                                 className="col-sm-2 col-form-label"
                             >
-                                UUID
+                                Address
                             </label>
                             <div className="col-sm-10">
                                 <input
                                     size="83"
-                                    style={{
-                                        marginLeft: "5px",
-                                        marginRight: "105px",
-                                    }}
                                     type="text"
                                     required
+                                    minLength={42}
+                                    maxLength={66}
                                     className="form-control"
-                                    placeholder="Transaction UUID (eg: f6130a95-57c8-4ef0-8b71-0a77ce6f9320)"
-                                    // pattern="^[A-Za-z0-9]+$"
-                                    maxLength="36"
-                                    minLength="36"
-                                    value={UUID}
-                                    onChange={(e) => setUUID(e.target.value)}
+                                    placeholder="Aventus Sender or Ethereum Recipient address"
+                                    value={address}
+                                    onChange={(e) => setAddress(e.target.value)}
                                     id="UUID"
                                 />
                             </div>
@@ -66,7 +56,7 @@ function QueryForm() {
                             className="btn lift-button rounded-0"
                             style={{ fontWeight: "bold" }}
                         >
-                            Query UUID status
+                            Query Pending Lowers
                         </button>
                         <div style={{ fontSize: "13px" }}>
                             <br />
@@ -79,4 +69,4 @@ function QueryForm() {
     );
 }
 
-export default QueryForm;
+export default LowerQueryForm;

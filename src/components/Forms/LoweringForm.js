@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import AvtLoweringForm from "./AvtLoweringForm";
-import Erc20LoweringForm from "./Erc20LoweringForm";
+import AvtLoweringForm from "./lowerForms/AvtLoweringForm";
+import Erc20LoweringForm from "./lowerForms/Erc20LoweringForm";
+import Erc777LoweringForm from "./lowerForms/Erc777LoweringForm";
+import EthLoweringForm from "./lowerForms/EthLoweringForm";
 import { formContext } from "../../Contexts/Context";
 // import EthereumPageHeader from "./EthereumPageHeader";
-import PolkadotPageHeader from "../PolkadotPageHeader";
+import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
 
 function LoweringForm() {
     const [token, setToken] = useState("");
@@ -71,6 +73,42 @@ function LoweringForm() {
                                             ERC20
                                         </button>
                                     </li>
+                                    <li
+                                        className="nav-item"
+                                        role="presentation"
+                                    >
+                                        <button
+                                            className="nav-link"
+                                            id="erc777-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#erc777-tab-pane"
+                                            type="button"
+                                            role="tab"
+                                            aria-controls="erc777-tab-pane"
+                                            aria-selected="false"
+                                            onFocus={() => clearValues()}
+                                        >
+                                            ERC777
+                                        </button>
+                                    </li>
+                                    <li
+                                        className="nav-item"
+                                        role="presentation"
+                                    >
+                                        <button
+                                            className="nav-link"
+                                            id="eth-tab"
+                                            data-bs-toggle="tab"
+                                            data-bs-target="#eth-tab-pane"
+                                            type="button"
+                                            role="tab"
+                                            aria-controls="eth-tab-pane"
+                                            aria-selected="false"
+                                            onFocus={() => clearValues()}
+                                        >
+                                            ETH
+                                        </button>
+                                    </li>
                                 </ul>
                                 <div
                                     className="row mx-auto align-self-center text-center tab-content justify-center"
@@ -88,6 +126,8 @@ function LoweringForm() {
                                     >
                                         <AvtLoweringForm />
                                         <Erc20LoweringForm />
+                                        <Erc777LoweringForm />
+                                        <EthLoweringForm />
                                     </formContext.Provider>
                                 </div>
                             </div>

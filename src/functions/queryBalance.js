@@ -1,29 +1,36 @@
-import tryGetAvnAccountAddress from "./polkaKey";
-import generateAwtPayload from "./generateAwt";
+import { transactionErrorHandler, gatewayAccessError } from "./errorHandlers";
 import AVN_API from "avn-api";
 import swal from "sweetalert2";
+import getToken from "./generateAwtToken";
+import { substrateConnectFailure } from "./errorHandlers";
 
-import { transactionErrorHandler, gatewayAccessError } from "./errorHandlers";
+/*
+Constructs the params for the balance and the url...
+Requires a valid token to get the account balance.
+Queries the balance of an account. 
+*/
 
 const API = new AVN_API();
 
-async function getToken(account) {
-    await API.init();
-    const signer = account.signer;
-    const pKey = tryGetAvnAccountAddress(account.address);
-    const issuedAt = Date.now();
-    const payload = await generateAwtPayload(
-        signer,
-        account.address,
-        pKey,
-        issuedAt
-    );
+async function balanceHandler(type, account, method, AVN_GATEWAY_URL, token) {
+    const url = `${AVN_GATEWAY_URL}query`;
+    const token_params = {
+        accountId: account.address,
+        token: token,
+    };
+    const avt_params = {
+        accountId: account.address,
+    };
+    const params = token ? token_params : avt_params;
 
-    const awtToken = API.awt.generateAwtTokenFromPayload(payload);
-    return awtToken;
+    if (!account.address) {
+        substrateConnectFailure();
+    } else {
+        signAndQueryBalance(type, account, params, method, url);
+    }
 }
 
-async function signAndSendMessage(account, params, method, url) {
+async function signAndQueryBalance(type, account, params, method, url) {
     await API.init();
     try {
         getToken(account).then((res) => {
@@ -46,7 +53,7 @@ async function signAndSendMessage(account, params, method, url) {
                         .json()
                         .then((res) => {
                             return swal.fire({
-                                title: "Token Balance",
+                                title: `${type} Balance`,
                                 text: res.result,
                                 allowOutsideClick: false,
                                 icon: "info",
@@ -68,4 +75,4 @@ async function signAndSendMessage(account, params, method, url) {
     }
 }
 
-export { getToken, signAndSendMessage };
+export { signAndQueryBalance, balanceHandler };

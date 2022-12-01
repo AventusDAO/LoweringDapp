@@ -29,6 +29,7 @@
     "license": "ISC",
     "dependencies": {
         "@polkadot/extension-dapp": "^0.44.5",
+        "@polkadot/ui-keyring": "^2.9.13",
         "@polkadot/util": "^10.0.2",
         "@polkadot/util-crypto": "^10.0.2",
         "@web3-react/core": "^6.1.9",

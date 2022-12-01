@@ -1,23 +1,27 @@
 import React, { useContext, useState } from "react";
+import { balanceHandler } from "../../functions/queryBalance";
+import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
+import TokenBalanceForm from "./BalanceForms/TokenBalanceForm";
 import { stateContext } from "../../Contexts/Context";
-// import { queryBalanceHandler } from "../../functions/submitHandlers";
-import { balanceHandler } from "../../functions/queryHandler";
-import PolkadotPageHeader from "../PolkadotPageHeader";
 
+/* Configures what's shown on the balance page of the dapp
+    Has three buttons, with a toggle state to determine if a form linked to the second button is shown.
+*/
 function BalanceForm() {
-    const [token, setToken] = useState("");
-    const { sender, AVN_GATEWAY_URL } = useContext(stateContext);
-    const method = "getTokenBalance";
+    const { sender, AVN_GATEWAY_URL, POLK_AVT_CONTRACT_ADDRESS } =
+        useContext(stateContext);
+    const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
-    function clearValues() {
-        setToken("");
-    }
+    const avt_method = "getAvtBalance";
+    const eth_method = "getTokenBalance";
+    const [isShown, setIsShown] = useState(false);
 
     let title = "Token Balance";
     let description = "View the balance of your token on the AvN";
 
     return (
         <>
+            {/* Inserts the Polkadot header to the page with the relevant title and description for this page */}
             <PolkadotPageHeader title={title} description={description} />
             <div className="container-fluid mt-4">
                 <div className="row">
@@ -32,66 +36,58 @@ function BalanceForm() {
                                     id="myTabContent"
                                 >
                                     <div
-                                        className="tab-pane py-3 fade show active"
-                                        id="balance-tab-pane"
+                                        className="tab-pane py-3 fade active show"
+                                        id="bal-non-token-tab-pane"
                                         role="tabpanel"
-                                        aria-labelledby="balance-tab"
+                                        aria-labelledby="bal-non-token-tab"
                                         tabIndex="0"
                                     >
-                                        <form
-                                            onSubmit={(event) => {
+                                        <button
+                                            className="btn connect-button"
+                                            onClick={(event) => {
                                                 event.preventDefault();
+                                                setIsShown(false);
                                                 balanceHandler(
+                                                    "AVT",
                                                     sender,
-                                                    token,
-                                                    method,
+                                                    avt_method,
                                                     AVN_GATEWAY_URL
                                                 );
                                             }}
                                         >
-                                            <div className="row mb-3">
-                                                <label
-                                                    htmlFor="tokenAddress"
-                                                    className="col-sm-2 col-form-label"
-                                                >
-                                                    Token
-                                                </label>
-                                                <div className="col-sm-10">
-                                                    <input
-                                                        size="83"
-                                                        type="text"
-                                                        required
-                                                        className="form-control"
-                                                        placeholder="token contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
-                                                        pattern="0x[0-9a-fA-F]{40}"
-                                                        maxLength="42"
-                                                        minLength="42"
-                                                        value={token}
-                                                        onChange={(e) =>
-                                                            setToken(
-                                                                e.target.value
-                                                            )
-                                                        }
-                                                        id="tokenAddress"
-                                                    />
-                                                </div>
-                                            </div>
-                                            <button
-                                                type="submit"
-                                                className="btn lift-button rounded-0"
-                                                style={{ fontWeight: "bold" }}
-                                            >
-                                                Sign and Query Balance
-                                            </button>
-                                            <div style={{ fontSize: "13px" }}>
-                                                <br />
-                                                Note: Your wallet will prompt
-                                                you once to sign and approve the
-                                                query operation required to
-                                                query your balance.
-                                            </div>
-                                        </form>
+                                            AVT
+                                        </button>
+                                        &nbsp;
+                                        <button
+                                            className="btn connect-button"
+                                            type="button"
+                                            onClick={(event) => {
+                                                event.preventDefault();
+                                                setIsShown(!isShown);
+                                            }}
+                                        >
+                                            TOKEN
+                                        </button>
+                                        &nbsp;
+                                        <button
+                                            className="btn connect-button"
+                                            onClick={(event) => {
+                                                event.preventDefault();
+                                                setIsShown(false);
+                                                balanceHandler(
+                                                    "ETH",
+                                                    sender,
+                                                    eth_method,
+                                                    AVN_GATEWAY_URL,
+                                                    ETH_CONTRACT_ADDRESS
+                                                );
+                                            }}
+                                        >
+                                            ETH
+                                        </button>
                                     </div>
+                                    {/* The token form appears if set to true */}
+                                    {isShown ? <TokenBalanceForm /> : ""}
                                 </div>
                             </div>
                         </div>

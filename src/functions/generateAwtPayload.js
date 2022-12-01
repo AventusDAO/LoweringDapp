@@ -1,4 +1,4 @@
-import common from "../../node_modules/avn-api/lib/common";
+import common from "avn-api/lib/common";
 import { hexToU8a, u8aToHex, u8aConcat } from "@polkadot/util";
 import { transactionErrorHandler } from "./errorHandlers";
 
