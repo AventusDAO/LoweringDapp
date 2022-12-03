@@ -14,14 +14,14 @@ const API = new AVN_API();
 
 async function balanceHandler(type, account, method, AVN_GATEWAY_URL, token) {
     const url = `${AVN_GATEWAY_URL}query`;
-    const token_params = {
+    const tokenParams = {
         accountId: account.address,
         token: token,
     };
-    const avt_params = {
+    const avtParams = {
         accountId: account.address,
     };
-    const params = token ? token_params : avt_params;
+    const params = token ? tokenParams : avtParams;
 
     if (!account.address) {
         substrateConnectFailure();

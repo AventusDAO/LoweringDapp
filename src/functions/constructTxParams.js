@@ -61,7 +61,7 @@ async function sendTransaction(sender, params, method, url) {
                     params.relayer,
                     sender,
                     params.token,
-                    params.token_amount,
+                    params.tokenAmount,
                     params.t1Recipient,
                     userTokenNonce
                 );
@@ -147,7 +147,7 @@ async function sendTransaction(sender, params, method, url) {
 // const params = {
 //     accountId: sender,
 //     recipient: user2,
-//     contract: avt_contract,
+//     contract: avtContract,
 //     amount: amount,
 // };
 

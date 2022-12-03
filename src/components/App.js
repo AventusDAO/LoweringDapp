@@ -16,19 +16,19 @@ const GOERLI_ID = 5;
 const ETHEREUM_MAINNET_ID = 1;
 
 function App() {
-    const [avn_address, setAvn_address] = useState("");
-    const [avt_address, setAvt_address] = useState("");
-    const [avn_contract, setAvn_contract] = useState(null);
-    const [avt_contract, setAvt_contract] = useState(null);
+    const [avnAddress, setAvnAddress] = useState("");
+    const [avtAddress, setAvtAddress] = useState("");
+    const [avnContract, setAvnContract] = useState(null);
+    const [avtContract, setAvtContract] = useState(null);
     const [account, setAccount] = useState("");
     const [networkId, setNetworkId] = useState("");
     const [loadWeb3, setLoadWeb3] = useState(null);
     const [switchChecked, setSwitchChecked] = useState(null);
     const [polkAccounts, setPolkAccounts] = useState("");
     const [sender, setSender] = useState("");
-    const [testnet_state, setTestnet_state] = useState("Public_Testnet");
-    const [network_state, setNetwork_state] = useState("Mainnet");
-    const [AVN_GATEWAY_URL, setAVN_GATEWAY_URL] = useState("Mainnet");
+    const [testnetState, setTestnetState] = useState("PUBLIC_TESTNET");
+    const [networkState, setNetworkState] = useState("MAINNET");
+    const [AVN_GATEWAY_URL, setAVN_GATEWAY_URL] = useState("MAINNET");
     const [POLK_AVT_CONTRACT_ADDRESS, setPOLK_AVT_CONTRACT_ADDRESS] = useState(
         "0x0d88eD6E74bbFD96B831231638b66C05571e824F"
     );
@@ -48,30 +48,30 @@ function App() {
             setNetworkId(networkId);
             //initialise Aventus Contracts and restrict Ethereum networks.
             if (networkId === GOERLI_ID) {
-                setAvn_address(
+                setAvnAddress(
                     Networks.networks[networkId].avn_contract_address[
-                        testnet_state
+                        testnetState
                     ]
                 );
-                setAvt_address(
+                setAvtAddress(
                     Networks.networks[networkId].avt_contract_address
                 );
-                setAvn_contract(new web3.eth.Contract(ABI, avn_address));
-                setAvt_contract(new web3.eth.Contract(ABI, avt_address));
+                setAvnContract(new web3.eth.Contract(ABI, avnAddress));
+                setAvtContract(new web3.eth.Contract(ABI, avtAddress));
             } else if (networkId === ETHEREUM_MAINNET_ID) {
-                setAvn_address(
+                setAvnAddress(
                     Networks.networks[networkId].avn_contract_address
                 );
-                setAvt_address(
+                setAvtAddress(
                     Networks.networks[networkId].avt_contract_address
                 );
-                setAvn_contract(new web3.eth.Contract(ABI, avn_address));
-                setAvt_contract(new web3.eth.Contract(ABI, avt_address));
+                setAvnContract(new web3.eth.Contract(ABI, avnAddress));
+                setAvtContract(new web3.eth.Contract(ABI, avtAddress));
             } else {
                 networkErrorHandler("Please use Ethereum MAINNET or GOERLI");
             }
         }
-    }, [account, avn_address, avt_address, testnet_state]);
+    }, [account, avnAddress, avtAddress, testnetState]);
 
     useEffect(() => {
         checkForWeb3();
@@ -83,15 +83,15 @@ function App() {
                 value={{
                     account,
                     networkId,
-                    avt_address,
-                    avn_address,
-                    avt_contract,
-                    avn_contract,
+                    avtAddress,
+                    avnAddress,
+                    avtContract,
+                    avnContract,
                     switchChecked,
-                    setAvt_contract,
-                    setAvn_contract,
-                    setAvt_address,
-                    setAvn_address,
+                    setAvtContract,
+                    setAvnContract,
+                    setAvtAddress,
+                    setAvnAddress,
                     AVN_GATEWAY_URL,
                     setAVN_GATEWAY_URL,
                     AVN_RELAYER,
@@ -99,10 +99,10 @@ function App() {
                     setNetworkId,
                     setSwitchChecked,
                     loadWeb3,
-                    setTestnet_state,
-                    setNetwork_state,
-                    network_state,
-                    testnet_state,
+                    setTestnetState,
+                    setNetworkState,
+                    networkState,
+                    testnetState,
                     sender,
                     setSender,
                     polkAccounts,

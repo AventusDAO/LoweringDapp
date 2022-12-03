@@ -1,11 +1,9 @@
-const AVN_API = require("avn-api");
-const API = new AVN_API();
 const axios = require("axios");
 
 async function jsonRpcRequest(awtToken, url, suffix, method, params, purpose) {
     console.log(purpose);
-    const full_url = `${url}${suffix}`;
-    const response = await axios(full_url, {
+    const fullUrl = `${url}${suffix}`;
+    const response = await axios(fullUrl, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -68,14 +68,14 @@ async function signData(account, encodedDataToSign) {
                 data: u8aToHex(encodedDataToSign),
                 type: "bytes",
             });
-            const account_pub = common.convertToPublicKeyIfNeeded(
+            const accountPub = common.convertToPublicKeyIfNeeded(
                 account.address
             );
             if (
                 verifySignatureWithOrWithoutWrapping(
                     encodedDataToSign,
                     signature,
-                    account_pub
+                    accountPub
                 )
             ) {
                 return signature;

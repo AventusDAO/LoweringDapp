@@ -5,7 +5,7 @@ import { addressSlicer } from "../functions/randomFunctions";
 
 const ReadyToWithdraw = (data) => {
     const lowers = data.lowers;
-    const { account, networkId, avn_contract } = useContext(stateContext);
+    const { account, networkId, avnContract } = useContext(stateContext);
 
     return (
         <>
@@ -85,9 +85,9 @@ const ReadyToWithdraw = (data) => {
                                                             backendQueryHandler(
                                                                 tx.address,
                                                                 tx.leaf,
-                                                                tx.merkle_path,
+                                                                tx.merklePath,
                                                                 account,
-                                                                avn_contract,
+                                                                avnContract,
                                                                 networkId
                                                             );
                                                         }}

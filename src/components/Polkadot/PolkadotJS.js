@@ -7,20 +7,20 @@ import { WalletExtensions } from "../Extras/ModalExtensions";
 function PolkadotJS() {
     const {
         sender,
-        network_state,
+        networkState,
         setAVN_RELAYER,
         setAVN_GATEWAY_URL,
         setPOLK_AVT_CONTRACT_ADDRESS,
     } = useContext(stateContext);
 
     useEffect(() => {
-        setAVN_GATEWAY_URL(Networks.avn_networks[network_state].gateway);
-        setAVN_RELAYER(Networks.avn_networks[network_state].relayer);
+        setAVN_GATEWAY_URL(Networks.AVN_NETWORKS[networkState].GATEWAY);
+        setAVN_RELAYER(Networks.AVN_NETWORKS[networkState].RELAYER);
         setPOLK_AVT_CONTRACT_ADDRESS(
-            Networks.avn_networks[network_state].avt_contract_address
+            Networks.AVN_NETWORKS[networkState].AVT_CONTRACT_ADDRESS
         );
     }, [
-        network_state,
+        networkState,
         setAVN_GATEWAY_URL,
         setAVN_RELAYER,
         setPOLK_AVT_CONTRACT_ADDRESS,

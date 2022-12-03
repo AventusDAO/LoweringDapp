@@ -12,8 +12,8 @@ function BalanceForm() {
         useContext(stateContext);
     const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
-    const avt_method = "getAvtBalance";
-    const eth_method = "getTokenBalance";
+    const avtMethod = "getAvtBalance";
+    const ethMethod = "getTokenBalance";
     const [isShown, setIsShown] = useState(false);
 
     let title = "Token Balance";
@@ -50,7 +50,7 @@ function BalanceForm() {
                                                 balanceHandler(
                                                     "AVT",
                                                     sender,
-                                                    avt_method,
+                                                    avtMethod,
                                                     AVN_GATEWAY_URL
                                                 );
                                             }}
@@ -77,7 +77,7 @@ function BalanceForm() {
                                                 balanceHandler(
                                                     "ETH",
                                                     sender,
-                                                    eth_method,
+                                                    ethMethod,
                                                     AVN_GATEWAY_URL,
                                                     ETH_CONTRACT_ADDRESS
                                                 );

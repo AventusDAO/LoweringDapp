@@ -17,12 +17,12 @@ Also handles the withdrawal of tokens on ethereum using the lower data returned 
 async function lowerSubmitHandler(
     sender,
     token,
-    token_amount,
+    tokenAmount,
     t1Recipient,
     AVN_GATEWAY_URL,
     AVN_RELAYER
 ) {
-    const _token_amount = token_amount;
+    const _tokenAmount = tokenAmount;
     // const _token_amount = await fullDecimalAmount(token_amount);
     const params = {
         relayer: AVN_RELAYER,
@@ -30,7 +30,7 @@ async function lowerSubmitHandler(
         payer: sender.address,
         t1Recipient,
         token: token,
-        amount: _token_amount,
+        amount: _tokenAmount,
         proxySignature: "",
         feePaymentSignature: "",
         paymentNonce: "",
@@ -41,14 +41,14 @@ async function lowerSubmitHandler(
     } else {
         const method = "proxyTokenLower";
         try {
-            const request_id = await sendTransaction(
+            const requestId = await sendTransaction(
                 sender,
                 params,
                 method,
                 AVN_GATEWAY_URL
             );
-            if (request_id) {
-                await checkRequestId(request_id, sender, AVN_GATEWAY_URL);
+            if (requestId) {
+                await checkRequestId(requestId, sender, AVN_GATEWAY_URL);
             }
         } catch (e) {
             console.error(e);
@@ -57,14 +57,14 @@ async function lowerSubmitHandler(
 }
 
 function txLinkInAlert(networkId, hash, type) {
-    const etherscan_link =
+    const etherscanLink =
         networkId === 1
             ? "https://etherscan.io/tx/"
             : "https://rinkeby.etherscan.io/tx/";
 
     swal.fire({
         title: "Great!",
-        text: `Your ${type} will arrive approximately 20 minutes after the lift transaction succeeds. <br> <a href="${etherscan_link}${hash}" target="_blank">View lift transaction on Etherscan</a>`,
+        text: `Your ${type} will arrive approximately 20 minutes after the lift transaction succeeds. <br> <a href="${etherscanLink}${hash}" target="_blank">View lift transaction on Etherscan</a>`,
         allowOutsideClick: false,
         icon: "success",
         confirmButtonText: "Close",
@@ -76,13 +76,13 @@ async function withdrawSubmitHandler(
     account,
     leaf,
     merklePath,
-    avn_contract,
+    avnContract,
     networkId
 ) {
     if (!account) {
         metamaskConnectionErrorHandler();
     } else {
-        await avn_contract.methods
+        await avnContract.methods
             .lower(leaf, merklePath)
             .send({ from: account })
             .on("transactionHash", (hash) => {

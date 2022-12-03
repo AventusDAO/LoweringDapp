@@ -10,8 +10,8 @@ const Withdraw = () => {
     Dummy data until backend is setup.
     Check out the README for instructions on how to run the dummy data
     */
-    const base_url = "http://localhost:8000/lowers";
-    const url = `${base_url}?address=${address}`;
+    const baseUrl = "http://localhost:8000/lowers";
+    const url = `${baseUrl}?address=${address}`;
     const { data, error, isPending } = useFetch(url);
 
     return (

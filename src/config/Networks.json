@@ -1,32 +1,32 @@
 {
-    "networks": {
+    "NETWORKS": {
         "5": {
-            "avn_contract_address": {
-                "Public_Testnet": "0xb8877fB8C687561F7B01872C0D9d373FFfF0Fdb7",
+            "AVN_CONTRACT_ADDRESS": {
+                "PUBLIC_TESTNET": "0xb8877fB8C687561F7B01872C0D9d373FFfF0Fdb7",
                 "DEV": "0x76E22Fb3B45f8594695737FCB046a5fdfc418185"
             },
-            "avt_contract_address": "0xdB1Cff52f66195f0a5Bd3db91137db98cfc54AE6"
+            "AVT_CONTRACT_ADDRESS": "0xdB1Cff52f66195f0a5Bd3db91137db98cfc54AE6"
         },
         "1": {
-            "avt_contract_address": "0x0d88eD6E74bbFD96B831231638b66C05571e824F",
-            "avn_contract_address": "0xb01eF958F37E999a5528D14F825Cd429596F3864"
+            "AVT_CONTRACT_ADDRESS": "0x0d88eD6E74bbFD96B831231638b66C05571e824F",
+            "AVN_CONTRACT_ADDRESS": "0xb01eF958F37E999a5528D14F825Cd429596F3864"
         }
     },
-    "avn_networks": {
-        "Public_Testnet": {
-            "relayer": "5EcAFwVcBo8s2D3ZSTnx2sq49wVDF3rc1yGJMx5nRp2GsK62",
-            "avt_contract_address": "0xdB1Cff52f66195f0a5Bd3db91137db98cfc54AE6",
-            "gateway": "https://testnet.gateway.aventus.io/"
+    "AVN_NETWORKS": {
+        "PUBLIC_TESTNET": {
+            "RELAYER": "5EcAFwVcBo8s2D3ZSTnx2sq49wVDF3rc1yGJMx5nRp2GsK62",
+            "AVT_CONTRACT_ADDRESS": "0xdB1Cff52f66195f0a5Bd3db91137db98cfc54AE6",
+            "GATEWAY": "https://testnet.gateway.aventus.io/"
         },
         "DEV": {
-            "relayer": "5FbUQ2kJWLoqHuSTSNNqBwKwdQnBVe4HF3TeGyu6UoZaryTh",
-            "avt_contract_address": "0xdB1Cff52f66195f0a5Bd3db91137db98cfc54AE6",
-            "gateway": "https://cba.gateway.aventus.io/"
+            "RELAYER": "5FbUQ2kJWLoqHuSTSNNqBwKwdQnBVe4HF3TeGyu6UoZaryTh",
+            "AVT_CONTRACT_ADDRESS": "0xdB1Cff52f66195f0a5Bd3db91137db98cfc54AE6",
+            "GATEWAY": "https://cba.gateway.aventus.io/"
         },
-        "Mainnet": {
-            "gateway": "https://mainnet.gateway.aventus.io/",
-            "avt_contract_address": "0x0d88eD6E74bbFD96B831231638b66C05571e824F",
-            "relayer": "5Gh6CfQUNDzsk7TQ8Tt8SR9h8mAQXpEpeZjNKFoVxYWqLAEB"
+        "MAINNET": {
+            "GATEWAY": "https://mainnet.gateway.aventus.io/",
+            "AVT_CONTRACT_ADDRESS": "0x0d88eD6E74bbFD96B831231638b66C05571e824F",
+            "RELAYER": "5Gh6CfQUNDzsk7TQ8Tt8SR9h8mAQXpEpeZjNKFoVxYWqLAEB"
         }
     }
 }

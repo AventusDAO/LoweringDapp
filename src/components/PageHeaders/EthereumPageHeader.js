@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import aventus_logo from "../../assets/img/aventus-logo.svg";
+import aventusLogo from "../../assets/img/aventus-logo.svg";
 import Ethereum from "../Ethereum";
 import { Link } from "react-router-dom";
 
@@ -10,8 +10,8 @@ function EthereumPageHeader() {
         networkId,
         switchChecked,
         setSwitchChecked,
-        setNetwork_state,
-        setTestnet_state,
+        setNetworkState,
+        setTestnetState,
     } = useContext(stateContext);
 
     return (
@@ -24,7 +24,7 @@ function EthereumPageHeader() {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <img src={aventus_logo} alt="logo" />
+                        <img src={aventusLogo} alt="logo" />
                     </a>
                     <button
                         className="navbar-toggler"
@@ -150,12 +150,12 @@ function EthereumPageHeader() {
                                         aria-label="aventus test networks"
                                         id="lang"
                                         onChange={(e) =>
-                                            setTestnet_state(e.target.value)
+                                            setTestnetState(e.target.value)
                                         }
                                     >
                                         <option
                                             defaultValue
-                                            value="Public_Testnet"
+                                            value="PublicTestnet"
                                         >
                                             AvN Public Testnet
                                         </option>

@@ -27,16 +27,16 @@ async function generateNewToken(account) {
         console.log(result);
         const signer = account.signer;
         const pKey = tryGetAvnAccountAddress(account.address);
-        const issued_at = Date.now();
+        const issuedAt = Date.now();
         const payload = await generateAwtPayload(
             signer,
             account.address,
             pKey,
-            issued_at
+            issuedAt
         );
         const awtToken = API.awt.generateAwtTokenFromPayload(payload);
-        var awt_object = { token: awtToken, age: issued_at };
-        localStorage.setItem("awt", JSON.stringify(awt_object));
+        var awtObject = { token: awtToken, age: issuedAt };
+        localStorage.setItem("awt", JSON.stringify(awtObject));
         return awtToken;
     }
 }
@@ -50,11 +50,11 @@ async function getToken(account) {
     if (localStorage.getItem("awt")) {
         const awt = JSON.parse(localStorage.getItem("awt"));
         const token = awt.token;
-        const prev_time = awt.age;
-        var age_checker = Number(prev_time);
-        age_checker += 60000;
-        const now_time = Date.now();
-        if (age_checker > now_time) {
+        const prevTime = awt.age;
+        var ageChecker = Number(prevTime);
+        ageChecker += 60000;
+        const nowTime = Date.now();
+        if (ageChecker > nowTime) {
             return token;
         } else {
             const token = await generateNewToken(account);

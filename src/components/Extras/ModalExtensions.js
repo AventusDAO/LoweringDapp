@@ -7,8 +7,8 @@ import { web3Enable } from "@polkadot/extension-dapp";
 
 async function connectSpecificWallet(name) {
     try {
-        const specific_extension = window.injectedWeb3[name];
-        const extension = await specific_extension.enable();
+        const specificExtension = window.injectedWeb3[name];
+        const extension = await specificExtension.enable();
         const accounts = await extension.accounts.get();
         const signRaw = await extension?.signer?.signRaw;
         accounts.forEach((account) => {
@@ -26,12 +26,12 @@ function WalletExtensions() {
 
     const checkIfAnAccountIsConnected = useCallback(async () => {
         const user = localStorage.getItem("user");
-        const active_extension = localStorage.getItem("active_extension");
+        const activeExtension = localStorage.getItem("activeExtension");
 
-        if (user && active_extension) {
+        if (user && activeExtension) {
             try {
                 await web3Enable("Aventus Lowering Dapp");
-                const accounts = await connectSpecificWallet(active_extension);
+                const accounts = await connectSpecificWallet(activeExtension);
                 for (let i = 0; i < accounts.length; i++) {
                     if (accounts[i].address === user) {
                         setSender(accounts[i]);
@@ -106,7 +106,7 @@ function ModalExtensions() {
                                     connectSpecificWallet(wallet).then(
                                         (accounts) => {
                                             localStorage.setItem(
-                                                "active_extension",
+                                                "activeExtension",
                                                 wallet
                                             );
                                             setPolkAccounts(accounts);

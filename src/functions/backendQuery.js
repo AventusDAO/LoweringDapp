@@ -8,7 +8,7 @@ async function backendQueryHandler(
     leaf,
     merklePath,
     account,
-    avn_contract,
+    avnContract,
     networkId
 ) {
     await toAddress(address);
@@ -29,7 +29,7 @@ async function backendQueryHandler(
                     account,
                     leaf,
                     merklePath,
-                    avn_contract,
+                    avnContract,
                     networkId
                 );
                 swal.fire("Withdraw started", "", "success");

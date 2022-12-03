@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import aventus_logo from "../../assets/img/aventus-logo.svg";
+import aventusLogo from "../../assets/img/aventus-logo.svg";
 import PolkadotJS from "../Polkadot/PolkadotJS";
 import { Link } from "react-router-dom";
 
 function PolkadotPageHeader({ title, description }) {
-    const { setNetwork_state } = useContext(stateContext);
+    const { setNetworkState } = useContext(stateContext);
 
     return (
         <div className="header-background">
@@ -17,7 +17,7 @@ function PolkadotPageHeader({ title, description }) {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <img src={aventus_logo} alt="logo" />
+                        <img src={aventusLogo} alt="logo" />
                     </a>
                     <button
                         className="navbar-toggler"
@@ -134,13 +134,13 @@ function PolkadotPageHeader({ title, description }) {
                                 aria-label="aventus test networks"
                                 id="lang"
                                 onChange={(e) =>
-                                    setNetwork_state(e.target.value)
+                                    setNetworkState(e.target.value)
                                 }
                             >
-                                <option defaultValue value="Mainnet">
+                                <option defaultValue value="MAINNET">
                                     AvN Mainnet
                                 </option>
-                                <option value="Public_Testnet">
+                                <option value="PUBLIC_TESTNET">
                                     AvN Public Testnet
                                 </option>
                                 <option value="DEV">AvN Development</option>
