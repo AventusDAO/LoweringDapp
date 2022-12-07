@@ -19,6 +19,7 @@ function substrateNotDetected(name) {
         confirmButtonColor: "#ffffff",
         confirmButtonText: `<a href=${url} target="_blank">Download ${name}</a>`,
         icon: "error",
+        footer: "If the wallet is installed, confirm this dapp is approved to access the wallet from within Manage Website Access in the extension.",
     });
 }
 

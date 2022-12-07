@@ -1,9 +1,9 @@
 import swal from "sweetalert2";
-import { toAddress } from "./polkadotToAddress";
+// import { toAddress } from "./polkadotToAddress";
 import { withdrawSubmitHandler } from "./submitHandlers";
 
-// Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
-async function backendQueryHandler(
+// Checks if the user would like to withdraw the tokens ready to be lowered.
+async function checkIfUserWantsToWithdrawNow(
     address,
     leaf,
     merklePath,
@@ -11,8 +11,6 @@ async function backendQueryHandler(
     avnContract,
     networkId
 ) {
-    await toAddress(address);
-
     if (address) {
         swal.fire({
             title: "Your Lower is Ready!",
@@ -24,6 +22,7 @@ async function backendQueryHandler(
             confirmButtonText: "Withdraw",
             denyButtonText: `Don't Withdraw`,
         }).then((result) => {
+            // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
             if (result.isConfirmed) {
                 withdrawSubmitHandler(
                     account,
@@ -57,4 +56,4 @@ async function backendQueryHandler(
     }
 }
 
-export { backendQueryHandler };
+export { checkIfUserWantsToWithdrawNow };

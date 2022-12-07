@@ -22,6 +22,7 @@ async function lowerSubmitHandler(
     AVN_GATEWAY_URL,
     AVN_RELAYER
 ) {
+    console.log(token, AVN_GATEWAY_URL, AVN_RELAYER);
     const _tokenAmount = tokenAmount;
     // const _token_amount = await fullDecimalAmount(token_amount);
     const params = {
@@ -60,7 +61,7 @@ function txLinkInAlert(networkId, hash, type) {
     const etherscanLink =
         networkId === 1
             ? "https://etherscan.io/tx/"
-            : "https://rinkeby.etherscan.io/tx/";
+            : "https://goerli.etherscan.io/tx/";
 
     swal.fire({
         title: "Great!",
