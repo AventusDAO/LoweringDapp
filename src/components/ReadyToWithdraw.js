@@ -1,11 +1,26 @@
-import { backendQueryHandler } from "../functions/backendQuery";
-import React, { useContext } from "react";
+import { checkIfUserWantsToWithdrawNow } from "../functions/checkIfUserWantsToWithdrawNow";
+import React, { useContext, useState } from "react";
 import { stateContext } from "../Contexts/Context";
 import { addressSlicer } from "../functions/randomFunctions";
+import { Pagination } from "./Pagination";
 
-const ReadyToWithdraw = (data) => {
-    const lowers = data.lowers;
+const ReadyToWithdraw = ({ lowers }) => {
     const { account, networkId, avnContract } = useContext(stateContext);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [lowersPerPage] = useState(4);
+    const indexOfLastPost = currentPage * lowersPerPage;
+    const indexOfFirstPost = indexOfLastPost - lowersPerPage;
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+    var currentLowers;
+    if (lowers) {
+        currentLowers = lowers.slice(indexOfFirstPost, indexOfLastPost);
+        const lowerId = currentLowers.length;
+        for (let i = 0; i < lowerId; i++) {
+            currentLowers[i].id = i;
+        }
+    }
 
     return (
         <>
@@ -19,8 +34,8 @@ const ReadyToWithdraw = (data) => {
                             Click on any to execute the lower transaction.
                         </small>
                         <br />
-                        {lowers.map((tx) => (
-                            <div key={tx.recipient}>
+                        {currentLowers.map((tx) => (
+                            <div key={tx.id}>
                                 <div className="accordion-item">
                                     <h2
                                         className="accordion-header"
@@ -30,7 +45,7 @@ const ReadyToWithdraw = (data) => {
                                             className="accordion-button"
                                             type="button"
                                             data-bs-toggle="collapse"
-                                            data-bs-target="#collapseOne"
+                                            data-bs-target={`#collapse${tx.id}`}
                                             aria-expanded="false"
                                             aria-controls="collapseOne"
                                         >
@@ -39,7 +54,7 @@ const ReadyToWithdraw = (data) => {
                                         </button>
                                     </h2>
                                     <div
-                                        id="collapseOne"
+                                        id={`collapse${tx.id}`}
                                         className="accordion-collapse collapse"
                                         aria-labelledby="headingOne"
                                         data-bs-parent="#accordionExample"
@@ -80,9 +95,9 @@ const ReadyToWithdraw = (data) => {
                                                 </div>
                                                 <div className="col">
                                                     <button
-                                                        className="connect-button btn badge rounded-pill"
+                                                        className="connect-button badge rounded-pill"
                                                         onClick={() => {
-                                                            backendQueryHandler(
+                                                            checkIfUserWantsToWithdrawNow(
                                                                 tx.address,
                                                                 tx.leaf,
                                                                 tx.merklePath,
@@ -102,6 +117,11 @@ const ReadyToWithdraw = (data) => {
                                 <br />
                             </div>
                         ))}
+                        <Pagination
+                            lowersPerPage={lowersPerPage}
+                            totalLowers={lowers.length}
+                            paginate={paginate}
+                        />
                     </div>
                 )}
             </div>
