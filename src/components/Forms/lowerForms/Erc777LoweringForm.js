@@ -1,31 +1,65 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
-import { lowerSubmitHandler } from "../../../functions/submitHandlers";
+import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
+import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
+import { networkErrorHandler } from "../../../utils/errorHandlers";
+import { Spinner } from "../../Extras/Tools";
 
-function Erc777LoweringForm() {
-    const { token, setToken, amount, setAmount, t1Recipient, setT1Recipient } =
-        useContext(formContext);
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
+export default function Erc777LoweringForm() {
+    const {
+        token,
+        setToken,
+        amount,
+        setAmount,
+        t1Recipient,
+        setT1Recipient,
+        lowerLoading,
+        setLowerLoading,
+    } = useContext(formContext);
+    const { sender, AVN_GATEWAY_URL, freezeDapp, AVN_RELAYER } =
+        useContext(stateContext);
+    const isERC777 = true;
+    const isERC20 = false;
 
     return (
         <div
-            className="tab-pane py-3 fade"
-            id="erc777-tab-pane"
+            className="tab-pane py-3 fade custom-lower-tab-width"
+            id="ERC777-tab-pane"
             role="tabpanel"
-            aria-labelledby="erc777-tab"
+            aria-labelledby="ERC777-tab"
             tabIndex="0"
         >
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    lowerSubmitHandler(
-                        sender,
-                        token,
-                        amount,
-                        t1Recipient,
-                        AVN_GATEWAY_URL,
-                        AVN_RELAYER
-                    );
+                    if (freezeDapp === false) {
+                        setLowerLoading(true);
+                        confirmLowerDetails(
+                            sender.address,
+                            "ERC777",
+                            token,
+                            amount
+                        ).then((result) => {
+                            if (result)
+                                lowerSubmitHandler(
+                                    sender,
+                                    token,
+                                    amount,
+                                    t1Recipient,
+                                    AVN_GATEWAY_URL,
+                                    AVN_RELAYER,
+                                    isERC20,
+                                    isERC777
+                                ).then(() => setLowerLoading(false));
+                            else {
+                                setLowerLoading(false);
+                            }
+                        });
+                    } else {
+                        networkErrorHandler(
+                            "Please set your Ethereum network to Mainnet or Goerli"
+                        );
+                    }
                 }}
             >
                 <div className="row mb-3">
@@ -65,6 +99,7 @@ function Erc777LoweringForm() {
                             min={0}
                             required
                             pattern="^[0-9]\d*(\.\d+)?$"
+                            maxLength={20}
                             className="form-control"
                             placeholder="whole or fractional tokens (eg: 100 or 1.0523)"
                             id="tokenAmount"
@@ -98,10 +133,11 @@ function Erc777LoweringForm() {
                 </div>
                 <button
                     type="submit"
+                    disabled={lowerLoading}
                     className="btn lift-button rounded-0"
                     style={{ fontWeight: "bold" }}
                 >
-                    Approve and Lower
+                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
@@ -113,5 +149,3 @@ function Erc777LoweringForm() {
         </div>
     );
 }
-
-export default Erc777LoweringForm;

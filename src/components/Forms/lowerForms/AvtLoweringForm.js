@@ -1,33 +1,64 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
-import { lowerSubmitHandler } from "../../../functions/submitHandlers";
+import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
+import { networkErrorHandler } from "../../../utils/errorHandlers";
+import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
+import { Spinner } from "../../Extras/Tools";
 
-function AvtLoweringForm() {
-    const { amount, setAmount, t1Recipient, setT1Recipient } =
-        useContext(formContext);
+export default function AvtLoweringForm() {
+    const {
+        amount,
+        setAmount,
+        t1Recipient,
+        setT1Recipient,
+        lowerLoading,
+        setLowerLoading,
+    } = useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, POLK_AVT_CONTRACT_ADDRESS } =
-        useContext(stateContext);
-
+    const {
+        sender,
+        AVN_GATEWAY_URL,
+        freezeDapp,
+        AVN_RELAYER,
+        POLK_AVT_CONTRACT_ADDRESS,
+    } = useContext(stateContext);
     return (
         <div
-            className="tab-pane py-3 fade show active"
-            id="avt-tab-pane"
+            className="tab-pane py-3 fade show active custom-lower-tab-width"
+            id="AVT-tab-pane"
             role="tabpanel"
-            aria-labelledby="avt-tab"
+            aria-labelledby="AVT-tab"
             tabIndex="0"
         >
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    lowerSubmitHandler(
-                        sender,
-                        POLK_AVT_CONTRACT_ADDRESS,
-                        amount,
-                        t1Recipient,
-                        AVN_GATEWAY_URL,
-                        AVN_RELAYER
-                    );
+                    if (freezeDapp === false) {
+                        setLowerLoading(true);
+                        confirmLowerDetails(
+                            sender.address,
+                            "AVT",
+                            POLK_AVT_CONTRACT_ADDRESS,
+                            amount
+                        ).then((result) => {
+                            if (result)
+                                lowerSubmitHandler(
+                                    sender,
+                                    POLK_AVT_CONTRACT_ADDRESS,
+                                    amount,
+                                    t1Recipient,
+                                    AVN_GATEWAY_URL,
+                                    AVN_RELAYER
+                                ).then(() => setLowerLoading(false));
+                            else {
+                                setLowerLoading(false);
+                            }
+                        });
+                    } else {
+                        networkErrorHandler(
+                            "Please set your Ethereum network to Mainnet or Goerli"
+                        );
+                    }
                 }}
             >
                 <div className="row mb-3">
@@ -43,6 +74,7 @@ function AvtLoweringForm() {
                             type="text"
                             min={0}
                             required
+                            maxLength={20}
                             pattern="^[0-9]\d*(\.\d+)?$"
                             className="form-control"
                             placeholder="whole or fractional tokens (eg: 100 or 1.0523)"
@@ -78,9 +110,10 @@ function AvtLoweringForm() {
                 <button
                     type="submit"
                     className="btn lift-button rounded-0"
+                    disabled={lowerLoading}
                     style={{ fontWeight: "bold" }}
                 >
-                    Approve and Lower
+                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
@@ -92,5 +125,3 @@ function AvtLoweringForm() {
         </div>
     );
 }
-
-export default AvtLoweringForm;

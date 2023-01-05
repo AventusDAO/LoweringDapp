@@ -1,34 +1,62 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
-import { lowerSubmitHandler } from "../../../functions/submitHandlers";
+import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
+import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
+import { networkErrorHandler } from "../../../utils/errorHandlers";
+import { Spinner } from "../../Extras/Tools";
 
-function EthLoweringForm() {
-    const { amount, setAmount, t1Recipient, setT1Recipient } =
-        useContext(formContext);
+export default function EthLoweringForm() {
+    const {
+        amount,
+        setAmount,
+        t1Recipient,
+        setT1Recipient,
+        lowerLoading,
+        setLowerLoading,
+    } = useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL, freezeDapp, AVN_RELAYER } =
+        useContext(stateContext);
 
     const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
     return (
         <div
-            className="tab-pane py-3 fade"
-            id="eth-tab-pane"
+            className="tab-pane py-3 fade custom-lower-tab-width"
+            id="ETH-tab-pane"
             role="tabpanel"
-            aria-labelledby="eth-tab"
+            aria-labelledby="ETH-tab"
             tabIndex="0"
         >
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    lowerSubmitHandler(
-                        sender,
-                        ETH_CONTRACT_ADDRESS,
-                        amount,
-                        t1Recipient,
-                        AVN_GATEWAY_URL,
-                        AVN_RELAYER
-                    );
+                    if (freezeDapp === false) {
+                        setLowerLoading(true);
+                        confirmLowerDetails(
+                            sender.address,
+                            "ETH",
+                            "Ethereum ETH",
+                            amount
+                        ).then((result) => {
+                            if (result)
+                                lowerSubmitHandler(
+                                    sender,
+                                    ETH_CONTRACT_ADDRESS,
+                                    amount,
+                                    t1Recipient,
+                                    AVN_GATEWAY_URL,
+                                    AVN_RELAYER
+                                ).then(() => setLowerLoading(false));
+                            else {
+                                setLowerLoading(false);
+                            }
+                        });
+                    } else {
+                        networkErrorHandler(
+                            "Please set your Ethereum network to Mainnet or Goerli"
+                        );
+                    }
                 }}
             >
                 <div className="row mb-3">
@@ -44,6 +72,7 @@ function EthLoweringForm() {
                             type="text"
                             min={0}
                             required
+                            maxLength={20}
                             pattern="^[0-9]\d*(\.\d+)?$"
                             className="form-control"
                             placeholder="whole or fractional tokens (eg: 100 or 1.0523)"
@@ -79,9 +108,10 @@ function EthLoweringForm() {
                 <button
                     type="submit"
                     className="btn lift-button rounded-0"
+                    disabled={lowerLoading}
                     style={{ fontWeight: "bold" }}
                 >
-                    Approve and Lower
+                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
@@ -93,5 +123,3 @@ function EthLoweringForm() {
         </div>
     );
 }
-
-export default EthLoweringForm;

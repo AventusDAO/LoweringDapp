@@ -10,7 +10,7 @@ function LoweringForm() {
     const [token, setToken] = useState("");
     const [amount, setAmount] = useState("");
     const [t1Recipient, setT1Recipient] = useState("");
-
+    const [lowerLoading, setLowerLoading] = useState("");
     function clearValues() {
         setToken("");
         setAmount("");
@@ -19,11 +19,15 @@ function LoweringForm() {
 
     let title = "Lower";
     let description = "Lower Your Tokens on Aventus to Ethereum";
+    const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
 
     return (
         <>
             <PolkadotPageHeader title={title} description={description} />
-            <div className="container-fluid mt-4">
+            <div
+                className="container-fluid mt-4"
+                style={{ marginBottom: "20%" }}
+            >
                 <div className="row">
                     <main role="main" className="text-center">
                         <div className="content mr-auto ml-auto">
@@ -36,81 +40,36 @@ function LoweringForm() {
                                     id="myTab"
                                     role="tablist"
                                 >
-                                    <li
-                                        className="nav-item"
-                                        role="presentation"
-                                    >
-                                        <button
-                                            className="nav-link active"
-                                            id="non-avt-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#avt-tab-pane"
-                                            type="button"
-                                            role="tab"
-                                            aria-controls="avt-tab-pane"
-                                            aria-selected="true"
-                                            onFocus={() => clearValues()}
+                                    {tokenTabs.map((value, index) => (
+                                        <li
+                                            key={index}
+                                            className="nav-item"
+                                            role="presentation"
                                         >
-                                            AVT
-                                        </button>
-                                    </li>
-                                    <li
-                                        className="nav-item"
-                                        role="presentation"
-                                    >
-                                        <button
-                                            className="nav-link"
-                                            id="non-avt-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#non-avt-tab-pane"
-                                            type="button"
-                                            role="tab"
-                                            aria-controls="non-avt-tab-pane"
-                                            aria-selected="false"
-                                            onFocus={() => clearValues()}
-                                        >
-                                            ERC20
-                                        </button>
-                                    </li>
-                                    <li
-                                        className="nav-item"
-                                        role="presentation"
-                                    >
-                                        <button
-                                            className="nav-link"
-                                            id="erc777-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#erc777-tab-pane"
-                                            type="button"
-                                            role="tab"
-                                            aria-controls="erc777-tab-pane"
-                                            aria-selected="false"
-                                            onFocus={() => clearValues()}
-                                        >
-                                            ERC777
-                                        </button>
-                                    </li>
-                                    <li
-                                        className="nav-item"
-                                        role="presentation"
-                                    >
-                                        <button
-                                            className="nav-link"
-                                            id="eth-tab"
-                                            data-bs-toggle="tab"
-                                            data-bs-target="#eth-tab-pane"
-                                            type="button"
-                                            role="tab"
-                                            aria-controls="eth-tab-pane"
-                                            aria-selected="false"
-                                            onFocus={() => clearValues()}
-                                        >
-                                            ETH
-                                        </button>
-                                    </li>
+                                            <button
+                                                className={`nav-link 
+                                                    ${
+                                                        index === 0
+                                                            ? "active"
+                                                            : ""
+                                                    }
+                                                `}
+                                                id={`${value}-tab`}
+                                                data-bs-toggle="tab"
+                                                data-bs-target={`#${value}-tab-pane`}
+                                                type="button"
+                                                role="tab"
+                                                aria-controls={`${value}-tab-pane`}
+                                                aria-selected="false"
+                                                onFocus={() => clearValues()}
+                                            >
+                                                {value}
+                                            </button>
+                                        </li>
+                                    ))}
                                 </ul>
                                 <div
-                                    className="row mx-auto align-self-center text-center tab-content justify-center"
+                                    className="row text-center tab-content justify-center"
                                     id="myTabContent"
                                 >
                                     <formContext.Provider
@@ -121,6 +80,8 @@ function LoweringForm() {
                                             setAmount,
                                             token,
                                             setToken,
+                                            lowerLoading,
+                                            setLowerLoading,
                                         }}
                                     >
                                         <AvtLoweringForm />

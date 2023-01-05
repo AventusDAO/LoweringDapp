@@ -1,31 +1,63 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
-import { lowerSubmitHandler } from "../../../functions/submitHandlers";
+import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
+import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
+import { Spinner } from "../../Extras/Tools";
+import { networkErrorHandler } from "../../../utils/errorHandlers";
 
-function Erc20LoweringForm() {
-    const { token, setToken, amount, setAmount, t1Recipient, setT1Recipient } =
-        useContext(formContext);
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
+export default function Erc20LoweringForm() {
+    const {
+        token,
+        setToken,
+        amount,
+        setAmount,
+        t1Recipient,
+        setT1Recipient,
+        lowerLoading,
+        setLowerLoading,
+    } = useContext(formContext);
+    const { sender, AVN_GATEWAY_URL, freezeDapp, AVN_RELAYER } =
+        useContext(stateContext);
+    const isERC20 = true;
 
     return (
         <div
-            className="tab-pane py-3 fade"
-            id="non-avt-tab-pane"
+            className="tab-pane py-3 fade custom-lower-tab-width"
+            id="ERC20-tab-pane"
             role="tabpanel"
-            aria-labelledby="non-avt-tab"
+            aria-labelledby="ERC20-tab"
             tabIndex="0"
         >
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    lowerSubmitHandler(
-                        sender,
-                        token,
-                        amount,
-                        t1Recipient,
-                        AVN_GATEWAY_URL,
-                        AVN_RELAYER
-                    );
+                    if (freezeDapp === false) {
+                        setLowerLoading(true);
+                        confirmLowerDetails(
+                            sender.address,
+                            "ERC20",
+                            token,
+                            amount
+                        ).then((result) => {
+                            if (result)
+                                lowerSubmitHandler(
+                                    sender,
+                                    token,
+                                    amount,
+                                    t1Recipient,
+                                    AVN_GATEWAY_URL,
+                                    AVN_RELAYER,
+                                    isERC20
+                                ).then(() => setLowerLoading(false));
+                            else {
+                                setLowerLoading(false);
+                            }
+                        });
+                    } else {
+                        networkErrorHandler(
+                            "Please set your Ethereum network to Mainnet or Goerli"
+                        );
+                    }
                 }}
             >
                 <div className="row mb-3">
@@ -63,6 +95,7 @@ function Erc20LoweringForm() {
                             size="83"
                             type="text"
                             min={0}
+                            maxLength={20}
                             required
                             pattern="^[0-9]\d*(\.\d+)?$"
                             className="form-control"
@@ -99,9 +132,10 @@ function Erc20LoweringForm() {
                 <button
                     type="submit"
                     className="btn lift-button rounded-0"
+                    disabled={lowerLoading}
                     style={{ fontWeight: "bold" }}
                 >
-                    Approve and Lower
+                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
@@ -113,5 +147,3 @@ function Erc20LoweringForm() {
         </div>
     );
 }
-
-export default Erc20LoweringForm;
