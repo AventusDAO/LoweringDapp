@@ -4,14 +4,14 @@ const useFetch = (endpoint) => {
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
     const [error, setError] = useState(null);
-    console.log("useFetch");
 
     useEffect(() => {
-        console.log("useeffect");
         fetch(endpoint)
             .then((res) => {
                 if (!res.ok) {
-                    throw Error("Could not fetch the Proposals");
+                    throw Error(
+                        "Could not fetch the Lower data, please try again!"
+                    );
                 }
                 return res.json();
             })

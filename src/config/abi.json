@@ -15,6 +15,21 @@
     },
     {
         "inputs": [
+            {
+                "internalType": "address",
+                "name": "erc20Address",
+                "type": "address"
+            },
+            { "internalType": "bytes", "name": "t2PublicKey", "type": "bytes" },
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+        ],
+        "name": "lift",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
             { "internalType": "bytes", "name": "t2PublicKey", "type": "bytes" }
         ],
         "name": "liftETH",

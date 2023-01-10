@@ -5,10 +5,6 @@
   display: inline-block;
 }
 
-.swal-text {
-  text-align: center;
-}
-
 .small-line {
   line-height: 0.1;
 }
@@ -24,7 +20,10 @@ body {
   color: #1d2733;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
+  display: flex;
+  flex-direction: column;
   font-size: 16px;
+  min-height: 100vh;
   line-height: 21px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,12 +35,49 @@ body {
   font-size: 40px
 }
 
+/* Dark mode styling */
+.white-content {
+  background: #292929;
+  color: #F2F1F1
+}
 
-.bottom {
+/* /* Footer styles */
+/* .bottom {
   bottom: 0;
   left: 0;
-  position: fixed;
+  position: absolute;
   width: 100%
+} */
+
+/* .footer {
+  background-color: #1D2733;
+  color: white;
+}  */
+
+.bottom {
+  /* bottom: 0; */
+  /* left: 0; */
+  /* margin-top: auto;
+  position: fixed;
+  width: 100% */
+  /* bottom: 0; */
+  /* flex-grow: 1; */
+  /* margin-top: auto; */
+  /* position: absolute; */
+}
+
+.footer {
+  background-color: #1D2733;
+  width: 100%;
+  margin-top: auto;
+  color: white;
+  position: fixed;
+  bottom: 0;
+}
+
+
+.img-footer {
+  width: 100px
 }
 
 /* Card Styling */
@@ -129,6 +165,11 @@ body {
   border-color: #F65925
 }
 
+.gear-button {
+  background-color: transparent;
+  border: 0;
+}
+
 .connect-button {
   font-weight: bold;
   background-color: #5100FF;
@@ -148,32 +189,59 @@ body {
 }
 
 .btn:hover {
-  background-color: #FFD6C9;
+  border-color: #5100FF;
+  color: black;
+  border-radius: 5px;
 }
 
-.swal-button {
-  padding: 7px 19px;
-  border-radius: 2px;
-  background-color: #5100FF;
-  font-size: 12px;
-  border: 1px solid #5100FF;
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+.account-connect-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: #5100FF;
+  border-color: #5100FF;
+  font-weight: bold;
+  padding: -5px
 }
+
+.account-connect-button:hover {
+  background-color: #009a2c;
+  border-color: white;
+  color: white;
+  border-radius: 15px;
+}
+
+.disconnect-btn {
+  font-size: small;
+  border-radius: 15px;
+  background-color: #5100FF;
+  border-radius: 15px;
+  color: white;
+  border-color:#5100FF;
+  font-weight: bold;
+}
+
+.disconnect-btn:hover {
+  background-color: #eb1111;
+  border-color: white;
+  color: white;
+  border-radius: 15px;
+}
+
+/* Header Styles */
 
 .header-background {
   background-color: #F2F1F1;
 }
 
-/* Footer styles */
-.footer {
-  background-color: #1D2733;
-  color: white;
-  bottom: 0;
+.headerLinks {
+  width:35%;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
-.img-footer {
-  width: 100px
-}
+
 
 .eth-account {
   background-color: #FFD6C9;
@@ -189,19 +257,33 @@ body {
   position: relative;
 }
 
-.tab-pane {
+.custom-lower-tab-width {
   padding: 100px;
 }
+
+.custom-balance-tab-width {
+  padding-right: 10px;
+  padding-left: 10px;
+ }
 
 .select-button {
   display: flex;
   width: 20%;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 @media print,
 screen and (max-width: 1400px) {
   .form-container {
     max-width: 80%;
+  }
+
+  .headerLinks {
+    width: 50%;
+    font-size: 90%;
+    display: flex;
+    justify-content: space-evenly;
   }
 }
 
@@ -211,19 +293,69 @@ screen and (max-width: 1100px) {
     max-width: 100%;
   }
 
-  .bottom {
-    bottom: 0;
-    left: 0;
+  .select-button {
+    width: 25%
+  }
+
+}
+
+@media screen and (max-width: 912px) {
+  .select-button {
     margin-top: 20px;
-    position: absolute;
+    width: 35%
+  }
+
+  .custom-lower-tab-width {
+    padding: 20px;
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+
+  .headerLinks {
+    width: 100%;
+    font-size: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
   }
 }
 
-/* @media screen and (max-width:500px) {
+@media screen and (max-width:575px) {
+/* Footer styles */
+  /* .bottom {
+    bottom: -30%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    margin-top: 100%;
+    height: 1%;
+  } */
+
+  .bottom {
+    bottom: -30%;
+    /* left: 0; */
+    margin-top: 20px;
+    position: relative;
+  }
+
+  /* .footer {
+    background-color: #1D2733;
+    color: white;
+  } */
+}
+
+
+@media screen and (max-width:500px) {
   .select-button {
     width: 70%
   }
-} */
+  .swal2-footer{
+    font-size: 70% !important;
+  }
+}
+
 
 @media print,
 screen and (max-width: 420px) {
@@ -231,6 +363,14 @@ screen and (max-width: 420px) {
   .body {
     position: relative;
   }
+
+  .headerLinks {
+    width: 100%;  
+    font-size:80%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+    }
 
   .account-info {
     font-size: 10px;
@@ -241,8 +381,7 @@ screen and (max-width: 420px) {
   /* Button styles */
 
   .btn {
-    padding-left: 20px;
-    padding-right: 20px;
+    border-radius: 0px;
   }
 
   .metamask-button {
@@ -259,23 +398,28 @@ screen and (max-width: 420px) {
     font-size: 80%;
   }
 
-  .tab-pane {
-    padding: 5px;
-  }
 }
 
 @media screen and (max-width: 300px) {
   .account-info {
-    font-size: 7px;
+    font-size: 9px;
     font-weight: 500;
   }
 
+  .swal2-footer {
+    font-size: 50% !important;
+  }
+
+  .headerLinks {
+    font-size: 10px;
+  }
+
   .select-button {
-    width: 80%
+    width: 90%
   }
 
   .form-container {
     max-width: 100%;
     font-size: 10px;
   }
-}
+} 

@@ -1,30 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import Networks from "../../config/Networks.json";
-import { addressSlicer } from "../../functions/randomFunctions";
-import { WalletExtensions } from "../Extras/ModalExtensions";
+import { addressSlicer } from "../../utils/randomFunctions";
+import { PolkadotExtensions } from "../Extras/PolkadotExtensions";
 
 function PolkadotJS() {
-    const {
-        sender,
-        network_state,
-        setAVN_RELAYER,
-        setAVN_GATEWAY_URL,
-        setPOLK_AVT_CONTRACT_ADDRESS,
-    } = useContext(stateContext);
-
-    useEffect(() => {
-        setAVN_GATEWAY_URL(Networks.avn_networks[network_state].gateway);
-        setAVN_RELAYER(Networks.avn_networks[network_state].relayer);
-        setPOLK_AVT_CONTRACT_ADDRESS(
-            Networks.avn_networks[network_state].avt_contract_address
-        );
-    }, [
-        network_state,
-        setAVN_GATEWAY_URL,
-        setAVN_RELAYER,
-        setPOLK_AVT_CONTRACT_ADDRESS,
-    ]);
+    const { sender } = useContext(stateContext);
 
     if (sender) {
         return (
@@ -59,7 +39,7 @@ function PolkadotJS() {
                     >
                         Switch to Another Account
                     </button>
-                    <WalletExtensions />
+                    <PolkadotExtensions />
                 </div>
             </div>
         );
@@ -74,10 +54,10 @@ function PolkadotJS() {
                 >
                     Connect Your Polkadot Wallet
                 </button>
-                <WalletExtensions />
+                <PolkadotExtensions />
             </div>
         );
     }
 }
 
-export default PolkadotJS;
+export { PolkadotJS };

@@ -1,24 +1,21 @@
 import React from "react";
-import aventus_logo from "../assets/img/aventus-logo-sygnet-light.svg";
+import { Link } from "react-router-dom";
 
 function Footer() {
     return (
-        <div className="bottom">
-            <div className="footer mt-auto py-3">
-                <footer className="container">
-                    <a
-                        href="https://www.aventus.io/"
-                        target="_blank"
-                        rel="noopener noreferrer"
+        <div className="footer">
+            <div className="text-center">
+                <strong>
+                    <Link
+                        style={{
+                            color: "White",
+                            textDecoration: "none",
+                        }}
+                        to="/FAQ"
                     >
-                        <img
-                            src={aventus_logo}
-                            style={{ width: "80px" }}
-                            className="img-footer"
-                            alt="logo"
-                        />
-                    </a>
-                </footer>
+                        FAQ
+                    </Link>
+                </strong>
             </div>
             <div
                 className="text-center font-weight-bold  my-2"

@@ -1,0 +1,43 @@
+[
+    {
+        "question": "How to use this dapp on Mobile",
+        "answer": "This dapp can be used within mobile crypto wallets that have embedded browsers. For example, MetaMask / Nova Wallet. However, note that the initial lowering operation is Substrate based and thus cannot be done using an EVM wallet such as Metamask, but Metamask can be used to carryout the withdrawal transaction once the tokens are ready to be withdrawn on Ethereum."
+    },
+    {
+        "question": "How to use this dapp within the Nova Wallet",
+        "answer": " Nova Wallet has an embedded browser. Paste the url for this dapp into that browser and carry on with your operations."
+    },
+    {
+        "question": "How to Withdraw within the Nova wallet",
+        "answer": "The Nova Wallet supports both Substrate and EVM based wallets. Ensure you are using the correct wallet (address) options within Nova wallet when switching to the Withdraw operation."
+    },
+    {
+        "question": "What is an Aventus Web Token (AWT)?",
+        "answer": "AWT is an extension of JWT. Each AWT is signed with the user's substrate private key, and this signature can be verified using the user's AvN public key."
+    },
+    {
+        "question": "How long is the Aventus Web Token (AWT) valid for?",
+        "answer": "60 seconds."
+    },
+    {
+        "question": "Why do I need to sign to view my balance?",
+        "answer": "This dapp requires an AWT token to authenticate the user for every operation."
+    },
+    {
+        "question": "Why do I need to sign multiple times to submit a transaction?",
+        "answer": "This Dapp interacts with the Aventus parachain via the Gateway and each user is authenticated on the Gateway using their unique time-limited Aventus Web Token (AWT). A new token must be generated if the existing token has expired or non-existent."
+    },
+
+    {
+        "question": "Why do I need to have Metamask?",
+        "answer": "To ensure we are lowering the right amount of your erc20 token with the right amount of decimals, we need to access the smart contract for that token to confirm the decimal number."
+    },
+    {
+        "question": "Why can't I find my transaction to lower my tokens?",
+        "answer": "The 'Query and Withdraw' page only shows tokens for transactions that were successful on the AvN and are yet withdrawn on Ethereum."
+    },
+    {
+        "question": "Not sure what happened to my transaction, how can I query it?",
+        "answer": "Depending on what stage your transaction failed or got stuck at, you will have a different set of data returned to you. For example, you will have your UUID after the transaction has been submitted, and if the transaction has been processed, you will have the blocknumber and transaction index."
+    }
+]
