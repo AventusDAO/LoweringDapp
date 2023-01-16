@@ -1,7 +1,12 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { stateContext } from "../../Contexts/Context";
-import { networkErrorHandler } from "../../utils/errorHandlers";
+import {
+    networkErrorHandler,
+    genericErrorHandlerTemplate,
+} from "../../utils/errorHandlers";
+import { toAddress } from "../../utils/polkadotFunctions/polkadotToAddress";
+
 /*
 Form to take in the user's search item. The search item could be: sender address, sender public key, recipient eth address.
 Currentlh includes some dummy code until the backend is set up
@@ -10,7 +15,18 @@ Currentlh includes some dummy code until the backend is set up
 function LowerQueryForm() {
     const navigate = useNavigate();
     const [address, setAddress] = useState("");
-    const { freezeDapp } = useContext(stateContext);
+    const { account, freezeDapp } = useContext(stateContext);
+
+    function submit(address) {
+        if (toAddress(address)) {
+            navigate(`/lowers/${address}`);
+        } else {
+            genericErrorHandlerTemplate(
+                "Incorrect Address",
+                "Please ensure the address input is correct."
+            );
+        }
+    }
 
     return (
         <div
@@ -18,6 +34,7 @@ function LowerQueryForm() {
             style={{
                 marginBottom: "20%",
                 minHeight: "100%",
+                color: "black",
             }}
         >
             <div
@@ -36,7 +53,7 @@ function LowerQueryForm() {
                             event.preventDefault();
                             freezeDapp
                                 ? networkErrorHandler()
-                                : navigate(`/lowers/${address}`);
+                                : submit(address);
                         }}
                     >
                         <div className="row mb-3">
@@ -52,7 +69,7 @@ function LowerQueryForm() {
                                     type="text"
                                     required
                                     minLength={42}
-                                    pattern="0x[0-9a-fA-F]{64}|5[0-9a-zA-Z]{47}|0x[0-9a-fA-F]{40}"
+                                    pattern="0x[0-9a-fA-F]{64}|[0-9a-zA-Z]{48}|0x[0-9a-fA-F]{40}"
                                     maxLength={66}
                                     className="form-control"
                                     placeholder="Aventus Sender or Ethereum Recipient address"

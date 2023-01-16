@@ -22,6 +22,7 @@ export default function AvtLoweringForm() {
         AVN_RELAYER,
         POLK_AVT_CONTRACT_ADDRESS,
     } = useContext(stateContext);
+
     return (
         <div
             className="tab-pane py-3 fade show active custom-lower-tab-width"

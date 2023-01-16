@@ -1,7 +1,6 @@
 import sendTransaction from "./constructTxParams";
 import { tokenAmountChecker } from "../ethereumFunctions/decimalHandler";
 import { checkRequestId } from "./pollTransaction";
-import { toAddress } from "../polkadotFunctions/polkadotToAddress";
 
 /*
 This file handles the lower transactions for all four lower options.

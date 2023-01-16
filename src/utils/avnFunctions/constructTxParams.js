@@ -17,7 +17,6 @@ export default async function sendTransaction(sender, params, method, url) {
             accountId: sender.address,
             nonceType: "token",
         };
-
         const userTokenNonce = await jsonRpcRequest(
             awtToken,
             url,
@@ -29,11 +28,12 @@ export default async function sendTransaction(sender, params, method, url) {
         if (userTokenNonce !== null) {
             // signature #2
             const result2 = await userConfirmation(
-                "to query the nonce of your account",
+                "to generate a signature to authorise proxy payment",
                 "You do not pay for this operation"
             );
             if (result2) {
                 const awtToken = await getToken(sender);
+
                 if (awtToken !== undefined) {
                     const userProxySignature =
                         await userGeneratesTransferSignatureOffline(
@@ -105,6 +105,7 @@ export default async function sendTransaction(sender, params, method, url) {
                                                 payerProxySignature,
                                             paymentNonce: payerNonce,
                                         };
+
                                         const requestId = await jsonRpcRequest(
                                             awtToken,
                                             url,
@@ -140,19 +141,3 @@ export default async function sendTransaction(sender, params, method, url) {
         );
     }
 }
-
-// TODO waiting on the backend to determine how I'll need this
-// async function queryState(method, params) {
-//     const queryResponse = await jsonRpcRequest("query", method, params);
-// }
-
-// const params = {
-//     accountId: sender,
-//     recipient: user2,
-//     contract: avtContract,
-//     amount: amount,
-// };
-
-// (async () => {
-//     await sendTransaction(sender, params, method, url);
-// })();

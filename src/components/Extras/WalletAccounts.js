@@ -11,7 +11,7 @@ export const WalletAccounts = () => {
         <div>
             {polkAccounts &&
                 polkAccounts.map((account) => (
-                    <div key={account.address} data-bs-dismiss="modal">
+                    <div key={account.address}>
                         <div className="row">
                             <div
                                 className="btn card-modal card"

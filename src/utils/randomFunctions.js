@@ -1,4 +1,5 @@
 import { userBalance } from "./someUIpopups";
+import balanceConverter from "ethereum-unit-converter";
 
 export function capitaliseFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -9,13 +10,11 @@ export function addressSlicer(address, num1, num2) {
 }
 
 export const balanceFormatter = (type, res) => {
-    if (type === "AVT") {
-        if (res.result.length > 18) {
-            const v = res.result.length - 18;
-            const bal = res.result.slice(0, v) + "." + res.result.slice(v);
-            return userBalance(type, bal);
-        } else return userBalance(type, res.result);
-    } else return userBalance(type, res.result);
+    if (type === "AVT" || type === "ETH") {
+        const resValue = Number(res.result);
+        const result = balanceConverter(resValue, "wei", "ether");
+        return userBalance(type, res.result, result);
+    } else return userBalance(type, res.result, res.result);
 };
 
 export function copyUUID(value) {
@@ -34,4 +33,28 @@ export function copyTxDetails(value) {
     item.select();
     document.execCommand("copy");
     document.body.removeChild(item);
+}
+
+const networks = {
+    1: "MAINNET",
+    5: { 0: "PUBLIC_TESTNET", 1: "DEV" },
+};
+
+export function confirmNetwork(networkId, networkState) {
+    if (networkId === 1) {
+        if (networkState === networks[networkId]) {
+            return true;
+        } else {
+            return false;
+        }
+    } else if (networkId === 5) {
+        if (
+            networkState === networks[networkId][0] ||
+            networkState === networks[networkId][1]
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

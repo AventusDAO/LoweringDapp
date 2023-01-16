@@ -12,7 +12,7 @@ function txLinkInAlert(networkId, hash, type) {
 
     swal.fire({
         title: "Great!",
-        html: `Your ${type} will arrive in your account immediately if the lower transaction succeeds. <br> <a href="${etherscanLink}${hash}" target="_blank">View lift transaction on Etherscan</a>`,
+        html: `Your ${type} will arrive in your account immediately if the lower transaction succeeds. <br> <a href="${etherscanLink}${hash}" target="_blank">View lower transaction on Etherscan</a>`,
         allowOutsideClick: false,
         icon: "success",
         confirmButtonText: "Close",
@@ -27,20 +27,13 @@ export async function withdrawSubmitHandler(
     avnContract,
     networkId
 ) {
-    // const token = "0x8Fa6cD9A275506D719C434335c0C9FfD15e05A87";
-    // const pub = "0x8Fa6cD9A275506D719C434335c0C9FfD15e05A87";
-    // const am = 1;
     if (!account) {
         metamaskConnectionErrorHandler();
     } else {
-        // swal.fire("Withdraw started", "", "success");
-        // console.log(typeof leaf, merklePath);
         try {
             await avnContract.methods
                 .lower(leaf, merklePath)
-                // .lift(token, pub, am)
                 .send({ from: account })
-                // .then(console.log)
                 .on("transactionHash", (hash) => {
                     txLinkInAlert(networkId, hash, "ETH");
                 })

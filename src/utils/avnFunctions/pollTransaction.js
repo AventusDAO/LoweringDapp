@@ -10,7 +10,7 @@ async function sleep(ms) {
 }
 
 async function checkRequestId(requestId, sender, url) {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 15; i++) {
         await sleep(5000);
         const params = { requestId };
         const awtToken = await getToken(sender);

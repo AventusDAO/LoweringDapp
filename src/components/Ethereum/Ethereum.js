@@ -6,7 +6,6 @@ import { ConnectToEthereum } from "./ConnectToEthereum";
 const GOERLI_ID = 5;
 const ETHEREUM_MAINNET_ID = 1;
 
-// TODO Implement a Freeze on the dapp depending on the state of the connected Ethereum wallet.
 function Ethereum() {
     const {
         loadWeb3,

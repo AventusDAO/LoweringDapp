@@ -33,6 +33,7 @@ export async function userSignatureConfirmation() {
         showDenyButton: true,
         denyButtonText: "Don't Sign",
         confirmButtonColor: "green",
+        footer: "You do not pay for this operation",
     });
     return result ? result : "";
 }

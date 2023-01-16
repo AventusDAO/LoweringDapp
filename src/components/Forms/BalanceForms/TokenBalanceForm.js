@@ -21,6 +21,7 @@ function TokenBalanceForm() {
                 id="bal-token-tab-pane"
                 role="tabpanel"
                 aria-labelledby="bal-token-tab"
+                style={{ marginBottom: "20%" }}
                 tabIndex="0"
             >
                 <form

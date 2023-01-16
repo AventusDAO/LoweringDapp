@@ -19,7 +19,7 @@ export function substrateNotDetected(name) {
         confirmButtonColor: "#ffffff",
         confirmButtonText: `<a href=${url} target="_blank">Download ${name}</a>`,
         icon: "error",
-        footer: "If the wallet is installed, confirm this dapp is approved to access the wallet from within Manage Website Access in the extension.",
+        footer: `<p class="text-center">If the wallet is installed, confirm this dapp is approved to access the wallet from within Manage Website Access in the extension.`,
     });
 }
 
@@ -30,6 +30,7 @@ export function lowerError(err) {
         allowOutsideClick: false,
         icon: "info",
         confirmButtonText: "Okay",
+        confirmButtonColor: "#5100FF",
     });
 }
 
@@ -39,6 +40,7 @@ export function substrateConnectFailure() {
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Close",
+        confirmButtonColor: "#5100FF",
     });
 }
 
@@ -54,14 +56,15 @@ export function metamaskMissingErrorHandler() {
     });
 }
 
-export function metamaskConnectionErrorHandler() {
-    console.log("mem");
+export function metamaskConnectionErrorHandler(val) {
     swal.fire({
         title: "Metamask not connected!",
         text: "Please connect to Metamask and try again",
         allowOutsideClick: false,
         icon: "error",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Close",
+        footer: val ? `<p class="text-center"> ${val}</p>` : "",
     });
 }
 
@@ -72,6 +75,7 @@ export function transactionErrorHandler(err) {
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Okay",
+        confirmButtonColor: "#5100FF",
     });
 }
 
@@ -81,8 +85,9 @@ export function signingErrorHandler(err, more) {
         text: err.toString(),
         allowOutsideClick: false,
         icon: "error",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
-        footer: more,
+        footer: `<p class="text-center">${more}</p>`,
     });
 }
 
@@ -92,6 +97,7 @@ export function invalidAvtAmountHandler(tokenType) {
         text: `Must be a valid ${tokenType} token existing on this network`,
         allowOutsideClick: false,
         icon: "error",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
     });
 }
@@ -102,6 +108,7 @@ export function invalidAddressErrorHandler() {
         text: "AvN recipient account must be a valid SS58 address",
         allowOutsideClick: false,
         icon: "error",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
     });
 }
@@ -112,6 +119,7 @@ export function invalidSubstrateSignature() {
         text: "The signature could not be generated correctly. Please try, again!",
         allowOutsideClick: false,
         icon: "error",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
     });
 }
@@ -122,7 +130,20 @@ export function isZeroErrorHandler() {
         text: "Amount cannot be zero",
         allowOutsideClick: false,
         icon: "error",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
+    });
+}
+
+export function genericErrorHandlerTemplate(title, text, footText) {
+    return swal.fire({
+        title,
+        text,
+        icon: "error",
+        confirmButtonText: "Okay",
+        allowOutsideClick: false,
+        footer: `<p class="text-center">${footText}</p>`,
+        confirmButtonColor: "#5100FF",
     });
 }
 
@@ -133,6 +154,7 @@ export function networkErrorHandler(err) {
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Okay",
+        confirmButtonColor: "#5100FF",
     });
 }
 
@@ -143,6 +165,7 @@ export function gatewayAccessError() {
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Okay",
+        confirmButtonColor: "#5100FF",
     });
 }
 
@@ -153,5 +176,6 @@ export function invalidTokenErrorHandler(tokenType) {
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Okay",
+        confirmButtonColor: "#5100FF",
     });
 }
