@@ -19,6 +19,7 @@ async function checkIfUserWantsToWithdrawNow(
             text: "You can now withdraw your tokens on Ethereum by clicking the button below.",
             icon: "success",
             showDenyButton: true,
+            confirmButtonColor: "#5100FF",
             allowOutsideClick: false,
             confirmButtonText: "Withdraw",
             denyButtonText: `Don't Withdraw`,
@@ -36,6 +37,7 @@ async function checkIfUserWantsToWithdrawNow(
                 swal.fire({
                     allowOutsideClick: false,
                     confirmButtonText: "I've saved it!",
+                    confirmButtonColor: "#5100FF",
                     title: "Save these details",
                     text: JSON.stringify({
                         leaf,

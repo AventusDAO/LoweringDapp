@@ -18,6 +18,7 @@ export const ConnectOrDisconnect = ({ account }) => {
                 <div className="text-end">
                     <button
                         className="btn disconnect-btn card-status"
+                        data-bs-dismiss="modal"
                         onClick={disconnectSubstrateWallet}
                     >
                         Disconnect
@@ -27,6 +28,7 @@ export const ConnectOrDisconnect = ({ account }) => {
                 <div className="text-end">
                     <button
                         className="account-connect-button"
+                        data-bs-dismiss="modal"
                         onClick={() => {
                             setSender(account);
                             setStorageItems(account.address, walletName);

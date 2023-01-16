@@ -1,11 +1,12 @@
 import React, { useCallback, useContext, useEffect } from "react";
-import { stateContext } from "../../Contexts/Context";
+import { stateContext, ThemeContext } from "../../Contexts/Context";
 import { web3Enable } from "@polkadot/extension-dapp";
 import { connectSpecificWallet } from "../../utils/polkadotFunctions/walletFunctions";
 import { ModalExtensions } from "./ModalExtensions";
 
 function PolkadotExtensions() {
     const { sender, setSender } = useContext(stateContext);
+    const { theme } = useContext(ThemeContext);
 
     const checkIfAnAccountIsConnected = useCallback(async () => {
         const user = localStorage.getItem("user");
@@ -40,8 +41,15 @@ function PolkadotExtensions() {
             aria-labelledby="extensionsModalLabel"
             aria-hidden="true"
         >
+            {console.log(theme)}
             <div className="modal-dialog">
-                <div className="modal-content">
+                <div
+                    className="modal-content"
+                    style={{
+                        backgroundColor: theme ? "#292929" : "#F2F1F1",
+                        color: theme ? "#F2F1F1" : "black",
+                    }}
+                >
                     <div className="modal-header">
                         <h5 className="modal-title" id="extensionsModalLabel">
                             <b>Select Account</b>
@@ -51,6 +59,9 @@ function PolkadotExtensions() {
                             className="btn-close"
                             data-bs-dismiss="modal"
                             aria-label="Close"
+                            style={{
+                                backgroundColor: theme ? "white" : "",
+                            }}
                         ></button>
                     </div>
                     <div className="modal-body" style={{ margin: "25px" }}>

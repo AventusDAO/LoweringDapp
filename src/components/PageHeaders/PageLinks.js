@@ -4,31 +4,13 @@ import { Link } from "react-router-dom";
 export const PageLinks = () => {
     return (
         <div className="mx-auto headerLinks">
-            <Link
-                style={{
-                    color: "black",
-                    textDecoration: "none",
-                }}
-                to="/"
-            >
+            <Link className="pageLinks" to="/">
                 Lower Token{" "}
             </Link>
-            <Link
-                style={{
-                    color: "black",
-                    textDecoration: "none",
-                }}
-                to="/balance"
-            >
+            <Link className="pageLinks" to="/balance">
                 Balance{" "}
             </Link>
-            <Link
-                style={{
-                    color: "black",
-                    textDecoration: "none",
-                }}
-                to="/withdraw"
-            >
+            <Link className="pageLinks" to="/withdraw">
                 Withdraw Token{" "}
             </Link>
         </div>

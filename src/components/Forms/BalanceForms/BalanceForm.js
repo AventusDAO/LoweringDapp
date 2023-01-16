@@ -21,13 +21,16 @@ function BalanceForm() {
     const [ercQueryLoading, setErcQueryLoading] = useState("");
 
     let title = "Token Balance";
-    let description = "View the balance of your token on the AvN";
+    let description = "View the balance of your token on the Aventus Network";
 
     return (
         <>
             {/* Inserts the Polkadot header to the page with the relevant title and description for this page */}
             <PolkadotPageHeader title={title} description={description} />
-            <div className="container-fluid mt-4">
+            <div
+                className="container-fluid mt-4"
+                style={{ marginBottom: "20%", color: "black" }}
+            >
                 <div className="row">
                     <main role="main" className="text-center">
                         <div className="content mr-auto ml-auto">

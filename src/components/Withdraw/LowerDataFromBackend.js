@@ -2,13 +2,13 @@ import React, { useContext, useState } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
 import { checkIfUserWantsToWithdrawNow } from "../../utils/checkIfUserWantsToWithdrawNow";
 import { stateContext } from "../../Contexts/Context";
-import tryGetAvnAccountAddress from "../../utils/polkadotFunctions/polkaKey";
+import { SenderDetails } from "./SenderDetails";
 import gear from "../../assets/img/gear-icon.svg";
+import Tippy from "@tippyjs/react";
 
 export const LowerDataFromBackend = ({ tx }) => {
     const { account, networkId, avnContract, avnAddress } =
         useContext(stateContext);
-    const [senderAddressFormat, setSenderAddressFormat] = useState(false);
 
     return (
         <div
@@ -19,83 +19,107 @@ export const LowerDataFromBackend = ({ tx }) => {
         >
             <div className="accordion-body">
                 <ul className="list-group">
-                    <div
-                        className="list-group-item d-flex justify-content-between align-items-center"
-                        style={{ width: "100%" }}
-                    >
-                        <div className="col-10">
-                            {senderAddressFormat
-                                ? `Sender (SS58 Address): ${addressSlicer(
-                                      tryGetAvnAccountAddress(tx.from),
-                                      10,
-                                      38
-                                  )}`
-                                : `Sender (Public key): ${addressSlicer(
-                                      tx.from,
-                                      10,
-                                      56
-                                  )}`}
-                        </div>
-                        <div className="col-1 text-end">
-                            <button className="gear-button ">
-                                <img
-                                    onClick={() => {
-                                        setSenderAddressFormat(
-                                            !senderAddressFormat
-                                        );
-                                    }}
-                                    className="gearIcon"
-                                    src={gear}
-                                    alt="logo"
-                                />
-                            </button>
-                        </div>
-                    </div>
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                        Recipient: {addressSlicer(tx.to, 8, 34)}
+                    <li className="d-flex">
+                        <SenderDetails tx={tx} />
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                        Token: {addressSlicer(tx.token, 8, 34)}
+                    <li className="d-flex">
+                        <div className="input-group mb-3">
+                            <Tippy content={tx.to} placement="top">
+                                <span
+                                    className="input-group-text"
+                                    id="Recipient"
+                                >
+                                    Recipient
+                                </span>
+                            </Tippy>
+                            <input
+                                type="text"
+                                id="recipientAddressTip"
+                                disabled
+                                style={{
+                                    backgroundColor: "white",
+                                    color: "black",
+                                    weight: "bold",
+                                }}
+                                className="form-control"
+                                placeholder={addressSlicer(tx.to, 8, 34)}
+                                aria-label="Recipient"
+                                aria-describedby="Recipient"
+                            />
+                        </div>
                     </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center">
-                        Amount: {tx.amount}
+                    <li className="d-flex">
+                        <div className="input-group mb-3">
+                            <Tippy content={tx.token} placement="top">
+                                <span
+                                    className="input-group-text"
+                                    id="basic-addon1"
+                                >
+                                    Token
+                                </span>
+                            </Tippy>
+                            <input
+                                type="text"
+                                disabled
+                                id="tokenAddressTip"
+                                style={{
+                                    backgroundColor: "white",
+                                }}
+                                className="form-control"
+                                placeholder={addressSlicer(tx.token, 8, 34)}
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                            />
+                        </div>
+                    </li>
+                    <li className="d-flex">
+                        <div className="input-group mb-3">
+                            <span
+                                className="input-group-text"
+                                id="basic-addon1"
+                            >
+                                Amount
+                            </span>
+                            <input
+                                type="text"
+                                disabled
+                                style={{
+                                    backgroundColor: "white",
+                                }}
+                                className="form-control"
+                                placeholder={tx.amount}
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                            />
+                        </div>
                     </li>
                 </ul>
+
                 {Object.keys(tx.claimData).length !== 0 ? (
                     <div
-                        className="row"
                         style={{
                             justifyContent: "space-between",
                         }}
                     >
-                        <div className="col">
-                            <span className="badge bg-success rounded-pill">
-                                Ready
-                            </span>
-                        </div>
-                        <div className="col-4">
-                            <button
-                                className="connect-button badge rounded-pill"
-                                onClick={() => {
-                                    checkIfUserWantsToWithdrawNow(
-                                        tx.from,
-                                        tx.claimData.leaf,
-                                        tx.claimData.merklePath,
-                                        account,
-                                        avnContract,
-                                        networkId,
-                                        avnAddress
-                                    );
-                                }}
-                            >
-                                withdraw
-                            </button>
-                        </div>
+                        <button
+                            className="connect-button btn justify-content-center items-align-center"
+                            onClick={() => {
+                                checkIfUserWantsToWithdrawNow(
+                                    tx.from,
+                                    tx.claimData.leaf,
+                                    tx.claimData.merklePath,
+                                    account,
+                                    avnContract,
+                                    networkId,
+                                    avnAddress
+                                );
+                            }}
+                        >
+                            Withdraw
+                        </button>
                     </div>
                 ) : (
-                    <span className="badge bg-danger rounded-pill">
-                        Not Ready
-                    </span>
+                    ""
                 )}
             </div>
         </div>

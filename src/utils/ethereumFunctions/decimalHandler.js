@@ -1,3 +1,4 @@
+import { genericErrorHandlerTemplate } from "../errorHandlers";
 import LoadWeb3 from "./loadWeb3";
 
 const DECIMALS_FUNC_SELECTOR = "0x313ce567";
@@ -12,7 +13,6 @@ async function fullDecimalAmount(amount, token, isERC777) {
     const load = await LoadWeb3();
     const BN = load.utils.BN;
     let decimals = ETH_OR_AVT_DECIMALS;
-
     if (token) {
         const isValidAddress = load.utils.isAddress(token);
         if (!isValidAddress) return null;
@@ -68,5 +68,9 @@ export async function tokenAmountChecker(
         result = await fullDecimalAmount(tokenAmount, token, isERC777);
     else if (isERC20) result = await fullDecimalAmount(tokenAmount, token);
     else result = await fullDecimalAmount(tokenAmount);
-    return result.toString();
+    if (result) {
+        return result.toString();
+    } else {
+        return null;
+    }
 }

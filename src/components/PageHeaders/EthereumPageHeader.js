@@ -4,6 +4,7 @@ import Ethereum from "../Ethereum/Ethereum";
 import { HeaderNav } from "./HeaderNav";
 import { PageLinks } from "./PageLinks";
 import { NetworkDropdown } from "./NetworkDropdown";
+import { LightDarkMode } from "../Theme/LightDarkMode";
 // import LoadWeb3 from "../../functions/ethereumFunctions/loadWeb3";
 
 function EthereumPageHeader() {
@@ -15,10 +16,10 @@ function EthereumPageHeader() {
                 <HeaderNav />
                 <div className="row py-lg-3 align-self-center mx-auto">
                     <div>
-                        <div className="text-center">
+                        <div className="text-center" style={{ color: "black" }}>
                             <h1 className="maintitle">Query & Withdraw</h1>
                             <p className="text-center">
-                                Withdraw ready tokens to Ethereum
+                                Claim the tokens you have lowered on Ethereum
                             </p>
                         </div>
                         <small className="text-black text-left text-center">
@@ -32,6 +33,7 @@ function EthereumPageHeader() {
                             <PageLinks />
                         </div>
                         <NetworkDropdown />
+                        <LightDarkMode />
                     </div>
                 </div>
             </section>

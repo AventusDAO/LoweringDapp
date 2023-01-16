@@ -16,7 +16,10 @@ export const LightDarkMode = () => {
                     marginRight: "10px",
                 }}
             >
-                {darkMode ? lightDark : lightBright}
+                {console.log(darkMode)}
+                {/* {darkMode ? lightDark : lightBright} */}
+                {lightBright}
+                {/* {lightDark} */}
             </span>
             <input
                 className="align-self-center mx-auto form-check-input"

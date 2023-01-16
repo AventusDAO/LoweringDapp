@@ -55,12 +55,31 @@ const ReadyToWithdraw = ({ lowers }) => {
                                             aria-expanded="false"
                                             aria-controls="lowersFromBackend"
                                         >
-                                            {console.log(tx.to)}
+                                            {Object.keys(tx.claimData)
+                                                .length !== 0 ? (
+                                                <div
+                                                    // className="row"
+                                                    style={{
+                                                        justifyContent:
+                                                            "space-between",
+                                                    }}
+                                                >
+                                                    <span className="badge bg-success rounded-pill">
+                                                        Ready
+                                                    </span>
+                                                </div>
+                                            ) : (
+                                                <span className="badge bg-danger rounded-pill">
+                                                    Not Ready
+                                                </span>
+                                            )}
+
                                             {`Recipient: ${addressSlicer(
                                                 tx.to,
                                                 8,
                                                 34
                                             )}`}
+                                            <br />
                                         </button>
                                     </h2>
                                     <LowerDataFromBackend tx={tx} />
