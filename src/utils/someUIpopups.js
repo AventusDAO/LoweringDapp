@@ -1,18 +1,19 @@
 import swal from "sweetalert2";
-import clipboard from "../assets/img/clipboard.svg";
-import { copyUUID, copyTxDetails } from "./randomFunctions";
 
-export const userBalance = async (type, res) => {
+export const userBalance = async (type, fullAmount, decAmount) => {
     await swal.fire({
         title: `${type} Balance`,
-        text: res,
+        text: decAmount,
         allowOutsideClick: false,
         icon: "info",
+        confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
-        footer:
+        footer: `<p class="text-center">${
             type === "Token"
                 ? "Confirm the decimals for this token on the token's Ethereum smart contract"
-                : "Values shown are in 18 decimals and not whole values.",
+                : `<strong>wei value</strong>: ${fullAmount}`
+        }
+                    </p>`,
     });
 };
 
@@ -25,23 +26,27 @@ export async function userConfirmation(message, feeMessage) {
         icon: "info",
         denyButtonText: "Don't Sign",
         confirmButtonColor: "green",
-        footer: feeMessage,
+        footer: `<p class="text-center">${feeMessage}</p>`,
     });
     return result;
 }
 
 export async function transactionSubmitted(id) {
-    await swal.fire({
-        title: `Transaction Submitted`,
-        text: "Please wait a few seconds to find out the status of your transaction. You can save the UUID below.",
-        allowOutsideClick: false,
-        icon: "success",
-        showConfirmButton: false,
-        showCloseButton: true,
-        footer: `UUID: ${id} <button class="gear-button" onClick={${copyUUID(
-            id
-        )}}><img src=${clipboard} alt=""></img></button>`,
-    });
+    await swal
+        .fire({
+            title: `Transaction Submitted`,
+            text: "Please wait a few seconds to find out the status of your transaction. You can save the UUID below.",
+            allowOutsideClick: false,
+            icon: "success",
+            showConfirmButton: true,
+            confirmButtonText: "Copy UUID",
+            confirmButtonColor: "#5100FF",
+            showCloseButton: true,
+            footer: `UUID: ${id}`,
+        })
+        .then(() => {
+            navigator.clipboard.writeText(id);
+        });
 }
 
 export async function showUserTransactionStatus(polledState) {
@@ -51,11 +56,12 @@ export async function showUserTransactionStatus(polledState) {
             showCloseButton: true,
             text: "Lower transaction processed successfully. Check if it's ready to be withdrawn on Ethereum on the 'Withdraw' page in 24 hours.",
             allowOutsideClick: false,
-            confirmButtonText: "Okay",
+            confirmButtonColor: "#5100FF",
+            confirmButtonText: "Copy Transaction Hash",
             icon: "success",
-            footer: `<button onClick={${copyTxDetails(
-                polledState.txHash
-            )}}><img src=${clipboard} alt=""></img></button>`,
+            footer: `BlockNumber: ${polledState.blockNumber}, TxIndex: ${polledState.transactionIndex}`,
+        }).then(() => {
+            navigator.clipboard.writeText(polledState.txHash);
         });
         return null;
     } else if (polledState.status === "Rejected") {
@@ -63,15 +69,14 @@ export async function showUserTransactionStatus(polledState) {
             title: polledState.status,
             showCloseButton: true,
             text: "Your transaction to lower has was rejected by the AvN parachain.",
-            confirmButtonText: "Okay",
-            showConfirmButton: false,
+            confirmButtonText: "Copy Transaction Hash",
+            confirmButtonColor: "#5100FF",
+            showConfirmButton: true,
             allowOutsideClick: false,
             icon: "error",
-            footer: `BlockNumber: <strong>${polledState.blockNumber}</strong>, TxIndex: <strong>${polledState.transactionIndex}</strong>`,
-            // TODO implement a copy function to allow the user copy the transaction hash to their system clipboard.
-            // , TxHash: <button class="gear-button" onClick={${copyTxDetails(
-            //     polledState.txHash
-            // )}}><img src=${clipboard} alt=""></img></button>`,
+            footer: `BlockNumber: ${polledState.blockNumber}, TxIndex: ${polledState.transactionIndex}`,
+        }).then(() => {
+            navigator.clipboard.writeText(polledState.txHash);
         });
         return null;
     } else if (polledState.status === "Transaction not found") {
@@ -80,6 +85,7 @@ export async function showUserTransactionStatus(polledState) {
             showCloseButton: true,
             text: "Your transaction was not found. Please ensure, you are querying the correct network.",
             allowOutsideClick: false,
+            confirmButtonColor: "#5100FF",
             confirmButtonText: "Okay",
             icon: "info",
         });

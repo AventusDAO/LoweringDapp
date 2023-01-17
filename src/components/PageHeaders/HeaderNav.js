@@ -1,4 +1,5 @@
 import aventus_logo from "../../assets/img/aventus-logo.svg";
+import { Link } from "react-router-dom";
 
 export const HeaderNav = () => {
     return (
@@ -58,6 +59,14 @@ export const HeaderNav = () => {
                         >
                             Documentation
                         </a>
+                    </li>
+                    <li className="nav-item">
+                        <Link
+                            className="nav-link text-dark text-decoration-none"
+                            to="/FAQ"
+                        >
+                            FAQ
+                        </Link>
                     </li>
                     <li className="nav-item">
                         <a

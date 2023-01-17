@@ -4,7 +4,6 @@ import "../styles/App.css";
 import Networks from "../config/Networks.json";
 import ABI from "../config/abi.json";
 import LoadWeb3 from "../utils/ethereumFunctions/loadWeb3";
-import { networkErrorHandler } from "../utils/errorHandlers";
 import { stateContext } from "../Contexts/Context";
 import WithdrawPage from "./Withdraw/WithdrawPage";
 import LoweringForm from "./Forms/LoweringForm";
@@ -19,7 +18,6 @@ const ETHEREUM_MAINNET_ID = 1;
 
 function App() {
     const [avnAddress, setAvnAddress] = useState("");
-    const [freezeDapp, setFreezeDapp] = useState(false);
     const [avtAddress, setAvtAddress] = useState("");
     const [avnContract, setAvnContract] = useState(null);
     const [avtContract, setAvtContract] = useState(null);
@@ -74,9 +72,6 @@ function App() {
                 );
                 setAvnContract(new web3.eth.Contract(ABI, avnAddress));
                 setAvtContract(new web3.eth.Contract(ABI, avtAddress));
-            } else {
-                setFreezeDapp(true);
-                networkErrorHandler("Please use Ethereum MAINNET or GOERLI");
             }
         }
     }, [account, avnAddress, avtAddress, networkState]);
@@ -97,8 +92,6 @@ function App() {
                     avnContract,
                     switchChecked,
                     setAvtContract,
-                    freezeDapp,
-                    setFreezeDapp,
                     setAccount,
                     setAvnContract,
                     setAvtAddress,

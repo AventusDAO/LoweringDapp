@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
-import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
+import { ercLowerSubmitHandler } from "../../../utils/avnFunctions/ercLowerSubmitHandler";
 import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
-import { networkErrorHandler } from "../../../utils/errorHandlers";
 import { Spinner } from "../../Extras/Tools";
 
 export default function Erc777LoweringForm() {
@@ -16,10 +15,41 @@ export default function Erc777LoweringForm() {
         lowerLoading,
         setLowerLoading,
     } = useContext(formContext);
-    const { sender, AVN_GATEWAY_URL, freezeDapp, AVN_RELAYER } =
-        useContext(stateContext);
+    const {
+        sender,
+        account,
+        AVN_GATEWAY_URL,
+        AVN_RELAYER,
+        networkId,
+        networkState,
+    } = useContext(stateContext);
     const isERC777 = true;
     const isERC20 = false;
+
+    function submitTxRequest() {
+        setLowerLoading(true);
+        confirmLowerDetails(sender.address, "ERC777", token, amount).then(
+            (result) => {
+                if (result)
+                    ercLowerSubmitHandler(
+                        sender,
+                        account,
+                        token,
+                        amount,
+                        t1Recipient,
+                        AVN_GATEWAY_URL,
+                        AVN_RELAYER,
+                        networkId,
+                        networkState,
+                        isERC20,
+                        isERC777
+                    ).then(() => setLowerLoading(false));
+                else {
+                    setLowerLoading(false);
+                }
+            }
+        );
+    }
 
     return (
         <div
@@ -32,34 +62,7 @@ export default function Erc777LoweringForm() {
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    if (freezeDapp === false) {
-                        setLowerLoading(true);
-                        confirmLowerDetails(
-                            sender.address,
-                            "ERC777",
-                            token,
-                            amount
-                        ).then((result) => {
-                            if (result)
-                                lowerSubmitHandler(
-                                    sender,
-                                    token,
-                                    amount,
-                                    t1Recipient,
-                                    AVN_GATEWAY_URL,
-                                    AVN_RELAYER,
-                                    isERC20,
-                                    isERC777
-                                ).then(() => setLowerLoading(false));
-                            else {
-                                setLowerLoading(false);
-                            }
-                        });
-                    } else {
-                        networkErrorHandler(
-                            "Please set your Ethereum network to Mainnet or Goerli"
-                        );
-                    }
+                    submitTxRequest();
                 }}
             >
                 <div className="row mb-3">

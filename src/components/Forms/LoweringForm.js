@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import AvtLoweringForm from "./lowerForms/AvtLoweringForm";
 import Erc20LoweringForm from "./lowerForms/Erc20LoweringForm";
 import Erc777LoweringForm from "./lowerForms/Erc777LoweringForm";
 import EthLoweringForm from "./lowerForms/EthLoweringForm";
-import { formContext } from "../../Contexts/Context";
+import { formContext, ThemeContext } from "../../Contexts/Context";
 import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
 
 function LoweringForm() {
@@ -18,8 +18,9 @@ function LoweringForm() {
     }
 
     let title = "Lower";
-    let description = "Lower Your Tokens on Aventus to Ethereum";
+    let description = "Migrate Your Tokens on Aventus to Ethereum";
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
+    const { theme } = useContext(ThemeContext);
 
     return (
         <>
@@ -70,6 +71,9 @@ function LoweringForm() {
                                 </ul>
                                 <div
                                     className="row text-center tab-content justify-center"
+                                    style={{
+                                        color: "black",
+                                    }}
                                     id="myTabContent"
                                 >
                                     <formContext.Provider

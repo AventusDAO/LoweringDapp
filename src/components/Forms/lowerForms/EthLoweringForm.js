@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
 import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
 import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
-import { networkErrorHandler } from "../../../utils/errorHandlers";
 import { Spinner } from "../../Extras/Tools";
 
 export default function EthLoweringForm() {
@@ -15,8 +14,7 @@ export default function EthLoweringForm() {
         setLowerLoading,
     } = useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, freezeDapp, AVN_RELAYER } =
-        useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
 
     const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
@@ -31,32 +29,26 @@ export default function EthLoweringForm() {
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    if (freezeDapp === false) {
-                        setLowerLoading(true);
-                        confirmLowerDetails(
-                            sender.address,
-                            "ETH",
-                            "Ethereum ETH",
-                            amount
-                        ).then((result) => {
-                            if (result)
-                                lowerSubmitHandler(
-                                    sender,
-                                    ETH_CONTRACT_ADDRESS,
-                                    amount,
-                                    t1Recipient,
-                                    AVN_GATEWAY_URL,
-                                    AVN_RELAYER
-                                ).then(() => setLowerLoading(false));
-                            else {
-                                setLowerLoading(false);
-                            }
-                        });
-                    } else {
-                        networkErrorHandler(
-                            "Please set your Ethereum network to Mainnet or Goerli"
-                        );
-                    }
+                    setLowerLoading(true);
+                    confirmLowerDetails(
+                        sender.address,
+                        "ETH",
+                        "Ethereum ETH",
+                        amount
+                    ).then((result) => {
+                        if (result)
+                            lowerSubmitHandler(
+                                sender,
+                                ETH_CONTRACT_ADDRESS,
+                                amount,
+                                t1Recipient,
+                                AVN_GATEWAY_URL,
+                                AVN_RELAYER
+                            ).then(() => setLowerLoading(false));
+                        else {
+                            setLowerLoading(false);
+                        }
+                    });
                 }}
             >
                 <div className="row mb-3">

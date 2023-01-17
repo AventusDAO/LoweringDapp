@@ -3,6 +3,7 @@ import { PolkadotJS } from "../Polkadot/PolkadotJS";
 import { HeaderNav } from "./HeaderNav";
 import { NetworkDropdown } from "./NetworkDropdown";
 import { PageLinks } from "./PageLinks";
+import { LightDarkMode } from "../Theme/LightDarkMode";
 
 function PolkadotPageHeader({ title, description }) {
     return (
@@ -11,7 +12,7 @@ function PolkadotPageHeader({ title, description }) {
                 <HeaderNav />
 
                 <div className="row py-lg-3 align-self-center mx-auto">
-                    <div className="text-center">
+                    <div className="text-center" style={{ color: "black" }}>
                         <h1 className="maintitle align-self-center">{title}</h1>
                         <p className="text-center">{description}</p>
                     </div>
@@ -25,6 +26,7 @@ function PolkadotPageHeader({ title, description }) {
                         <PageLinks />
                     </div>
                     <NetworkDropdown />
+                    {/* <LightDarkMode /> */}
                 </div>
             </section>
         </div>

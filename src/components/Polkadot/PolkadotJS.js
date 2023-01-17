@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { addressSlicer } from "../../utils/randomFunctions";
 import { PolkadotExtensions } from "../Extras/PolkadotExtensions";
+import clipboardIcon from "../../assets/img/clipboard.svg";
 
 function PolkadotJS() {
     const { sender } = useContext(stateContext);
@@ -18,6 +19,7 @@ function PolkadotJS() {
                             defaultChecked
                         />
                         <label htmlFor="connection">
+                            {" "}
                             Connected Polkadot Account Address
                         </label>
                     </p>
@@ -25,6 +27,18 @@ function PolkadotJS() {
                         <span id="account">
                             {addressSlicer(sender.address, -40, 40)}
                         </span>
+                        &nbsp;
+                        <button className="gear-button buttonAnime">
+                            <img
+                                src={clipboardIcon}
+                                alt=""
+                                onClick={() => {
+                                    navigator.clipboard.writeText(
+                                        sender.address
+                                    );
+                                }}
+                            />
+                        </button>
                     </div>
                 </div>
                 <div

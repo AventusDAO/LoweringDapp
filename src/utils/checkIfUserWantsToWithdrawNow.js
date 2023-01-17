@@ -1,5 +1,7 @@
 import swal from "sweetalert2";
 import { withdrawSubmitHandler } from "./ethereumFunctions/withdrawSubmitHandler";
+import { confirmNetwork } from "./randomFunctions";
+import { genericErrorHandlerTemplate } from "./errorHandlers";
 
 // Checks if the user would like to withdraw the tokens ready to be lowered.
 async function checkIfUserWantsToWithdrawNow(
@@ -8,7 +10,8 @@ async function checkIfUserWantsToWithdrawNow(
     merklePath,
     account,
     avnContract,
-    networkId
+    networkId,
+    networkState
 ) {
     merklePath = merklePath.replace(/\[|\]/g, "").split(",");
 
@@ -19,23 +22,35 @@ async function checkIfUserWantsToWithdrawNow(
             text: "You can now withdraw your tokens on Ethereum by clicking the button below.",
             icon: "success",
             showDenyButton: true,
+            confirmButtonColor: "#5100FF",
             allowOutsideClick: false,
             confirmButtonText: "Withdraw",
             denyButtonText: `Don't Withdraw`,
         }).then((result) => {
             // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
             if (result.isConfirmed) {
-                withdrawSubmitHandler(
-                    account,
-                    leaf,
-                    merklePath,
-                    avnContract,
-                    networkId
-                );
+                const networkChecker = confirmNetwork(networkId, networkState);
+                console.log(networkId, networkState);
+                console.log(networkChecker);
+                if (!networkChecker) {
+                    genericErrorHandlerTemplate(
+                        "Switch Ethereum Network",
+                        "Please ensure your Ethereum wallet network is set to Mainnet for Aventus Mainnet and GOERLI for other Aventus networks."
+                    );
+                } else {
+                    withdrawSubmitHandler(
+                        account,
+                        leaf,
+                        merklePath,
+                        avnContract,
+                        networkId
+                    );
+                }
             } else if (result.isDenied) {
                 swal.fire({
                     allowOutsideClick: false,
                     confirmButtonText: "I've saved it!",
+                    confirmButtonColor: "#5100FF",
                     title: "Save these details",
                     text: JSON.stringify({
                         leaf,

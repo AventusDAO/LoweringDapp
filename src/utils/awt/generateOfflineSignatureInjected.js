@@ -67,7 +67,7 @@ async function signData(account, encodedDataToSign) {
             const { signature } = await signer({
                 address: account.address,
                 data: u8aToHex(encodedDataToSign),
-                type: "bytes",
+                type: "hex",
             });
             const accountPub = common.convertToPublicKeyIfNeeded(
                 account.address
@@ -113,7 +113,6 @@ function generateFeePaymentSignature(
 ) {
     relayer = common.convertToPublicKeyIfNeeded(relayer);
     user = common.convertToPublicKeyIfNeeded(user);
-
     const proxyProofData = [
         { AccountId: user },
         { AccountId: relayer },

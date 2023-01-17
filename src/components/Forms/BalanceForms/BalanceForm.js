@@ -3,14 +3,13 @@ import { balanceHandler } from "../../../utils/avnFunctions/queryBalance";
 import PolkadotPageHeader from "../../PageHeaders/PolkadotPageHeader";
 import TokenBalanceForm from "./TokenBalanceForm";
 import { stateContext, queryBalanceContext } from "../../../Contexts/Context";
-import { networkErrorHandler } from "../../../utils/errorHandlers";
 import { Spinner } from "../../Extras/Tools";
 
 /* Configures what's shown on the balance page of the dapp
     Has three buttons, with a toggle state to determine if a form linked to the second button is shown.
 */
 function BalanceForm() {
-    const { sender, AVN_GATEWAY_URL, freezeDapp } = useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL } = useContext(stateContext);
     const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
     const avtMethod = "getAvtBalance";
@@ -21,13 +20,16 @@ function BalanceForm() {
     const [ercQueryLoading, setErcQueryLoading] = useState("");
 
     let title = "Token Balance";
-    let description = "View the balance of your token on the AvN";
+    let description = "View the balance of your token on the Aventus Network";
 
     return (
         <>
             {/* Inserts the Polkadot header to the page with the relevant title and description for this page */}
             <PolkadotPageHeader title={title} description={description} />
-            <div className="container-fluid mt-4">
+            <div
+                className="container-fluid mt-4"
+                style={{ marginBottom: "20%", color: "black" }}
+            >
                 <div className="row">
                     <main role="main" className="text-center">
                         <div className="content mr-auto ml-auto">
@@ -55,24 +57,16 @@ function BalanceForm() {
                                             }
                                             onClick={(event) => {
                                                 event.preventDefault();
-                                                if (freezeDapp === false) {
-                                                    setIsShown(false);
-                                                    setAvtQueryLoading(true);
-                                                    balanceHandler(
-                                                        "AVT",
-                                                        sender,
-                                                        avtMethod,
-                                                        AVN_GATEWAY_URL
-                                                    ).then(() => {
-                                                        setAvtQueryLoading(
-                                                            false
-                                                        );
-                                                    });
-                                                } else {
-                                                    networkErrorHandler(
-                                                        "Please set your Ethereum network to Mainnet or Goerli"
-                                                    );
-                                                }
+                                                setIsShown(false);
+                                                setAvtQueryLoading(true);
+                                                balanceHandler(
+                                                    "AVT",
+                                                    sender,
+                                                    avtMethod,
+                                                    AVN_GATEWAY_URL
+                                                ).then(() => {
+                                                    setAvtQueryLoading(false);
+                                                });
                                             }}
                                         >
                                             {avtQueryLoading ? (
@@ -111,25 +105,17 @@ function BalanceForm() {
                                             }
                                             onClick={(event) => {
                                                 event.preventDefault();
-                                                if (freezeDapp === false) {
-                                                    setEthQueryLoading(true);
-                                                    setIsShown(false);
-                                                    balanceHandler(
-                                                        "ETH",
-                                                        sender,
-                                                        ethMethod,
-                                                        AVN_GATEWAY_URL,
-                                                        ETH_CONTRACT_ADDRESS
-                                                    ).then(() =>
-                                                        setEthQueryLoading(
-                                                            false
-                                                        )
-                                                    );
-                                                } else {
-                                                    networkErrorHandler(
-                                                        "Please set your Ethereum network to Mainnet or Goerli"
-                                                    );
-                                                }
+                                                setEthQueryLoading(true);
+                                                setIsShown(false);
+                                                balanceHandler(
+                                                    "ETH",
+                                                    sender,
+                                                    ethMethod,
+                                                    AVN_GATEWAY_URL,
+                                                    ETH_CONTRACT_ADDRESS
+                                                ).then(() =>
+                                                    setEthQueryLoading(false)
+                                                );
                                             }}
                                         >
                                             {ethQueryLoading ? (

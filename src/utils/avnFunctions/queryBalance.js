@@ -58,34 +58,6 @@ async function signAndQueryBalance(type, account, params, method, url) {
                 transactionErrorHandler(response.status);
             }
         }
-        // getToken(account).then((res) => {
-        //     if (res) {
-        //         fetch(url, {
-        //             method: "POST",
-        //             mode: "cors",
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 Authorization: `bearer ${res}`,
-        //             },
-        //             body: JSON.stringify({
-        //                 jsonrpc: "2.0",
-        //                 method: method,
-        //                 params: params,
-        //                 id: 1,
-        //             }),
-        //         }).then((response) => {
-        //             if (response.status === 200) {
-        //                 response.json().then((res) => {
-        //                     balanceFormatter(type, res);
-        //                 });
-        //             } else if (response.status === 403) {
-        //                 gatewayAccessError();
-        //             } else {
-        //                 transactionErrorHandler(response.status);
-        //             }
-        //         });
-        //     }
-        // });
     } catch (err) {}
 }
 
