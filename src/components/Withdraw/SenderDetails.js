@@ -50,7 +50,7 @@ export function SenderDetails({ tx }) {
                         <Tippy content={tx.from} placement="top">
                             <span
                                 className="input-group-text"
-                                style={{ minWidth: "90px" }}
+                                style={{ minWidth: "100px" }}
                                 id="basic-addon1"
                             >
                                 Sender

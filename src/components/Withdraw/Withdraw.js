@@ -17,7 +17,6 @@ const Withdraw = () => {
     Check out the README for instructions on how to run the dummy data
     */
     account = toAddress(account);
-    console.log(account);
     account = toAddress(account).toLowerCase();
     const baseUrl = `${AVN_GATEWAY_URL}lowers`;
     const url = `${baseUrl}?account=${account}`;
