@@ -27,6 +27,7 @@ export const LowerDataFromBackend = ({ tx }) => {
                             <Tippy content={tx.to} placement="top">
                                 <span
                                     className="input-group-text"
+                                    style={{ maxWidth: "100px" }}
                                     id="Recipient"
                                 >
                                     Recipient
@@ -53,6 +54,7 @@ export const LowerDataFromBackend = ({ tx }) => {
                             <Tippy content={tx.token} placement="top">
                                 <span
                                     className="input-group-text"
+                                    style={{ minWidth: "100px" }}
                                     id="basic-addon1"
                                 >
                                     Token
@@ -76,6 +78,7 @@ export const LowerDataFromBackend = ({ tx }) => {
                         <div className="input-group mb-3">
                             <span
                                 className="input-group-text"
+                                style={{ minWidth: "100px" }}
                                 id="basic-addon1"
                             >
                                 Amount

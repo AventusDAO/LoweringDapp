@@ -19,7 +19,12 @@ export function SenderDetails({ tx }) {
                             content={tryGetAvnAccountAddress(tx.from)}
                             placement="top"
                         >
-                            <span className="input-group-text">Sender</span>
+                            <span
+                                className="input-group-text"
+                                style={{ minWidth: "100px" }}
+                            >
+                                Sender
+                            </span>
                         </Tippy>
                         <input
                             type="text"
@@ -45,6 +50,7 @@ export function SenderDetails({ tx }) {
                         <Tippy content={tx.from} placement="top">
                             <span
                                 className="input-group-text"
+                                style={{ minWidth: "90px" }}
                                 id="basic-addon1"
                             >
                                 Sender
