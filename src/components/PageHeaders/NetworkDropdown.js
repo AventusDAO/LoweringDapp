@@ -18,7 +18,6 @@ export const NetworkDropdown = () => {
         setAVN_GATEWAY_URL,
         setPOLK_AVT_CONTRACT_ADDRESS,
         setAVN_RELAYER,
-        freezeDapp,
     } = useContext(stateContext);
 
     const changeNetworks = useCallback(async () => {
@@ -51,50 +50,44 @@ export const NetworkDropdown = () => {
     return (
         <>
             <div className="select-button text-center align-self-center mx-auto">
-                {freezeDapp ? (
-                    <div style={{ color: "red" }}>
-                        Unsupported Ethereum Network
-                    </div>
-                ) : (
-                    <select
-                        className="form-select row"
-                        aria-label="aventus test networks"
-                        id="lang"
-                        onChange={(e) => {
-                            if (e.target.value !== "MAINNET") {
-                                setTestnetState(e.target.value);
-                            }
-                            setNetworkState(e.target.value);
-                        }}
-                    >
-                        {NetworkDropdownNames.map(
-                            (network, index) =>
-                                Object.keys(network).toString() ===
-                                    networkState && (
-                                    <option
-                                        defaultValue
-                                        defaultChecked
-                                        value={Object.keys(network)}
-                                        key={index}
-                                    >
-                                        {Object.values(network)}
-                                    </option>
-                                )
-                        )}
-                        {NetworkDropdownNames.map(
-                            (network, index) =>
-                                Object.keys(network).toString() !==
-                                    networkState && (
-                                    <option
-                                        value={Object.keys(network)}
-                                        key={index}
-                                    >
-                                        {Object.values(network)}
-                                    </option>
-                                )
-                        )}
-                    </select>
-                )}
+                <select
+                    className="form-select row"
+                    aria-label="aventus test networks"
+                    id="lang"
+                    onChange={(e) => {
+                        if (e.target.value !== "MAINNET") {
+                            setTestnetState(e.target.value);
+                        }
+                        setNetworkState(e.target.value);
+                    }}
+                >
+                    {NetworkDropdownNames.map(
+                        (network, index) =>
+                            Object.keys(network).toString() ===
+                                networkState && (
+                                <option
+                                    defaultValue
+                                    defaultChecked
+                                    value={Object.keys(network)}
+                                    key={index}
+                                >
+                                    {Object.values(network)}
+                                </option>
+                            )
+                    )}
+                    {NetworkDropdownNames.map(
+                        (network, index) =>
+                            Object.keys(network).toString() !==
+                                networkState && (
+                                <option
+                                    value={Object.keys(network)}
+                                    key={index}
+                                >
+                                    {Object.values(network)}
+                                </option>
+                            )
+                    )}
+                </select>
             </div>
         </>
     );

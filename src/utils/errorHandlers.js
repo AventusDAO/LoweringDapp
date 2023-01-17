@@ -17,7 +17,9 @@ export function substrateNotDetected(name) {
         allowOutsideClick: false,
         showCloseButton: true,
         confirmButtonColor: "#ffffff",
-        confirmButtonText: `<a href=${url} target="_blank">Download ${name}</a>`,
+        confirmButtonText: name
+            ? `<a href=${url} target="_blank">Download ${name}</a>`
+            : "",
         icon: "error",
         footer: `<p class="text-center">If the wallet is installed, confirm this dapp is approved to access the wallet from within Manage Website Access in the extension.`,
     });
@@ -87,7 +89,7 @@ export function signingErrorHandler(err, more) {
         icon: "error",
         confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
-        footer: `<p class="text-center">${more}</p>`,
+        footer: more ? `<p class="text-center">${more}</p>` : "",
     });
 }
 
@@ -142,7 +144,7 @@ export function genericErrorHandlerTemplate(title, text, footText) {
         icon: "error",
         confirmButtonText: "Okay",
         allowOutsideClick: false,
-        footer: `<p class="text-center">${footText}</p>`,
+        footer: footText ? `<p class="text-center">${footText}</p>` : "",
         confirmButtonColor: "#5100FF",
     });
 }

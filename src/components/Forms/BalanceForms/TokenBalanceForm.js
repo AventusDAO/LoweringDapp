@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { queryBalanceContext, stateContext } from "../../../Contexts/Context";
 import { balanceHandler } from "../../../utils/avnFunctions/queryBalance";
-import { networkErrorHandler } from "../../../utils/errorHandlers";
 
 /*
     The token balance query requires the user to input the token address for which they would like to query
@@ -9,7 +8,7 @@ import { networkErrorHandler } from "../../../utils/errorHandlers";
 */
 function TokenBalanceForm() {
     const [token, setToken] = useState("");
-    const { sender, AVN_GATEWAY_URL, freezeDapp } = useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL } = useContext(stateContext);
     const method = "getTokenBalance";
     const { ercQueryLoading, setErcQueryLoading } =
         useContext(queryBalanceContext);
@@ -27,20 +26,14 @@ function TokenBalanceForm() {
                 <form
                     onSubmit={(event) => {
                         event.preventDefault();
-                        if (freezeDapp === false) {
-                            setErcQueryLoading(true);
-                            balanceHandler(
-                                "Token",
-                                sender,
-                                method,
-                                AVN_GATEWAY_URL,
-                                token
-                            ).then(() => setErcQueryLoading(false));
-                        } else {
-                            networkErrorHandler(
-                                "Please set your Ethereum network to Mainnet or Goerli"
-                            );
-                        }
+                        setErcQueryLoading(true);
+                        balanceHandler(
+                            "Token",
+                            sender,
+                            method,
+                            AVN_GATEWAY_URL,
+                            token
+                        ).then(() => setErcQueryLoading(false));
                     }}
                 >
                     <div className="row mb-3">

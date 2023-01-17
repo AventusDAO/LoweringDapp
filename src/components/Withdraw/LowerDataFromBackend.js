@@ -1,13 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
 import { checkIfUserWantsToWithdrawNow } from "../../utils/checkIfUserWantsToWithdrawNow";
 import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
-import gear from "../../assets/img/gear-icon.svg";
 import Tippy from "@tippyjs/react";
 
 export const LowerDataFromBackend = ({ tx }) => {
-    const { account, networkId, avnContract, avnAddress } =
+    const { account, networkId, avnContract, avnAddress, networkState } =
         useContext(stateContext);
 
     return (
@@ -114,7 +113,7 @@ export const LowerDataFromBackend = ({ tx }) => {
                                     account,
                                     avnContract,
                                     networkId,
-                                    avnAddress
+                                    networkState
                                 );
                             }}
                         >

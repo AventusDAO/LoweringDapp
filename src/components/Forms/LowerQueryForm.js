@@ -1,10 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { stateContext } from "../../Contexts/Context";
-import {
-    networkErrorHandler,
-    genericErrorHandlerTemplate,
-} from "../../utils/errorHandlers";
+import { genericErrorHandlerTemplate } from "../../utils/errorHandlers";
 import { toAddress } from "../../utils/polkadotFunctions/polkadotToAddress";
 
 /*
@@ -15,7 +11,6 @@ Currentlh includes some dummy code until the backend is set up
 function LowerQueryForm() {
     const navigate = useNavigate();
     const [address, setAddress] = useState("");
-    const { account, freezeDapp } = useContext(stateContext);
 
     function submit(address) {
         if (toAddress(address)) {
@@ -51,9 +46,7 @@ function LowerQueryForm() {
                     <form
                         onSubmit={(event) => {
                             event.preventDefault();
-                            freezeDapp
-                                ? networkErrorHandler()
-                                : submit(address);
+                            submit(address);
                         }}
                     >
                         <div className="row mb-3">

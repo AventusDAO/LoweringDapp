@@ -3,7 +3,6 @@ import { formContext, stateContext } from "../../../Contexts/Context";
 import { ercLowerSubmitHandler } from "../../../utils/avnFunctions/ercLowerSubmitHandler";
 import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
 import { Spinner } from "../../Extras/Tools";
-import { networkErrorHandler } from "../../../utils/errorHandlers";
 
 export default function Erc20LoweringForm() {
     const {
@@ -20,7 +19,6 @@ export default function Erc20LoweringForm() {
         sender,
         account,
         AVN_GATEWAY_URL,
-        freezeDapp,
         AVN_RELAYER,
         networkId,
         networkState,
@@ -28,33 +26,27 @@ export default function Erc20LoweringForm() {
     const isERC20 = true;
 
     function submitTxRequest() {
-        if (freezeDapp === false) {
-            setLowerLoading(true);
-            confirmLowerDetails(sender.address, "ERC20", token, amount).then(
-                (result) => {
-                    if (result) {
-                        ercLowerSubmitHandler(
-                            sender,
-                            account,
-                            token,
-                            amount,
-                            t1Recipient,
-                            AVN_GATEWAY_URL,
-                            AVN_RELAYER,
-                            networkId,
-                            networkState,
-                            isERC20
-                        ).then(() => setLowerLoading(false));
-                    } else {
-                        setLowerLoading(false);
-                    }
+        setLowerLoading(true);
+        confirmLowerDetails(sender.address, "ERC20", token, amount).then(
+            (result) => {
+                if (result) {
+                    ercLowerSubmitHandler(
+                        sender,
+                        account,
+                        token,
+                        amount,
+                        t1Recipient,
+                        AVN_GATEWAY_URL,
+                        AVN_RELAYER,
+                        networkId,
+                        networkState,
+                        isERC20
+                    ).then(() => setLowerLoading(false));
+                } else {
+                    setLowerLoading(false);
                 }
-            );
-        } else {
-            networkErrorHandler(
-                "Please set your Ethereum network to Mainnet or Goerli"
-            );
-        }
+            }
+        );
     }
 
     return (

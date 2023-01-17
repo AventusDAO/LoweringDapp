@@ -1,7 +1,6 @@
 import sendTransaction from "./constructTxParams";
 import { tokenAmountChecker } from "../ethereumFunctions/decimalHandler";
 import { checkRequestId } from "./pollTransaction";
-import { toAddress } from "../polkadotFunctions/polkadotToAddress";
 import {
     metamaskConnectionErrorHandler,
     genericErrorHandlerTemplate,
@@ -27,6 +26,8 @@ export async function ercLowerSubmitHandler(
         );
     } else {
         const networkChecker = confirmNetwork(networkId, networkState);
+        console.log(networkChecker);
+        console.log(networkId, networkState);
         if (!networkChecker) {
             genericErrorHandlerTemplate(
                 "Switch Ethereum Network",

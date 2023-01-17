@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
 import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
-import { networkErrorHandler } from "../../../utils/errorHandlers";
 import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
 import { Spinner } from "../../Extras/Tools";
 
@@ -15,13 +14,8 @@ export default function AvtLoweringForm() {
         setLowerLoading,
     } = useContext(formContext);
 
-    const {
-        sender,
-        AVN_GATEWAY_URL,
-        freezeDapp,
-        AVN_RELAYER,
-        POLK_AVT_CONTRACT_ADDRESS,
-    } = useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, POLK_AVT_CONTRACT_ADDRESS } =
+        useContext(stateContext);
 
     return (
         <div
@@ -34,32 +28,26 @@ export default function AvtLoweringForm() {
             <form
                 onSubmit={(event) => {
                     event.preventDefault();
-                    if (freezeDapp === false) {
-                        setLowerLoading(true);
-                        confirmLowerDetails(
-                            sender.address,
-                            "AVT",
-                            POLK_AVT_CONTRACT_ADDRESS,
-                            amount
-                        ).then((result) => {
-                            if (result)
-                                lowerSubmitHandler(
-                                    sender,
-                                    POLK_AVT_CONTRACT_ADDRESS,
-                                    amount,
-                                    t1Recipient,
-                                    AVN_GATEWAY_URL,
-                                    AVN_RELAYER
-                                ).then(() => setLowerLoading(false));
-                            else {
-                                setLowerLoading(false);
-                            }
-                        });
-                    } else {
-                        networkErrorHandler(
-                            "Please set your Ethereum network to Mainnet or Goerli"
-                        );
-                    }
+                    setLowerLoading(true);
+                    confirmLowerDetails(
+                        sender.address,
+                        "AVT",
+                        POLK_AVT_CONTRACT_ADDRESS,
+                        amount
+                    ).then((result) => {
+                        if (result)
+                            lowerSubmitHandler(
+                                sender,
+                                POLK_AVT_CONTRACT_ADDRESS,
+                                amount,
+                                t1Recipient,
+                                AVN_GATEWAY_URL,
+                                AVN_RELAYER
+                            ).then(() => setLowerLoading(false));
+                        else {
+                            setLowerLoading(false);
+                        }
+                    });
                 }}
             >
                 <div className="row mb-3">
