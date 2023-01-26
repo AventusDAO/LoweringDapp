@@ -1,6 +1,5 @@
 import swal from "sweetalert2";
 import { capitaliseFirstLetter } from "./randomFunctions";
-import { Link } from "react-router-dom";
 
 export function substrateNotDetected(name) {
     let url;

@@ -11,7 +11,7 @@ export const PageLinks = () => {
                 AvN Balance{" "}
             </Link>
             <Link className="pageLinks" to="/withdraw">
-                Complete Token{" "}
+                Complete Lower{" "}
             </Link>
         </div>
     );
