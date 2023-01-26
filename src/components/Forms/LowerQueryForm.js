@@ -77,7 +77,7 @@ function LowerQueryForm() {
                             className="btn lift-button rounded-0"
                             style={{ fontWeight: "bold" }}
                         >
-                            Query Pending Lowers
+                            Query Outstanding Lowers
                         </button>
                         <div style={{ fontSize: "13px" }}>
                             <br />

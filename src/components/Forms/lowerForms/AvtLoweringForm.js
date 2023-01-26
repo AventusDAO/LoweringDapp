@@ -14,8 +14,15 @@ export default function AvtLoweringForm() {
         setLowerLoading,
     } = useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, POLK_AVT_CONTRACT_ADDRESS } =
-        useContext(stateContext);
+    const {
+        sender,
+        AVN_GATEWAY_URL,
+        AVN_RELAYER,
+        POLK_AVT_CONTRACT_ADDRESS,
+        networkState,
+    } = useContext(stateContext);
+
+    const networkId = networkState === "MAINNET" ? 1 : 5;
 
     return (
         <div
@@ -33,18 +40,23 @@ export default function AvtLoweringForm() {
                         sender.address,
                         "AVT",
                         POLK_AVT_CONTRACT_ADDRESS,
-                        amount
+                        amount,
+                        networkId
                     ).then((result) => {
-                        if (result)
-                            lowerSubmitHandler(
-                                sender,
-                                POLK_AVT_CONTRACT_ADDRESS,
-                                amount,
-                                t1Recipient,
-                                AVN_GATEWAY_URL,
-                                AVN_RELAYER
-                            ).then(() => setLowerLoading(false));
-                        else {
+                        if (result) {
+                            if (result.userChoice)
+                                lowerSubmitHandler(
+                                    sender,
+                                    POLK_AVT_CONTRACT_ADDRESS,
+                                    result._tokenAmount,
+                                    t1Recipient,
+                                    AVN_GATEWAY_URL,
+                                    AVN_RELAYER
+                                ).then(() => setLowerLoading(false));
+                            else {
+                                setLowerLoading(false);
+                            }
+                        } else {
                             setLowerLoading(false);
                         }
                     });

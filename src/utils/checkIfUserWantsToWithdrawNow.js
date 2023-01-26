@@ -14,7 +14,6 @@ async function checkIfUserWantsToWithdrawNow(
     networkState
 ) {
     merklePath = merklePath.replace(/\[|\]/g, "").split(",");
-
     if (address) {
         swal.fire({
             title: "Your Lower is Ready!",
@@ -30,8 +29,6 @@ async function checkIfUserWantsToWithdrawNow(
             // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
             if (result.isConfirmed) {
                 const networkChecker = confirmNetwork(networkId, networkState);
-                console.log(networkId, networkState);
-                console.log(networkChecker);
                 if (!networkChecker) {
                     genericErrorHandlerTemplate(
                         "Switch Ethereum Network",
@@ -46,24 +43,13 @@ async function checkIfUserWantsToWithdrawNow(
                         networkId
                     );
                 }
-            } else if (result.isDenied) {
-                swal.fire({
-                    allowOutsideClick: false,
-                    confirmButtonText: "I've saved it!",
-                    confirmButtonColor: "#5100FF",
-                    title: "Save these details",
-                    text: JSON.stringify({
-                        leaf,
-                        merklePath,
-                    }),
-                });
             }
         });
     } else {
         swal.fire({
             title: "Transaction Not Passed",
             showCloseButton: true,
-            text: "Your transaction to lower has NOT been processed successfully by the AvN blockchain.",
+            text: "Your transaction to lower is yet to be processed fully by the AvN blockchain.",
             allowOutsideClick: false,
             confirmButtonText: "Close!",
             icon: "info",

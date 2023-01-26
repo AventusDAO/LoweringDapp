@@ -6,7 +6,7 @@ import { Pagination } from "../Pagination";
 
 const ReadyToWithdraw = ({ lowers }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const lowersPerPage = 4;
+    const lowersPerPage = 5;
     const indexOfLastPost = currentPage * lowersPerPage;
     const indexOfFirstPost = indexOfLastPost - lowersPerPage;
     const paginate = (pageNumber) => {
@@ -57,28 +57,31 @@ const ReadyToWithdraw = ({ lowers }) => {
                                         >
                                             {Object.keys(tx.claimData)
                                                 .length !== 0 ? (
-                                                <div
-                                                    // className="row"
-                                                    style={{
-                                                        justifyContent:
-                                                            "space-between",
-                                                    }}
-                                                >
+                                                <div>
                                                     <span className="badge bg-success rounded-pill">
                                                         Ready
                                                     </span>
+                                                    &nbsp;
                                                 </div>
                                             ) : (
-                                                <span className="badge bg-danger rounded-pill">
-                                                    Not Ready
-                                                </span>
+                                                <div>
+                                                    <span className="badge bg-danger rounded-pill">
+                                                        Not Ready
+                                                    </span>
+                                                    &nbsp;
+                                                </div>
                                             )}
 
-                                            {`Recipient: ${addressSlicer(
-                                                tx.to,
-                                                8,
-                                                34
-                                            )}`}
+                                            <span className="desktop-ext">
+                                                {`Recipient: ${tx.to}`}
+                                            </span>
+                                            <span className="mobile-ext">
+                                                {`Recipient: ${addressSlicer(
+                                                    tx.to,
+                                                    8,
+                                                    34
+                                                )}`}
+                                            </span>
                                             <br />
                                         </button>
                                     </h2>

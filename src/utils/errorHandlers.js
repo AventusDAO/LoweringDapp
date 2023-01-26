@@ -1,5 +1,6 @@
 import swal from "sweetalert2";
 import { capitaliseFirstLetter } from "./randomFunctions";
+import { Link } from "react-router-dom";
 
 export function substrateNotDetected(name) {
     let url;
@@ -61,7 +62,7 @@ export function metamaskMissingErrorHandler() {
 export function metamaskConnectionErrorHandler(val) {
     swal.fire({
         title: "Metamask not connected!",
-        text: "Please connect to Metamask and try again",
+        html: `Please connect to Metamask on the <a href="/withdraw">Withdraw Token</a> page and try again`,
         allowOutsideClick: false,
         icon: "error",
         confirmButtonColor: "#5100FF",
