@@ -1,4 +1,3 @@
-import { genericErrorHandlerTemplate } from "../errorHandlers";
 import LoadWeb3 from "./loadWeb3";
 
 const DECIMALS_FUNC_SELECTOR = "0x313ce567";

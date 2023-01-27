@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
-import { ercLowerSubmitHandler } from "../../../utils/avnFunctions/ercLowerSubmitHandler";
-import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
+import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandler";
+import { ercConfirmLowerDetails } from "../../../utils/lowerUIchecks";
 import { Spinner } from "../../Extras/Tools";
 
 export default function Erc777LoweringForm() {
@@ -28,27 +28,34 @@ export default function Erc777LoweringForm() {
 
     function submitTxRequest() {
         setLowerLoading(true);
-        confirmLowerDetails(sender.address, "ERC777", token, amount).then(
-            (result) => {
-                if (result)
-                    ercLowerSubmitHandler(
+        ercConfirmLowerDetails(
+            sender.address,
+            account,
+            "ERC777",
+            token,
+            amount,
+            networkId,
+            networkState,
+            isERC20,
+            isERC777
+        ).then((result) => {
+            if (result) {
+                if (result.userChoice)
+                    lowerSubmitHandler(
                         sender,
-                        account,
                         token,
-                        amount,
+                        result._tokenAmount,
                         t1Recipient,
                         AVN_GATEWAY_URL,
-                        AVN_RELAYER,
-                        networkId,
-                        networkState,
-                        isERC20,
-                        isERC777
+                        AVN_RELAYER
                     ).then(() => setLowerLoading(false));
                 else {
                     setLowerLoading(false);
                 }
+            } else {
+                setLowerLoading(false);
             }
-        );
+        });
     }
 
     return (

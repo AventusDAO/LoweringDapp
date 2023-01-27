@@ -6,7 +6,7 @@ import { SenderDetails } from "./SenderDetails";
 import Tippy from "@tippyjs/react";
 
 export const LowerDataFromBackend = ({ tx }) => {
-    const { account, networkId, avnContract, avnAddress, networkState } =
+    const { account, networkId, avnContract, networkState } =
         useContext(stateContext);
 
     return (
@@ -41,8 +41,22 @@ export const LowerDataFromBackend = ({ tx }) => {
                                     color: "black",
                                     weight: "bold",
                                 }}
-                                className="form-control"
+                                className="mobile-ext form-control"
                                 placeholder={addressSlicer(tx.to, 8, 34)}
+                                aria-label="Recipient"
+                                aria-describedby="Recipient"
+                            />
+                            <input
+                                type="text"
+                                id="recipientAddressTip"
+                                disabled
+                                style={{
+                                    backgroundColor: "white",
+                                    color: "black",
+                                    weight: "bold",
+                                }}
+                                className="desktop-ext form-control"
+                                placeholder={tx.to}
                                 aria-label="Recipient"
                                 aria-describedby="Recipient"
                             />
@@ -66,7 +80,19 @@ export const LowerDataFromBackend = ({ tx }) => {
                                 style={{
                                     backgroundColor: "white",
                                 }}
-                                className="form-control"
+                                className="desktop-ext form-control"
+                                placeholder={tx.token}
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                            />
+                            <input
+                                type="text"
+                                disabled
+                                id="tokenAddressTip"
+                                style={{
+                                    backgroundColor: "white",
+                                }}
+                                className="mobile-ext form-control"
                                 placeholder={addressSlicer(tx.token, 8, 34)}
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
@@ -117,7 +143,7 @@ export const LowerDataFromBackend = ({ tx }) => {
                                 );
                             }}
                         >
-                            Withdraw
+                            Claim
                         </button>
                     </div>
                 ) : (

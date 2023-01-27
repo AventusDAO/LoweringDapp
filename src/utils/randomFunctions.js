@@ -1,5 +1,6 @@
 import { userBalance } from "./someUIpopups";
 import balanceConverter from "ethereum-unit-converter";
+import swal from "sweetalert2";
 
 export function capitaliseFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
@@ -57,4 +58,27 @@ export function confirmNetwork(networkId, networkState) {
             return false;
         }
     }
+}
+
+export function txLinkInAlert(networkId, hash, type) {
+    const etherscanLink =
+        networkId === 1
+            ? "https://etherscan.io/tx/"
+            : "https://goerli.etherscan.io/tx/";
+
+    swal.fire({
+        title: "Success",
+        html: `Your ${type} will arrive once the transaction succeeds. <br> <a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
+        allowOutsideClick: false,
+        icon: "success",
+        confirmButtonText: "Close",
+    });
+}
+
+export function contractLink(networkId, token) {
+    const etherscanLink =
+        networkId === 1
+            ? "https://etherscan.io/token/"
+            : "https://goerli.etherscan.io/token/";
+    return `${etherscanLink}${token}`;
 }

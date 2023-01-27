@@ -17,7 +17,7 @@ function LoweringForm() {
         setT1Recipient("");
     }
 
-    let title = "Lower";
+    let title = "Initiate Lower";
     let description = "Migrate Your Tokens on Aventus to Ethereum";
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
     const { theme } = useContext(ThemeContext);

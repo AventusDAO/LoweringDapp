@@ -3,6 +3,7 @@ import { stateContext, ThemeContext } from "../../Contexts/Context";
 import { web3Enable } from "@polkadot/extension-dapp";
 import { connectSpecificWallet } from "../../utils/polkadotFunctions/walletFunctions";
 import { ModalExtensions } from "./ModalExtensions";
+import { MobileModalExtensions } from "./MobileModalExtensions";
 
 function PolkadotExtensions() {
     const { sender, setSender } = useContext(stateContext);
@@ -63,8 +64,17 @@ function PolkadotExtensions() {
                             }}
                         ></button>
                     </div>
-                    <div className="modal-body" style={{ margin: "25px" }}>
+                    <div
+                        className="modal-body desktop-ext"
+                        style={{ margin: "25px" }}
+                    >
                         <ModalExtensions />
+                    </div>
+                    <div
+                        className="modal-body mobile-ext"
+                        style={{ margin: "25px" }}
+                    >
+                        <MobileModalExtensions />
                     </div>
                 </div>
             </div>

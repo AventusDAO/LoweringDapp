@@ -8,15 +8,11 @@ import { Spinner } from "../Extras/Tools";
 import { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import BackButton from "../Extras/BackButton";
+import { NoLowers } from "./NoLowers";
 
 const Withdraw = () => {
     let { account } = useParams();
     const { AVN_GATEWAY_URL } = useContext(stateContext);
-    /*
-    Dummy data until backend is setup.
-    Check out the README for instructions on how to run the dummy data
-    */
-    account = toAddress(account);
     account = toAddress(account).toLowerCase();
     const baseUrl = `${AVN_GATEWAY_URL}lowers`;
     const url = `${baseUrl}?account=${account}`;
@@ -45,7 +41,7 @@ const Withdraw = () => {
                     (data == "" ? (
                         <NotFound />
                     ) : data.lowerData.length === 0 ? (
-                        "<NoLowers />"
+                        <NoLowers />
                     ) : (
                         <div>
                             <br />

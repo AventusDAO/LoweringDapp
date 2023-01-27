@@ -61,7 +61,7 @@ export function metamaskMissingErrorHandler() {
 export function metamaskConnectionErrorHandler(val) {
     swal.fire({
         title: "Metamask not connected!",
-        text: "Please connect to Metamask and try again",
+        html: `Please connect to Metamask on the <a href="/withdraw">Withdraw Token</a> page and try again`,
         allowOutsideClick: false,
         icon: "error",
         confirmButtonColor: "#5100FF",
@@ -118,7 +118,7 @@ export function invalidAddressErrorHandler() {
 export function invalidSubstrateSignature() {
     return swal.fire({
         title: "Invalid Signature",
-        text: "The signature could not be generated correctly. Please try, again!",
+        text: "The signature could not be generated. Please retry.",
         allowOutsideClick: false,
         icon: "error",
         confirmButtonColor: "#5100FF",

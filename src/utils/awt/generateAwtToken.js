@@ -29,7 +29,11 @@ async function generateNewToken(account) {
         );
         if (payload) {
             const awtToken = API.awt.generateAwtTokenFromPayload(payload);
-            var awtObject = { token: awtToken, age: issuedAt };
+            var awtObject = {
+                token: awtToken,
+                age: issuedAt,
+                user: account.address,
+            };
             localStorage.setItem("awt", JSON.stringify(awtObject));
             return awtToken;
         } else return undefined;
@@ -46,11 +50,17 @@ async function getToken(account) {
         const awt = JSON.parse(localStorage.getItem("awt"));
         const token = awt.token;
         const prevTime = awt.age;
-        var ageChecker = Number(prevTime);
-        ageChecker += 60000;
-        const nowTime = Date.now();
-        if (ageChecker > nowTime) {
-            return token;
+        const user = awt.user;
+        if (account.address === user) {
+            var ageChecker = Number(prevTime);
+            ageChecker += 60000;
+            const nowTime = Date.now();
+            if (ageChecker > nowTime) {
+                return token;
+            } else {
+                const token = await generateNewToken(account);
+                return token;
+            }
         } else {
             const token = await generateNewToken(account);
             return token;

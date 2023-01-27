@@ -14,9 +14,11 @@ export default function EthLoweringForm() {
         setLowerLoading,
     } = useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER } = useContext(stateContext);
+    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, networkState } =
+        useContext(stateContext);
 
     const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+    const networkId = networkState === "MAINNET" ? 1 : 5;
 
     return (
         <div
@@ -34,18 +36,23 @@ export default function EthLoweringForm() {
                         sender.address,
                         "ETH",
                         "Ethereum ETH",
-                        amount
+                        amount,
+                        networkId
                     ).then((result) => {
-                        if (result)
-                            lowerSubmitHandler(
-                                sender,
-                                ETH_CONTRACT_ADDRESS,
-                                amount,
-                                t1Recipient,
-                                AVN_GATEWAY_URL,
-                                AVN_RELAYER
-                            ).then(() => setLowerLoading(false));
-                        else {
+                        if (result) {
+                            if (result.userChoice)
+                                lowerSubmitHandler(
+                                    sender,
+                                    ETH_CONTRACT_ADDRESS,
+                                    result._tokenAmount,
+                                    t1Recipient,
+                                    AVN_GATEWAY_URL,
+                                    AVN_RELAYER
+                                ).then(() => setLowerLoading(false));
+                            else {
+                                setLowerLoading(false);
+                            }
+                        } else {
                             setLowerLoading(false);
                         }
                     });

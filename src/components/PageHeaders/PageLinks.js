@@ -5,13 +5,13 @@ export const PageLinks = () => {
     return (
         <div className="mx-auto headerLinks">
             <Link className="pageLinks" to="/">
-                Lower Token{" "}
+                Initiate Lower{" "}
             </Link>
             <Link className="pageLinks" to="/balance">
-                Balance{" "}
+                AvN Balance{" "}
             </Link>
             <Link className="pageLinks" to="/withdraw">
-                Withdraw Token{" "}
+                Complete Lower{" "}
             </Link>
         </div>
     );

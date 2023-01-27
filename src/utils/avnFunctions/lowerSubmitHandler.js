@@ -1,5 +1,4 @@
 import sendTransaction from "./constructTxParams";
-import { tokenAmountChecker } from "../ethereumFunctions/decimalHandler";
 import { checkRequestId } from "./pollTransaction";
 
 /*
@@ -13,23 +12,15 @@ export async function lowerSubmitHandler(
     tokenAmount,
     t1Recipient,
     AVN_GATEWAY_URL,
-    AVN_RELAYER,
-    isERC20,
-    isERC777
+    AVN_RELAYER
 ) {
-    const _tokenAmount = await tokenAmountChecker(
-        tokenAmount,
-        token,
-        isERC20,
-        isERC777
-    );
     const params = {
         relayer: AVN_RELAYER,
         user: sender.address,
         payer: sender.address,
         t1Recipient,
         token: token,
-        amount: _tokenAmount,
+        amount: tokenAmount,
         proxySignature: "",
         feePaymentSignature: "",
         paymentNonce: "",

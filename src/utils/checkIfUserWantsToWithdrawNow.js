@@ -14,24 +14,21 @@ async function checkIfUserWantsToWithdrawNow(
     networkState
 ) {
     merklePath = merklePath.replace(/\[|\]/g, "").split(",");
-
     if (address) {
         swal.fire({
-            title: "Your Lower is Ready!",
+            title: "Your tokens are ready",
             showCloseButton: true,
-            text: "You can now withdraw your tokens on Ethereum by clicking the button below.",
+            text: "Claim tokens on Ethereum",
             icon: "success",
             showDenyButton: true,
             confirmButtonColor: "#5100FF",
             allowOutsideClick: false,
-            confirmButtonText: "Withdraw",
-            denyButtonText: `Don't Withdraw`,
+            confirmButtonText: "Claim",
+            denyButtonText: `Maybe later`,
         }).then((result) => {
             // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
             if (result.isConfirmed) {
                 const networkChecker = confirmNetwork(networkId, networkState);
-                console.log(networkId, networkState);
-                console.log(networkChecker);
                 if (!networkChecker) {
                     genericErrorHandlerTemplate(
                         "Switch Ethereum Network",
@@ -46,26 +43,15 @@ async function checkIfUserWantsToWithdrawNow(
                         networkId
                     );
                 }
-            } else if (result.isDenied) {
-                swal.fire({
-                    allowOutsideClick: false,
-                    confirmButtonText: "I've saved it!",
-                    confirmButtonColor: "#5100FF",
-                    title: "Save these details",
-                    text: JSON.stringify({
-                        leaf,
-                        merklePath,
-                    }),
-                });
             }
         });
     } else {
         swal.fire({
             title: "Transaction Not Passed",
             showCloseButton: true,
-            text: "Your transaction to lower has NOT been processed successfully by the AvN blockchain.",
+            text: "Your lower is yet to be processed by the AvN",
             allowOutsideClick: false,
-            confirmButtonText: "Close!",
+            confirmButtonText: "Close",
             icon: "info",
         });
     }
