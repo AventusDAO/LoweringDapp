@@ -19,8 +19,8 @@ export const userBalance = async (type, fullAmount, decAmount) => {
 
 export async function userConfirmation(message, feeMessage) {
     const { isConfirmed: result } = await swal.fire({
-        title: "Need Your Signature!",
-        text: `This signature will authenticate you ${message}`,
+        title: "Signature required",
+        text: `Sign to ${message}`,
         showDenyButton: true,
         allowOutsideClick: false,
         icon: "info",
@@ -35,7 +35,7 @@ export async function transactionSubmitted(id) {
     await swal
         .fire({
             title: `Transaction Submitted`,
-            text: "Please wait a few seconds to find out the status of your transaction. You can save the UUID below.",
+            text: "This will take a few seconds, please wait",
             allowOutsideClick: false,
             icon: "success",
             showConfirmButton: true,
@@ -54,7 +54,7 @@ export async function showUserTransactionStatus(polledState) {
         swal.fire({
             title: polledState.status,
             showCloseButton: true,
-            text: "Lower transaction processed successfully. Check if it's ready to be withdrawn on Ethereum on the 'Withdraw' page in 24 hours.",
+            text: "Lower initated successfully",
             allowOutsideClick: false,
             confirmButtonColor: "#5100FF",
             confirmButtonText: "Copy Transaction Hash",
@@ -68,7 +68,7 @@ export async function showUserTransactionStatus(polledState) {
         swal.fire({
             title: polledState.status,
             showCloseButton: true,
-            text: "Your transaction to lower has was rejected by the AvN parachain.",
+            text: "Lower unsuccessful",
             confirmButtonText: "Copy Transaction Hash",
             confirmButtonColor: "#5100FF",
             showConfirmButton: true,
@@ -83,7 +83,7 @@ export async function showUserTransactionStatus(polledState) {
         swal.fire({
             title: polledState.status,
             showCloseButton: true,
-            text: "Your transaction was not found. Please ensure, you are querying the correct network.",
+            text: "Transaction not found. Please ensure you are querying the right network.",
             allowOutsideClick: false,
             confirmButtonColor: "#5100FF",
             confirmButtonText: "Okay",

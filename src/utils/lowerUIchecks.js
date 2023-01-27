@@ -81,13 +81,13 @@ export async function ercConfirmLowerDetails(
 
 export async function userSignatureConfirmation() {
     const { isConfirmed: result } = await swal.fire({
-        title: "Need Your Signature!",
-        text: "This signature will authenticate you and generate the AWT token unique to your account",
+        title: "Signature required",
+        text: "Sign to validate your AvN account",
         allowOutsideClick: false,
         showDenyButton: true,
         denyButtonText: "Don't Sign",
         confirmButtonColor: "green",
-        footer: "You do not pay for this operation",
+        footer: "This operation is free",
     });
     return result ? result : "";
 }

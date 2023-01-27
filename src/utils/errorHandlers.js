@@ -118,7 +118,7 @@ export function invalidAddressErrorHandler() {
 export function invalidSubstrateSignature() {
     return swal.fire({
         title: "Invalid Signature",
-        text: "The signature could not be generated correctly. Please try, again!",
+        text: "The signature could not be generated. Please retry.",
         allowOutsideClick: false,
         icon: "error",
         confirmButtonColor: "#5100FF",

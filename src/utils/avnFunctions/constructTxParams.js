@@ -28,8 +28,8 @@ export default async function sendTransaction(sender, params, method, url) {
         if (userTokenNonce !== null) {
             // signature #2
             const result2 = await userConfirmation(
-                "to generate a signature to authorise proxy payment",
-                "You do not pay for this operation"
+                "authorise the transaction",
+                "This operation is free"
             );
             if (result2) {
                 const awtToken = await getToken(sender);
@@ -82,8 +82,8 @@ export default async function sendTransaction(sender, params, method, url) {
                             // signature #3
                             if (userProxySignature) {
                                 const result3 = await userConfirmation(
-                                    "and submit your transaction to the blockchain",
-                                    "You are NOW paying to submit your transaction."
+                                    "submit the transaction",
+                                    "This operation incurs a small fee"
                                 );
                                 if (result3) {
                                     const awtToken = await getToken(sender);

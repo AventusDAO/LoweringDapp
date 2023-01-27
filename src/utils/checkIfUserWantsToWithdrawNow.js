@@ -16,15 +16,15 @@ async function checkIfUserWantsToWithdrawNow(
     merklePath = merklePath.replace(/\[|\]/g, "").split(",");
     if (address) {
         swal.fire({
-            title: "Your Lower is Ready!",
+            title: "Your tokens are ready",
             showCloseButton: true,
-            text: "You can now withdraw your tokens on Ethereum by clicking the button below.",
+            text: "Claim tokens on Ethereum",
             icon: "success",
             showDenyButton: true,
             confirmButtonColor: "#5100FF",
             allowOutsideClick: false,
-            confirmButtonText: "Withdraw",
-            denyButtonText: `Don't Withdraw`,
+            confirmButtonText: "Claim",
+            denyButtonText: `Maybe later`,
         }).then((result) => {
             // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
             if (result.isConfirmed) {
@@ -49,9 +49,9 @@ async function checkIfUserWantsToWithdrawNow(
         swal.fire({
             title: "Transaction Not Passed",
             showCloseButton: true,
-            text: "Your transaction to lower is yet to be processed fully by the AvN blockchain.",
+            text: "Your lower is yet to be processed by the AvN",
             allowOutsideClick: false,
-            confirmButtonText: "Close!",
+            confirmButtonText: "Close",
             icon: "info",
         });
     }
