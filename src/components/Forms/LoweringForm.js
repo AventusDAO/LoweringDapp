@@ -18,7 +18,7 @@ function LoweringForm() {
     }
 
     let title = "Initiate Lower";
-    let description = "Migrate Your Tokens on Aventus to Ethereum";
+    let description = "Lower your tokens from the AvN to Ethereum";
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
     const { theme } = useContext(ThemeContext);
 
@@ -48,7 +48,7 @@ function LoweringForm() {
                                             role="presentation"
                                         >
                                             <button
-                                                className={`nav-link 
+                                                className={`nav-link
                                                     ${
                                                         index === 0
                                                             ? "active"
