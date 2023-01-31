@@ -118,8 +118,8 @@ export default async function sendTransaction(sender, params, method, url) {
                                         return requestId;
                                     } else {
                                         signingErrorHandler(
-                                            "Unable to Generate User's AWT. Previous token expired.",
-                                            "User cancelled new generation process"
+                                            "Authentication expired",
+                                            "User cancelled reauthentication"
                                         );
                                     }
                                 }
@@ -128,15 +128,15 @@ export default async function sendTransaction(sender, params, method, url) {
                     }
                 } else {
                     signingErrorHandler(
-                        "Unable to Generate User's AWT. Previous token expired.",
-                        "User cancelled new generation process"
+                        "Authentication expired",
+                        "User cancelled reauthentication"
                     );
                 }
             }
         }
     } else {
         signingErrorHandler(
-            "Unable to Generate User's AWT",
+            "Unable to authenticate user",
             "User cancelled process"
         );
     }

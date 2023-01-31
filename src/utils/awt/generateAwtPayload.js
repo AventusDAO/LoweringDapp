@@ -19,7 +19,7 @@ async function generateAwtPayload(signer, userAddress, publicKey, issuedAt) {
             sig: signature,
         };
     } else {
-        signingErrorHandler("Unable to Generate User's AWT");
+        signingErrorHandler("Unable to authenticate user");
         return undefined;
     }
 }
