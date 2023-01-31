@@ -42,7 +42,7 @@ export async function ercConfirmLowerDetails(
                 if (_tokenAmount) {
                     const { isConfirmed: userChoice } = await swal.fire({
                         title: "Confirm",
-                        text: `You would like to lower ${amount} ${tokenType} token.`,
+                        text: `Lower ${amount} ${tokenType}?`,
                         showDenyButton: true,
                         showConfirmButton: true,
                         confirmButtonText: "Yes",
@@ -54,7 +54,7 @@ export async function ercConfirmLowerDetails(
                             tokenAddress
                         )} target="_blank" style=color:white> View Token Contract </a>`,
                         confirmButtonColor: "green",
-                        footer: `<strong>wei value:</strong> ${_tokenAmount}`,
+                        footer: `<strong>full decimal value:</strong>&nbsp${_tokenAmount}`,
                     });
                     return { userChoice, _tokenAmount };
                 } else {
@@ -85,6 +85,7 @@ export async function userSignatureConfirmation() {
         text: "Sign to validate your AvN account",
         allowOutsideClick: false,
         showDenyButton: true,
+        confirmButtonText: "Sign",
         denyButtonText: "Don't Sign",
         confirmButtonColor: "green",
         footer: "This operation is free",
@@ -109,7 +110,7 @@ export async function confirmLowerDetails(
         );
         const { isConfirmed: userChoice } = await swal.fire({
             title: "Confirm",
-            text: `You would like to lower ${amount} ${tokenType} token.`,
+            text: `Lower ${amount} ${tokenType}?`,
             showDenyButton: true,
             showConfirmButton: true,
             confirmButtonText: "Yes",
@@ -121,7 +122,7 @@ export async function confirmLowerDetails(
                 tokenAddress
             )} target="_blank" style=color:white> View Token Contract </a>`,
             confirmButtonColor: "green",
-            footer: `<strong>wei value:</strong> ${_tokenAmount}`,
+            footer: `<strong>full decimal value:</strong>&nbsp${_tokenAmount}`,
         });
         return { userChoice, _tokenAmount };
     } else {

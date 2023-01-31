@@ -24,6 +24,7 @@ export async function userConfirmation(message, feeMessage) {
         showDenyButton: true,
         allowOutsideClick: false,
         icon: "info",
+        confirmButtonText: "Sign",
         denyButtonText: "Don't Sign",
         confirmButtonColor: "green",
         footer: `<p class="text-center">${feeMessage}</p>`,

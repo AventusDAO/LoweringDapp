@@ -129,10 +129,7 @@ function BalanceForm() {
                                         ) : (
                                             <div style={{ fontSize: "13px" }}>
                                                 <br />
-                                                Note: Your wallet may prompt you
-                                                once to sign and approve the
-                                                query operation required to
-                                                query your balance.
+                                                Note: Your wallet may prompt to approve the balance query operation
                                             </div>
                                         )}
                                     </div>

@@ -54,7 +54,7 @@ function LowerQueryForm() {
                                 htmlFor="address"
                                 className="col-sm-2 col-form-label"
                             >
-                                Address
+                                Account
                             </label>
                             <div className="col-sm-10">
                                 <input
@@ -65,7 +65,7 @@ function LowerQueryForm() {
                                     pattern="0x[0-9a-fA-F]{64}|[0-9a-zA-Z]{48}|0x[0-9a-fA-F]{40}"
                                     maxLength={66}
                                     className="form-control"
-                                    placeholder="Aventus Sender or Ethereum Recipient address"
+                                    placeholder="AvN sender account OR Ethereum recipient address"
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
                                     id="address"
@@ -77,12 +77,8 @@ function LowerQueryForm() {
                             className="btn lift-button rounded-0"
                             style={{ fontWeight: "bold" }}
                         >
-                            Query Outstanding Lowers
+                            Show outstanding lowers
                         </button>
-                        <div style={{ fontSize: "13px" }}>
-                            <br />
-                            Query the state of your Lower transaction request.
-                        </div>
                     </form>
                 </div>
             </div>
