@@ -14,7 +14,7 @@ function EthereumPageHeader() {
                         <div className="text-center" style={{ color: "black" }}>
                             <h1 className="maintitle">Complete Lower</h1>
                             <p className="text-center">
-                                Claim any outstanding lowers on Ethereum
+                                Claim outstanding lowers on Ethereum
                             </p>
                         </div>
                         <small className="text-black text-left text-center">

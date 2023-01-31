@@ -114,9 +114,7 @@ export default function EthLoweringForm() {
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
-                    Note: Your wallet will prompt you a few times to sign and
-                    approve the multiple operations required to execute this
-                    transaction.
+                    Note: Lowering requires multiple signatures, please follow all wallet prompts
                 </div>
             </form>
         </div>

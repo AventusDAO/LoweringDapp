@@ -34,10 +34,10 @@ const ReadyToWithdraw = ({ lowers }) => {
                         <div className="col"></div>
                         <BackButton />
                         <h1 className="maintitle">
-                            Tokens ready to be withdrawn
+                            Outstanding lowers
                         </h1>
                         <small>
-                            Click on any to execute the lower transaction.
+                            Click to claim
                         </small>
                         <br />
                         {currentLowers.map((tx) => (
@@ -59,14 +59,14 @@ const ReadyToWithdraw = ({ lowers }) => {
                                                 .length !== 0 ? (
                                                 <div>
                                                     <span className="badge bg-success rounded-pill">
-                                                        Ready
+                                                        Ready to claim
                                                     </span>
                                                     &nbsp;
                                                 </div>
                                             ) : (
                                                 <div>
                                                     <span className="badge bg-danger rounded-pill">
-                                                        Not Ready
+                                                        Awaiting claim data
                                                     </span>
                                                     &nbsp;
                                                 </div>

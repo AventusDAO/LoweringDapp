@@ -83,7 +83,7 @@ export default async function sendTransaction(sender, params, method, url) {
                             if (userProxySignature) {
                                 const result3 = await userConfirmation(
                                     "submit the transaction",
-                                    "This operation incurs a small fee"
+                                    "This operation incurs a small AVT fee"
                                 );
                                 if (result3) {
                                     const awtToken = await getToken(sender);
