@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
 import tryGetAvnAccountAddress from "../../utils/polkadotFunctions/polkaKey";
 import toggleSwitch from "../../assets/img/toggleSwitch.svg";
-import Tippy from "@tippyjs/react";
 
 export function SenderDetails({ tx }) {
     const [senderAddressFormat, setSenderAddressFormat] = useState(false);
@@ -15,28 +14,24 @@ export function SenderDetails({ tx }) {
             <div className="col-11">
                 {senderAddressFormat ? (
                     <div className="input-group mb-3">
-                        <Tippy
-                            content={tryGetAvnAccountAddress(tx.from)}
-                            placement="top"
+                        <span
+                            className="input-group-text"
+                            style={{ minWidth: "100px" }}
                         >
-                            <span
-                                className="input-group-text"
-                                style={{ minWidth: "100px" }}
-                            >
-                                Sender
-                            </span>
-                        </Tippy>
+                            Sender
+                        </span>
                         <input
                             type="text"
                             id="expandAddressTip"
                             disabled
+                            readOnly
                             style={{
                                 backgroundColor: "white",
                                 color: "black",
                                 weight: "bold",
                             }}
                             className="mobile-ext form-control"
-                            placeholder={addressSlicer(
+                            value={addressSlicer(
                                 tryGetAvnAccountAddress(tx.from),
                                 10,
                                 38
@@ -48,51 +43,52 @@ export function SenderDetails({ tx }) {
                             type="text"
                             id="expandAddressTip"
                             disabled
+                            readOnly
                             style={{
                                 backgroundColor: "white",
                                 color: "black",
                                 weight: "bold",
                             }}
                             className="desktop-ext form-control"
-                            placeholder={tryGetAvnAccountAddress(tx.from)}
+                            value={tryGetAvnAccountAddress(tx.from)}
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                         />
                     </div>
                 ) : (
                     <div className="input-group mb-3">
-                        <Tippy content={tx.from} placement="top">
-                            <span
-                                className="input-group-text"
-                                style={{ minWidth: "100px" }}
-                                id="basic-addon1"
-                            >
-                                Sender
-                            </span>
-                        </Tippy>
+                        <span
+                            className="input-group-text"
+                            style={{ minWidth: "100px" }}
+                            id="basic-addon1"
+                        >
+                            Sender
+                        </span>
                         <input
                             type="text"
                             disabled
+                            readOnly
                             style={{
                                 backgroundColor: "white",
                                 color: "black",
                                 weight: "bold",
                             }}
                             className="desktop-ext form-control"
-                            placeholder={tx.from}
+                            value={tx.from}
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                         />
                         <input
                             type="text"
                             disabled
+                            readOnly
                             style={{
                                 backgroundColor: "white",
                                 color: "black",
                                 weight: "bold",
                             }}
                             className="mobile-ext form-control"
-                            placeholder={addressSlicer(tx.from, 10, 56)}
+                            value={addressSlicer(tx.from, 10, 56)}
                             aria-label="Username"
                             aria-describedby="basic-addon1"
                         />
@@ -102,17 +98,15 @@ export function SenderDetails({ tx }) {
 
             <div className="col-1 text-end">
                 <button className="gear-button">
-                    <Tippy content="Change Address Format" placement="top">
-                        <img
-                            id="senderAddressTip"
-                            onClick={() => {
-                                setSenderAddressFormat(!senderAddressFormat);
-                            }}
-                            className="gearIcon"
-                            src={toggleSwitch}
-                            alt="logo"
-                        />
-                    </Tippy>
+                    <img
+                        id="senderAddressTip"
+                        onClick={() => {
+                            setSenderAddressFormat(!senderAddressFormat);
+                        }}
+                        className="gearIcon"
+                        src={toggleSwitch}
+                        alt="logo"
+                    />
                 </button>
             </div>
         </div>

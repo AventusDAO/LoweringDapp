@@ -33,12 +33,8 @@ const ReadyToWithdraw = ({ lowers }) => {
                     <div>
                         <div className="col"></div>
                         <BackButton />
-                        <h1 className="maintitle">
-                            Outstanding lowers
-                        </h1>
-                        <small>
-                            Click to claim
-                        </small>
+                        <h1 className="maintitle">Outstanding lowers</h1>
+                        <small>Click to claim</small>
                         <br />
                         {currentLowers.map((tx) => (
                             <div key={tx.id}>
