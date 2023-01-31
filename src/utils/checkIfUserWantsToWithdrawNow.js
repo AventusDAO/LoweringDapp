@@ -22,7 +22,7 @@ async function checkIfUserWantsToWithdrawNow(
             showDenyButton: true,
             confirmButtonColor: "#5100FF",
             allowOutsideClick: false,
-            confirmButtonText: "Claim",
+            confirmButtonText: "Claim Now",
             denyButtonText: `Maybe later`,
         }).then((result) => {
             // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user

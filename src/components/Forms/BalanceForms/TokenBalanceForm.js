@@ -65,7 +65,7 @@ function TokenBalanceForm() {
                         disabled={ercQueryLoading}
                         style={{ fontWeight: "bold" }}
                     >
-                        Sign and Query Balance
+                        Get Balance
                     </button>
                     <div style={{ fontSize: "13px" }}>
                         <br />
