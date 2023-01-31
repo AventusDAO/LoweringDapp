@@ -147,7 +147,7 @@ export default function Erc777LoweringForm() {
                     className="btn lift-button rounded-0"
                     style={{ fontWeight: "bold" }}
                 >
-                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
+                    {lowerLoading ? <Spinner /> : "Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />

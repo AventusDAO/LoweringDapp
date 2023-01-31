@@ -3,7 +3,6 @@ import { addressSlicer } from "../../utils/randomFunctions";
 import { checkIfUserWantsToWithdrawNow } from "../../utils/checkIfUserWantsToWithdrawNow";
 import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
-import Tippy from "@tippyjs/react";
 
 export const LowerDataFromBackend = ({ tx }) => {
     const { account, networkId, avnContract, networkState } =
@@ -23,26 +22,25 @@ export const LowerDataFromBackend = ({ tx }) => {
                     </li>
                     <li className="d-flex">
                         <div className="input-group mb-3">
-                            <Tippy content={tx.to} placement="top">
-                                <span
-                                    className="input-group-text"
-                                    style={{ maxWidth: "100px" }}
-                                    id="Recipient"
-                                >
-                                    Recipient
-                                </span>
-                            </Tippy>
+                            <span
+                                className="input-group-text"
+                                style={{ maxWidth: "100px" }}
+                                id="Recipient"
+                            >
+                                Recipient
+                            </span>
                             <input
                                 type="text"
                                 id="recipientAddressTip"
                                 disabled
+                                readOnly
                                 style={{
                                     backgroundColor: "white",
                                     color: "black",
                                     weight: "bold",
                                 }}
                                 className="mobile-ext form-control"
-                                placeholder={addressSlicer(tx.to, 8, 34)}
+                                value={addressSlicer(tx.to, 8, 34)}
                                 aria-label="Recipient"
                                 aria-describedby="Recipient"
                             />
@@ -50,13 +48,14 @@ export const LowerDataFromBackend = ({ tx }) => {
                                 type="text"
                                 id="recipientAddressTip"
                                 disabled
+                                readOnly
                                 style={{
                                     backgroundColor: "white",
                                     color: "black",
                                     weight: "bold",
                                 }}
                                 className="desktop-ext form-control"
-                                placeholder={tx.to}
+                                value={tx.to}
                                 aria-label="Recipient"
                                 aria-describedby="Recipient"
                             />
@@ -64,36 +63,36 @@ export const LowerDataFromBackend = ({ tx }) => {
                     </li>
                     <li className="d-flex">
                         <div className="input-group mb-3">
-                            <Tippy content={tx.token} placement="top">
-                                <span
-                                    className="input-group-text"
-                                    style={{ minWidth: "100px" }}
-                                    id="basic-addon1"
-                                >
-                                    Token
-                                </span>
-                            </Tippy>
+                            <span
+                                className="input-group-text"
+                                style={{ minWidth: "100px" }}
+                                id="basic-addon1"
+                            >
+                                Token
+                            </span>
                             <input
                                 type="text"
                                 disabled
+                                readOnly
                                 id="tokenAddressTip"
                                 style={{
                                     backgroundColor: "white",
                                 }}
                                 className="desktop-ext form-control"
-                                placeholder={tx.token}
+                                value={tx.token}
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
                             />
                             <input
                                 type="text"
                                 disabled
+                                readOnly
                                 id="tokenAddressTip"
                                 style={{
                                     backgroundColor: "white",
                                 }}
                                 className="mobile-ext form-control"
-                                placeholder={addressSlicer(tx.token, 8, 34)}
+                                value={addressSlicer(tx.token, 8, 34)}
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
                             />
@@ -111,11 +110,12 @@ export const LowerDataFromBackend = ({ tx }) => {
                             <input
                                 type="text"
                                 disabled
+                                readOnly
                                 style={{
                                     backgroundColor: "white",
                                 }}
                                 className="form-control"
-                                placeholder={tx.amount}
+                                value={tx.amount}
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
                             />
