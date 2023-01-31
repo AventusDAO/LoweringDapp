@@ -59,14 +59,14 @@ const ReadyToWithdraw = ({ lowers }) => {
                                                 .length !== 0 ? (
                                                 <div>
                                                     <span className="badge bg-success rounded-pill">
-                                                        Ready to claim
+                                                        Ready
                                                     </span>
                                                     &nbsp;
                                                 </div>
                                             ) : (
                                                 <div>
                                                     <span className="badge bg-danger rounded-pill">
-                                                        Awaiting claim data
+                                                        Awaiting data
                                                     </span>
                                                     &nbsp;
                                                 </div>
