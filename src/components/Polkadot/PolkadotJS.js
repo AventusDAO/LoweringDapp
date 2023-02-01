@@ -18,7 +18,11 @@ function PolkadotJS() {
                             style={{ marginLeft: "5px" }}
                             defaultChecked
                         />
-                        <label htmlFor="connection">
+                        <label
+                            htmlFor="connection"
+                            className="radio-text"
+                            style={{ marginLeft: "5px" }}
+                        >
                             {" "}
                             Connected AvN account:
                         </label>

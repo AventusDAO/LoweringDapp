@@ -29,6 +29,7 @@ async function fullDecimalAmount(amount, token, isERC777) {
     }
 
     let [intAmount, decAmount] = amount.toString().split(".");
+    decAmount = (decAmount.length > decimals) ? decAmount.substring(0, decimals) : decAmount;
     intAmount = new BN(intAmount).mul(new BN(10).pow(new BN(decimals)));
 
     decAmount = decAmount
