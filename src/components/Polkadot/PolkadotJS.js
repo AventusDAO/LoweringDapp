@@ -20,6 +20,7 @@ function PolkadotJS() {
                             defaultChecked
                         />
                         <label htmlFor="connection">
+                            {" "}
                             Connected AvN account:
                         </label>
                     </p>

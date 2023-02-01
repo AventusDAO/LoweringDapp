@@ -21,6 +21,7 @@ export const ConnectToEthereum = ({ networkName }) => {
                         className="radio-text"
                         style={{ marginLeft: "5px" }}
                     >
+                        {" "}
                         Connected Ethereum account (on {networkName}):
                     </label>
                 ) : (
