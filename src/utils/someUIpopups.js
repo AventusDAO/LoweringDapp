@@ -11,7 +11,7 @@ export const userBalance = async (type, fullAmount, decAmount) => {
         footer: `<p class="text-center">${
             type === "Token"
                 ? "Confirm the decimals for this token on the token's Ethereum smart contract"
-                : `<strong>wei value</strong>: ${fullAmount}`
+                : `<strong>full decimal value</strong>: ${fullAmount}`
         }
                     </p>`,
     });
@@ -19,7 +19,7 @@ export const userBalance = async (type, fullAmount, decAmount) => {
 
 export async function userConfirmation(message, feeMessage) {
     const { isConfirmed: result } = await swal.fire({
-        title: "Signature required",
+        title: "Signature Required",
         text: `Sign to ${message}`,
         showDenyButton: true,
         allowOutsideClick: false,
@@ -50,9 +50,9 @@ export async function transactionSubmitted(id) {
 }
 
 export async function showUserTransactionStatus(polledState) {
-    if (polledState.status === "Transaction Succeeded") {
+    if (polledState.status === "Processed") {
         swal.fire({
-            title: polledState.status,
+            title: "Transaction Succeeded",
             showCloseButton: true,
             text: "Lower successful, funds will be claimable on Ethereum within 24 hours",
             allowOutsideClick: false,

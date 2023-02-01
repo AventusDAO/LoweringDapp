@@ -14,6 +14,7 @@ export async function ercConfirmLowerDetails(
     tokenType,
     tokenAddress,
     amount,
+    t1Recipient,
     networkId,
     networkState,
     isERC20,
@@ -41,18 +42,18 @@ export async function ercConfirmLowerDetails(
                 );
                 if (_tokenAmount) {
                     const { isConfirmed: userChoice } = await swal.fire({
-                        title: "Confirm",
+                        title: "Confirm details",
                         html: `Lower ${amount} <a href=${contractLink(
                             networkId,
                             tokenAddress
-                        )} target="_blank"> ${tokenType} </a>?`,
+                        )} target="_blank"> ${tokenType} </a> to ${t1Recipient}`,
                         showDenyButton: true,
                         showConfirmButton: true,
                         confirmButtonText: "Yes",
                         allowOutsideClick: false,
                         denyButtonText: "No",
                         confirmButtonColor: "green",
-                        footer: `full amount:&nbsp${_tokenAmount}`,
+                        footer: `<strong>full decimal value</strong>:&nbsp${_tokenAmount}`,
                     });
                     return { userChoice, _tokenAmount };
                 } else {
@@ -79,7 +80,7 @@ export async function ercConfirmLowerDetails(
 
 export async function userSignatureConfirmation() {
     const { isConfirmed: result } = await swal.fire({
-        title: "Signature required",
+        title: "Signature Required",
         text: "Sign to validate your AvN account",
         allowOutsideClick: false,
         showDenyButton: true,
@@ -97,6 +98,7 @@ export async function confirmLowerDetails(
     tokenType,
     tokenAddress,
     amount,
+    t1Recipient,
     networkId
 ) {
     if (senderAddress) {
@@ -107,15 +109,15 @@ export async function confirmLowerDetails(
             false
         );
         const { isConfirmed: userChoice } = await swal.fire({
-            title: "Confirm",
+            title: "Confirm details",
             html:
                 tokenType === "ETH"
                     ? `Lower ${amount}`
-                    : `Lower ${amount} 
+                    : `Lower ${amount}
                 <a href=${contractLink(
                     networkId,
                     tokenAddress
-                )} target='_blank'> ${tokenType} </a>?`,
+                )} target='_blank'> ${tokenType} </a> to ${t1Recipient}`,
             showDenyButton: true,
             showConfirmButton: true,
             confirmButtonText: "Yes",
@@ -123,7 +125,7 @@ export async function confirmLowerDetails(
             denyButtonText: "No",
             // showCancelButton: tokenType !== "ETH" ? true : false,
             confirmButtonColor: "green",
-            footer: `full amount:&nbsp${_tokenAmount}`,
+            footer: `<strong>full decimal value</strong>:&nbsp${_tokenAmount}`,
         });
         return { userChoice, _tokenAmount };
     } else {

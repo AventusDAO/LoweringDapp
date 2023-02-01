@@ -41,6 +41,7 @@ export default function AvtLoweringForm() {
                         "AVT",
                         POLK_AVT_CONTRACT_ADDRESS,
                         amount,
+                        t1Recipient,
                         networkId
                     ).then((result) => {
                         if (result) {

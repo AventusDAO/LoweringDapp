@@ -34,6 +34,7 @@ export default function Erc777LoweringForm() {
             "ERC777",
             token,
             amount,
+            t1Recipient,
             networkId,
             networkState,
             isERC20,

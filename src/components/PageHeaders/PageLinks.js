@@ -8,7 +8,7 @@ export const PageLinks = () => {
                 Lower{" "}
             </Link>
             <Link className="pageLinks" to="/balance">
-                AvN Balance{" "}
+                Balances{" "}
             </Link>
             <Link className="pageLinks" to="/withdraw">
                 Claim Lowers{" "}
