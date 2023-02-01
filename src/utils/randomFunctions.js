@@ -67,8 +67,8 @@ export function txLinkInAlert(networkId, hash, type) {
             : "https://goerli.etherscan.io/tx/";
 
     swal.fire({
-        title: "Success",
-        html: `Your ${type} will arrive once the transaction succeeds. <br> <a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
+        title: "Ethereum transaction submitted",
+        html: `Your funds will arrive soon. <br> <a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
         allowOutsideClick: false,
         icon: "success",
         confirmButtonText: "Close",

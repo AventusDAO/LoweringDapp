@@ -83,7 +83,7 @@ export default function Erc20LoweringForm() {
                             type="text"
                             required
                             className="form-control"
-                            placeholder="token contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
+                            placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
                             pattern="0x[0-9a-fA-F]{40}"
                             maxLength="42"
                             minLength="42"
@@ -129,7 +129,7 @@ export default function Erc20LoweringForm() {
                             type="text"
                             required
                             className="form-control"
-                            placeholder="Ethereum recipient address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+                            placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
                             id="t1Recipient"
                             pattern="0x[0-9a-fA-F]{40}"
                             maxLength="42"

@@ -20,7 +20,7 @@ export async function withdrawSubmitHandler(
                 .lower(leaf, merklePath)
                 .send({ from: account })
                 .on("transactionHash", (hash) => {
-                    txLinkInAlert(networkId, hash, "token");
+                    txLinkInAlert(networkId, hash, "tokens");
                 })
                 .catch((e) => {
                     transactionErrorHandler(e.message);

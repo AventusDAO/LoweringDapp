@@ -18,7 +18,7 @@ function LoweringForm() {
     }
 
     let title = "Initiate Lower";
-    let description = "Lower your tokens from the AvN to Ethereum";
+    let description = "Lower funds from the AvN to Ethereum";
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
     const { theme } = useContext(ThemeContext);
 
