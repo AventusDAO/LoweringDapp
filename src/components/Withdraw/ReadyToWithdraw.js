@@ -54,7 +54,7 @@ const ReadyToWithdraw = ({ lowers }) => {
                                                 .length !== 0 ? (
                                                 <div>
                                                     <span className="badge bg-success rounded-pill">
-                                                        Ready
+                                                        Available
                                                     </span>
                                                     &nbsp;
                                                 </div>

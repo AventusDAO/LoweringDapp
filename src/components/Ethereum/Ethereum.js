@@ -27,7 +27,7 @@ function Ethereum() {
         if (networkId === ETHEREUM_MAINNET_ID) {
             networkName = "Ethereum Mainnet";
         } else if (networkId === GOERLI_ID) {
-            networkName = "GOERLI Test Network";
+            networkName = "Goerli Testnet";
         }
         return <ConnectToEthereum networkName={networkName} />;
     } else {

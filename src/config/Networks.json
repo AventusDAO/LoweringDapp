@@ -17,7 +17,7 @@
             "RELAYER": "5EcAFwVcBo8s2D3ZSTnx2sq49wVDF3rc1yGJMx5nRp2GsK62",
             "AVT_CONTRACT_ADDRESS": "0x97d9b397189e8b771ffac3cb04cf26c780a93431",
             "GATEWAY": "https://testnet.gateway.aventus.io/",
-            "NAME": "AvN Public Testnet"
+            "NAME": "AvN Testnet"
         },
         "DEV": {
             "RELAYER": "5FbUQ2kJWLoqHuSTSNNqBwKwdQnBVe4HF3TeGyu6UoZaryTh",

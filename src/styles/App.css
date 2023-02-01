@@ -431,6 +431,10 @@ screen and (max-width: 420px) {
     font-weight: 500;
   }
 
+  .tiny-mobile-ext {
+      font-size: 7px;
+    }
+
   .swal2-footer {
     font-size: 50% !important;
   }

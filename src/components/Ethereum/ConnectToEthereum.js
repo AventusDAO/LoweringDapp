@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { addressSlicer } from "../../utils/randomFunctions";
 import { stateContext } from "../../Contexts/Context";
 import clipboardIcon from "../../assets/img/clipboard.svg";
 
@@ -21,15 +20,16 @@ export const ConnectToEthereum = ({ networkName }) => {
                         className="radio-text"
                         style={{ marginLeft: "5px" }}
                     >
-                        Account connected to {networkName}
+                        {" "}
+                        Connected Ethereum account (on {networkName}):
                     </label>
                 ) : (
                     <span style={{ color: "red" }}>Unsupported Network</span>
                 )}
             </p>
-            <span id="account">{addressSlicer(account, -34, 34)}</span>
+            <span id="account">{account}</span>
             &nbsp;
-            <button className="gear-button buttonAnime">
+            <button className="gear-button desktop-ext buttonAnime">
                 <img
                     src={clipboardIcon}
                     alt=""

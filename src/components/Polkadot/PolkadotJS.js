@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import { addressSlicer } from "../../utils/randomFunctions";
 import { PolkadotExtensions } from "../Extras/PolkadotExtensions";
 import clipboardIcon from "../../assets/img/clipboard.svg";
 
@@ -16,19 +15,20 @@ function PolkadotJS() {
                             type="radio"
                             name="connectionBtn"
                             id="connection"
+                            style={{ marginLeft: "5px" }}
                             defaultChecked
                         />
                         <label htmlFor="connection">
                             {" "}
-                            Connected Polkadot Account Address
+                            Connected AvN account:
                         </label>
                     </p>
                     <div>
-                        <span id="account">
-                            {addressSlicer(sender.address, -40, 40)}
+                        <span className="tiny-mobile-ext" id="account">
+                            {sender.address}
                         </span>
                         &nbsp;
-                        <button className="gear-button buttonAnime">
+                        <button className="gear-button desktop-ext buttonAnime">
                             <img
                                 src={clipboardIcon}
                                 alt=""
@@ -51,7 +51,7 @@ function PolkadotJS() {
                         data-bs-toggle="modal"
                         data-bs-target="#extensionsModal"
                     >
-                        Switch to Another Account
+                        Switch Account
                     </button>
                     <PolkadotExtensions />
                 </div>

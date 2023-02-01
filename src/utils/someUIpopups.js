@@ -36,14 +36,13 @@ export async function transactionSubmitted(id) {
     await swal
         .fire({
             title: `AvN Transaction Submitted`,
-            text: "Confirmation takes a few moments, please wait",
+            text: "Confirmation will follow shortly",
             allowOutsideClick: false,
             icon: "success",
             showConfirmButton: true,
-            confirmButtonText: "Copy UUID",
+            confirmButtonText: "Okay",
             confirmButtonColor: "#5100FF",
             showCloseButton: true,
-            footer: `UUID: ${id}`,
         })
         .then(() => {
             navigator.clipboard.writeText(id);
@@ -51,31 +50,30 @@ export async function transactionSubmitted(id) {
 }
 
 export async function showUserTransactionStatus(polledState) {
-    if (polledState.status === "Processed") {
+    if (polledState.status === "Transaction Succeeded") {
         swal.fire({
             title: polledState.status,
             showCloseButton: true,
-            text: "Lower initated successfully",
+            text: "Lower successful, funds will be claimable on Ethereum within 24 hours",
             allowOutsideClick: false,
             confirmButtonColor: "#5100FF",
             confirmButtonText: "Copy Transaction Hash",
             icon: "success",
-            footer: `BlockNumber: ${polledState.blockNumber}, TxIndex: ${polledState.transactionIndex}`,
+            footer: `Blocknumber: ${polledState.blockNumber}, Tx Index: ${polledState.transactionIndex}`,
         }).then(() => {
             navigator.clipboard.writeText(polledState.txHash);
         });
         return null;
     } else if (polledState.status === "Rejected") {
         swal.fire({
-            title: polledState.status,
+            title: "Transaction Rejected",
             showCloseButton: true,
-            text: "Lower unsuccessful",
-            confirmButtonText: "Copy Transaction Hash",
+            text: "Lower unsuccessful, please check the details and retry",
+            confirmButtonText: "Close",
             confirmButtonColor: "#5100FF",
             showConfirmButton: true,
             allowOutsideClick: false,
             icon: "error",
-            footer: `BlockNumber: ${polledState.blockNumber}, TxIndex: ${polledState.transactionIndex}`,
         }).then(() => {
             navigator.clipboard.writeText(polledState.txHash);
         });

@@ -68,10 +68,12 @@ export function txLinkInAlert(networkId, hash, type) {
 
     swal.fire({
         title: "Ethereum transaction submitted",
-        html: `Your funds are on their way. <br> <a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
+        html: 'Your funds are on their way',
+        confirmButtonColor: "#ffffff",
+        confirmButtonText: `<a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
         allowOutsideClick: false,
         icon: "success",
-        confirmButtonText: "Close",
+        showCloseButton: true,
     });
 }
 

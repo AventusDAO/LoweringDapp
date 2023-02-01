@@ -4,7 +4,7 @@ import Networks from "../../config/Networks.json";
 
 const NetworkDropdownNames = [
     { MAINNET: "AvN Mainnet" },
-    { PUBLIC_TESTNET: "AvN Public Testnet" },
+    { PUBLIC_TESTNET: "AvN Testnet" },
     { DEV: "AvN Development" },
 ];
 

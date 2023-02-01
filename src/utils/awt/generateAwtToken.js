@@ -53,7 +53,7 @@ async function getToken(account) {
         const user = awt.user;
         if (account.address === user) {
             var ageChecker = Number(prevTime);
-            ageChecker += 60000;
+            ageChecker += 600000;
             const nowTime = Date.now();
             if (ageChecker > nowTime) {
                 return token;
