@@ -16,7 +16,7 @@ async function checkIfUserWantsToWithdrawNow(
     merklePath = merklePath.replace(/\[|\]/g, "").split(",");
     if (address) {
         swal.fire({
-            title: "Claim on Ethereum",
+            title: "Claim funds on Ethereum",
             showCloseButton: true,
             icon: "success",
             showDenyButton: true,
@@ -31,7 +31,7 @@ async function checkIfUserWantsToWithdrawNow(
                 if (!networkChecker) {
                     genericErrorHandlerTemplate(
                         "Switch Ethereum Network",
-                        "Please ensure your Ethereum wallet network is set to Mainnet for Aventus Mainnet and GOERLI for other Aventus networks."
+                        "Please ensure your wallet's Ethereum network is set to Mainnet for AvN Mainnet and Goerli Testnet for AvN Testnet."
                     );
                 } else {
                     withdrawSubmitHandler(

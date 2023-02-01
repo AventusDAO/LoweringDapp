@@ -21,7 +21,7 @@ export const ConnectToEthereum = ({ networkName }) => {
                         className="radio-text"
                         style={{ marginLeft: "5px" }}
                     >
-                        Account connected to {networkName}
+                        Connected Ethereum account (on {networkName}):
                     </label>
                 ) : (
                     <span style={{ color: "red" }}>Unsupported Network</span>

@@ -17,8 +17,8 @@ function LowerQueryForm() {
             navigate(`/lowers/${address}`);
         } else {
             genericErrorHandlerTemplate(
-                "Incorrect Address",
-                "Please ensure the address input is correct."
+                "Invalid Address",
+                "Please ensure the address is correct"
             );
         }
     }

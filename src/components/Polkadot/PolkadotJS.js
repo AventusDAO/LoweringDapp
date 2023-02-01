@@ -16,17 +16,15 @@ function PolkadotJS() {
                             type="radio"
                             name="connectionBtn"
                             id="connection"
+                            style={{ marginLeft: "5px" }}
                             defaultChecked
                         />
                         <label htmlFor="connection">
-                            {" "}
-                            Connected Polkadot Account Address
+                            Connected AvN account:
                         </label>
                     </p>
                     <div>
-                        <span id="account">
-                            {addressSlicer(sender.address, -40, 40)}
-                        </span>
+                        <span id="account">{sender.address}</span>
                         &nbsp;
                         <button className="gear-button buttonAnime">
                             <img
@@ -51,7 +49,7 @@ function PolkadotJS() {
                         data-bs-toggle="modal"
                         data-bs-target="#extensionsModal"
                     >
-                        Switch to Another Account
+                        Switch Account
                     </button>
                     <PolkadotExtensions />
                 </div>

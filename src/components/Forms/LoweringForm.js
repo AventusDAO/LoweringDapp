@@ -17,8 +17,8 @@ function LoweringForm() {
         setT1Recipient("");
     }
 
-    let title = "Initiate Lower";
-    let description = "Lower funds from the AvN to Ethereum";
+    let title = "Lower";
+    let description = "Move funds from the AvN to Ethereum";
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
     const { theme } = useContext(ThemeContext);
 

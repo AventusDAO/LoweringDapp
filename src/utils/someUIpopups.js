@@ -60,7 +60,7 @@ export async function showUserTransactionStatus(polledState) {
             confirmButtonColor: "#5100FF",
             confirmButtonText: "Copy Transaction Hash",
             icon: "success",
-            footer: `BlockNumber: ${polledState.blockNumber}, TxIndex: ${polledState.transactionIndex}`,
+            footer: `Blocknumber: ${polledState.blockNumber}, Tx Index: ${polledState.transactionIndex}`,
         }).then(() => {
             navigator.clipboard.writeText(polledState.txHash);
         });
@@ -70,12 +70,11 @@ export async function showUserTransactionStatus(polledState) {
             title: polledState.status,
             showCloseButton: true,
             text: "Lower unsuccessful",
-            confirmButtonText: "Copy Transaction Hash",
+            confirmButtonText: "Close",
             confirmButtonColor: "#5100FF",
             showConfirmButton: true,
             allowOutsideClick: false,
             icon: "error",
-            footer: `BlockNumber: ${polledState.blockNumber}, TxIndex: ${polledState.transactionIndex}`,
         }).then(() => {
             navigator.clipboard.writeText(polledState.txHash);
         });

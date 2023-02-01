@@ -20,7 +20,7 @@ function BalanceForm() {
     const [ercQueryLoading, setErcQueryLoading] = useState("");
 
     let title = "AvN Balance";
-    let description = "View the balance of your token on the Aventus Network";
+    let description = "View your Aventus Network balances";
 
     return (
         <>

@@ -22,7 +22,7 @@ export async function ercConfirmLowerDetails(
     if (senderAddress) {
         if (!account) {
             metamaskConnectionErrorHandler(
-                "Metamask is required to confirm the token contract's details."
+                "Metamask is required to confirm the token details"
             );
         } else {
             const networkChecker = confirmNetwork(networkId, networkState);
@@ -39,35 +39,31 @@ export async function ercConfirmLowerDetails(
                     isERC20,
                     isERC777
                 );
+                confirmButtonText: `<a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
                 if (_tokenAmount) {
                     const { isConfirmed: userChoice } = await swal.fire({
                         title: "Confirm",
-                        text: `Lower ${amount} ${tokenType}?`,
+                        text: `Lower ${amount} <a href=${contractLink(networkId, tokenAddress)} target="_blank"> ${tokenType} </a>?`,
                         showDenyButton: true,
                         showConfirmButton: true,
                         confirmButtonText: "Yes",
                         allowOutsideClick: false,
                         denyButtonText: "No",
-                        showCancelButton: true,
-                        cancelButtonText: `<a href=${contractLink(
-                            networkId,
-                            tokenAddress
-                        )} target="_blank" style=color:white> View Token Contract </a>`,
                         confirmButtonColor: "green",
-                        footer: `<strong>full decimal value:</strong>&nbsp${_tokenAmount}`,
+                        footer: `full amount:&nbsp${_tokenAmount}`,
                     });
                     return { userChoice, _tokenAmount };
                 } else {
                     if (isERC20) {
                         genericErrorHandlerTemplate(
                             "Cannot Find Token Contract",
-                            "Please confirm that this token's contract exists on your chosen Ethereum network.",
+                            "Please confirm this token exists on your chosen Ethereum network.",
                             "Only Ethereum mainnet and Goerli contracts are supported."
                         );
                     } else {
                         genericErrorHandlerTemplate(
-                            "Cannot Confirm Token is ERC777",
-                            "Please confirm that this token's contract exists on your chosen Ethereum network and is an ERC777 token.",
+                            "Is not ERC777",
+                            "Please confirm that this token's contract exists on your chosen Ethereum network and is ERC777 standard.",
                             "Only Ethereum mainnet and Goerli contracts are supported."
                         );
                     }

@@ -114,7 +114,7 @@ export default function AvtLoweringForm() {
                     disabled={lowerLoading}
                     style={{ fontWeight: "bold" }}
                 >
-                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
+                    {lowerLoading ? <Spinner /> : "Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />

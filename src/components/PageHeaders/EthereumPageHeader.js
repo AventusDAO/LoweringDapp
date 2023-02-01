@@ -12,9 +12,9 @@ function EthereumPageHeader() {
                 <div className="row py-lg-3 align-self-center mx-auto">
                     <div>
                         <div className="text-center" style={{ color: "black" }}>
-                            <h1 className="maintitle">Complete Lowers</h1>
+                            <h1 className="maintitle">Claim Lowers</h1>
                             <p className="text-center">
-                                Claim available lowered funds on Ethereum
+                                Claim previously lowered funds on Ethereum
                             </p>
                         </div>
                         <small className="text-black text-left text-center">

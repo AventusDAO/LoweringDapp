@@ -145,7 +145,7 @@ export default function Erc20LoweringForm() {
                     disabled={lowerLoading}
                     style={{ fontWeight: "bold" }}
                 >
-                    {lowerLoading ? <Spinner /> : "Approve and Lower"}
+                    {lowerLoading ? <Spinner /> : "Lower"}
                 </button>
                 <div style={{ fontSize: "13px" }}>
                     <br />
