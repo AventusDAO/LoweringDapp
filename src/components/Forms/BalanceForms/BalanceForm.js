@@ -19,7 +19,7 @@ function BalanceForm() {
     const [ethQueryLoading, setEthQueryLoading] = useState("");
     const [ercQueryLoading, setErcQueryLoading] = useState("");
 
-    let title = "My AvN Balance";
+    let title = "AvN Balance";
     let description = "View the balance of your token on the Aventus Network";
 
     return (

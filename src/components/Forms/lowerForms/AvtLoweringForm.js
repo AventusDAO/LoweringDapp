@@ -78,7 +78,7 @@ export default function AvtLoweringForm() {
                             maxLength={20}
                             pattern="^[0-9]\d*(\.\d+)?$"
                             className="form-control"
-                            placeholder="whole or fractional tokens (eg: 100 or 1.0523)"
+                            placeholder="whole or fractional AVT (eg: 100 or 1.0523)"
                             id="tokenAmount"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
@@ -98,7 +98,7 @@ export default function AvtLoweringForm() {
                             type="text"
                             required
                             className="form-control"
-                            placeholder="Ethereum recipient address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+                            placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
                             id="t1Recipient"
                             pattern="0x[0-9a-fA-F]{40}"
                             maxLength="42"

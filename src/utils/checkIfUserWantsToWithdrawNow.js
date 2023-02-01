@@ -16,7 +16,7 @@ async function checkIfUserWantsToWithdrawNow(
     merklePath = merklePath.replace(/\[|\]/g, "").split(",");
     if (address) {
         swal.fire({
-            title: "Claim your tokens on Ethereum",
+            title: "Claim on Ethereum",
             showCloseButton: true,
             icon: "success",
             showDenyButton: true,

@@ -77,7 +77,7 @@ function LowerQueryForm() {
                             className="btn lift-button rounded-0"
                             style={{ fontWeight: "bold" }}
                         >
-                            Show Lowers
+                            Search Lowers
                         </button>
                     </form>
                 </div>

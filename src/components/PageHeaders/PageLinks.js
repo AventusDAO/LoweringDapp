@@ -8,7 +8,7 @@ export const PageLinks = () => {
                 Initiate Lower{" "}
             </Link>
             <Link className="pageLinks" to="/balance">
-                My AvN Balance{" "}
+                AvN Balance{" "}
             </Link>
             <Link className="pageLinks" to="/withdraw">
                 Complete Lowers{" "}
