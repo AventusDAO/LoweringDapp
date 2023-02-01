@@ -36,7 +36,7 @@ export async function transactionSubmitted(id) {
     await swal
         .fire({
             title: `AvN Transaction Submitted`,
-            text: "Confirmation takes a few seconds, please wait",
+            text: "Confirmation takes a few moments, please wait",
             allowOutsideClick: false,
             icon: "success",
             showConfirmButton: true,
