@@ -28,7 +28,7 @@ export const ConnectToEthereum = ({ networkName }) => {
                     <span style={{ color: "red" }}>Unsupported Network</span>
                 )}
             </p>
-            <span id="account">{addressSlicer(account, -34, 34)}</span>
+            <span id="account">{account}</span>
             &nbsp;
             <button className="gear-button buttonAnime">
                 <img
