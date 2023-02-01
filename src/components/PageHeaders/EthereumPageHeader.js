@@ -28,7 +28,6 @@ function EthereumPageHeader() {
                             <PageLinks />
                         </div>
                         <NetworkDropdown />
-                        {/* <LightDarkMode /> */}
                     </div>
                 </div>
             </section>

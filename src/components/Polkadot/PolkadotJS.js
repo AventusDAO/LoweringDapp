@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import { addressSlicer } from "../../utils/randomFunctions";
 import { PolkadotExtensions } from "../Extras/PolkadotExtensions";
 import clipboardIcon from "../../assets/img/clipboard.svg";
 
@@ -25,9 +24,11 @@ function PolkadotJS() {
                         </label>
                     </p>
                     <div>
-                        <span id="account">{sender.address}</span>
+                        <span className="tiny-mobile-ext" id="account">
+                            {sender.address}
+                        </span>
                         &nbsp;
-                        <button className="gear-button buttonAnime">
+                        <button className="gear-button desktop-ext buttonAnime">
                             <img
                                 src={clipboardIcon}
                                 alt=""

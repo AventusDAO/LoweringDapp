@@ -42,7 +42,10 @@ export async function ercConfirmLowerDetails(
                 if (_tokenAmount) {
                     const { isConfirmed: userChoice } = await swal.fire({
                         title: "Confirm",
-                        text: `Lower ${amount} <a href=${contractLink(networkId, tokenAddress)} target="_blank"> ${tokenType} </a>?`,
+                        html: `Lower ${amount} <a href=${contractLink(
+                            networkId,
+                            tokenAddress
+                        )} target="_blank"> ${tokenType} </a>?`,
                         showDenyButton: true,
                         showConfirmButton: true,
                         confirmButtonText: "Yes",
@@ -105,19 +108,22 @@ export async function confirmLowerDetails(
         );
         const { isConfirmed: userChoice } = await swal.fire({
             title: "Confirm",
-            text: `Lower ${amount} ${tokenType}?`,
+            html:
+                tokenType === "ETH"
+                    ? `Lower ${amount}`
+                    : `Lower ${amount} 
+                <a href=${contractLink(
+                    networkId,
+                    tokenAddress
+                )} target='_blank'> ${tokenType} </a>?`,
             showDenyButton: true,
             showConfirmButton: true,
             confirmButtonText: "Yes",
             allowOutsideClick: false,
             denyButtonText: "No",
-            showCancelButton: tokenType !== "ETH" ? true : false,
-            cancelButtonText: `<a href=${contractLink(
-                networkId,
-                tokenAddress
-            )} target="_blank" style=color:white> View Token Contract </a>`,
+            // showCancelButton: tokenType !== "ETH" ? true : false,
             confirmButtonColor: "green",
-            footer: `<strong>full decimal value:</strong>&nbsp${_tokenAmount}`,
+            footer: `full amount:&nbsp${_tokenAmount}`,
         });
         return { userChoice, _tokenAmount };
     } else {
