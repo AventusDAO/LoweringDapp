@@ -39,7 +39,6 @@ export async function ercConfirmLowerDetails(
                     isERC20,
                     isERC777
                 );
-                confirmButtonText: `<a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
                 if (_tokenAmount) {
                     const { isConfirmed: userChoice } = await swal.fire({
                         title: "Confirm",
