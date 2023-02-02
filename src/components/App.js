@@ -102,6 +102,7 @@ function App() {
                     walletName,
                     setWalletName,
                     setAVN_GATEWAY_URL,
+                    setEXPLORER_TX_URL,
                     AVN_RELAYER,
                     setAVN_RELAYER,
                     setNetworkId,

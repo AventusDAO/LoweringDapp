@@ -46,7 +46,7 @@ export async function ercConfirmLowerDetails(
                         html: `<small>Lower ${amount} <a href=${contractLink(
                             networkId,
                             tokenAddress
-                        )} target="_blank"> ${tokenType} </a> to ${t1Recipient}</small>`,
+                        )} target="_blank"> ${tokenType} </a> to ${t1Recipient} ?</small>`,
                         showDenyButton: true,
                         showConfirmButton: true,
                         confirmButtonText: "Yes",
@@ -110,14 +110,10 @@ export async function confirmLowerDetails(
         );
         const { isConfirmed: userChoice } = await swal.fire({
             title: "Confirm details",
-            html:
-                tokenType === "ETH"
-                    ? `Lower ${amount}`
-                    : `Lower ${amount}
-                <a href=${contractLink(
+            html: `<small>Lower ${amount} <a href=${contractLink(
                     networkId,
                     tokenAddress
-                )} target='_blank'> ${tokenType} </a> to ${t1Recipient}`,
+                )} target="_blank"> ${tokenType} </a> to ${t1Recipient} ?</small>`,
             showDenyButton: true,
             showConfirmButton: true,
             confirmButtonText: "Yes",

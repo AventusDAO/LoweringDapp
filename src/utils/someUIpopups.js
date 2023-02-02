@@ -60,18 +60,18 @@ export async function showUserTransactionStatus(polledState, explorerTxUrl) {
             confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
             icon: "success",
         });
-        return null;
+        return "complete";
     } else if (polledState.status === "Rejected") {
         swal.fire({
             title: "Lower failed",
             showCloseButton: true,
             text: "The transaction was rejected by the AvN, please check the details and retry",
             confirmButtonColor: "#ffffff",
-            confirmButtonText: `<a href="${explorerLink}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
+            confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
             allowOutsideClick: false,
             icon: "error",
         });
-        return null;
+        return "complete";
     } else if (polledState.status === "Transaction not found") {
         swal.fire({
             title: polledState.status,
@@ -82,6 +82,6 @@ export async function showUserTransactionStatus(polledState, explorerTxUrl) {
             confirmButtonText: "Okay",
             icon: "info",
         });
-        return null;
+        return "complete";
     }
 }

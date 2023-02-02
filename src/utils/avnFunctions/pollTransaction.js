@@ -10,8 +10,8 @@ async function sleep(ms) {
 }
 
 async function checkRequestId(requestId, sender, url, explorerTxUrl) {
-    for (let i = 0; i < 50; i++) {
-        await sleep(2000);
+    for (let i = 0; i < 100; i++) {
+        await sleep(1000);
         const params = { requestId };
         const awtToken = await getToken(sender);
         const polledState = await jsonRpcRequest(
@@ -23,7 +23,8 @@ async function checkRequestId(requestId, sender, url, explorerTxUrl) {
             "polling"
         );
         const state = await showUserTransactionStatus(polledState, explorerTxUrl);
-        if (state === null) {
+
+        if (state === 'complete') {
             break;
         }
     }
