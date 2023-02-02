@@ -12,7 +12,8 @@ export async function lowerSubmitHandler(
     tokenAmount,
     t1Recipient,
     AVN_GATEWAY_URL,
-    AVN_RELAYER
+    AVN_RELAYER,
+    EXPLORER_TX_URL
 ) {
     const params = {
         relayer: AVN_RELAYER,
@@ -35,7 +36,7 @@ export async function lowerSubmitHandler(
             AVN_GATEWAY_URL
         );
         if (requestId) {
-            await checkRequestId(requestId, sender, AVN_GATEWAY_URL);
+            await checkRequestId(requestId, sender, AVN_GATEWAY_URL, EXPLORER_TX_URL);
             return "done";
         }
     } catch (e) {

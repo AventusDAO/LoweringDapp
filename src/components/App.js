@@ -31,6 +31,7 @@ function App() {
     const [networkState, setNetworkState] = useState("MAINNET");
     const [testnetState, setTestnetState] = useState("");
     const [AVN_GATEWAY_URL, setAVN_GATEWAY_URL] = useState("");
+    const [EXPLORER_TX_URL, setEXPLORER_TX_URL] = useState("");
     const [POLK_AVT_CONTRACT_ADDRESS, setPOLK_AVT_CONTRACT_ADDRESS] = useState(
         "0x0d88eD6E74bbFD96B831231638b66C05571e824F"
     );
@@ -97,6 +98,7 @@ function App() {
                     setAvtAddress,
                     setAvnAddress,
                     AVN_GATEWAY_URL,
+                    EXPLORER_TX_URL,
                     walletName,
                     setWalletName,
                     setAVN_GATEWAY_URL,

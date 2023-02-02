@@ -49,33 +49,27 @@ export async function transactionSubmitted(id) {
         });
 }
 
-export async function showUserTransactionStatus(polledState) {
+export async function showUserTransactionStatus(polledState, explorerTxUrl) {
     if (polledState.status === "Processed") {
         swal.fire({
-            title: "Transaction Succeeded",
+            title: "Lower Succeeded",
             showCloseButton: true,
-            text: "Lower successful, funds will be claimable on Ethereum within 24 hours",
+            text: "Funds will be claimable on Ethereum within 24 hours",
             allowOutsideClick: false,
-            confirmButtonColor: "#5100FF",
-            confirmButtonText: "Copy Transaction Hash",
+            confirmButtonColor: "#ffffff",
+            confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
             icon: "success",
-            footer: `Blocknumber: ${polledState.blockNumber}, Tx Index: ${polledState.transactionIndex}`,
-        }).then(() => {
-            navigator.clipboard.writeText(polledState.txHash);
         });
         return null;
     } else if (polledState.status === "Rejected") {
         swal.fire({
-            title: "Transaction Rejected",
+            title: "Lower failed",
             showCloseButton: true,
-            text: "Lower unsuccessful, please check the details and retry",
-            confirmButtonText: "Close",
-            confirmButtonColor: "#5100FF",
-            showConfirmButton: true,
+            text: "The transaction was rejected by the AvN, please check the details and retry",
+            confirmButtonColor: "#ffffff",
+            confirmButtonText: `<a href="${explorerLink}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
             allowOutsideClick: false,
             icon: "error",
-        }).then(() => {
-            navigator.clipboard.writeText(polledState.txHash);
         });
         return null;
     } else if (polledState.status === "Transaction not found") {
