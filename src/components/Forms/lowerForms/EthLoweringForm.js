@@ -14,7 +14,7 @@ export default function EthLoweringForm() {
         setLowerLoading,
     } = useContext(formContext);
 
-    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, networkState } =
+    const { sender, AVN_GATEWAY_URL, AVN_RELAYER, EXPLORER_TX_URL, networkState } =
         useContext(stateContext);
 
     const ETH_CONTRACT_ADDRESS = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
@@ -48,7 +48,8 @@ export default function EthLoweringForm() {
                                     result._tokenAmount,
                                     t1Recipient,
                                     AVN_GATEWAY_URL,
-                                    AVN_RELAYER
+                                    AVN_RELAYER,
+                                    EXPLORER_TX_URL
                                 ).then(() => setLowerLoading(false));
                             else {
                                 setLowerLoading(false);

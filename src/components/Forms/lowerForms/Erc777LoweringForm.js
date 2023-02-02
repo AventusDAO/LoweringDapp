@@ -20,6 +20,7 @@ export default function Erc777LoweringForm() {
         account,
         AVN_GATEWAY_URL,
         AVN_RELAYER,
+        EXPLORER_TX_URL,
         networkId,
         networkState,
     } = useContext(stateContext);
@@ -48,7 +49,8 @@ export default function Erc777LoweringForm() {
                         result._tokenAmount,
                         t1Recipient,
                         AVN_GATEWAY_URL,
-                        AVN_RELAYER
+                        AVN_RELAYER,
+                        EXPLORER_TX_URL
                     ).then(() => setLowerLoading(false));
                 else {
                     setLowerLoading(false);

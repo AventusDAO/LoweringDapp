@@ -25,7 +25,7 @@ function Ethereum() {
     if (account) {
         let networkName;
         if (networkId === ETHEREUM_MAINNET_ID) {
-            networkName = "Ethereum Mainnet";
+            networkName = "Mainnet";
         } else if (networkId === GOERLI_ID) {
             networkName = "Goerli Testnet";
         }

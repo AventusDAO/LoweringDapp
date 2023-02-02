@@ -18,6 +18,7 @@ export default function AvtLoweringForm() {
         sender,
         AVN_GATEWAY_URL,
         AVN_RELAYER,
+        EXPLORER_TX_URL,
         POLK_AVT_CONTRACT_ADDRESS,
         networkState,
     } = useContext(stateContext);
@@ -52,7 +53,8 @@ export default function AvtLoweringForm() {
                                     result._tokenAmount,
                                     t1Recipient,
                                     AVN_GATEWAY_URL,
-                                    AVN_RELAYER
+                                    AVN_RELAYER,
+                                    EXPLORER_TX_URL
                                 ).then(() => setLowerLoading(false));
                             else {
                                 setLowerLoading(false);

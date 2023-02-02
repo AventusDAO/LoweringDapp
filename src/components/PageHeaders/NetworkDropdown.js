@@ -16,6 +16,7 @@ export const NetworkDropdown = () => {
         setNetworkState,
         setTestnetState,
         setAVN_GATEWAY_URL,
+        setEXPLORER_TX_URL,
         setPOLK_AVT_CONTRACT_ADDRESS,
         setAVN_RELAYER,
     } = useContext(stateContext);
@@ -24,6 +25,7 @@ export const NetworkDropdown = () => {
         function promptNetworkChange(network) {
             setAVN_GATEWAY_URL(Networks.AVN_NETWORKS[network].GATEWAY);
             setAVN_RELAYER(Networks.AVN_NETWORKS[network].RELAYER);
+            setEXPLORER_TX_URL(Networks.AVN_NETWORKS[network].EXPLORER_TX_URL);
             setPOLK_AVT_CONTRACT_ADDRESS(
                 Networks.AVN_NETWORKS[network].AVT_CONTRACT_ADDRESS
             );

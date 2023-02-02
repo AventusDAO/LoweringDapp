@@ -11,6 +11,7 @@ export const ConnectToEthereum = ({ networkName }) => {
                 <input
                     type="radio"
                     name="connectionBtn"
+                    className="desktop-ext"
                     id="connection"
                     defaultChecked
                 />
