@@ -52,7 +52,7 @@ export async function transactionSubmitted(id) {
 export async function showUserTransactionStatus(polledState, explorerTxUrl) {
     if (polledState.status === "Processed") {
         swal.fire({
-            title: "Lower Succeeded",
+            title: "Lower Successful",
             showCloseButton: true,
             text: "Funds will be claimable on Ethereum within 24 hours",
             allowOutsideClick: false,
