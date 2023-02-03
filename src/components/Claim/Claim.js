@@ -3,14 +3,14 @@ import { toAddress } from "../../utils/polkadotFunctions/polkadotToAddress";
 import NotFound from "../Extras/NotFound";
 import useFetch from "../Extras/useFetch";
 import EthereumPageHeader from "../PageHeaders/EthereumPageHeader";
-import ReadyToWithdraw from "./ReadyToWithdraw";
+import ReadyToClaim from "./ReadyToClaim";
 import { Spinner } from "../Extras/Tools";
 import { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import BackButton from "../Extras/BackButton";
 import { NoLowers } from "./NoLowers";
 
-const Withdraw = () => {
+const Claim = () => {
     let { account } = useParams();
     const { AVN_GATEWAY_URL } = useContext(stateContext);
     account = toAddress(account).toLowerCase();
@@ -45,7 +45,7 @@ const Withdraw = () => {
                     ) : (
                         <div>
                             <br />
-                            <ReadyToWithdraw lowers={data} />
+                            <ReadyToClaim lowers={data} />
                         </div>
                     ))}
             </div>
@@ -53,4 +53,4 @@ const Withdraw = () => {
     );
 };
 
-export default Withdraw;
+export default Claim;

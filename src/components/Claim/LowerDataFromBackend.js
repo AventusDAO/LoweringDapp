@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
-import { checkIfUserWantsToWithdrawNow } from "../../utils/checkIfUserWantsToWithdrawNow";
+import { checkIfUserWantsToClaimNow } from "../../utils/checkIfUserWantsToClaimNow";
 import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
 
@@ -132,7 +132,7 @@ export const LowerDataFromBackend = ({ tx }) => {
                         <button
                             className="connect-button btn justify-content-center items-align-center"
                             onClick={() => {
-                                checkIfUserWantsToWithdrawNow(
+                                checkIfUserWantsToClaimNow(
                                     tx.from,
                                     tx.claimData.leaf,
                                     tx.claimData.merklePath,

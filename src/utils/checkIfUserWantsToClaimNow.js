@@ -1,10 +1,10 @@
 import swal from "sweetalert2";
-import { withdrawSubmitHandler } from "./ethereumFunctions/withdrawSubmitHandler";
+import { claimSubmitHandler } from "./ethereumFunctions/claimSubmitHandler";
 import { confirmNetwork } from "./randomFunctions";
 import { genericErrorHandlerTemplate } from "./errorHandlers";
 
-// Checks if the user would like to withdraw the tokens ready to be lowered.
-async function checkIfUserWantsToWithdrawNow(
+// Checks if the user would like to claim the tokens ready to be lowered.
+async function checkIfUserWantsToClaimNow(
     address,
     leaf,
     merklePath,
@@ -25,7 +25,7 @@ async function checkIfUserWantsToWithdrawNow(
             confirmButtonText: "Claim now",
             denyButtonText: `Maybe later`,
         }).then((result) => {
-            // Calls the withdraw submit handler to submit the withdraw transaction and output the result to the user
+            // Calls the claim submit handler to submit the claim transaction and output the result to the user
             if (result.isConfirmed) {
                 const networkChecker = confirmNetwork(networkId, networkState);
                 if (!networkChecker) {
@@ -34,7 +34,7 @@ async function checkIfUserWantsToWithdrawNow(
                         "Please ensure your wallet's Ethereum network is set to Mainnet for AvN Mainnet and Goerli Testnet for AvN Testnet."
                     );
                 } else {
-                    withdrawSubmitHandler(
+                    claimSubmitHandler(
                         account,
                         leaf,
                         merklePath,
@@ -56,4 +56,4 @@ async function checkIfUserWantsToWithdrawNow(
     }
 }
 
-export { checkIfUserWantsToWithdrawNow };
+export { checkIfUserWantsToClaimNow };

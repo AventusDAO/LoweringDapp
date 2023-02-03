@@ -4,7 +4,7 @@ import BackButton from "../Extras/BackButton";
 import { LowerDataFromBackend } from "./LowerDataFromBackend";
 import { Pagination } from "../Pagination";
 
-const ReadyToWithdraw = ({ lowers }) => {
+const ReadyToClaim = ({ lowers }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const lowersPerPage = 5;
     const indexOfLastPost = currentPage * lowersPerPage;
@@ -97,4 +97,4 @@ const ReadyToWithdraw = ({ lowers }) => {
     );
 };
 
-export default ReadyToWithdraw;
+export default ReadyToClaim;

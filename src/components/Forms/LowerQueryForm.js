@@ -65,7 +65,7 @@ function LowerQueryForm() {
                                     pattern="0x[0-9a-fA-F]{64}|[0-9a-zA-Z]{48}|0x[0-9a-fA-F]{40}"
                                     maxLength={66}
                                     className="form-control"
-                                    placeholder="AvN sender account OR Ethereum recipient address"
+                                    placeholder="AvN sender OR Ethereum recipient"
                                     value={address}
                                     onChange={(e) => setAddress(e.target.value)}
                                     id="address"

@@ -5,7 +5,7 @@ import {
 import { txLinkInAlert } from "../randomFunctions";
 
 // Handles the ethereum transaction submission
-export async function withdrawSubmitHandler(
+export async function claimSubmitHandler(
     account,
     leaf,
     merklePath,

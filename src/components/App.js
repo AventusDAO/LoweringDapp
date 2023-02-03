@@ -5,11 +5,11 @@ import Networks from "../config/Networks.json";
 import ABI from "../config/abi.json";
 import LoadWeb3 from "../utils/ethereumFunctions/loadWeb3";
 import { stateContext } from "../Contexts/Context";
-import WithdrawPage from "./Withdraw/WithdrawPage";
+import ClaimPage from "./Claim/ClaimPage";
 import LoweringForm from "./Forms/LoweringForm";
 import BalanceForm from "./Forms/BalanceForms/BalanceForm";
 import NotFound from "./Extras/NotFound";
-import Withdraw from "./Withdraw/Withdraw";
+import Claim from "./Claim/Claim";
 import { Faq } from "./Faq";
 import Footer from "./Footer";
 
@@ -122,9 +122,9 @@ function App() {
             >
                 <Routes>
                     <Route path="/" element={<LoweringForm />} />
-                    <Route path="/balance" element={<BalanceForm />} />
-                    <Route path="/withdraw" element={<WithdrawPage />} />
-                    <Route path="/lowers/:account" element={<Withdraw />} />
+                    <Route path="/balances" element={<BalanceForm />} />
+                    <Route path="/claim" element={<ClaimPage />} />
+                    <Route path="/lowers/:account" element={<Claim />} />
                     <Route path="/FAQ" element={<Faq />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
