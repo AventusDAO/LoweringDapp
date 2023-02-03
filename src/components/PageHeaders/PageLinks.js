@@ -7,11 +7,11 @@ export const PageLinks = () => {
             <Link className="pageLinks" to="/">
                 Lower{" "}
             </Link>
-            <Link className="pageLinks" to="/balances">
-                Balances{" "}
+            <Link className="pageLinks" to="/balance">
+                Balance{" "}
             </Link>
             <Link className="pageLinks" to="/claim">
-                Claim Lowers{" "}
+                Claim{" "}
             </Link>
         </div>
     );

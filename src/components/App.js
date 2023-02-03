@@ -122,7 +122,7 @@ function App() {
             >
                 <Routes>
                     <Route path="/" element={<LoweringForm />} />
-                    <Route path="/balances" element={<BalanceForm />} />
+                    <Route path="/balance" element={<BalanceForm />} />
                     <Route path="/claim" element={<ClaimPage />} />
                     <Route path="/lowers/:account" element={<Claim />} />
                     <Route path="/FAQ" element={<Faq />} />

@@ -19,7 +19,7 @@ function BalanceForm() {
     const [ethQueryLoading, setEthQueryLoading] = useState("");
     const [ercQueryLoading, setErcQueryLoading] = useState("");
 
-    let title = "Balances";
+    let title = "Balance";
     let description = "View your Aventus Network balances";
 
     return (
