@@ -34,7 +34,7 @@
     },
     {
         "question": "Why can't I find my transaction to lower my tokens?",
-        "answer": "The 'Query and Claim' page only shows tokens for transactions that were successful on the AvN and are yet claimed on Ethereum."
+        "answer": "The 'Claim' page only shows tokens for transactions that were successful on the AvN and are yet claimed on Ethereum."
     },
     {
         "question": "Not sure what happened to my transaction, how can I query it?",
