@@ -3,7 +3,7 @@ import { checkRequestId } from "./pollTransaction";
 
 /*
 This file handles the lower transactions for all four lower options.
-Also handles the withdrawal of tokens on ethereum using the lower data returned from the backend.
+Also handles the claiming of tokens on ethereum using the lower data returned from the backend.
 */
 
 export async function lowerSubmitHandler(

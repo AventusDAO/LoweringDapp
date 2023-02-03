@@ -1,8 +1,8 @@
 import EthereumPageHeader from "../PageHeaders/EthereumPageHeader";
 import LowerQueryForm from "../Forms/LowerQueryForm";
 
-// Sets up the withdraw page by combining both the header and the query form
-const WithdrawPage = () => {
+// Sets up the claim page by combining both the header and the query form
+const ClaimPage = () => {
     return (
         <>
             <EthereumPageHeader />
@@ -19,4 +19,4 @@ const WithdrawPage = () => {
     );
 };
 
-export default WithdrawPage;
+export default ClaimPage;

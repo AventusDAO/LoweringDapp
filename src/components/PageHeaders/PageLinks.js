@@ -8,10 +8,10 @@ export const PageLinks = () => {
                 Lower{" "}
             </Link>
             <Link className="pageLinks" to="/balance">
-                Balances{" "}
+                Balance{" "}
             </Link>
-            <Link className="pageLinks" to="/withdraw">
-                Claim Lowers{" "}
+            <Link className="pageLinks" to="/claim">
+                Claim{" "}
             </Link>
         </div>
     );

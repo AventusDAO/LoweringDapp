@@ -114,7 +114,7 @@ export default function Erc777LoweringForm() {
                             pattern="^[0-9]\d*(\.\d+)?$"
                             maxLength={20}
                             className="form-control"
-                            placeholder="whole or fractional tokens (eg: 100 or 1.0523)"
+                            placeholder="whole or fractional (eg: 10 or 1.053)"
                             id="tokenAmount"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}

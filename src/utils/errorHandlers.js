@@ -61,7 +61,7 @@ export function metamaskMissingErrorHandler() {
 export function metamaskConnectionErrorHandler(val) {
     swal.fire({
         title: "Metamask not connected!",
-        html: `Please connect to Metamask on the <a href="/withdraw">Withdraw Token</a> page and try again`,
+        html: `Please connect to Metamask on the <a href="/claim">Claim Token</a> page and try again`,
         allowOutsideClick: false,
         icon: "error",
         confirmButtonColor: "#5100FF",
