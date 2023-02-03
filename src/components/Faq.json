@@ -17,7 +17,7 @@
     },
     {
         "question": "How long is the Aventus Web Token (AWT) valid for?",
-        "answer": "60 seconds."
+        "answer": "10 minutes."
     },
     {
         "question": "Why do I need to sign to view my balance?",
