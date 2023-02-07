@@ -51,7 +51,7 @@ export const NetworkDropdown = () => {
 
     return (
         <>
-            <div className="select-button text-center align-self-center mx-auto">
+            <div className="select-button text-center align-self-center mx-auto desktop-ext">
                 <select
                     className="form-select row"
                     aria-label="aventus test networks"
@@ -83,6 +83,7 @@ export const NetworkDropdown = () => {
                                 networkState && (
                                 <option
                                     value={Object.keys(network)}
+                                    className="desktop-ext"
                                     key={index}
                                 >
                                     {Object.values(network)}
