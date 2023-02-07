@@ -5,7 +5,7 @@ export const NoLowers = () => {
     return (
         <div>
             <BackButton />
-            <span>This account has no pending lower requests.</span>{" "}
+            <span>No outstanding lowers found</span>{" "}
         </div>
     );
 };
