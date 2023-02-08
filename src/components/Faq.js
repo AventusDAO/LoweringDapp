@@ -54,7 +54,7 @@ export const Faq = () => {
                                 data-bs-parent="#faqTabsId"
                             >
                                 <div className="accordion-body">
-                                    {data.answer}
+                                    {JSON.parse(data.answer)}
                                 </div>
                             </div>
                         </div>

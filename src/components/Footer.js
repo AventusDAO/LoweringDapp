@@ -13,7 +13,7 @@ function Footer() {
                         }}
                         to="/FAQ"
                     >
-                        FAQ
+                        Frequently Asked Questions
                     </Link>
                 </strong>
             </div>
