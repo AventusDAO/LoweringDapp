@@ -3,7 +3,6 @@ import { PolkadotJS } from "../Polkadot/PolkadotJS";
 import { HeaderNav } from "./HeaderNav";
 import { NetworkDropdown } from "./NetworkDropdown";
 import { PageLinks } from "./PageLinks";
-import { LightDarkMode } from "../Theme/LightDarkMode";
 
 function PolkadotPageHeader({ title, description }) {
     return (
@@ -26,7 +25,6 @@ function PolkadotPageHeader({ title, description }) {
                         <PageLinks />
                     </div>
                     <NetworkDropdown />
-                    {/* <LightDarkMode /> */}
                 </div>
             </section>
         </div>
