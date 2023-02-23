@@ -5,7 +5,7 @@ import Networks from "../../config/Networks.json";
 const NetworkDropdownNames = [
     { MAINNET: "AvN Mainnet" },
     { PUBLIC_TESTNET: "AvN Testnet" },
-    { DEV: "AvN Development" },
+    // { DEV: "AvN Development" },  // Removed this network option for users.
 ];
 
 // TODO Turn On Dark Mode
