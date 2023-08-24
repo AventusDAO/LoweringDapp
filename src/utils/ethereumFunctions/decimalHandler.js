@@ -29,7 +29,8 @@ async function fullDecimalAmount(amount, token, isERC777) {
     }
 
     let [intAmount, decAmount] = amount.toString().split(".");
-    if (decAmount && decAmount.length > decimals) decAmount = decAmount.substring(0, decimals);
+    if (decAmount && decAmount.length > decimals)
+        decAmount = decAmount.substring(0, decimals);
     intAmount = new BN(intAmount).mul(new BN(10).pow(new BN(decimals)));
 
     decAmount = decAmount
@@ -57,17 +58,17 @@ async function implementsERC777(load, token) {
     );
 }
 
-export async function tokenAmountChecker(
-    tokenAmount,
-    token,
+export async function amountChecker({
+    amount,
+    tokenAddress,
     isERC20,
-    isERC777
-) {
+    isERC777,
+}) {
     let result;
     if (isERC777)
-        result = await fullDecimalAmount(tokenAmount, token, isERC777);
-    else if (isERC20) result = await fullDecimalAmount(tokenAmount, token);
-    else result = await fullDecimalAmount(tokenAmount);
+        result = await fullDecimalAmount(amount, tokenAddress, isERC777);
+    else if (isERC20) result = await fullDecimalAmount(amount, tokenAddress);
+    else result = await fullDecimalAmount(amount);
     if (result) {
         return result.toString();
     } else {

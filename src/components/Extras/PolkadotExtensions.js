@@ -1,25 +1,24 @@
 import React, { useCallback, useContext, useEffect } from "react";
-import { stateContext, ThemeContext } from "../../Contexts/Context";
+import { stateContext } from "../../Contexts/Context";
 import { web3Enable } from "@polkadot/extension-dapp";
 import { connectSpecificWallet } from "../../utils/polkadotFunctions/walletFunctions";
 import { ModalExtensions } from "./ModalExtensions";
 import { MobileModalExtensions } from "./MobileModalExtensions";
 
-function PolkadotExtensions() {
-    const { sender, setSender } = useContext(stateContext);
-    const { theme } = useContext(ThemeContext);
+export function PolkadotExtensions() {
+    const { aventusUser, setAventusUser } = useContext(stateContext);
 
     const checkIfAnAccountIsConnected = useCallback(async () => {
-        const user = localStorage.getItem("user");
+        const storedUser = localStorage.getItem("user");
         const activeExtension = localStorage.getItem("activeExtension");
 
-        if (user && sender === "") {
+        if (storedUser && aventusUser === "") {
             try {
-                await web3Enable("Aventus Governance Dapp");
+                await web3Enable("Aventus Staking Dapp");
                 const accounts = await connectSpecificWallet(activeExtension);
                 for (let i = 0; i < accounts.length; i++) {
-                    if (accounts[i].address === user) {
-                        setSender(accounts[i]);
+                    if (accounts[i].address === storedUser) {
+                        setAventusUser(accounts[i]);
                     }
                 }
             } catch (err) {
@@ -27,7 +26,7 @@ function PolkadotExtensions() {
                 localStorage.clear("activeExtension");
             }
         }
-    }, [sender, setSender]);
+    }, [aventusUser, setAventusUser]);
 
     useEffect(() => {
         checkIfAnAccountIsConnected();
@@ -46,8 +45,8 @@ function PolkadotExtensions() {
                 <div
                     className="modal-content"
                     style={{
-                        backgroundColor: theme ? "#292929" : "#F2F1F1",
-                        color: theme ? "#F2F1F1" : "black",
+                        backgroundColor: "#F2F1F1",
+                        color: "black",
                     }}
                 >
                     <div className="modal-header">
@@ -60,7 +59,7 @@ function PolkadotExtensions() {
                             data-bs-dismiss="modal"
                             aria-label="Close"
                             style={{
-                                backgroundColor: theme ? "white" : "",
+                                backgroundColor: "",
                             }}
                         ></button>
                     </div>
@@ -81,5 +80,3 @@ function PolkadotExtensions() {
         </div>
     );
 }
-
-export { PolkadotExtensions };

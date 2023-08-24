@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { capitaliseFirstLetter } from "../../utils/randomFunctions";
 import { addressSlicer } from "../../utils/randomFunctions";
-import { ConnectOrDisconnect } from "./ConnectOrDisconnect";
+import { ConnectOrDisconnectAddressInCryptoWallet } from "./ConnectOrDisconnect";
 
 export const WalletAccounts = () => {
-    const { polkAccounts } = useContext(stateContext);
+    const { substrateAccounts } = useContext(stateContext);
 
     return (
         <div>
-            {polkAccounts &&
-                polkAccounts.map((account) => (
+            {substrateAccounts &&
+                substrateAccounts.map((account) => (
                     <div key={account.address}>
                         <div className="row">
                             <div
@@ -51,7 +51,9 @@ export const WalletAccounts = () => {
                                             </span>
                                         </div>
                                     </div>
-                                    <ConnectOrDisconnect account={account} />
+                                    <ConnectOrDisconnectAddressInCryptoWallet
+                                        account={account}
+                                    />
                                 </div>
                             </div>
                         </div>

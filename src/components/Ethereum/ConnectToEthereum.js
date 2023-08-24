@@ -1,44 +1,52 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import clipboardIcon from "../../assets/img/clipboard.svg";
+import greenIcon from "../../assets/img/green-icon.png";
+import { addressSlicer } from "../../utils/randomFunctions";
 
 export const ConnectToEthereum = ({ networkName }) => {
-    const { account } = useContext(stateContext);
+    const { ethereumAccount } = useContext(stateContext);
 
     return (
         <div className="small-line account-info">
-            <p className="font-weight-bold">
-                <input
-                    type="radio"
-                    name="connectionBtn"
-                    className="desktop-ext"
-                    id="connection"
-                    defaultChecked
-                />
-                {networkName ? (
-                    <label
-                        htmlFor="connection"
-                        className="radio-text"
-                        style={{ marginLeft: "5px" }}
-                    >
-                        {" "}
-                        Connected Ethereum account (on {networkName}):
-                    </label>
-                ) : (
-                    <span style={{ color: "red" }}>Unsupported Network</span>
-                )}
-            </p>
-            <span id="account">{account}</span>
-            &nbsp;
-            <button className="gear-button desktop-ext buttonAnime">
-                <img
-                    src={clipboardIcon}
-                    alt=""
-                    onClick={() => {
-                        navigator.clipboard.writeText(account);
-                    }}
-                />
-            </button>
+            {networkName ? (
+                <div>
+                    <div className="small-line account-info">
+                        <div style={{ fontSize: "11px" }}>
+                            <img
+                                src={greenIcon}
+                                width={20}
+                                height={20}
+                                alt="logo"
+                            />
+                            <span className="fw-bold">
+                                Connected Ethereum account (on {networkName}
+                                ):
+                            </span>
+                            <br />
+                            <br />
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <span
+                            className="desktop-ext"
+                            id="account"
+                            style={{ fontSize: "11px" }}
+                        >
+                            {ethereumAccount}
+                        </span>
+                        <span
+                            className="mobile-ext"
+                            id="account"
+                            style={{ fontSize: "11px" }}
+                        >
+                            {addressSlicer(ethereumAccount, 15, 40)}
+                        </span>
+                    </div>
+                </div>
+            ) : (
+                <span style={{ color: "red" }}>Unsupported Network</span>
+            )}
         </div>
     );
 };

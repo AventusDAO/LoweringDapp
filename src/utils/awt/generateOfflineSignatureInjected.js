@@ -7,6 +7,7 @@ const numTypes = [
     "AccountId",
     "Balance",
     "BalanceOf",
+    "Compact<BalanceOf>",
     "EraIndex",
     "u8",
     "u32",
@@ -17,18 +18,22 @@ const numTypes = [
     "H256",
 ];
 
-const generateProxySignature = (account, transactionType, proxyArgs) =>
-    signing[transactionType](account, proxyArgs);
+const generateProxySignature = ({ signer, transactionType, proxyArgs }) =>
+    signing[transactionType](Object.assign({}, proxyArgs, { signer }));
 
 const signing = {
-    proxyTokenLower: async (account, proxyArgs) =>
-        await signProxyTokenLower(account, proxyArgs),
+    proxyTokenLower: (proxyArgs) => signProxyTokenLower(proxyArgs),
 };
 
-async function signProxyTokenLower(
-    account,
-    { relayer, user, token, amount, t1Recipient, nonce }
-) {
+function signProxyTokenLower({
+    relayer,
+    user,
+    token,
+    amount,
+    t1Recipient,
+    nonce,
+    signer,
+}) {
     relayer = common.convertToPublicKeyIfNeeded(relayer);
     user = common.convertToPublicKeyIfNeeded(user);
 
@@ -43,8 +48,7 @@ async function signProxyTokenLower(
     ];
 
     const encodedDataToSign = encodeOrderedData(orderedData);
-    const v = await signData(account, encodedDataToSign);
-    return v;
+    return signData(signer, encodedDataToSign);
 }
 
 function encodeOrderedData(data) {
@@ -59,9 +63,10 @@ function encodeOrderedData(data) {
     return u8aConcat(...encodedDataToSign);
 }
 
-// i had to make changes here.
+// custom signData for browser wallet extensions
 async function signData(account, encodedDataToSign) {
     const signer = account.signer;
+
     try {
         if (signer) {
             const { signature } = await signer({
@@ -107,17 +112,23 @@ function verifySignatureWithOrWithoutWrapping(
     return result;
 }
 
-function generateFeePaymentSignature(
-    account,
-    { relayer, user, proxySignature, relayerFee, paymentNonce }
-) {
+function generateFeePaymentSignature({
+    relayer,
+    user,
+    proxySignature,
+    relayerFee,
+    paymentNonce,
+    signer,
+}) {
     relayer = common.convertToPublicKeyIfNeeded(relayer);
     user = common.convertToPublicKeyIfNeeded(user);
+
     const proxyProofData = [
         { AccountId: user },
         { AccountId: relayer },
         { MultiSignature: { Sr25519: proxySignature } },
     ];
+
     const orderedData = [
         { Text: "authorization for proxy payment" },
         { SkipEncode: encodeOrderedData(proxyProofData) },
@@ -125,8 +136,9 @@ function generateFeePaymentSignature(
         { Balance: relayerFee },
         { u64: paymentNonce },
     ];
+
     const encodedDataToSign = encodeOrderedData(orderedData);
-    return signData(account, encodedDataToSign);
+    return signData(signer, encodedDataToSign);
 }
 
 export { generateProxySignature, generateFeePaymentSignature };

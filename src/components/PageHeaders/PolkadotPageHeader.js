@@ -1,13 +1,16 @@
 import React from "react";
 import { PolkadotJS } from "../Polkadot/PolkadotJS";
 import { HeaderNav } from "./HeaderNav";
+import { TabHeaders } from "./TabHeaders";
 import { NetworkDropdown } from "./NetworkDropdown";
-import { PageLinks } from "./PageLinks";
-import { LightDarkMode } from "../Theme/LightDarkMode";
 
-function PolkadotPageHeader({ title, description }) {
+export default function PolkadotPageHeader({
+    title,
+    description,
+    isValidPage,
+}) {
     return (
-        <div className="header-background">
+        <div>
             <section className="py-2 container">
                 <HeaderNav />
 
@@ -16,21 +19,32 @@ function PolkadotPageHeader({ title, description }) {
                         <h1 className="maintitle align-self-center">{title}</h1>
                         <p className="text-center">{description}</p>
                     </div>
-                    <small className="text-black text-left text-center">
-                        {<PolkadotJS />}
-                    </small>
-                    <div
-                        className="mx-auto py-lg-2"
-                        style={{ marginTop: "10px" }}
-                    >
-                        <PageLinks />
-                    </div>
-                    <NetworkDropdown />
-                    {/* <LightDarkMode /> */}
+                    {isValidPage ? <WalletAndNetwork /> : ""}
                 </div>
             </section>
+            <div className="mx-auto" style={{ marginTop: "10px" }}>
+                <TabHeaders />
+            </div>
         </div>
     );
 }
 
-export default PolkadotPageHeader;
+export function WalletAndNetwork() {
+    return (
+        <>
+            <div className="row">
+                <div className="col-sm">
+                    <div className="placement-position">
+                        <PolkadotJS />
+                    </div>
+                </div>
+
+                <div className="align-self-end col">
+                    <div className="text-end">
+                        <NetworkDropdown />
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}

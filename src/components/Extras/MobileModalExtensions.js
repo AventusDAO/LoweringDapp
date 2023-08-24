@@ -1,13 +1,15 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { connectSpecificWallet } from "../../utils/polkadotFunctions/walletFunctions";
 import { WalletAccounts } from "./WalletAccounts";
 
 function MobileModalExtensions() {
-    const { setPolkAccounts, polkAccounts, sender, setSender, setWalletName } =
-        useContext(stateContext);
-
-    useEffect(() => {}, [setSender]);
+    const {
+        setSubstrateAccounts,
+        substrateAccounts,
+        aventusUser,
+        setWalletName,
+    } = useContext(stateContext);
 
     const wallets = ["polkadot-js"];
 
@@ -30,7 +32,7 @@ function MobileModalExtensions() {
                                     connectSpecificWallet(wallet).then(
                                         (accounts) => {
                                             setWalletName(wallet);
-                                            setPolkAccounts(accounts);
+                                            setSubstrateAccounts(accounts);
                                         }
                                     );
                                 }}
@@ -40,6 +42,7 @@ function MobileModalExtensions() {
                                         className="col text-start card-author"
                                         style={{ marginLeft: "-10px" }}
                                     >
+                                        {/* This text implementation is specifically for Nova Wallet. */}
                                         <span className="card-author">
                                             <b>Nova</b>
                                         </span>
@@ -48,13 +51,14 @@ function MobileModalExtensions() {
                                         className="col"
                                         style={{ marginRight: "-15px" }}
                                     >
-                                        {sender && wallet === sender.source && (
-                                            <div className="text-end">
-                                                <span className="card-status">
-                                                    Active
-                                                </span>
-                                            </div>
-                                        )}
+                                        {aventusUser &&
+                                            wallet === aventusUser.source && (
+                                                <div className="text-end">
+                                                    <span className="card-status">
+                                                        Active
+                                                    </span>
+                                                </div>
+                                            )}
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +69,7 @@ function MobileModalExtensions() {
             <br />
             <div className="text-start" style={{ margin: "5px" }}>
                 <b>Accounts: </b>{" "}
-                {!polkAccounts && "Select from the above extensions."}{" "}
+                {!substrateAccounts && "Select from the above extensions."}{" "}
             </div>
             <WalletAccounts />
         </div>

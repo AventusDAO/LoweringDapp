@@ -9,22 +9,29 @@ async function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function checkRequestId(requestId, sender, url, explorerTxUrl) {
+async function checkRequestId({ requestId, params }) {
+    const url = params.AVN_GATEWAY_URL;
+    const explorerTxUrl = params.EXPLORER_TX_URL;
+    const aventusUser = params.aventusUser;
+
     for (let i = 0; i < 100; i++) {
         await sleep(1000);
         const params = { requestId };
-        const awtToken = await getToken(sender);
-        const polledState = await jsonRpcRequest(
+        const { awtToken, hasPayer } = await getToken(aventusUser);
+        const polledState = await jsonRpcRequest({
             awtToken,
+            hasPayer,
+            account: aventusUser,
             url,
-            "poll",
-            "requestState",
+            suffix: "poll",
+            method: "requestState",
             params,
-            "polling"
+        });
+        const state = await showUserTransactionStatus(
+            polledState,
+            explorerTxUrl
         );
-        const state = await showUserTransactionStatus(polledState, explorerTxUrl);
-
-        if (state === 'complete') {
+        if (state === "complete") {
             break;
         }
     }

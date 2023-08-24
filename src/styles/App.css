@@ -5,6 +5,15 @@
   display: inline-block;
 }
 
+.copy-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.rectangle {
+  background: #5100FF;
+}
+
 .small-line {
   line-height: 0.1;
 }
@@ -13,10 +22,15 @@
   background-color: #F2F1F1;
 }
 
+.nav-link {
+  color: none;
+  border: 0;
+}
+
 body {
   padding: 0;
   margin: 0;
-  background-color: white;
+  background-color: #F2F1F1;;
   color: #1d2733;
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
@@ -62,21 +76,8 @@ body {
   padding-left: 0;
 }
 
-.thin-card {
-  width: 80%;
-  margin: auto;
-}
-
 .card-header {
   background-color: transparent;
-}
-
-.information {
-  line-height: 15px;
-}
-
-.information b {
-  color: #5100FF;
 }
 
 .mobile-nav-card {
@@ -104,14 +105,6 @@ body {
   color: #5100FF
 }
 
-.card-meta-data {
-  font-size: small;
-}
-
-.card-meta-data b {
-  color: #5100FF
-}
-
 .card-img-top {
   width: 100%;
   height: 15vw;
@@ -127,16 +120,11 @@ body {
   border-bottom: 0px
 }
 
-.active {
-  background-color: #F2F1F1;
-  border-radius: 5px;
-}
-
 /* Button Styling */
 .contact-btn {
-  background-color: #F65925;
+  background-color: #5100FF;
   color: #ffffff;
-  border-color: #F65925
+  border-color: #5100FF
 }
 
 .gear-button {
@@ -146,35 +134,69 @@ body {
 
 .connect-button {
   font-weight: bold;
-  background-color: #5100FF;
+  background-color: #F65925;
   color: #ffffff;
-  border-color: #5100FF
+  border-color: #F65925
 }
 
-.lift-button {
+.submit-button {
   background-color: #5100FF;
   color: #ffffff;
-  border-color: #5100FF
+  border-color: #5100FF;
+  border-radius: 5px;
+}
+
+.formNav-button{
+  background-color: #5100FF;
+  color: #ffffff;
+  border-color: #5100FF;
+  border-radius: 5px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  min-width: 130px;
 }
 
 .btn {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .btn:hover {
-  border-color: #5100FF;
+  border-color: #F65925;
   color: black;
   border-radius: 5px;
+}
+
+.active {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.tabHeaderButtons {
+  background-color: none;
+  color: white;
+  border-radius: 5px;
+  border-color: white;
+  border-style: solid;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.tabHeaderButtons:hover {
+  background-color: none;
+  border-radius: 5px;
+  color: white;
 }
 
 .pageLinks {
   color: black
 }
 
-.pageLinks:hover{
-  border-color: #5100FF;
-  color: #5100FF;
+.pageLinks:hover {
+  border-color: #F65925;
+  color: #F65925;
   border-radius: 5px;
 }
 
@@ -182,8 +204,8 @@ body {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: #5100FF;
-  border-color: #5100FF;
+  color: #F65925;
+  border-color: #F65925;
   font-weight: bold;
   padding: -5px
 }
@@ -195,13 +217,30 @@ body {
   border-radius: 15px;
 }
 
+.generate-new-token-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: #F65925;
+  border-color: #F65925;
+  font-weight: bold;
+  padding: -5px
+}
+
+.generate-new-token-button:hover {
+  background-color: red;
+  border-color: white;
+  color: white;
+  border-radius: 15px;
+}
+
 .disconnect-btn {
   font-size: small;
   border-radius: 15px;
   background-color: #5100FF;
   border-radius: 15px;
   color: white;
-  border-color:#5100FF;
+  border-color: #5100FF;
   font-weight: bold;
 }
 
@@ -256,18 +295,12 @@ body {
 
 /* Header Styles */
 
-.header-background {
-  background-color: #F2F1F1;
-}
-
 .headerLinks {
-  width:35%;
+  width: 35%;
   font-size: 16px;
   display: flex;
   justify-content: space-evenly;
 }
-
-
 
 .eth-account {
   background-color: #FFD6C9;
@@ -283,25 +316,27 @@ body {
   position: relative;
 }
 
-.custom-lower-tab-width {
+.custom-stake-tab-width {
   padding: 100px;
 }
 
 .custom-balance-tab-width {
   padding-right: 10px;
   padding-left: 10px;
- }
-
-.select-button {
-  display: flex;
-  width: 20%;
-  display: flex;
-  justify-content: space-evenly;
 }
 
-  .mobile-ext {
-    display: none
-  }
+.select-button {
+  background-color: white;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: black;
+  font-weight: 700;
+  width: 30%;
+}
+
+.mobile-ext {
+  display: none
+}
 
 @media print,
 screen and (max-width: 1400px) {
@@ -324,18 +359,23 @@ screen and (max-width: 1100px) {
   }
 
   .select-button {
-    width: 25%
+    width: 65%
   }
 
 }
 
 @media screen and (max-width: 912px) {
-  .select-button {
-    margin-top: 20px;
-    width: 35%
+
+  .mobile-tabheader {
+    font-size: 14px;
   }
 
-  .custom-lower-tab-width {
+  .tabHeaderButtons {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .custom-stake-tab-width {
     padding: 20px;
   }
 
@@ -353,7 +393,32 @@ screen and (max-width: 1100px) {
 }
 
 @media screen and (max-width:575px) {
-/* Footer styles */
+  /* Footer styles */
+
+  .placement-position {
+    text-align: center;
+  }
+
+  .desktop-ext {
+    display: none
+  }
+
+  .mobile-button {
+    font-size: 10px;
+  }
+
+  .mobile-ext {
+    display: block
+  }
+
+  .mobile-bigButton {
+    font-size: 12px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
 
   .bottom {
     bottom: -30%;
@@ -368,20 +433,13 @@ screen and (max-width: 1100px) {
   .select-button {
     width: 70%
   }
-  .swal2-footer{
+
+  .swal2-footer {
     font-size: 70% !important;
   }
 
-  .desktop-ext {
-    display: none
-  }
-
   .tiny-mobile-ext {
-      font-size: 80%;
-    }
-
-  .mobile-ext {
-    display:block
+    font-size: 80%;
   }
 }
 
@@ -394,12 +452,12 @@ screen and (max-width: 420px) {
   }
 
   .headerLinks {
-    width: 100%;  
-    font-size:80%;
+    width: 100%;
+    font-size: 80%;
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 5px;
-    }
+  }
 
   .account-info {
     font-size: 10px;
@@ -408,10 +466,6 @@ screen and (max-width: 420px) {
   }
 
   /* Button styles */
-
-  .btn {
-    border-radius: 0px;
-  }
 
   .metamask-button {
     margin-bottom: 20px;
@@ -429,15 +483,43 @@ screen and (max-width: 420px) {
 
 }
 
+@media screen and (max-width: 342px) {
+  .mobile-button {
+    font-size: 8px;
+  }
+
+  .mobile-bigButton {
+    font-size: 10px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
 @media screen and (max-width: 300px) {
   .account-info {
     font-size: 9px;
     font-weight: 500;
   }
 
+  .mobile-button {
+    font-size: 10px;
+  }
+
+  .mobile-bigButton {
+    font-size: 10px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
   .tiny-mobile-ext {
-      font-size: 7px;
-    }
+    font-size: 7px;
+  }
 
   .swal2-footer {
     font-size: 50% !important;
@@ -455,4 +537,4 @@ screen and (max-width: 420px) {
     max-width: 100%;
     font-size: 10px;
   }
-} 
+}

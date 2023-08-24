@@ -3,10 +3,6 @@ import { useState, useEffect } from "react";
 
 const useFetchForGateway = (account, url, method, params) => {
     const [data, setData] = useState(null);
-    const [isPending, setIsPending] = useState(true);
-    const [error, setError] = useState(null);
-
-    const query = { jsonrpc: "2.0", method: method, params: params, id: 1 };
 
     useEffect(() => {
         getToken(account).then((res) => {

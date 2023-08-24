@@ -1,5 +1,6 @@
 import swal from "sweetalert2";
 import { capitaliseFirstLetter } from "./randomFunctions";
+import { clearToken } from "./awt/generateAwtToken";
 
 export function substrateNotDetected(name) {
     let url;
@@ -160,15 +161,48 @@ export function networkErrorHandler(err) {
     });
 }
 
-export function gatewayAccessError() {
-    return swal.fire({
+export async function gatewayAccessErrorForNoMinimumAVT(account) {
+    const { isDenied: isGenerateNewToken } = await swal.fire({
         title: "AvN Gateway Access Block",
         html: `You need to have at least 1 AVT in your balance <strong> on this network </strong> to access the Gateway for this network.`,
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Okay",
-        confirmButtonColor: "#5100FF",
+        confirmButtonColor: "#F65925",
+        denyButtonColor: "green",
+        showDenyButton: true,
+        denyButtonText: "Generate New Token",
+        footer: "If this is a mistake, click on Generate New Token.",
     });
+    if (isGenerateNewToken) {
+        clearToken(account);
+    }
+    return isGenerateNewToken;
+}
+
+export async function gatewayAccessError(account, hasPayer) {
+    if (hasPayer) {
+        gatewayAccessErrorForNoPayer(account);
+    } else {
+        gatewayAccessErrorForNoMinimumAVT(account);
+    }
+}
+
+export async function gatewayAccessErrorForNoPayer(account) {
+    const { isConfirmed: isGenerateNewToken } = await swal.fire({
+        title: "AvN Gateway Access Block",
+        html: `<strong> It appears you're not part of a registered payer program.</strong> We'll now generate a new token for you.`,
+        allowOutsideClick: false,
+        icon: "error",
+        confirmButtonText: "Okay",
+        confirmButtonColor: "#F65925",
+        denyButtonColor: "green",
+    });
+    if (isGenerateNewToken) {
+        const userHasNoPayer = true;
+        clearToken(account, userHasNoPayer);
+    }
+    return isGenerateNewToken;
 }
 
 export function invalidTokenErrorHandler(tokenType) {

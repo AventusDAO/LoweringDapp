@@ -1,7 +1,6 @@
-import { transactionErrorHandler, gatewayAccessError } from "../errorHandlers";
-import AVN_API from "avn-api";
+// import { weiToEthConverter } from "../randomFunctions";
 import getToken from "../awt/generateAwtToken";
-import { substrateConnectFailure } from "../errorHandlers";
+import { jsonRpcRequest } from "../jsonRpcRequest";
 import { balanceFormatter } from "../randomFunctions";
 /*
 Constructs the params for the balance and the url...
@@ -9,56 +8,95 @@ Requires a valid token to get the account balance.
 Queries the balance of an account. 
 */
 
-const API = new AVN_API();
-
-async function balanceHandler(type, account, method, AVN_GATEWAY_URL, token) {
-    const url = `${AVN_GATEWAY_URL}query`;
-    const tokenParams = {
-        accountId: account.address,
-        token: token,
+// This function ensures that the user can only lower from the free balance.
+export async function getAvtBalance({ aventusUser, awtToken, hasPayer, url }) {
+    const suffix = "query";
+    let params = {
+        accountId: aventusUser.address,
     };
-    const avtParams = {
-        accountId: account.address,
-    };
-    const params = token ? tokenParams : avtParams;
-
-    if (!account.address) {
-        substrateConnectFailure();
-    } else {
-        await signAndQueryBalance(type, account, params, method, url);
+    const method = "getAccountInfo";
+    if (aventusUser.address) {
+        try {
+            const bal = await jsonRpcRequest({
+                aventusUser,
+                awtToken,
+                url,
+                hasPayer,
+                params,
+                suffix,
+                method,
+            });
+            const userBalance = bal.freeBalance;
+            return userBalance;
+        } catch (error) {}
     }
 }
 
-async function signAndQueryBalance(type, account, params, method, url) {
-    await API.init();
+export async function getTokenBalance({
+    aventusUser,
+    tokenAddress,
+    awtToken,
+    hasPayer,
+    url,
+}) {
+    const tokenParams = {
+        accountId: aventusUser.address,
+        token: tokenAddress,
+    };
+    const method = "getTokenBalance";
+    const tokenBalance = await jsonRpcRequest({
+        aventusUser,
+        awtToken,
+        hasPayer,
+        url,
+        params: tokenParams,
+        suffix: "query",
+        method,
+    });
+    return tokenBalance;
+}
+
+export async function balanceHandler({
+    tokenType,
+    tokenAddress,
+    aventusUser,
+    url,
+    avtAddress,
+}) {
     try {
-        const res = await getToken(account);
-        if (res) {
-            const response = await fetch(url, {
-                method: "POST",
-                mode: "cors",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `bearer ${res}`,
-                },
-                body: JSON.stringify({
-                    jsonrpc: "2.0",
-                    method: method,
-                    params: params,
-                    id: 1,
-                }),
-            });
-            if (response.status === 200) {
-                response.json().then((res) => {
-                    balanceFormatter(type, res);
-                });
-            } else if (response.status === 403) {
-                gatewayAccessError();
-            } else {
-                transactionErrorHandler(response.status);
-            }
-        }
+        const { awtToken, hasPayer } = await getToken(aventusUser);
+        const balance =
+            tokenType === "AVT"
+                ? await getAvtBalance({ aventusUser, awtToken, hasPayer, url })
+                : await determineToken({
+                      tokenAddress,
+                      aventusUser,
+                      avtAddress,
+                      awtToken,
+                      hasPayer,
+                      url,
+                  });
+        return balanceFormatter(tokenType, balance);
     } catch (err) {}
 }
 
-export { signAndQueryBalance, balanceHandler };
+export async function determineToken({
+    tokenAddress,
+    aventusUser,
+    avtAddress,
+    awtToken,
+    hasPayer,
+    url,
+}) {
+    if (tokenAddress === avtAddress) {
+        return await getAvtBalance({ aventusUser, awtToken, hasPayer, url });
+    } else {
+        return await getTokenBalance({
+            aventusUser,
+            hasPayer,
+            tokenAddress,
+            awtToken,
+            url,
+        });
+    }
+}

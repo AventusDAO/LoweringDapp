@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
-import { checkIfUserWantsToClaimNow } from "../../utils/checkIfUserWantsToClaimNow";
+import { claimNow } from "../../utils/ethereumFunctions/claimNow";
 import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
 
 export const LowerDataFromBackend = ({ tx }) => {
-    const { account, networkId, avnContract, networkState } =
+    const { ethereumAccount, networkId, avnContract, networkState } =
         useContext(stateContext);
 
     return (
@@ -130,17 +130,16 @@ export const LowerDataFromBackend = ({ tx }) => {
                         }}
                     >
                         <button
-                            className="connect-button btn justify-content-center items-align-center"
+                            className="submit-button mobile-bigButton btn justify-content-center items-align-center"
                             onClick={() => {
-                                checkIfUserWantsToClaimNow(
-                                    tx.from,
-                                    tx.claimData.leaf,
-                                    tx.claimData.merklePath,
-                                    account,
+                                claimNow({
+                                    leaf: tx.claimData.leaf,
+                                    merklePath: tx.claimData.merklePath,
+                                    ethereumAccount,
                                     avnContract,
                                     networkId,
-                                    networkState
-                                );
+                                    networkState,
+                                });
                             }}
                         >
                             Claim

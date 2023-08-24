@@ -6,6 +6,7 @@ export const pageContext = createContext({});
 export const lowerDataContext = createContext({});
 export const balanceFormContext = createContext({});
 export const queryBalanceContext = createContext({});
+export const balanceButtonContext = createContext({});
 
 export const themes = {
     dark: "",

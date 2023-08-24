@@ -1,14 +1,17 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { capitaliseFirstLetter } from "../../utils/randomFunctions";
 import { connectSpecificWallet } from "../../utils/polkadotFunctions/walletFunctions";
 import { WalletAccounts } from "./WalletAccounts";
+import GenerateNewToken from "./GenerateNewToken";
 
 function ModalExtensions() {
-    const { setPolkAccounts, polkAccounts, sender, setSender, setWalletName } =
-        useContext(stateContext);
-
-    useEffect(() => {}, [setSender]);
+    const {
+        setSubstrateAccounts,
+        substrateAccounts,
+        aventusUser,
+        setWalletName,
+    } = useContext(stateContext);
 
     const wallets = ["polkadot-js", "talisman", "subwallet-js"];
 
@@ -31,7 +34,7 @@ function ModalExtensions() {
                                     connectSpecificWallet(wallet).then(
                                         (accounts) => {
                                             setWalletName(wallet);
-                                            setPolkAccounts(accounts);
+                                            setSubstrateAccounts(accounts);
                                         }
                                     );
                                 }}
@@ -51,13 +54,14 @@ function ModalExtensions() {
                                         className="col"
                                         style={{ marginRight: "-15px" }}
                                     >
-                                        {sender && wallet === sender.source && (
-                                            <div className="text-end">
-                                                <span className="card-status">
-                                                    Active
-                                                </span>
-                                            </div>
-                                        )}
+                                        {aventusUser &&
+                                            wallet === aventusUser.source && (
+                                                <div className="text-end">
+                                                    <span className="card-status">
+                                                        Active
+                                                    </span>
+                                                </div>
+                                            )}
                                     </div>
                                 </div>
                             </div>
@@ -67,8 +71,9 @@ function ModalExtensions() {
             </div>
             <br />
             <div className="text-start" style={{ margin: "5px" }}>
+                {aventusUser && <GenerateNewToken />}
                 <b>Accounts: </b>{" "}
-                {!polkAccounts && "Select from the above extensions."}{" "}
+                {!substrateAccounts && "Select from the above extensions."}{" "}
             </div>
             <WalletAccounts />
         </div>
