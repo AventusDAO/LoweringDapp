@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import AvtLoweringForm from "./lowerForms/AvtLoweringForm";
 import Erc20LoweringForm from "./lowerForms/Erc20LoweringForm";
 import Erc777LoweringForm from "./lowerForms/Erc777LoweringForm";
 import EthLoweringForm from "./lowerForms/EthLoweringForm";
-import { formContext, ThemeContext } from "../../Contexts/Context";
+import { formContext } from "../../Contexts/Context";
 import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
 import FormNav from "./FormNav";
 
@@ -16,7 +16,6 @@ function LoweringForm() {
     const title = "Lower";
     const description = "Move funds from the AvN to Ethereum";
     const isValidPage = true;
-    const { theme } = useContext(ThemeContext);
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
 
     return (
