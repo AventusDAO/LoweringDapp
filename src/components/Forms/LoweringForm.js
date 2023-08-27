@@ -6,6 +6,7 @@ import EthLoweringForm from "./lowerForms/EthLoweringForm";
 import { formContext } from "../../Contexts/Context";
 import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
 import FormNav from "./FormNav";
+import MobileFormNav from "./MobileFormNav";
 
 function LoweringForm() {
     const [tokenAddress, setTokenAddress] = useState("");
@@ -48,10 +49,14 @@ function LoweringForm() {
                                         setLowerLoading,
                                     }}
                                 >
+                                    <div className="row mobile-ext">
+                                        <MobileFormNav tabs={tokenTabs} />
+                                    </div>
                                     <div className="row">
-                                        <div className="col-2">
+                                        <div className="col-2 desktop-ext">
                                             <FormNav tabs={tokenTabs} />
                                         </div>
+
                                         <div className="col">
                                             <div
                                                 className="row text-center tab-content justify-center"
