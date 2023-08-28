@@ -60,6 +60,19 @@ export const Faq = () => {
                             >
                                 <div className="accordion-body">
                                     {data.answer}
+                                    {data.link ? (
+                                        <p>
+                                            <a
+                                                href={data.link}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                            >
+                                                Watch Tutorial Here
+                                            </a>
+                                        </p>
+                                    ) : (
+                                        ""
+                                    )}
                                 </div>
                             </div>
                         </div>
