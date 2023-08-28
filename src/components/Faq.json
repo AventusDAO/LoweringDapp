@@ -11,7 +11,7 @@
     },
     {
         "question": "How to use this dapp on Mobile",
-        "answer": "This dapp can be used within mobile crypto wallets that have embedded browsers. For example, MetaMask / Nova Wallet. However, note that the initial lowering operation is Substrate-based and thus cannot be done using an EVM wallet such as Metamask, but Metamask can be used to carryout the claiming transaction once the tokens are ready to be claimed on Ethereum. You can see a walkthrough of using it on Mobile here.",
+        "answer": "This dapp can be used within mobile crypto wallets that have embedded browsers. For example, MetaMask / Nova Wallet. However, note that the initial lowering operation is Substrate-based and thus cannot be done using an EVM wallet such as Metamask, but Metamask can be used to carryout the claiming transaction once the tokens are ready to be claimed on Ethereum. You can see a walkthrough of using it on Mobile here",
         "link": "https://youtu.be/g96OrRNEUSI"
     },
     {
@@ -38,7 +38,6 @@
         "question": "Why do I need to sign multiple times to submit a transaction?",
         "answer": "This Dapp interacts with the Aventus parachain via the Gateway and each user is authenticated on the Gateway using their unique time-limited Aventus Web Token (AWT). A new token must be generated if the existing token has expired or non-existent."
     },
-
     {
         "question": "Why do I need to have Metamask?",
         "answer": "To ensure we are lowering the right amount of your erc20 token with the right amount of decimals, we need to access the smart contract for that token to confirm the decimal number."

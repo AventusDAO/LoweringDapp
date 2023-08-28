@@ -3,7 +3,6 @@ import { PolkadotJS } from "../Polkadot/PolkadotJS";
 import { HeaderNav } from "./HeaderNav";
 import { TabHeaders } from "./TabHeaders";
 import { NetworkDropdown } from "./NetworkDropdown";
-
 export default function PolkadotPageHeader({
     title,
     description,
