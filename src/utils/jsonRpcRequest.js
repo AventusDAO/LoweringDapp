@@ -1,7 +1,20 @@
-import { gatewayAccessError, transactionErrorHandler } from "./errorHandlers";
+import {
+    gatewayAccessError,
+    genericErrorHandlerTemplate,
+    transactionErrorHandler,
+} from "./errorHandlers";
+
 const axios = require("axios");
 
-async function jsonRpcRequest(awtToken, url, suffix, method, params, purpose) {
+export async function jsonRpcRequest({
+    awtToken,
+    account,
+    hasPayer,
+    url,
+    suffix,
+    method,
+    params,
+}) {
     const fullUrl = `${url}${suffix}`;
     try {
         const response = await axios(fullUrl, {
@@ -25,10 +38,14 @@ async function jsonRpcRequest(awtToken, url, suffix, method, params, purpose) {
         }
     } catch (err) {
         if (err.response.status === 403) {
-            gatewayAccessError();
+            gatewayAccessError(account, hasPayer);
+            return null;
+        } else {
+            genericErrorHandlerTemplate(
+                `Error Occurred ${err.response.status}`,
+                "Please try again after 10 minutes. If the problem persists contact the Aventus team."
+            );
             return null;
         }
     }
 }
-
-export { jsonRpcRequest };

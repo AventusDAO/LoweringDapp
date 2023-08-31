@@ -5,10 +5,7 @@ import Networks from "../../config/Networks.json";
 const NetworkDropdownNames = [
     { MAINNET: "AvN Mainnet" },
     { PUBLIC_TESTNET: "AvN Testnet" },
-    // { DEV: "AvN Development" },  // Removed this network option for users.
 ];
-
-// TODO Turn On Dark Mode
 
 export const NetworkDropdown = () => {
     const {
@@ -42,6 +39,7 @@ export const NetworkDropdown = () => {
         setAVN_GATEWAY_URL,
         setPOLK_AVT_CONTRACT_ADDRESS,
         setAVN_RELAYER,
+        setEXPLORER_TX_URL,
         setNetworkState,
     ]);
 
@@ -51,9 +49,9 @@ export const NetworkDropdown = () => {
 
     return (
         <>
-            <div className="select-button text-center align-self-center mx-auto desktop-ext">
+            <div className="text-end desktop-ext">
                 <select
-                    className="form-select row"
+                    className="btn select-button"
                     aria-label="aventus test networks"
                     id="lang"
                     onChange={(e) => {

@@ -4,7 +4,6 @@ import App from "./components/App";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 
-// TODO Turn On Dark Mode
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(

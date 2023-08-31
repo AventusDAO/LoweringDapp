@@ -1,30 +1,31 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import AvtLoweringForm from "./lowerForms/AvtLoweringForm";
 import Erc20LoweringForm from "./lowerForms/Erc20LoweringForm";
 import Erc777LoweringForm from "./lowerForms/Erc777LoweringForm";
 import EthLoweringForm from "./lowerForms/EthLoweringForm";
-import { formContext, ThemeContext } from "../../Contexts/Context";
+import { formContext } from "../../Contexts/Context";
 import PolkadotPageHeader from "../PageHeaders/PolkadotPageHeader";
+import FormNav from "./FormNav";
+import MobileFormNav from "./MobileFormNav";
 
 function LoweringForm() {
-    const [token, setToken] = useState("");
+    const [tokenAddress, setTokenAddress] = useState("");
     const [amount, setAmount] = useState("");
     const [t1Recipient, setT1Recipient] = useState("");
     const [lowerLoading, setLowerLoading] = useState("");
-    function clearValues() {
-        setToken("");
-        setAmount("");
-        setT1Recipient("");
-    }
 
-    let title = "Lower";
-    let description = "Move funds from the AvN to Ethereum";
+    const title = "Lower";
+    const description = "Move funds from the AvN to Ethereum";
+    const isValidPage = true;
     const tokenTabs = ["AVT", "ERC20", "ERC777", "ETH"];
-    const { theme } = useContext(ThemeContext);
 
     return (
         <>
-            <PolkadotPageHeader title={title} description={description} />
+            <PolkadotPageHeader
+                title={title}
+                description={description}
+                isValidPage={isValidPage}
+            />
             <div
                 className="container-fluid mt-4"
                 style={{ marginBottom: "20%" }}
@@ -36,64 +37,42 @@ function LoweringForm() {
                                 className="container form-container"
                                 style={{ minHeight: "100%" }}
                             >
-                                <ul
-                                    className="nav nav-tabs justify-content-center form-headers"
-                                    id="myTab"
-                                    role="tablist"
-                                >
-                                    {tokenTabs.map((value, index) => (
-                                        <li
-                                            key={index}
-                                            className="nav-item"
-                                            role="presentation"
-                                        >
-                                            <button
-                                                className={`nav-link
-                                                    ${
-                                                        index === 0
-                                                            ? "active"
-                                                            : ""
-                                                    }
-                                                `}
-                                                id={`${value}-tab`}
-                                                data-bs-toggle="tab"
-                                                data-bs-target={`#${value}-tab-pane`}
-                                                type="button"
-                                                role="tab"
-                                                aria-controls={`${value}-tab-pane`}
-                                                aria-selected="false"
-                                                onFocus={() => clearValues()}
-                                            >
-                                                {value}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div
-                                    className="row text-center tab-content justify-center"
-                                    style={{
-                                        color: "black",
+                                <formContext.Provider
+                                    value={{
+                                        t1Recipient,
+                                        setT1Recipient,
+                                        amount,
+                                        setAmount,
+                                        tokenAddress,
+                                        setTokenAddress,
+                                        lowerLoading,
+                                        setLowerLoading,
                                     }}
-                                    id="myTabContent"
                                 >
-                                    <formContext.Provider
-                                        value={{
-                                            t1Recipient,
-                                            setT1Recipient,
-                                            amount,
-                                            setAmount,
-                                            token,
-                                            setToken,
-                                            lowerLoading,
-                                            setLowerLoading,
-                                        }}
-                                    >
-                                        <AvtLoweringForm />
-                                        <Erc20LoweringForm />
-                                        <Erc777LoweringForm />
-                                        <EthLoweringForm />
-                                    </formContext.Provider>
-                                </div>
+                                    <div className="row mobile-ext">
+                                        <MobileFormNav tabs={tokenTabs} />
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-2 desktop-ext">
+                                            <FormNav tabs={tokenTabs} />
+                                        </div>
+
+                                        <div className="col">
+                                            <div
+                                                className="row text-center tab-content justify-center"
+                                                style={{
+                                                    color: "black",
+                                                }}
+                                                id="myTabContent"
+                                            >
+                                                <AvtLoweringForm />
+                                                <Erc20LoweringForm />
+                                                <Erc777LoweringForm />
+                                                <EthLoweringForm />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </formContext.Provider>
                             </div>
                         </div>
                     </main>

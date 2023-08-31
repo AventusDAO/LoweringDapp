@@ -1,7 +1,7 @@
 import aventus_logo from "../../assets/img/aventus-logo.svg";
 import { Link } from "react-router-dom";
 
-export const HeaderNav = () => {
+export function HeaderNav() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light nav-fill">
             <a
@@ -28,7 +28,7 @@ export const HeaderNav = () => {
                 id="navbarText"
             >
                 <ul className="navbar-nav mr-auto justify-content-between w-100">
-                    <li className="nav-item active">
+                    <li className="nav-item">
                         <a
                             className="nav-link text-dark text-decoration-none"
                             href="https://www.aventus.io/technology/"
@@ -75,8 +75,9 @@ export const HeaderNav = () => {
                         >
                             <span
                                 style={{
-                                    backgroundColor: "#F65925",
+                                    backgroundColor: "#5100FF",
                                     padding: "10px",
+                                    borderRadius: "5px",
                                 }}
                             >
                                 Contact
@@ -87,4 +88,4 @@ export const HeaderNav = () => {
             </div>
         </nav>
     );
-};
+}

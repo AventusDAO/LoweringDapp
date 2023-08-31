@@ -11,11 +11,16 @@ export function addressSlicer(address, num1, num2) {
 }
 
 export const balanceFormatter = (type, res) => {
+    const message = "This is your FREE balance. See FAQ for more.";
     if (type === "AVT" || type === "ETH") {
-        const resValue = Number(res.result);
+        const resValue = Number(res);
         const result = balanceConverter(resValue, "wei", "ether");
-        return userBalance(type, res.result, result);
-    } else return userBalance(type, res.result, res.result);
+        return userBalance({ type, decAmount: result, message });
+    } else
+        return userBalance({
+            type,
+            decAmount: res.result,
+        });
 };
 
 export function copyUUID(value) {
@@ -68,7 +73,7 @@ export function txLinkInAlert(networkId, hash, type) {
 
     swal.fire({
         title: "Ethereum transaction submitted",
-        html: 'Your funds are on their way',
+        html: "Your funds are on their way",
         confirmButtonColor: "#ffffff",
         confirmButtonText: `<a href="${etherscanLink}${hash}" target="_blank">View transaction on Etherscan</a>`,
         allowOutsideClick: false,

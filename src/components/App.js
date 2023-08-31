@@ -21,13 +21,13 @@ function App() {
     const [avtAddress, setAvtAddress] = useState("");
     const [avnContract, setAvnContract] = useState(null);
     const [avtContract, setAvtContract] = useState(null);
-    const [account, setAccount] = useState("");
+    const [ethereumAccount, setEthereumAccount] = useState("");
     const [networkId, setNetworkId] = useState("");
     const [loadWeb3, setLoadWeb3] = useState(null);
     const [switchChecked, setSwitchChecked] = useState(null);
-    const [polkAccounts, setPolkAccounts] = useState("");
+    const [substrateAccounts, setSubstrateAccounts] = useState("");
     const [walletName, setWalletName] = useState("");
-    const [sender, setSender] = useState("");
+    const [aventusUser, setAventusUser] = useState("");
     const [networkState, setNetworkState] = useState("MAINNET");
     const [testnetState, setTestnetState] = useState("");
     const [AVN_GATEWAY_URL, setAVN_GATEWAY_URL] = useState("");
@@ -45,11 +45,11 @@ function App() {
         if (web3) {
             try {
                 const accounts = await web3.eth.getAccounts();
-                setAccount(accounts[0]);
+                setEthereumAccount(accounts[0]);
             } catch (err) {}
         }
 
-        if (web3 && account) {
+        if (web3 && ethereumAccount) {
             const networkId = await web3.eth.net.getId();
             setNetworkId(networkId);
             if (networkId === GOERLI_ID) {
@@ -75,17 +75,17 @@ function App() {
                 setAvtContract(new web3.eth.Contract(ABI, avtAddress));
             }
         }
-    }, [account, avnAddress, avtAddress, networkState]);
+    }, [ethereumAccount, avnAddress, avtAddress, networkState]);
 
     useEffect(() => {
         checkForWeb3();
-    }, [account, checkForWeb3, networkId]);
+    }, [ethereumAccount, checkForWeb3, networkId]);
 
     return (
         <div>
             <stateContext.Provider
                 value={{
-                    account,
+                    ethereumAccount,
                     networkId,
                     avtAddress,
                     avnAddress,
@@ -93,7 +93,7 @@ function App() {
                     avnContract,
                     switchChecked,
                     setAvtContract,
-                    setAccount,
+                    setEthereumAccount,
                     setAvnContract,
                     setAvtAddress,
                     setAvnAddress,
@@ -112,10 +112,10 @@ function App() {
                     loadWeb3,
                     setNetworkState,
                     networkState,
-                    sender,
-                    setSender,
-                    polkAccounts,
-                    setPolkAccounts,
+                    aventusUser,
+                    setAventusUser,
+                    substrateAccounts,
+                    setSubstrateAccounts,
                     POLK_AVT_CONTRACT_ADDRESS,
                     setPOLK_AVT_CONTRACT_ADDRESS,
                 }}

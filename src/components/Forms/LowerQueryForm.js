@@ -74,7 +74,7 @@ function LowerQueryForm() {
                         </div>
                         <button
                             type="submit"
-                            className="btn lift-button rounded-0"
+                            className="btn submit-button mobile-bigButton"
                             style={{ fontWeight: "bold" }}
                         >
                             Search Lowers

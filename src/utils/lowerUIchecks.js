@@ -5,12 +5,12 @@ import {
     genericErrorHandlerTemplate,
     metamaskConnectionErrorHandler,
 } from "./errorHandlers";
-import { tokenAmountChecker } from "./ethereumFunctions/decimalHandler";
+import { amountChecker } from "./ethereumFunctions/decimalHandler";
 
 // for erc20 and 777 tokens
-export async function ercConfirmLowerDetails(
-    senderAddress,
-    account,
+export async function ercConfirmLowerDetails({
+    aventusUserAddress,
+    ethereumAccount,
     tokenType,
     tokenAddress,
     amount,
@@ -18,10 +18,10 @@ export async function ercConfirmLowerDetails(
     networkId,
     networkState,
     isERC20,
-    isERC777
-) {
-    if (senderAddress) {
-        if (!account) {
+    isERC777,
+}) {
+    if (aventusUserAddress) {
+        if (!ethereumAccount) {
             metamaskConnectionErrorHandler(
                 "Metamask is required to confirm the token details"
             );
@@ -34,13 +34,13 @@ export async function ercConfirmLowerDetails(
                     "Metamask is required to confirm the token contract's details."
                 );
             } else {
-                const _tokenAmount = await tokenAmountChecker(
+                const _amount = await amountChecker({
                     amount,
                     tokenAddress,
                     isERC20,
-                    isERC777
-                );
-                if (_tokenAmount) {
+                    isERC777,
+                });
+                if (_amount) {
                     const { isConfirmed: userChoice } = await swal.fire({
                         title: "Confirm details",
                         html: `<small>Lower ${amount} <a href=${contractLink(
@@ -53,9 +53,9 @@ export async function ercConfirmLowerDetails(
                         allowOutsideClick: false,
                         denyButtonText: "No",
                         confirmButtonColor: "green",
-                        footer: `<strong>full decimal value</strong>:&nbsp${_tokenAmount}`,
+                        footer: `<strong>full decimal value</strong>:&nbsp${_amount}`,
                     });
-                    return { userChoice, _tokenAmount };
+                    return { userChoice, _amount };
                 } else {
                     if (isERC20) {
                         genericErrorHandlerTemplate(
@@ -93,37 +93,36 @@ export async function userSignatureConfirmation() {
 }
 
 // for avt and eth tokens
-export async function confirmLowerDetails(
-    senderAddress,
+export async function confirmLowerDetails({
+    aventusUserAddress,
     tokenType,
     tokenAddress,
     amount,
     t1Recipient,
-    networkId
-) {
-    if (senderAddress) {
-        const _tokenAmount = await tokenAmountChecker(
+    networkId,
+}) {
+    if (aventusUserAddress) {
+        const _amount = await amountChecker({
             amount,
             tokenAddress,
-            false,
-            false
-        );
+            isERC20: false,
+            isERC777: false,
+        });
         const { isConfirmed: userChoice } = await swal.fire({
             title: "Confirm details",
             html: `<small>Lower ${amount} <a href=${contractLink(
-                    networkId,
-                    tokenAddress
-                )} target="_blank"> ${tokenType} </a> to ${t1Recipient} ?</small>`,
+                networkId,
+                tokenAddress
+            )} target="_blank"> ${tokenType} </a> to ${t1Recipient} ?</small>`,
             showDenyButton: true,
             showConfirmButton: true,
             confirmButtonText: "Yes",
             allowOutsideClick: false,
             denyButtonText: "No",
-            // showCancelButton: tokenType !== "ETH" ? true : false,
             confirmButtonColor: "green",
-            footer: `<strong>full decimal value</strong>:&nbsp${_tokenAmount}`,
+            footer: `<strong>full decimal value</strong>:&nbsp${_amount}`,
         });
-        return { userChoice, _tokenAmount };
+        return { userChoice, _amount };
     } else {
         substrateConnectFailure();
     }

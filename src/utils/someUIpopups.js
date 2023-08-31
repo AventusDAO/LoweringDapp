@@ -1,6 +1,6 @@
 import swal from "sweetalert2";
 
-export const userBalance = async (type, fullAmount, decAmount) => {
+export const userBalance = async ({ type, message, decAmount }) => {
     await swal.fire({
         title: `${type} Balance`,
         text: decAmount,
@@ -9,9 +9,11 @@ export const userBalance = async (type, fullAmount, decAmount) => {
         confirmButtonColor: "#5100FF",
         confirmButtonText: "Okay",
         footer: `<p class="text-center">${
-            type === "Token"
+            type === "AVT"
+                ? `${message}`
+                : type === "TOKEN"
                 ? "Confirm the decimals for this token on the token's Ethereum smart contract"
-                : `<strong>full decimal value</strong>: ${fullAmount}`
+                : ""
         }
                     </p>`,
     });
@@ -84,4 +86,45 @@ export async function showUserTransactionStatus(polledState, explorerTxUrl) {
         });
         return "complete";
     }
+}
+
+export async function userAWTGeneration() {
+    const { isConfirmed: result } = await swal.fire({
+        title: "Signature Required",
+        text: "Sign to validate your AvN account",
+        allowOutsideClick: false,
+        showDenyButton: true,
+        confirmButtonText: "Sign",
+        denyButtonText: "Don't Sign",
+        confirmButtonColor: "green",
+        footer: "This operation is free",
+    });
+    if (result) {
+        const { isConfirmed: hasPayer } = await swal.fire({
+            title: "Got A Payer?",
+            text: "Is there an account designated to pay for your transactions?",
+            allowOutsideClick: false,
+            showDenyButton: true,
+            confirmButtonText: "Yes",
+            denyButtonText: "No",
+            confirmButtonColor: "green",
+            footer: "We can still authenticate you if you don't have a payer.",
+        });
+        return hasPayer;
+    }
+}
+
+export async function confirmAWTTokenClearance() {
+    const { isConfirmed } = await swal.fire({
+        title: "Are you sure?",
+        text: "This action will clear your existing AWT token and generate a new token.",
+        showDenyButton: true,
+        showConfirmButton: true,
+        confirmButtonText: "Yes",
+        allowOutsideClick: false,
+        denyButtonText: "No",
+        confirmButtonColor: "green",
+        footer: "This action does not impact your account balance.",
+    });
+    return isConfirmed;
 }

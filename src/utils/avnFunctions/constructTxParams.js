@@ -1,143 +1,81 @@
 import { jsonRpcRequest } from "../jsonRpcRequest";
+import genUserSig from "./genUserSig";
 import getToken from "../awt/generateAwtToken";
-import { generateFeePaymentSignature } from "../awt/generateOfflineSignatureInjected";
+import genFeePaymentSig from "./genFeePaymentSig";
 import { signingErrorHandler } from "../errorHandlers";
-import { userGeneratesTransferSignatureOffline } from "../awt/userGeneratesTransferSignatureOffline.js";
-import { userConfirmation, transactionSubmitted } from "../someUIpopups";
+import { transactionSubmitted } from "../someUIpopups";
+import { isBalanceSufficient } from "./isBalanceSufficient";
 
 /* Generates all the params required to eventually send the lower transaction to the Gateway
 This function requires multiple signature prompts from the user's substrate browser extension
 */
-export default async function sendTransaction(sender, params, method, url) {
-    // try {
-    const awtToken = await getToken(sender);
-    if (awtToken !== undefined) {
-        const suffix = "send";
-        const userNonceParams = {
-            accountId: sender.address,
-            nonceType: "token",
-        };
-        const userTokenNonce = await jsonRpcRequest(
-            awtToken,
+export default async function sendTransaction(params) {
+    const aventusUser = params.aventusUser;
+    const amount = params.amount;
+    const relayer = params.relayer;
+    const url = params.AVN_GATEWAY_URL;
+    const method = params.method;
+    const t1Recipient = params.t1Recipient;
+    const payer = aventusUser.address;
+    const tokenAddress = params.tokenAddress;
+    const avtAddress = params.avtAddress;
+
+    try {
+        const { awtToken, hasPayer } = await getToken(aventusUser);
+        const hasSufficientBalance = await isBalanceSufficient({
+            params,
             url,
-            "query",
-            "getNonce",
-            userNonceParams,
-            "userTokenNonce is about to start"
-        );
-        if (userTokenNonce !== null) {
-            // signature #2
-            const result2 = await userConfirmation(
-                "authorise the transaction",
-                "This operation is free"
+            awtToken,
+            hasPayer,
+            avtAddress,
+        });
+        if (hasSufficientBalance) {
+            const { userProxySignature, userTokenNonce } = await genUserSig(
+                params
             );
-            if (result2) {
-                const awtToken = await getToken(sender);
+            let payerProxySignature, payerNonce;
+            if (!hasPayer) {
+                ({ payerProxySignature, payerNonce } = await genFeePaymentSig(
+                    params,
+                    userProxySignature
+                ));
+            }
 
-                if (awtToken !== undefined) {
-                    const userProxySignature =
-                        await userGeneratesTransferSignatureOffline(
-                            params.relayer,
-                            sender,
-                            params.token,
-                            params.amount,
-                            params.t1Recipient,
-                            userTokenNonce
-                        );
-                    const relayerFeeParams = {
-                        relayer: params.relayer,
-                        user: sender.address,
-                        transactionType: method,
-                    };
-                    const relayerFee = await jsonRpcRequest(
-                        awtToken,
-                        url,
-                        "query",
-                        "getRelayerFees",
-                        relayerFeeParams,
-                        "relayerFee is about to start"
-                    );
-                    if (relayerFee !== null) {
-                        const payerNonceParams = {
-                            accountId: sender.address,
-                            nonceType: "payment",
-                        };
+            const suffix = "send";
 
-                        const payerNonce = await jsonRpcRequest(
-                            awtToken,
-                            url,
-                            "query",
-                            "getNonce",
-                            payerNonceParams,
-                            "payerNonce is about to start"
-                        );
-                        if (payerNonce !== null) {
-                            const paymentSignatureParams = {
-                                relayer: params.relayer,
-                                user: sender.address,
-                                proxySignature: userProxySignature,
-                                relayerFee: relayerFee,
-                                paymentNonce: payerNonce,
-                            };
-                            // signature #3
-                            if (userProxySignature) {
-                                const result3 = await userConfirmation(
-                                    "submit the transaction",
-                                    "This operation incurs a small AVT fee"
-                                );
-                                if (result3) {
-                                    const awtToken = await getToken(sender);
-                                    if (awtToken !== undefined) {
-                                        const payerProxySignature =
-                                            await generateFeePaymentSignature(
-                                                sender,
-                                                paymentSignatureParams
-                                            );
-                                        const lowerTokensParams = {
-                                            relayer: params.relayer,
-                                            user: sender.address,
-                                            payer: sender.address,
-                                            t1Recipient: params.t1Recipient,
-                                            token: params.token,
-                                            amount: params.amount,
-                                            proxySignature: userProxySignature,
-                                            feePaymentSignature:
-                                                payerProxySignature,
-                                            paymentNonce: payerNonce,
-                                        };
+            const completeTxParams = {
+                relayer,
+                user: aventusUser.address,
+                t1Recipient,
+                token: tokenAddress,
+                amount,
+                nonce: userTokenNonce,
+                proxySignature: userProxySignature,
+                ...(!hasPayer && { payer }),
+                ...(!hasPayer && { feePaymentSignature: payerProxySignature }),
+                ...(!hasPayer && { paymentNonce: payerNonce }),
+            };
 
-                                        const requestId = await jsonRpcRequest(
-                                            awtToken,
-                                            url,
-                                            suffix,
-                                            method,
-                                            lowerTokensParams,
-                                            "tx to lower tokens"
-                                        );
-                                        transactionSubmitted(requestId);
-                                        return requestId;
-                                    } else {
-                                        signingErrorHandler(
-                                            "Authentication expired",
-                                            "User cancelled reauthentication"
-                                        );
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    signingErrorHandler(
-                        "Authentication expired",
-                        "User cancelled reauthentication"
-                    );
-                }
+            const requestId = await jsonRpcRequest({
+                account: aventusUser,
+                hasPayer,
+                awtToken,
+                url,
+                suffix,
+                method,
+                params: completeTxParams,
+            });
+            if (requestId === null) {
+                return null;
+            } else {
+                transactionSubmitted(requestId);
+                return requestId;
             }
         }
-    } else {
+    } catch (err) {
         signingErrorHandler(
-            "Unable to authenticate user",
-            "User cancelled process"
+            "Authentication expired",
+            "User cancelled authorisation"
         );
     }
 }

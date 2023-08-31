@@ -1,49 +1,45 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { PolkadotExtensions } from "../Extras/PolkadotExtensions";
-import clipboardIcon from "../../assets/img/clipboard.svg";
+import greenIcon from "../../assets/img/green-icon.png";
+import arrowLeftRight from "../../assets/img/arrow-left-right-circle-black.svg";
+import { addressSlicer } from "../../utils/randomFunctions";
 
-function PolkadotJS() {
-    const { sender } = useContext(stateContext);
+export function PolkadotJS() {
+    const { aventusUser } = useContext(stateContext);
 
-    if (sender) {
+    if (aventusUser) {
         return (
             <div>
                 <div className="small-line account-info">
-                    <p className="font-weight-bold">
-                        <input
-                            type="radio"
-                            name="connectionBtn"
-                            id="connection"
-                            style={{ marginLeft: "5px" }}
-                            defaultChecked
+                    <div style={{ fontSize: "11px" }}>
+                        <img
+                            src={greenIcon}
+                            width={20}
+                            height={20}
+                            alt="logo"
                         />
-                        <label
-                            htmlFor="connection"
-                            className="radio-text"
-                            style={{ marginLeft: "5px" }}
-                        >
-                            {" "}
-                            Connected AvN account:
-                        </label>
-                    </p>
-                    <div>
-                        <span className="tiny-mobile-ext" id="account">
-                            {sender.address}
-                        </span>
-                        &nbsp;
-                        <button className="gear-button desktop-ext buttonAnime">
-                            <img
-                                src={clipboardIcon}
-                                alt=""
-                                onClick={() => {
-                                    navigator.clipboard.writeText(
-                                        sender.address
-                                    );
-                                }}
-                            />
-                        </button>
+                        <span className="fw-bold">Connected AvN account:</span>
+                        <br />
+                        <br />
                     </div>
+                    <br />
+                    <br />
+                    <br />
+                    <span
+                        className="desktop-ext"
+                        id="account"
+                        style={{ fontSize: "11px" }}
+                    >
+                        {aventusUser.address}
+                    </span>
+                    <span
+                        className="mobile-ext"
+                        id="account"
+                        style={{ fontSize: "11px" }}
+                    >
+                        {addressSlicer(aventusUser.address, 15, 40)}
+                    </span>
                 </div>
                 <div
                     className="flex align-self-center justify-center"
@@ -51,11 +47,11 @@ function PolkadotJS() {
                 >
                     <button
                         type="button"
-                        className="btn connect-button rounded-0"
+                        className="btn connect-button mobile-bigButton"
                         data-bs-toggle="modal"
                         data-bs-target="#extensionsModal"
                     >
-                        Switch Account
+                        <img src={arrowLeftRight} alt="logo" /> Switch Account
                     </button>
                     <PolkadotExtensions />
                 </div>
@@ -63,19 +59,21 @@ function PolkadotJS() {
         );
     } else {
         return (
-            <div className="flex align-self-center justify-center">
+            <div>
+                <div style={{ fontSize: "11px" }}>
+                    <br />
+                    <span className="text-muted">Not connected</span>
+                </div>
                 <button
                     type="button"
-                    className="btn connect-button rounded-0"
+                    className="btn connect-button mobile-bigButton"
                     data-bs-toggle="modal"
                     data-bs-target="#extensionsModal"
                 >
-                    Connect Your Polkadot Wallet
+                    + Connect Wallet
                 </button>
                 <PolkadotExtensions />
             </div>
         );
     }
 }
-
-export { PolkadotJS };

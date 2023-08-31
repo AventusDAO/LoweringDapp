@@ -43,6 +43,10 @@
         "answer": "To ensure we are lowering the right amount of your erc20 token with the right amount of decimals, we need to access the smart contract for that token to confirm the decimal number."
     },
     {
+        "question": "What is my FREE balance?",
+        "answer": "FREE balance only applies to your AVT balance. This is the portion of your balance that is not locked in any way, for example, locked in staking. You can only lower AVT that is in your FREE balance. To lower your locked AVT, you would need to unlock it and withdraw it to your FREE balance."
+    },
+    {
         "question": "Why can't I find my transaction to lower my tokens?",
         "answer": "The 'Claim' page only shows tokens for transactions that were successful on the AvN and are yet claimed on Ethereum."
     },

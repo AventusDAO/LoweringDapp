@@ -17,10 +17,16 @@ const Claim = () => {
     const baseUrl = `${AVN_GATEWAY_URL}lowers`;
     const url = `${baseUrl}?account=${account}`;
     const { data, error, isPending } = useFetch(url);
-
+    const isValidPage = true;
+    const title = "Claim";
+    const description = "Move funds from the AvN to Ethereum";
     return (
         <>
-            <EthereumPageHeader />
+            <EthereumPageHeader
+                title={title}
+                description={description}
+                isValidPage={isValidPage}
+            />
             <div className="container-fluid form-container mt-4">
                 {isPending ? (
                     <div>

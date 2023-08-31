@@ -3,8 +3,9 @@ import PolkadotPageHeader from "./PageHeaders/PolkadotPageHeader";
 import faqJson from "./Faq.json";
 import { Pagination } from "./Pagination";
 
-let title = "FAQ";
-let description = "Frequently Asked Questions";
+const title = "FAQ";
+const description = "Frequently Asked Questions";
+const isValidPage = true;
 
 // FAQ for the lowering dapp
 export const Faq = () => {
@@ -27,7 +28,11 @@ export const Faq = () => {
 
     return (
         <>
-            <PolkadotPageHeader title={title} description={description} />
+            <PolkadotPageHeader
+                title={title}
+                description={description}
+                isValidPage={isValidPage}
+            />
             <div
                 className="container-fluid form-container mt-4"
                 style={{ marginBottom: "20%" }}

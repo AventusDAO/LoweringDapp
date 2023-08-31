@@ -2,70 +2,81 @@ import React, { useContext, useState } from "react";
 import { queryBalanceContext, stateContext } from "../../../Contexts/Context";
 import { balanceHandler } from "../../../utils/avnFunctions/queryBalance";
 
-/*
-    The token balance query requires the user to input the token address for which they would like to query
-    It takes in the Ethereum address of the token.
-*/
-function TokenBalanceForm() {
+export default function TokenBalanceForm() {
     const [token, setToken] = useState("");
-    const { sender, AVN_GATEWAY_URL } = useContext(stateContext);
+    const { aventusUser, AVN_GATEWAY_URL } = useContext(stateContext);
     const method = "getTokenBalance";
     const { ercQueryLoading, setErcQueryLoading } =
         useContext(queryBalanceContext);
 
     return (
-        <>
-            <div
-                className="tab-pane py-3 fade show active"
-                id="bal-token-tab-pane"
-                role="tabpanel"
-                aria-labelledby="bal-token-tab"
-                style={{ marginBottom: "20%" }}
-                tabIndex="0"
+        <div
+            id="bal-token-tab-pane"
+            role="tabpanel"
+            aria-labelledby="ERC20-tab"
+            tabIndex="0"
+        >
+            <hr />
+            <form
+                onSubmit={(event) => {
+                    event.preventDefault();
+                    setErcQueryLoading(true);
+                    balanceHandler({
+                        tokenType: "TOKEN",
+                        aventusUser,
+                        method,
+                        url: AVN_GATEWAY_URL,
+                        tokenAddress: token,
+                    }).then(() => setErcQueryLoading(false));
+                }}
             >
-                <form
-                    onSubmit={(event) => {
-                        event.preventDefault();
-                        setErcQueryLoading(true);
-                        balanceHandler(
-                            "Token",
-                            sender,
-                            method,
-                            AVN_GATEWAY_URL,
-                            token
-                        ).then(() => setErcQueryLoading(false));
-                    }}
-                >
-                    <div className="row mb-3">
-                        <label
-                            htmlFor="tokenAddress"
-                            className="col-sm-2 col-form-label"
-                        >
-                            Token
-                        </label>
-                        <div className="col-sm-10">
-                            <input
-                                size="83"
-                                type="text"
-                                required
-                                className="form-control"
-                                placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
-                                pattern="0x[0-9a-fA-F]{40}"
-                                maxLength="42"
-                                minLength="42"
-                                value={token}
-                                onChange={(e) => setToken(e.target.value)}
-                                id="tokenAddress"
-                            />
-                        </div>
-                    </div>
+                <div className="text-start">
+                    <h3 className="text-start" style={{ fontWeight: "700" }}>
+                        Balance
+                    </h3>
+                    <span style={{ color: "#F65925", fontWeight: "700" }}>
+                        Token
+                    </span>
+                </div>
+                <div className="input-group mb-3">
+                    <span
+                        className="input-group-text"
+                        style={{ maxWidth: "100px" }}
+                        id="Token"
+                    >
+                        Token
+                    </span>
+                    <input
+                        type="text"
+                        style={{
+                            backgroundColor: "white",
+                            color: "black",
+                            weight: "bold",
+                        }}
+                        className="form-control"
+                        aria-label="Token"
+                        aria-describedby="Token"
+                        size="83"
+                        id="tokenAddress"
+                        maxLength="42"
+                        minLength="42"
+                        min={0}
+                        required
+                        pattern="0x[0-9a-fA-F]{40}"
+                        placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
+                        onChange={(e) => setToken(e.target.value)}
+                        value={token}
+                    />
+                </div>
+
+                <div className="text-start">
                     <button
                         type="submit"
-                        className="btn lift-button rounded-0"
+                        className="btn submit-button"
                         disabled={ercQueryLoading}
                         style={{ fontWeight: "bold" }}
                     >
-                        Get Balance
+                        Check
                     </button>
                     <div style={{ fontSize: "13px" }}>
                         <br />
@@ -73,10 +84,8 @@ function TokenBalanceForm() {
                         approve the query operation required to query your
                         balance.
                     </div>
-                </form>
-            </div>
-        </>
+                </div>
+            </form>
+        </div>
     );
 }
-
-export default TokenBalanceForm;

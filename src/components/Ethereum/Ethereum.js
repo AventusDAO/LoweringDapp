@@ -7,22 +7,27 @@ const GOERLI_ID = 5;
 const ETHEREUM_MAINNET_ID = 1;
 
 function Ethereum() {
-    const { loadWeb3, account, networkId, setAccount, setNetworkId } =
-        useContext(stateContext);
+    const {
+        loadWeb3,
+        ethereumAccount,
+        networkId,
+        setEthereumAccount,
+        setNetworkId,
+    } = useContext(stateContext);
 
     // check if the user has changed the network or account on metamask and reload the window.
     useEffect(() => {
-        if (loadWeb3 && account !== "") {
+        if (loadWeb3 && ethereumAccount !== "") {
             loadWeb3.currentProvider.on("chainChanged", () => {
                 loadWeb3.eth.net.getId().then(setNetworkId);
             });
             loadWeb3.currentProvider.on("accountsChanged", () => {
-                loadWeb3.eth.getAccounts().then(setAccount);
+                loadWeb3.eth.getAccounts().then(setEthereumAccount);
             });
         }
-    }, [account, setNetworkId, loadWeb3, setAccount]);
+    }, [ethereumAccount, setNetworkId, loadWeb3, setEthereumAccount]);
 
-    if (account) {
+    if (ethereumAccount) {
         let networkName;
         if (networkId === ETHEREUM_MAINNET_ID) {
             networkName = "Mainnet";

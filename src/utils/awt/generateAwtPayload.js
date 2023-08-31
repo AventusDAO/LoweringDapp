@@ -4,9 +4,19 @@ import { transactionErrorHandler, signingErrorHandler } from "../errorHandlers";
 
 const SIGNING_CONTEXT = "awt_gateway_api";
 
-async function generateAwtPayload(signer, userAddress, publicKey, issuedAt) {
+async function generateAwtPayload({
+    signer,
+    userAddress,
+    publicKey,
+    issuedAt,
+    hasPayer,
+}) {
     const avnPublicKey = publicKey;
-    const encodedData = encodeAvnPublicKeyForSigning(avnPublicKey, issuedAt);
+    const encodedData = encodeAvnPublicKeyForSigning({
+        avnPublicKey,
+        issuedAt,
+        hasPayer,
+    });
     const signature = await signWithPolkadotExtension(
         signer,
         encodedData,
@@ -17,6 +27,7 @@ async function generateAwtPayload(signer, userAddress, publicKey, issuedAt) {
             pk: avnPublicKey,
             iat: issuedAt,
             sig: signature,
+            hasPayer,
         };
     } else {
         signingErrorHandler("Unable to authenticate user");
@@ -24,15 +35,32 @@ async function generateAwtPayload(signer, userAddress, publicKey, issuedAt) {
     }
 }
 
-function encodeAvnPublicKeyForSigning(avnPublicKey, issuedAt) {
-    const encodedData = u8aConcat(
-        common.registry.createType("Text", SIGNING_CONTEXT).toU8a(false),
-        common.registry
-            .createType("AccountId", hexToU8a(avnPublicKey))
-            .toU8a(true),
-        common.registry.createType("Text", issuedAt).toU8a(false)
+function encodeAvnPublicKeyForSigning({ avnPublicKey, hasPayer, issuedAt }) {
+    const encodedContext = common.registry.createType("Text", SIGNING_CONTEXT);
+    const encodedPublicKey = common.registry.createType(
+        "AccountId",
+        hexToU8a(avnPublicKey)
     );
-    return u8aToHex(encodedData);
+    const encodedIssuedAt = common.registry.createType("Text", issuedAt);
+
+    if (!hasPayer) {
+        const encodedData = u8aConcat(
+            encodedContext.toU8a(false),
+            encodedPublicKey.toU8a(true),
+            encodedIssuedAt.toU8a(false)
+        );
+        return u8aToHex(encodedData);
+    } else {
+        const encodedHasPayer = common.registry.createType("bool", hasPayer);
+
+        const encodedData = u8aConcat(
+            encodedContext.toU8a(false),
+            encodedPublicKey.toU8a(true),
+            encodedIssuedAt.toU8a(false),
+            encodedHasPayer.toU8a(true)
+        );
+        return u8aToHex(encodedData);
+    }
 }
 
 async function signWithPolkadotExtension(signer, encodedData, userAddress) {

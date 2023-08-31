@@ -4,6 +4,8 @@ import { lowerSubmitHandler } from "../../../utils/avnFunctions/lowerSubmitHandl
 import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
 import { Spinner } from "../../Extras/Tools";
 
+const tokenType = "AVT";
+
 export default function AvtLoweringForm() {
     const {
         amount,
@@ -15,7 +17,7 @@ export default function AvtLoweringForm() {
     } = useContext(formContext);
 
     const {
-        sender,
+        aventusUser,
         AVN_GATEWAY_URL,
         AVN_RELAYER,
         EXPLORER_TX_URL,
@@ -37,25 +39,26 @@ export default function AvtLoweringForm() {
                 onSubmit={(event) => {
                     event.preventDefault();
                     setLowerLoading(true);
-                    confirmLowerDetails(
-                        sender.address,
-                        "AVT",
-                        POLK_AVT_CONTRACT_ADDRESS,
+                    confirmLowerDetails({
+                        aventusUserAddress: aventusUser.address,
+                        tokenType,
+                        tokenAddress: POLK_AVT_CONTRACT_ADDRESS,
                         amount,
                         t1Recipient,
-                        networkId
-                    ).then((result) => {
+                        networkId,
+                    }).then((result) => {
                         if (result) {
                             if (result.userChoice)
-                                lowerSubmitHandler(
-                                    sender,
-                                    POLK_AVT_CONTRACT_ADDRESS,
-                                    result._tokenAmount,
+                                lowerSubmitHandler({
+                                    aventusUser,
+                                    tokenAddress: POLK_AVT_CONTRACT_ADDRESS,
+                                    amount: result._amount,
                                     t1Recipient,
+                                    tokenType,
                                     AVN_GATEWAY_URL,
                                     AVN_RELAYER,
-                                    EXPLORER_TX_URL
-                                ).then(() => setLowerLoading(false));
+                                    EXPLORER_TX_URL,
+                                }).then(() => setLowerLoading(false));
                             else {
                                 setLowerLoading(false);
                             }
@@ -65,63 +68,85 @@ export default function AvtLoweringForm() {
                     });
                 }}
             >
-                <div className="row mb-3">
-                    <label
-                        htmlFor="tokenAmount"
-                        className="col-sm-2 col-form-label"
+                <div className="text-start">
+                    <h3 className="text-start" style={{ fontWeight: "700" }}>
+                        Lower Token
+                    </h3>
+                    <span style={{ color: "#F65925", fontWeight: "700" }}>
+                        AVT
+                    </span>
+                </div>
+                <div className="input-group mb-3">
+                    <span
+                        className="input-group-text"
+                        style={{ maxWidth: "100px" }}
+                        id="Amount"
                     >
                         Amount
-                    </label>
-                    <div className="col-sm-10">
-                        <input
-                            size="83"
-                            type="text"
-                            min={0}
-                            required
-                            maxLength={20}
-                            pattern="^[0-9]\d*(\.\d+)?$"
-                            className="form-control"
-                            placeholder="whole or fractional (eg: 10 or 1.053)"
-                            id="tokenAmount"
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                        />
-                    </div>
+                    </span>
+                    <input
+                        type="text"
+                        style={{
+                            backgroundColor: "white",
+                            color: "black",
+                            weight: "bold",
+                        }}
+                        className="form-control"
+                        aria-label="Amount"
+                        aria-describedby="Amount"
+                        size="83"
+                        min={0}
+                        required
+                        pattern="^[0-9]\d*(\.\d+)?$"
+                        placeholder="whole or fractional (eg: 10 or 1.053)"
+                        id="tokenAmount"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                    />
                 </div>
-                <div className="row mb-3">
-                    <label
-                        htmlFor="t1Recipient"
-                        className="col-sm-2 col-form-label"
+                <div className="input-group mb-3">
+                    <span
+                        className="input-group-text"
+                        style={{ maxWidth: "100px" }}
+                        id="Recipient"
                     >
                         Recipient
-                    </label>
-                    <div className="col-sm-10">
-                        <input
-                            size="83"
-                            type="text"
-                            required
-                            className="form-control"
-                            placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
-                            id="t1Recipient"
-                            pattern="0x[0-9a-fA-F]{40}"
-                            maxLength="42"
-                            minLength="42"
-                            value={t1Recipient}
-                            onChange={(e) => setT1Recipient(e.target.value)}
-                        />
-                    </div>
+                    </span>
+                    <input
+                        type="text"
+                        style={{
+                            backgroundColor: "white",
+                            color: "black",
+                            weight: "bold",
+                        }}
+                        className="form-control"
+                        aria-label="Recipient"
+                        aria-describedby="Recipient"
+                        size="83"
+                        maxLength="42"
+                        minLength="42"
+                        required
+                        pattern="0x[0-9a-fA-F]{40}"
+                        placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+                        id="t1Recipient"
+                        value={t1Recipient}
+                        onChange={(e) => setT1Recipient(e.target.value)}
+                    />
                 </div>
-                <button
-                    type="submit"
-                    className="btn lift-button rounded-0"
-                    disabled={lowerLoading}
-                    style={{ fontWeight: "bold" }}
-                >
-                    {lowerLoading ? <Spinner /> : "Lower"}
-                </button>
-                <div style={{ fontSize: "13px" }}>
-                    <br />
-                    Note: Lowering requires multiple signatures, please follow all wallet prompts
+                <div className="text-start">
+                    <button
+                        type="submit"
+                        className="btn submit-button mobile-bigButton"
+                        disabled={lowerLoading}
+                        style={{ fontWeight: "bold" }}
+                    >
+                        {lowerLoading ? <Spinner /> : "Submit"}
+                    </button>
+                    <div style={{ fontSize: "13px" }}>
+                        <br />
+                        Note: Lowering requires multiple signatures, please
+                        follow all wallet prompts
+                    </div>
                 </div>
             </form>
         </div>
