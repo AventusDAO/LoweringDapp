@@ -2,7 +2,6 @@ import { jsonRpcRequest } from "../jsonRpcRequest";
 import genUserSig from "./genUserSig";
 import getToken from "../awt/generateAwtToken";
 import genFeePaymentSig from "./genFeePaymentSig";
-import { signingErrorHandler } from "../errorHandlers";
 import { transactionSubmitted } from "../someUIpopups";
 import { isBalanceSufficient } from "./isBalanceSufficient";
 
@@ -72,10 +71,5 @@ export default async function sendTransaction(params) {
                 return requestId;
             }
         }
-    } catch (err) {
-        signingErrorHandler(
-            "Authentication expired",
-            "User cancelled authorisation"
-        );
-    }
+    } catch (err) {}
 }

@@ -14,45 +14,49 @@ export async function isBalanceSufficient({
     hasPayer,
     url,
 }) {
-    let ercTokenBalance;
-    if (params.tokenType !== "AVT") {
-        ercTokenBalance = await determineToken({
+    try {
+        const userBalance = await getAvtBalance({
             aventusUser: params.aventusUser,
-            tokenAddress: params.tokenAddress,
             awtToken,
             hasPayer,
-            avtAddress,
             url,
         });
-    }
-    const userBalance = await getAvtBalance({
-        aventusUser: params.aventusUser,
-        awtToken,
-        hasPayer,
-        url,
-    });
+        let ercTokenBalance;
 
-    let relayerFee;
-    if (!hasPayer) {
-        relayerFee = await getRelayerFees({
-            relayer: params.relayer,
-            aventusUser: params.aventusUser,
-            method: params.method,
-            url,
-            awtToken,
-            hasPayer,
-        });
-    }
+        if (params.tokenType !== "AVT") {
+            ercTokenBalance = await determineToken({
+                aventusUser: params.aventusUser,
+                tokenAddress: params.tokenAddress,
+                awtToken,
+                hasPayer,
+                avtAddress,
+                url,
+            });
+        }
 
-    const calcParams = {
-        userBalance,
-        amount: params.amount,
-        relayerFee,
-        tokenType: params.tokenType,
-        ercTokenBalance,
-    };
-    const hasSufficientBalance = hasPayer
-        ? balanceChecker("proxyLowerTokenWithoutFee", calcParams)
-        : balanceChecker("proxyLowerTokenWithFee", calcParams);
-    return hasSufficientBalance;
+        let relayerFee;
+        if (!hasPayer) {
+            relayerFee = await getRelayerFees({
+                relayer: params.relayer,
+                aventusUser: params.aventusUser,
+                method: params.method,
+                url,
+                awtToken,
+                hasPayer,
+            });
+        }
+
+        const calcParams = {
+            userBalance,
+            amount: params.amount,
+            relayerFee,
+            tokenType: params.tokenType,
+            ercTokenBalance,
+        };
+
+        const hasSufficientBalance = hasPayer
+            ? balanceChecker("proxyLowerTokenWithoutFee", calcParams)
+            : balanceChecker("proxyLowerTokenWithFee", calcParams);
+        return hasSufficientBalance;
+    } catch (err) {}
 }

@@ -16,11 +16,12 @@ export const balanceFormatter = (type, res) => {
         const resValue = Number(res);
         const result = balanceConverter(resValue, "wei", "ether");
         return userBalance({ type, decAmount: result, message });
-    } else
+    } else {
         return userBalance({
             type,
-            decAmount: res.result,
+            decAmount: res,
         });
+    }
 };
 
 export function copyUUID(value) {
