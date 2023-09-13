@@ -102,7 +102,7 @@ export async function userAWTGeneration() {
     if (result) {
         const { isConfirmed: hasPayer } = await swal.fire({
             title: "Got A Payer?",
-            text: "Is there an account designated to pay for your transactions?",
+            html: "Is there an <b>Enterprise account</b> designated to pay for your transactions?",
             allowOutsideClick: false,
             showDenyButton: true,
             confirmButtonText: "Yes",

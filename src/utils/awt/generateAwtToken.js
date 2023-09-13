@@ -14,17 +14,17 @@ const API = new AVN_API(null, { suri: "x" });
 /* Generates a new token if it's determined that there isn't one or the age of the current token is not valid.
     Also stores the new token in the localStorage of the user's browser, alongside the token age.
 */
-async function generateNewToken(account, userHasNoPayer) {
+async function generateNewToken(aventusUser, userHasNoPayer) {
     await API.init();
     const hasPayer = userHasNoPayer ? false : await userAWTGeneration();
     // check hasPayer has a value of true/false.
     if (hasPayer === true || hasPayer === false) {
-        const signer = account.signer;
-        const pKey = tryGetAvnAccountAddress(account.address);
+        const signer = aventusUser.signer;
+        const pKey = tryGetAvnAccountAddress(aventusUser.address);
         const issuedAt = Date.now();
         const payload = await generateAwtPayload({
             signer,
-            userAddress: account.address,
+            userAddress: aventusUser.address,
             publicKey: pKey,
             issuedAt,
             hasPayer,
@@ -34,7 +34,7 @@ async function generateNewToken(account, userHasNoPayer) {
             var awtObject = {
                 token: awtToken,
                 age: issuedAt,
-                user: account.address,
+                user: aventusUser.address,
                 hasPayer,
             };
             localStorage.setItem("awt", JSON.stringify(awtObject));
@@ -48,40 +48,40 @@ Checks if a token exists in the localStorage of the client's brower.
 Checks if the age of the awtToken is valid.
 Generates a new token if one is required.
 */
-export default async function getToken(account) {
+export default async function getToken(aventusUser) {
     if (localStorage.getItem("awt")) {
         const awt = JSON.parse(localStorage.getItem("awt"));
         const awtToken = awt.token;
         const prevTime = awt.age;
         const user = awt.user;
         const hasPayer = awt.hasPayer;
-        if (account.address === user) {
+        if (aventusUser.address === user) {
             var ageChecker = Number(prevTime);
             ageChecker += 600000;
             const nowTime = Date.now();
             if (ageChecker > nowTime) {
                 return { awtToken, hasPayer };
             } else {
-                return await generateNewToken(account);
+                return await generateNewToken(aventusUser);
             }
         } else {
-            return await generateNewToken(account);
+            return await generateNewToken(aventusUser);
         }
     } else {
-        return await generateNewToken(account);
+        return await generateNewToken(aventusUser);
     }
 }
 
 // Clears any existing token from the local storage and prompts the generation of a new token.
-export async function clearToken(account, userHasNoPayer) {
+export async function clearToken(aventusUser, userHasNoPayer) {
     if (userHasNoPayer) {
         localStorage.clear("awt");
-        generateNewToken(account, userHasNoPayer);
+        generateNewToken(aventusUser, userHasNoPayer);
     } else {
         const doesUserApprove = await confirmAWTTokenClearance();
         if (doesUserApprove) {
             localStorage.clear("awt");
-            generateNewToken(account, userHasNoPayer);
+            generateNewToken(aventusUser, userHasNoPayer);
         }
     }
 }

@@ -8,7 +8,7 @@ const axios = require("axios");
 
 export async function jsonRpcRequest({
     awtToken,
-    account,
+    aventusUser,
     hasPayer,
     url,
     suffix,
@@ -38,7 +38,7 @@ export async function jsonRpcRequest({
         }
     } catch (err) {
         if (err.response.status === 403) {
-            gatewayAccessError(account, hasPayer);
+            gatewayAccessError(aventusUser, hasPayer);
             return null;
         } else {
             genericErrorHandlerTemplate(

@@ -28,7 +28,9 @@ export async function getAvtBalance({ aventusUser, awtToken, hasPayer, url }) {
             });
             const userBalance = bal.freeBalance;
             return userBalance;
-        } catch (error) {}
+        } catch (error) {
+            throw error;
+        }
     }
 }
 

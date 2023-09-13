@@ -180,27 +180,28 @@ export async function gatewayAccessErrorForNoMinimumAVT(account) {
     return isGenerateNewToken;
 }
 
-export async function gatewayAccessError(account, hasPayer) {
+export async function gatewayAccessError(aventusUser, hasPayer) {
     if (hasPayer) {
-        gatewayAccessErrorForNoPayer(account);
+        gatewayAccessErrorForNoPayer(aventusUser);
     } else {
-        gatewayAccessErrorForNoMinimumAVT(account);
+        gatewayAccessErrorForNoMinimumAVT(aventusUser);
     }
 }
 
-export async function gatewayAccessErrorForNoPayer(account) {
+export async function gatewayAccessErrorForNoPayer(aventusUser) {
     const { isConfirmed: isGenerateNewToken } = await swal.fire({
         title: "AvN Gateway Access Block",
         html: `<strong> It appears you're not part of a registered payer program.</strong> We'll now generate a new token for you.`,
         allowOutsideClick: false,
         icon: "error",
         confirmButtonText: "Okay",
-        confirmButtonColor: "#F65925",
+        confirmButtonColor: "#5100FF",
         denyButtonColor: "green",
+        footer: "Submit the form again after signing.",
     });
     if (isGenerateNewToken) {
         const userHasNoPayer = true;
-        clearToken(account, userHasNoPayer);
+        clearToken(aventusUser, userHasNoPayer);
     }
     return isGenerateNewToken;
 }
