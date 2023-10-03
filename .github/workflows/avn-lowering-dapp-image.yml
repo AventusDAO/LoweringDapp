@@ -1,4 +1,4 @@
-name: avn lowering dapp docker image
+name: lowering dapp docker
 
 on:
   workflow_dispatch:
