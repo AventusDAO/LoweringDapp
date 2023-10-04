@@ -1,50 +1,34 @@
-name: avn lowering dapp docker image
+name: lowering dapp docker
 
 on:
+  workflow_dispatch:
   push:
     branches: [master, feat/*, bug/*]
   pull_request:
     branches:
       - master
 
-env:
-  ECR_REPO_URL: 189013141504.dkr.ecr.eu-west-2.amazonaws.com/dapps/avn-lowering-dapp
-
 jobs:
-  build-lowering-dapp:
-    runs-on: ubuntu-latest
+  build-dapp:
+    name: (AVN) build docker lowering-dapp
+    uses: ./.github/workflows/docker-build.yaml
+    with:
+      aws_region: eu-west-2
+      aws_account_id: 189013141504
+      short_image_name: avn-lowering-dapp
+      ecr_repository_prefix: dapps
+    secrets:
+      aws_access_key: ${{ secrets.TESTNET_AWS_ACCESS_KEY_ID }}
+      aws_secret_key: ${{ secrets.TESTNET_AWS_SECRET_ACCESS_KEY }}
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build the build-lowering-dapp Docker image
-        run: docker build . --tag $ECR_REPO_URL:${GITHUB_SHA::7}
-      - name: Configure AWS credentials from TestNet
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.TESTNET_AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.TESTNET_AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-2
-      - name: Build latest tag (only on master)
-        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-        run: |
-          docker tag $ECR_REPO_URL:${GITHUB_SHA::7} $ECR_REPO_URL:latest
-      - name: Build feature docker tag, using git feature branch
-        if: startsWith(github.ref, 'refs/heads/feat/') && github.event_name == 'push'
-        run: |
-          docker tag $ECR_REPO_URL:${GITHUB_SHA::7} $ECR_REPO_URL:${GITHUB_REF##*/}
-      - name: Login to the AWS registry
-        if: github.event_name == 'push' || github.event_name == 'pull_request'
-        run: |
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 189013141504.dkr.ecr.eu-west-2.amazonaws.com
-      - name: Push the image to the registry
-        if: github.event_name == 'push'
-        run: |
-          docker push -a $ECR_REPO_URL
-      - name: Build and push docker image with PR tag for testing purpose
-        if: github.event_name == 'pull_request'
-        env:
-          PR_NUMBER: ${{ github.event.number }}
-        run: |
-          docker tag $ECR_REPO_URL:${GITHUB_SHA::7} $ECR_REPO_URL:pr-${PR_NUMBER}
-          docker push $ECR_REPO_URL:pr-${PR_NUMBER}
+  ew-docker-dapp:
+    name: (EW) build docker lowering-dapp
+    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'master' }}
+    uses: ./.github/workflows/docker-build.yaml
+    with:
+      runner: avn-runner
+      config_creds: false
+      aws_region: us-east-1
+      aws_account_id: 541507968610
+      short_image_name: lowering
+      ecr_repository_prefix: dapps
