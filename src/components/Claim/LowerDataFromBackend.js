@@ -5,8 +5,18 @@ import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
 
 export const LowerDataFromBackend = ({ tx }) => {
-    const { ethereumAccount, networkId, avnContract, networkState } =
-        useContext(stateContext);
+    const {
+        ethereumAccount,
+        networkId,
+        avnContract,
+        POLK_AVT_CONTRACT_ADDRESS,
+        networkState,
+    } = useContext(stateContext);
+
+    const etherscanLink =
+        networkState === "MAINNET"
+            ? "https://etherscan.io/address/"
+            : "https://goerli.etherscan.io/address/";
 
     return (
         <div
@@ -68,43 +78,6 @@ export const LowerDataFromBackend = ({ tx }) => {
                                 style={{ minWidth: "100px" }}
                                 id="basic-addon1"
                             >
-                                Token
-                            </span>
-                            <input
-                                type="text"
-                                disabled
-                                readOnly
-                                id="tokenAddressTip"
-                                style={{
-                                    backgroundColor: "white",
-                                }}
-                                className="desktop-ext form-control"
-                                value={tx.token}
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                            />
-                            <input
-                                type="text"
-                                disabled
-                                readOnly
-                                id="tokenAddressTip"
-                                style={{
-                                    backgroundColor: "white",
-                                }}
-                                className="mobile-ext form-control"
-                                value={addressSlicer(tx.token, 8, 34)}
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                            />
-                        </div>
-                    </li>
-                    <li className="d-flex">
-                        <div className="input-group mb-3">
-                            <span
-                                className="input-group-text"
-                                style={{ minWidth: "100px" }}
-                                id="basic-addon1"
-                            >
                                 Amount
                             </span>
                             <input
@@ -121,8 +94,22 @@ export const LowerDataFromBackend = ({ tx }) => {
                             />
                         </div>
                     </li>
+                    <li className="d-flex">
+                        <div className="input-group mb-3">
+                            <a
+                                href={`${etherscanLink}${
+                                    tx.token
+                                        ? tx.token
+                                        : POLK_AVT_CONTRACT_ADDRESS
+                                }`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                View token on Etherscan{" "}
+                            </a>
+                        </div>
+                    </li>
                 </ul>
-
                 {Object.keys(tx.claimData).length !== 0 ? (
                     <div
                         style={{

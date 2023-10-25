@@ -7,7 +7,11 @@ export function capitaliseFirstLetter(word) {
 }
 
 export function addressSlicer(address, num1, num2) {
-    return address.slice(0, num1) + "..." + address.slice(num2);
+    try {
+        return address.slice(0, num1) + "..." + address.slice(num2);
+    } catch (err) {
+        return null;
+    }
 }
 
 export const balanceFormatter = (type, res) => {
