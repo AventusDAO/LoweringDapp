@@ -10,7 +10,6 @@ This function requires multiple signature prompts from the user's substrate brow
 */
 export default async function sendTransaction(params) {
     const aventusUser = params.aventusUser;
-    const amount = params.amount;
     const relayer = params.relayer;
     const url = params.AVN_GATEWAY_URL;
     const method = params.method;
@@ -28,47 +27,53 @@ export default async function sendTransaction(params) {
             hasPayer,
             avtAddress,
         });
-        if (hasSufficientBalance) {
+        params.amount = hasSufficientBalance.amount.toString();
+        if (hasSufficientBalance.value) {
             const { userProxySignature, userTokenNonce } = await genUserSig(
                 params
             );
-            let payerProxySignature, payerNonce;
-            if (!hasPayer) {
-                ({ payerProxySignature, payerNonce } = await genFeePaymentSig(
-                    params,
-                    userProxySignature
-                ));
-            }
+            if (userProxySignature) {
+                let payerProxySignature, payerNonce;
+                if (!hasPayer) {
+                    ({ payerProxySignature, payerNonce } =
+                        await genFeePaymentSig(params, userProxySignature));
+                }
 
-            const suffix = "send";
+                const suffix = "send";
 
-            const completeTxParams = {
-                relayer,
-                user: aventusUser.address,
-                t1Recipient,
-                token: tokenAddress,
-                amount,
-                nonce: userTokenNonce,
-                proxySignature: userProxySignature,
-                ...(!hasPayer && { payer }),
-                ...(!hasPayer && { feePaymentSignature: payerProxySignature }),
-                ...(!hasPayer && { paymentNonce: payerNonce }),
-            };
-
-            const requestId = await jsonRpcRequest({
-                account: aventusUser,
-                hasPayer,
-                awtToken,
-                url,
-                suffix,
-                method,
-                params: completeTxParams,
-            });
-            if (requestId === null) {
-                return null;
-            } else {
-                transactionSubmitted(requestId);
-                return requestId;
+                const completeTxParams = {
+                    relayer,
+                    user: aventusUser.address,
+                    t1Recipient,
+                    token: tokenAddress,
+                    amount: params.amount,
+                    nonce: userTokenNonce,
+                    proxySignature: userProxySignature,
+                    ...(!hasPayer && { payer }),
+                    ...(!hasPayer && {
+                        feePaymentSignature: payerProxySignature,
+                    }),
+                    ...(!hasPayer && { paymentNonce: payerNonce }),
+                };
+                const requestId = await jsonRpcRequest({
+                    account: aventusUser,
+                    hasPayer,
+                    awtToken,
+                    url,
+                    suffix,
+                    method,
+                    params: completeTxParams,
+                });
+                if (requestId === null) {
+                    return null;
+                } else {
+                    try {
+                        await transactionSubmitted(requestId);
+                        return requestId;
+                    } catch (err) {
+                        return null;
+                    }
+                }
             }
         }
     } catch (err) {}

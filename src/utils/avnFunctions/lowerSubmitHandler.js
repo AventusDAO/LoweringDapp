@@ -38,4 +38,5 @@ export async function lowerSubmitHandler({
             params,
         });
     }
+    return true;
 }

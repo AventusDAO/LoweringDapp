@@ -1,5 +1,20 @@
 import swal from "sweetalert2";
 
+export async function balanceAdjustedNotification(title, message, footer) {
+    const { isConfirmed: result } = await swal.fire({
+        title,
+        text: message,
+        showDenyButton: true,
+        allowOutsideClick: false,
+        icon: "info",
+        confirmButtonText: "Continue",
+        denyButtonText: "Cancel",
+        confirmButtonColor: "green",
+        footer,
+    });
+    return result;
+}
+
 export const userBalance = async ({ type, message, decAmount }) => {
     await swal.fire({
         title: `${type} Balance`,
@@ -56,7 +71,7 @@ export async function showUserTransactionStatus(polledState, explorerTxUrl) {
         swal.fire({
             title: "Lower Successful",
             showCloseButton: true,
-            text: "Funds will be claimable on Ethereum within 24 hours",
+            text: "You'll need to complete Step-2 after 24 hours to claim your tokens on Ethereum.",
             allowOutsideClick: false,
             confirmButtonColor: "#ffffff",
             confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
