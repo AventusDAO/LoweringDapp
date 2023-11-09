@@ -31,6 +31,9 @@ async function checkRequestId({ requestId, params }) {
             polledState,
             explorerTxUrl
         );
+        if (polledState === undefined) {
+            break;
+        }
         if (state === "complete") {
             break;
         }

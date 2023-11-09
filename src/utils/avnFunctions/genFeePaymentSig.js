@@ -2,6 +2,7 @@ import { jsonRpcRequest } from "../jsonRpcRequest";
 import { userConfirmation } from "../someUIpopups";
 import { generateFeePaymentSignature } from "../awt/generateOfflineSignatureInjected";
 import getToken from "../awt/generateAwtToken";
+import balanceConverter from "ethereum-unit-converter";
 
 export default async function genFeePaymentSig(params, userProxySignature) {
     const aventusUser = params.aventusUser;
@@ -53,7 +54,11 @@ export default async function genFeePaymentSig(params, userProxySignature) {
             if (userProxySignature) {
                 const isConfirmed = await userConfirmation(
                     "submit the transaction",
-                    "This operation incurs a small AVT fee"
+                    `This operation incurs a small fee of ${balanceConverter(
+                        relayerFee,
+                        "wei",
+                        "ether"
+                    )} AVT fee`
                 );
                 if (isConfirmed) {
                     const { awtToken } = await getToken(aventusUser);
