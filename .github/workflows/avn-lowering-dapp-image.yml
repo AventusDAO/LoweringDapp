@@ -23,7 +23,8 @@ jobs:
 
   ew-docker-dapp:
     name: (EW) build docker lowering-dapp
-    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'master' }}
+    #TODO: re-add the 'if' as soon as the dapp is tested on EW
+    #if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'master' }}
     uses: ./.github/workflows/docker-build.yaml
     with:
       runner: avn-runner
