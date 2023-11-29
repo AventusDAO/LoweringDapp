@@ -1,55 +1,55 @@
 import React, { useContext } from "react";
 import { formContext } from "../../Contexts/Context";
 
-const MobileFormNav = ({ tabs }) => {
-    const { setTokenAddress, setAmount, setT1Recipient } =
-        useContext(formContext);
+const MobileFormNav = ({ tokenTabs }) => {
+	const { setTokenAddress, setAmount, setT1Recipient } =
+		useContext(formContext);
 
-    function clearValues() {
-        setTokenAddress("");
-        setAmount("");
-        setT1Recipient("");
-    }
-    return (
-        <>
-            <div className="row align-self-center">
-                <ul
-                    className="nav nav-tabs align-self-center justify-content-center form-headers"
-                    style={{ textAlign: "center", marginBottom: "10px" }}
-                    id="myTab"
-                    role="tablist"
-                >
-                    {tabs.map((value, index) => (
-                        <li
-                            key={index}
-                            className="nav-item"
-                            role="presentation"
-                        >
-                            <button
-                                className={`btn mobileFormNav-button
+	function clearValues() {
+		setTokenAddress("");
+		setAmount("");
+		setT1Recipient("");
+	}
+	return (
+		<>
+			<div className="row align-self-center">
+				<ul
+					className="nav nav-tabs align-self-center justify-content-center form-headers"
+					style={{ textAlign: "center", marginBottom: "10px" }}
+					id="myTab"
+					role="tablist"
+				>
+					{tokenTabs.map((value, index) => (
+						<li
+							key={index}
+							className="nav-item"
+							role="presentation"
+						>
+							<button
+								className={`btn mobileFormNav-button
                                                     ${
-                                                        index === 0
-                                                            ? "active"
-                                                            : ""
-                                                    }
+														index === 0
+															? "active"
+															: ""
+													}
                                                 `}
-                                id={`${value}-tab`}
-                                data-bs-toggle="tab"
-                                data-bs-target={`#${value}-tab-pane`}
-                                type="button"
-                                role="tab"
-                                aria-controls={`${value}-tab-pane`}
-                                aria-selected="false"
-                                onFocus={() => clearValues()}
-                            >
-                                {value}
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </>
-    );
+								id={`${value}-tab`}
+								data-bs-toggle="tab"
+								data-bs-target={`#${value}-tab-pane`}
+								type="button"
+								role="tab"
+								aria-controls={`${value}-tab-pane`}
+								aria-selected="false"
+								onFocus={() => clearValues()}
+							>
+								{value}
+							</button>
+						</li>
+					))}
+				</ul>
+			</div>
+		</>
+	);
 };
 
 export default MobileFormNav;

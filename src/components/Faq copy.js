@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PolkadotPageHeader from "./PageHeaders/PolkadotPageHeader";
-import FAQ from "./FaqData";
+import faqJson from "./FaqData";
 import { Pagination } from "./Pagination";
 
 const title = "FAQ";
@@ -16,12 +16,12 @@ export const Faq = () => {
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
-	if (FAQ) {
-		FAQ.forEach((question, index) => {
+	if (faqJson) {
+		faqJson.forEach((question, index) => {
 			question.id = index;
 		});
 	}
-	const currentQuestions = FAQ.slice(
+	const currentQuestions = faqJson.slice(
 		indexOfFirstQuestion,
 		indexOfLastQuestion
 	);
@@ -80,7 +80,7 @@ export const Faq = () => {
 					<br />
 					<Pagination
 						tabsPerPage={tabsPerPage}
-						totalTabs={FAQ.length}
+						totalTabs={faqJson.length}
 						paginate={paginate}
 					/>
 				</div>

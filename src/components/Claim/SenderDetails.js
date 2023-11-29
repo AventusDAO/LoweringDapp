@@ -1,114 +1,114 @@
 import React, { useState } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
-import tryGetAvnAccountAddress from "../../utils/polkadotFunctions/polkaKey";
+import tryGetAvnAccountAddress from "../../utils/polkadotUtils/polkaKey";
 import toggleSwitch from "../../assets/img/toggleSwitch.svg";
 
 export function SenderDetails({ tx }) {
-    const [senderAddressFormat, setSenderAddressFormat] = useState(false);
+	const [senderAddressFormat, setSenderAddressFormat] = useState(false);
 
-    return (
-        <div
-            className="d-flex justify-content-between align-items-center"
-            style={{ width: "100%" }}
-        >
-            <div className="col-11">
-                {senderAddressFormat ? (
-                    <div className="input-group mb-3">
-                        <span
-                            className="input-group-text"
-                            style={{ minWidth: "100px" }}
-                        >
-                            Sender
-                        </span>
-                        <input
-                            type="text"
-                            id="expandAddressTip"
-                            disabled
-                            readOnly
-                            style={{
-                                backgroundColor: "white",
-                                color: "black",
-                                weight: "bold",
-                            }}
-                            className="mobile-ext form-control"
-                            value={addressSlicer(
-                                tryGetAvnAccountAddress(tx.from),
-                                10,
-                                38
-                            )}
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                        />
-                        <input
-                            type="text"
-                            id="expandAddressTip"
-                            disabled
-                            readOnly
-                            style={{
-                                backgroundColor: "white",
-                                color: "black",
-                                weight: "bold",
-                            }}
-                            className="desktop-ext form-control"
-                            value={tryGetAvnAccountAddress(tx.from)}
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                        />
-                    </div>
-                ) : (
-                    <div className="input-group mb-3">
-                        <span
-                            className="input-group-text"
-                            style={{ minWidth: "100px" }}
-                            id="basic-addon1"
-                        >
-                            Sender
-                        </span>
-                        <input
-                            type="text"
-                            disabled
-                            readOnly
-                            style={{
-                                backgroundColor: "white",
-                                color: "black",
-                                weight: "bold",
-                            }}
-                            className="desktop-ext form-control"
-                            value={tx.from}
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                        />
-                        <input
-                            type="text"
-                            disabled
-                            readOnly
-                            style={{
-                                backgroundColor: "white",
-                                color: "black",
-                                weight: "bold",
-                            }}
-                            className="mobile-ext form-control"
-                            value={addressSlicer(tx.from, 10, 56)}
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                        />
-                    </div>
-                )}
-            </div>
+	return (
+		<div
+			className="d-flex justify-content-between align-items-center"
+			style={{ width: "100%" }}
+		>
+			<div className="col-11">
+				{senderAddressFormat ? (
+					<div className="input-group mb-3">
+						<span
+							className="input-group-text"
+							style={{ minWidth: "100px" }}
+						>
+							Sender
+						</span>
+						<input
+							type="text"
+							id="expandAddressTip"
+							disabled
+							readOnly
+							style={{
+								backgroundColor: "white",
+								color: "black",
+								weight: "bold",
+							}}
+							className="mobile-ext form-control"
+							value={addressSlicer(
+								tryGetAvnAccountAddress(tx.from),
+								10,
+								38
+							)}
+							aria-label="Username"
+							aria-describedby="basic-addon1"
+						/>
+						<input
+							type="text"
+							id="expandAddressTip"
+							disabled
+							readOnly
+							style={{
+								backgroundColor: "white",
+								color: "black",
+								weight: "bold",
+							}}
+							className="desktop-ext form-control"
+							value={tryGetAvnAccountAddress(tx.from)}
+							aria-label="Username"
+							aria-describedby="basic-addon1"
+						/>
+					</div>
+				) : (
+					<div className="input-group mb-3">
+						<span
+							className="input-group-text"
+							style={{ minWidth: "100px" }}
+							id="basic-addon1"
+						>
+							Sender
+						</span>
+						<input
+							type="text"
+							disabled
+							readOnly
+							style={{
+								backgroundColor: "white",
+								color: "black",
+								weight: "bold",
+							}}
+							className="desktop-ext form-control"
+							value={tx.from}
+							aria-label="Username"
+							aria-describedby="basic-addon1"
+						/>
+						<input
+							type="text"
+							disabled
+							readOnly
+							style={{
+								backgroundColor: "white",
+								color: "black",
+								weight: "bold",
+							}}
+							className="mobile-ext form-control"
+							value={addressSlicer(tx.from, 10, 56)}
+							aria-label="Username"
+							aria-describedby="basic-addon1"
+						/>
+					</div>
+				)}
+			</div>
 
-            <div className="col-1 text-end">
-                <button className="gear-button">
-                    <img
-                        id="senderAddressTip"
-                        onClick={() => {
-                            setSenderAddressFormat(!senderAddressFormat);
-                        }}
-                        className="gearIcon"
-                        src={toggleSwitch}
-                        alt="logo"
-                    />
-                </button>
-            </div>
-        </div>
-    );
+			<div className="col-1 text-end">
+				<button className="gear-button">
+					<img
+						id="senderAddressTip"
+						onClick={() => {
+							setSenderAddressFormat(!senderAddressFormat);
+						}}
+						className="gearIcon"
+						src={toggleSwitch}
+						alt="logo"
+					/>
+				</button>
+			</div>
+		</div>
+	);
 }

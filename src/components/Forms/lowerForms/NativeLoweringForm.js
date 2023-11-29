@@ -1,18 +1,11 @@
 import React, { useContext } from "react";
 import { formContext, stateContext } from "../../../Contexts/Context";
 import { lowerSubmitHandler } from "../../../utils/avnUtils/lowerSubmitHandler";
-import { ercConfirmLowerDetails } from "../../../utils/lowerUIchecks";
+import { confirmLowerDetails } from "../../../utils/lowerUIchecks";
 import { Spinner } from "../../Extras/Tools";
 
-export default function Erc777LoweringForm({
-	tokenType,
-	position,
-	isERC20,
-	isERC777,
-}) {
+export default function NativeLoweringForm({ tokenType, position }) {
 	const {
-		tokenAddress,
-		setTokenAddress,
 		amount,
 		setAmount,
 		t1Recipient,
@@ -20,56 +13,18 @@ export default function Erc777LoweringForm({
 		lowerLoading,
 		setLowerLoading,
 	} = useContext(formContext);
+
 	const {
 		substrateUser,
-		ethereumAccount,
 		_hasPayer,
 		api,
 		set_HasPayer,
-		metamaskNetworkId,
-		NETWORK_ID,
 		AVN_RELAYER,
+		EVM_NETWORK_NAME,
 		EXPLORER_TX_URL,
-		MAIN_TOKEN_ADDRESS,
+		metamaskNetworkId,
+		NATIVE_CONTRACT_ADDRESS,
 	} = useContext(stateContext);
-
-	function submitTxRequest() {
-		setLowerLoading(true);
-		ercConfirmLowerDetails({
-			substrateUserAddress: substrateUser.address,
-			ethereumAccount,
-			tokenType,
-			tokenAddress,
-			amount,
-			metamaskNetworkId,
-			NETWORK_ID,
-			t1Recipient,
-			isERC20,
-			isERC777,
-		}).then((result) => {
-			if (result) {
-				if (result.userChoice)
-					lowerSubmitHandler({
-						substrateUser,
-						tokenAddress,
-						amount: result._amount,
-						tokenType,
-						t1Recipient,
-						_hasPayer,
-						api,
-						set_HasPayer,
-						AVN_RELAYER,
-						EXPLORER_TX_URL,
-						MAIN_TOKEN_ADDRESS,
-					}).then(() => setLowerLoading(false));
-				else {
-					setLowerLoading(false);
-				}
-			} else {
-				setLowerLoading(false);
-			}
-		});
-	}
 
 	return (
 		<div
@@ -84,7 +39,36 @@ export default function Erc777LoweringForm({
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();
-					submitTxRequest();
+					setLowerLoading(true);
+					confirmLowerDetails({
+						substrateUserAddress: substrateUser.address,
+						tokenType,
+						tokenAddress: NATIVE_CONTRACT_ADDRESS,
+						amount,
+						t1Recipient,
+						metamaskNetworkId,
+					}).then((result) => {
+						if (result) {
+							if (result.userChoice)
+								lowerSubmitHandler({
+									substrateUser,
+									tokenAddress: NATIVE_CONTRACT_ADDRESS,
+									tokenType,
+									amount: result._amount,
+									t1Recipient,
+									_hasPayer,
+									api,
+									set_HasPayer,
+									AVN_RELAYER,
+									EXPLORER_TX_URL,
+								}).then(() => setLowerLoading(false));
+							else {
+								setLowerLoading(false);
+							}
+						} else {
+							setLowerLoading(false);
+						}
+					});
 				}}
 			>
 				<div className="text-start">
@@ -92,40 +76,9 @@ export default function Erc777LoweringForm({
 						Lower Token
 					</h3>
 					<span style={{ color: "#F65925", fontWeight: "700" }}>
-						ERC777
+						{tokenType}
 					</span>
 				</div>
-				<div className="input-group mb-3">
-					<span
-						className="input-group-text"
-						style={{ maxWidth: "100px" }}
-						id="Token"
-					>
-						Token
-					</span>
-					<input
-						type="text"
-						style={{
-							backgroundColor: "white",
-							color: "black",
-							weight: "bold",
-						}}
-						className="form-control"
-						aria-label="Token"
-						aria-describedby="Token"
-						size="83"
-						id="tokenAddress"
-						maxLength="42"
-						minLength="42"
-						min={0}
-						required
-						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
-						onChange={(e) => setTokenAddress(e.target.value)}
-						value={tokenAddress}
-					/>
-				</div>
-
 				<div className="input-group mb-3">
 					<span
 						className="input-group-text"
@@ -177,7 +130,7 @@ export default function Erc777LoweringForm({
 						minLength="42"
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+						placeholder={`${EVM_NETWORK_NAME} address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)`}
 						id="t1Recipient"
 						value={t1Recipient}
 						onChange={(e) => setT1Recipient(e.target.value)}
