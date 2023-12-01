@@ -41,7 +41,21 @@ export function EthWalletAndNetwork() {
 					</div>
 				</div>
 
-				<div className="align-self-end col text-end">
+				<div className="align-self-end desktop-ext col text-end">
+					<a
+						href={ALTERNATE_NETWORK_URL}
+						style={{ textDecoration: "none" }}
+						rel="noopener noreferrer"
+					>
+						<button className="btn connect-button mobile-bigButton">
+							Switch To {ALTERNATE_NETWORK_NAME}
+						</button>
+					</a>
+				</div>
+				<div
+					className="align-self-end mobile-ext col text-center"
+					style={{ marginTop: "10px" }}
+				>
 					<a
 						href={ALTERNATE_NETWORK_URL}
 						style={{ textDecoration: "none" }}

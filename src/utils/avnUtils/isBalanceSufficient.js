@@ -1,6 +1,6 @@
 import { balanceChecker } from "./balanceChecker";
 import { hasPayerBalanceChecker } from "./hasPayerBalanceChecker";
-import { getAvtFreeBalance, getTokenBalance } from "./queryBalance";
+import { getPrimaryTokenFreeBalance, getTokenBalance } from "./queryBalance";
 /*
 Constructs the params for the balance and the url...
 Requires a valid token to get the account balance.
@@ -10,7 +10,7 @@ const token = window?.appConfig?.NETWORK?.SUPPORTED_TOKENS[0];
 
 export async function isBalanceSufficient({ params }) {
 	try {
-		const userFreeBalance = await getAvtFreeBalance({
+		const userFreeBalance = await getPrimaryTokenFreeBalance({
 			params,
 		});
 		let ercTokenBalance;
@@ -18,7 +18,7 @@ export async function isBalanceSufficient({ params }) {
 		if (params.tokenType !== "TOKEN") {
 			ercTokenBalance =
 				params.tokenType === token
-					? await getAvtFreeBalance({
+					? await getPrimaryTokenFreeBalance({
 							params,
 					  })
 					: await getTokenBalance({

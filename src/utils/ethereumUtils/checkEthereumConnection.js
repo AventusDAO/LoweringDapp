@@ -11,7 +11,7 @@ export default async function checkEthereumConnection({
 	setBridgeContract,
 	setMainTokenContract,
 	BRIDGE_CONTRACT_ADDRESS,
-	MAIN_TOKEN_ADDRESS,
+	PRIMARY_TOKEN_ADDRESS,
 	EVM_NETWORK_NAME,
 	isAppPage,
 }) {
@@ -19,7 +19,7 @@ export default async function checkEthereumConnection({
 		setEthereumAccount(account);
 		setMetamaskNetworkId(netId);
 		setBridgeContract(new web3.eth.Contract(ABI, BRIDGE_CONTRACT_ADDRESS));
-		setMainTokenContract(new web3.eth.Contract(ABI, MAIN_TOKEN_ADDRESS));
+		setMainTokenContract(new web3.eth.Contract(ABI, PRIMARY_TOKEN_ADDRESS));
 	} else {
 		if (!isAppPage)
 			networkErrorHandler(

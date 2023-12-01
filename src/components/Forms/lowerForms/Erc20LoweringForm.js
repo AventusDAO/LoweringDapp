@@ -30,7 +30,8 @@ export default function Erc20LoweringForm({
 		NETWORK_ID,
 		AVN_RELAYER,
 		EXPLORER_TX_URL,
-		MAIN_TOKEN_ADDRESS,
+		EVM_NETWORK_NAME,
+		PRIMARY_TOKEN_ADDRESS,
 	} = useContext(stateContext);
 
 	function submitTxRequest() {
@@ -43,6 +44,7 @@ export default function Erc20LoweringForm({
 			metamaskNetworkId,
 			amount,
 			NETWORK_ID,
+			EVM_NETWORK_NAME,
 			t1Recipient,
 			isERC20,
 			isERC777,
@@ -60,7 +62,7 @@ export default function Erc20LoweringForm({
 						set_HasPayer,
 						AVN_RELAYER,
 						EXPLORER_TX_URL,
-						MAIN_TOKEN_ADDRESS,
+						PRIMARY_TOKEN_ADDRESS,
 					}).then(() => setLowerLoading(false));
 				} else {
 					setLowerLoading(false);
@@ -148,7 +150,7 @@ export default function Erc20LoweringForm({
 						min={0}
 						required
 						pattern="^[0-9]\d*(\.\d+)?$"
-						placeholder="whole or fractional (eg: 10 or 1.053)"
+						placeholder="Whole or Fractional (eg: 10 or 1.053)"
 						id="amount"
 						value={amount}
 						onChange={(e) => setAmount(e.target.value)}
@@ -177,7 +179,7 @@ export default function Erc20LoweringForm({
 						minLength="42"
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+						placeholder="Ethereum Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
 						id="t1Recipient"
 						value={t1Recipient}
 						onChange={(e) => setT1Recipient(e.target.value)}

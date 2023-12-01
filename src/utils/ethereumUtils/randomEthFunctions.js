@@ -20,7 +20,7 @@ export async function connectMetamaskButton({
 	setBridgeContract,
 	setMainTokenContract,
 	BRIDGE_CONTRACT_ADDRESS,
-	MAIN_TOKEN_ADDRESS,
+	PRIMARY_TOKEN_ADDRESS,
 	EVM_NETWORK_NAME,
 	setEVM_NETWORK_NAME,
 }) {
@@ -46,7 +46,7 @@ export async function connectMetamaskButton({
 				setBridgeContract,
 				setMainTokenContract,
 				BRIDGE_CONTRACT_ADDRESS,
-				MAIN_TOKEN_ADDRESS,
+				PRIMARY_TOKEN_ADDRESS,
 				EVM_NETWORK_NAME,
 				setEVM_NETWORK_NAME,
 				isAppPage: false,

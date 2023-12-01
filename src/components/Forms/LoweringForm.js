@@ -71,17 +71,17 @@ function LoweringForm() {
 												id="myTabContent"
 											>
 												{tokenTabsKeys.includes(
-													"MAIN_TOKEN"
+													"PRIMARY_TOKEN"
 												) && (
 													<MainTokenLoweringForm
 														tokenType={
 															SUPPORTED_TOKENS
-																.MAIN_TOKEN
+																.PRIMARY_TOKEN
 																.value
 														}
 														position={
 															SUPPORTED_TOKENS
-																.MAIN_TOKEN
+																.PRIMARY_TOKEN
 																.position
 														}
 													/>

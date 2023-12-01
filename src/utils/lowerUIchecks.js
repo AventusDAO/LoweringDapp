@@ -18,6 +18,7 @@ export async function ercConfirmLowerDetails({
 	metamaskNetworkId,
 	isERC20,
 	isERC777,
+	EVM_NETWORK_NAME,
 }) {
 	if (substrateUserAddress) {
 		if (!ethereumAccount) {
@@ -29,7 +30,7 @@ export async function ercConfirmLowerDetails({
 			if (!isCorrectEthereumNetwork) {
 				genericErrorHandlerTemplate(
 					"Switch Ethereum Network",
-					"Please ensure your Ethereum wallet network is set to Mainnet for Aventus Mainnet and GOERLI for other Aventus networks.",
+					`Please ensure your Ethereum wallet network is set to ${EVM_NETWORK_NAME}.`,
 					"Metamask is required to confirm the token contract's details."
 				);
 			} else {
@@ -80,7 +81,7 @@ export async function ercConfirmLowerDetails({
 export async function userSignatureConfirmation() {
 	const { isConfirmed: result } = await swal.fire({
 		title: "Signature Required",
-		text: "Sign to validate your AvN account",
+		text: "Sign to validate your account",
 		allowOutsideClick: false,
 		showDenyButton: true,
 		confirmButtonText: "Sign",

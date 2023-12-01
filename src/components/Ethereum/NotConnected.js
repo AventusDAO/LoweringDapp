@@ -11,7 +11,7 @@ export const NotConnected = () => {
 		setBridgeContract,
 		setMainTokenContract,
 		BRIDGE_CONTRACT_ADDRESS,
-		MAIN_TOKEN_ADDRESS,
+		PRIMARY_TOKEN_ADDRESS,
 		EVM_NETWORK_NAME,
 		setEVM_NETWORK_NAME,
 	} = useContext(stateContext);
@@ -33,7 +33,7 @@ export const NotConnected = () => {
 						setBridgeContract,
 						setMainTokenContract,
 						BRIDGE_CONTRACT_ADDRESS,
-						MAIN_TOKEN_ADDRESS,
+						PRIMARY_TOKEN_ADDRESS,
 						EVM_NETWORK_NAME,
 						setEVM_NETWORK_NAME,
 					});

@@ -21,7 +21,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 		set_HasPayer,
 		AVN_RELAYER,
 		EXPLORER_TX_URL,
-		MAIN_TOKEN_ADDRESS,
+		PRIMARY_TOKEN_ADDRESS,
 	} = useContext(stateContext);
 
 	return (
@@ -41,7 +41,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 					confirmLowerDetails({
 						substrateUserAddress: substrateUser.address,
 						tokenType,
-						tokenAddress: MAIN_TOKEN_ADDRESS,
+						tokenAddress: PRIMARY_TOKEN_ADDRESS,
 						amount,
 						t1Recipient,
 					}).then((result) => {
@@ -52,7 +52,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 									api,
 									_hasPayer,
 									set_HasPayer,
-									tokenAddress: MAIN_TOKEN_ADDRESS,
+									tokenAddress: PRIMARY_TOKEN_ADDRESS,
 									amount: result._amount,
 									t1Recipient,
 									tokenType,
@@ -98,7 +98,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 						min={0}
 						required
 						pattern="^[0-9]\d*(\.\d+)?$"
-						placeholder="whole or fractional (eg: 10 or 1.053)"
+						placeholder="Whole or Fractional (eg: 10 or 1.053)"
 						id="tokenAmount"
 						value={amount}
 						onChange={(e) => setAmount(e.target.value)}
@@ -127,7 +127,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 						minLength="42"
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="Ethereum address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+						placeholder="Ethereum Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
 						id="t1Recipient"
 						value={t1Recipient}
 						onChange={(e) => setT1Recipient(e.target.value)}

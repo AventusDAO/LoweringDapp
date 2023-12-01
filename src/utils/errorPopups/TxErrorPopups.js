@@ -36,7 +36,7 @@ export function invalidTokenAmountHandler(tokenType) {
 export function invalidAddressErrorHandler() {
 	return swal.fire({
 		title: "Invalid Recipient",
-		text: "AvN recipient account must be a valid SS58 address",
+		text: "The Recipient account must be a valid SS58 address",
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonColor: "#5100FF",

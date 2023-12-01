@@ -1,7 +1,7 @@
 // import { weiToEthConverter } from "../randomFunctions";
 import { balanceFormatter } from "../randomFunctions";
 import {
-	gatewayAccessErrorForNoMinimumAVT,
+	gatewayAccessErrorForNoMinimumBalance,
 	gatewayAccessErrorForNoPayer,
 } from "../errorPopups/networkAccessErrorPopups";
 /*
@@ -11,7 +11,7 @@ Queries the balance of an account.
 */
 
 // This function ensures that the user can only lower from the free balance.
-export async function getAvtFreeBalance({ params }) {
+export async function getPrimaryTokenFreeBalance({ params }) {
 	try {
 		const bal = await params?.api.query.getAccountInfo(
 			params.substrateUser.address
@@ -22,7 +22,7 @@ export async function getAvtFreeBalance({ params }) {
 		if (err.message.includes("403")) {
 			const result = params._hasPayer
 				? await gatewayAccessErrorForNoPayer()
-				: await gatewayAccessErrorForNoMinimumAVT();
+				: await gatewayAccessErrorForNoMinimumBalance();
 			params.set_HasPayer(result);
 		}
 		return null;
@@ -40,7 +40,7 @@ export async function getTokenBalance({ params }) {
 		if (err.message.includes("403")) {
 			const result = params._hasPayer
 				? await gatewayAccessErrorForNoPayer()
-				: await gatewayAccessErrorForNoMinimumAVT();
+				: await gatewayAccessErrorForNoMinimumBalance();
 			params.set_HasPayer(result);
 		}
 	}
@@ -55,7 +55,7 @@ export async function balanceHandler({
 	api,
 	isBalanceTab,
 	_hasPayer,
-	MAIN_TOKEN_ADDRESS,
+	PRIMARY_TOKEN_ADDRESS,
 	set_HasPayer,
 }) {
 	const params = {
@@ -68,12 +68,12 @@ export async function balanceHandler({
 	};
 	try {
 		tokenType =
-			tokenAddress === MAIN_TOKEN_ADDRESS
-				? SUPPORTED_TOKENS.MAIN_TOKEN.value
+			tokenAddress === PRIMARY_TOKEN_ADDRESS
+				? SUPPORTED_TOKENS.PRIMARY_TOKEN.value
 				: tokenType;
 		const balance =
-			tokenType === SUPPORTED_TOKENS.MAIN_TOKEN.value
-				? await getAvtFreeBalance({
+			tokenType === SUPPORTED_TOKENS.PRIMARY_TOKEN.value
+				? await getPrimaryTokenFreeBalance({
 						params,
 				  })
 				: await getTokenBalance({

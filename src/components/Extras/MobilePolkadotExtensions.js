@@ -2,10 +2,9 @@ import React, { useCallback, useContext, useEffect } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { web3Enable } from "@polkadot/extension-dapp";
 import { connectSpecificWallet } from "../../utils/polkadotUtils/walletUtils";
-import { ModalExtensions } from "./ModalExtensions";
 import { MobileModalExtensions } from "./MobileModalExtensions";
 
-export function PolkadotExtensions() {
+export function MobilePolkadotExtensions() {
 	const { substrateUser, setSubstrateUser } = useContext(stateContext);
 
 	const checkIfAnAccountIsConnected = useCallback(async () => {
@@ -35,10 +34,10 @@ export function PolkadotExtensions() {
 	return (
 		<div
 			className="modal fade"
-			id="extensionsModal"
+			id="extensionsMobileModal"
 			tabIndex="-1"
 			data-bs-backdrop="static"
-			aria-labelledby="extensionsModalLabel"
+			aria-labelledby="extensionsMobileModalLabel"
 			aria-hidden="true"
 		>
 			<div className="modal-dialog">
@@ -50,7 +49,10 @@ export function PolkadotExtensions() {
 					}}
 				>
 					<div className="modal-header">
-						<h5 className="modal-title" id="extensionsModalLabel">
+						<h5
+							className="modal-title"
+							id="extensionsMobileModalLabel"
+						>
 							<b>Select Account</b>
 						</h5>
 						<button
@@ -63,12 +65,7 @@ export function PolkadotExtensions() {
 							}}
 						></button>
 					</div>
-					<div
-						className="modal-body desktop-ext"
-						style={{ margin: "25px" }}
-					>
-						<ModalExtensions />
-					</div>
+
 					<div
 						className="modal-body mobile-ext"
 						style={{ margin: "25px" }}

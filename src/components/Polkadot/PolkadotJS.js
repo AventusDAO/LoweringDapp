@@ -1,37 +1,43 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import { PolkadotExtensions } from "../Extras/PolkadotExtensions";
+import { DesktopPolkadotExtensions } from "../Extras/DesktopPolkadotExtensions";
+import { MobilePolkadotExtensions } from "../Extras/MobilePolkadotExtensions";
 import greenIcon from "../../assets/img/green-icon.png";
+import wallet from "../../assets/img/wallet.svg";
 import arrowLeftRight from "../../assets/img/arrow-left-right-circle-black.svg";
 import { addressSlicer } from "../../utils/randomFunctions";
 
 export function PolkadotJS() {
-	const { substrateUser } = useContext(stateContext);
+	return (
+		<div className="placement-position">
+			<div className="mobile-ext">
+				<MobileHeaderButtons />
+			</div>
+			<div className="desktop-ext">
+				<DesktopHeaderButtons />
+			</div>
+		</div>
+	);
+}
 
-	if (substrateUser) {
-		return (
-			<div>
-				<div className="small-line account-info">
-					<div style={{ fontSize: "11px" }}>
-						<img
-							src={greenIcon}
-							width={20}
-							height={20}
-							alt="logo"
-						/>
-						<span className="fw-bold">Connected AvN account:</span>
-						<br />
-						<br />
-					</div>
-					<br />
-					<br />
-					<br />
+function MobileHeaderButtons() {
+	const {
+		ALTERNATE_NETWORK_URL,
+		ALTERNATE_NETWORK_NAME,
+		COMPANY_NAME,
+		substrateUser,
+	} = useContext(stateContext);
+
+	return (
+		<div className="mobile-ext">
+			{substrateUser ? (
+				<>
+					<img src={greenIcon} width={20} height={20} alt="logo" />
 					<span
-						className="desktop-ext"
-						id="account"
+						className="fw-bold small-line account-info"
 						style={{ fontSize: "11px" }}
 					>
-						{substrateUser.address}
+						Connected {COMPANY_NAME} account:
 					</span>
 					<span
 						className="mobile-ext"
@@ -40,40 +46,128 @@ export function PolkadotJS() {
 					>
 						{addressSlicer(substrateUser.address, 15, 40)}
 					</span>
-				</div>
-				<div
-					className="flex align-self-center justify-center"
-					style={{ marginTop: "15px" }}
-				>
 					<button
 						type="button"
 						className="btn connect-button mobile-bigButton"
+						data-bs-toggle="modal"
+						data-bs-target="#extensionsMobileModal"
+					>
+						<img src={wallet} alt="logo" />
+					</button>
+					<MobilePolkadotExtensions />
+					&nbsp;
+				</>
+			) : (
+				<MobileNoAccount />
+			)}
+			<a
+				href={ALTERNATE_NETWORK_URL}
+				style={{ textDecoration: "none" }}
+				rel="noopener noreferrer"
+			>
+				<button className="btn connect-button mobile-bigButton">
+					Switch To {ALTERNATE_NETWORK_NAME}
+				</button>
+			</a>
+		</div>
+	);
+}
+
+function DesktopHeaderButtons() {
+	const {
+		ALTERNATE_NETWORK_URL,
+		ALTERNATE_NETWORK_NAME,
+		COMPANY_NAME,
+		substrateUser,
+	} = useContext(stateContext);
+
+	return (
+		<div className="desktop-ext row">
+			{substrateUser ? (
+				<div className="col-sm text-start">
+					<img src={greenIcon} width={20} height={20} alt="logo" />
+					<span className="fw-bold" style={{ fontSize: "11px" }}>
+						Connected {COMPANY_NAME} account:
+					</span>
+					<br />
+					<span
+						className="desktop-ext"
+						id="account"
+						style={{ fontSize: "11px" }}
+					>
+						{substrateUser.address}
+					</span>
+					<br />
+
+					<button
+						type="button"
+						className="btn connect-button"
 						data-bs-toggle="modal"
 						data-bs-target="#extensionsModal"
 					>
 						<img src={arrowLeftRight} alt="logo" /> Switch Account
 					</button>
-					<PolkadotExtensions />
+					<DesktopPolkadotExtensions />
 				</div>
-			</div>
-		);
-	} else {
-		return (
-			<div>
-				<div style={{ fontSize: "11px" }}>
+			) : (
+				<span className="col-sm text-start">
 					<br />
-					<span className="text-muted">Not connected</span>
-				</div>
-				<button
-					type="button"
-					className="btn connect-button mobile-bigButton"
-					data-bs-toggle="modal"
-					data-bs-target="#extensionsModal"
+					<DesktopNoAccount />
+				</span>
+			)}
+			&nbsp;
+			<span className="col-sm text-end bottom">
+				<br />
+				<br />
+				<a
+					href={ALTERNATE_NETWORK_URL}
+					style={{ textDecoration: "none" }}
+					rel="noopener noreferrer"
 				>
-					+ Connect Wallet
-				</button>
-				<PolkadotExtensions />
+					<button className="btn text-end connect-button mobile-bigButton">
+						Switch To {ALTERNATE_NETWORK_NAME}
+					</button>
+				</a>
+			</span>
+		</div>
+	);
+}
+
+function DesktopNoAccount() {
+	return (
+		<>
+			<div style={{ fontSize: "11px" }}>
+				<span className="text-muted">Not connected</span>
 			</div>
-		);
-	}
+			<button
+				type="button"
+				className="btn connect-button"
+				data-bs-toggle="modal"
+				data-bs-target="#extensionsModal"
+			>
+				+ Connect Account
+			</button>
+			<DesktopPolkadotExtensions />
+		</>
+	);
+}
+
+function MobileNoAccount() {
+	return (
+		<>
+			<div style={{ fontSize: "11px" }}>
+				<span className="text-muted">Not connected</span>
+			</div>
+			<button
+				type="button"
+				className="btn connect-button mobile-bigButton"
+				data-bs-toggle="modal"
+				data-bs-target="#extensionsMobileModal"
+			>
+				<img src={wallet} alt="logo" />
+			</button>
+			<MobilePolkadotExtensions />
+			&nbsp;
+		</>
+	);
 }

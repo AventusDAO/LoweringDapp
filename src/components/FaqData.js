@@ -1,6 +1,12 @@
 const ENVIRONMENT_NAME = window?.appConfig?.NETWORK.ENVIRONMENT_NAME;
+const COMPANY_NAME = window?.appConfig?.NETWORK.COMPANY_NAME;
+const EVM_NETWORK_NAME = window?.appConfig?.NETWORK.EVM_NETWORK_NAME;
 
 const FAQ = [
+	{
+		question: "What is Lowering?",
+		answer: `Lowering is the process of migrating your tokens from the ${ENVIRONMENT_NAME} to ${EVM_NETWORK_NAME}.`,
+	},
 	{
 		question: "Where can I find a walkthrough on using this dApp?",
 		answer: "There's a walkthrough of the dApp here: ",
@@ -26,7 +32,7 @@ const FAQ = [
 	},
 	{
 		question: "What is an Aventus Web Token (AWT)?",
-		answer: "AWT is an extension of JWT. Each AWT is signed with the user's substrate private key, and this signature can be verified using the user's AvN public key. This is designed by Aventus Network.",
+		answer: `AWT is an extension of JWT. Each AWT is signed with the user's substrate private key, and this signature can be verified using the user's ${COMPANY_NAME} public key. This is designed by Aventus Network.`,
 	},
 	{
 		question: "How long is the Aventus Web Token (AWT) valid for?",

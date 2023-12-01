@@ -101,7 +101,7 @@ export default function NativeLoweringForm({ tokenType, position }) {
 						min={0}
 						required
 						pattern="^[0-9]\d*(\.\d+)?$"
-						placeholder="whole or fractional (eg: 10 or 1.053)"
+						placeholder="Whole or Fractional (eg: 10 or 1.053)"
 						id="tokenAmount"
 						value={amount}
 						onChange={(e) => setAmount(e.target.value)}
@@ -130,7 +130,7 @@ export default function NativeLoweringForm({ tokenType, position }) {
 						minLength="42"
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder={`${EVM_NETWORK_NAME} address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)`}
+						placeholder={`${EVM_NETWORK_NAME} Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)`}
 						id="t1Recipient"
 						value={t1Recipient}
 						onChange={(e) => setT1Recipient(e.target.value)}

@@ -1,22 +1,26 @@
-import aventus_logo from "../../assets/img/aventus-logo.svg";
+import company_logo from "../../assets/img/company_logo.svg";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { stateContext } from "../../Contexts/Context";
 
 export function HeaderNav() {
+	const { COMPANY_URL } = useContext(stateContext);
+	const { COMPANY_SUPPORT_URL } = useContext(stateContext);
+
 	return (
 		<>
 			<nav className="navbar">
 				<div className="container-fluid">
 					<a
-						href="https://www.aventus.io/"
+						href={COMPANY_URL}
 						className="navbar-brand"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<img src={aventus_logo} alt="logo" />
+						<img src={company_logo} alt="logo" />
 					</a>
 					<button
 						className="navbar-toggler"
-						style={{ backgroundColor: "#5100FF" }}
 						type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarToggleExternalContent"
@@ -50,11 +54,11 @@ export function HeaderNav() {
 						<li className="nav-item">
 							<a
 								className="nav-link text-decoration-none text-white"
-								href="https://www.aventus.io/contact/"
+								href={COMPANY_SUPPORT_URL}
 							>
 								<span
+									className="contact-us-button"
 									style={{
-										backgroundColor: "#5100FF",
 										padding: "10px",
 										borderRadius: "5px",
 									}}

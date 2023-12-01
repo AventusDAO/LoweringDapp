@@ -17,7 +17,7 @@ export function addressSlicer(address, num1, num2) {
 export const balanceFormatter = ({ tokenType, balance }) => {
 	const message = "This is your FREE balance. See FAQ for more.";
 	const SUPPORTED_TOKENS = window?.appConfig?.NETWORK?.SUPPORTED_TOKENS;
-	const mainToken = SUPPORTED_TOKENS.MAIN_TOKEN.value;
+	const mainToken = SUPPORTED_TOKENS.PRIMARY_TOKEN.value;
 	if (tokenType === mainToken || tokenType === "ETH") {
 		const resValue = Number(balance);
 		const result = balanceConverter(resValue, "wei", "ether");

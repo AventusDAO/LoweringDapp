@@ -10,6 +10,8 @@ const calculate = {
 	proxyLowerTokenWithFee: (params) => proxyLowerTokenWithFee(params),
 };
 
+const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
+
 async function proxyLowerTokenWithFee({
 	userFreeBalance,
 	amount,
@@ -22,7 +24,7 @@ async function proxyLowerTokenWithFee({
 	amount = BigNumber(amount);
 
 	const balanceAfterFee = userFreeBalance.minus(relayerFee);
-	if (tokenType === "AVT") {
+	if (tokenType === PRIMARY_TOKEN) {
 		if (balanceAfterFee.gte(amount)) {
 			return {
 				value: true,
@@ -31,12 +33,12 @@ async function proxyLowerTokenWithFee({
 		} else if (balanceAfterFee.lt(amount) && balanceAfterFee.gte(0)) {
 			const balanceAdjusted = await balanceAdjustedNotification(
 				"Adjustment Required",
-				"Choosing 'Continue' will lower 100% of your AVT balance.",
-				`After paying the transaction fee (d${balanceConverter(
+				`Choosing 'Continue' will lower 100% of your ${PRIMARY_TOKEN} balance.`,
+				`After paying the transaction fee (${balanceConverter(
 					relayerFee,
 					"wei",
 					"eth"
-				)} AVT), the amount you specified is larger than your AVT balance.`
+				)} ${PRIMARY_TOKEN}), the amount you specified is larger than your ${PRIMARY_TOKEN} balance.`
 			).then();
 			if (balanceAdjusted) {
 				return {
@@ -53,7 +55,7 @@ async function proxyLowerTokenWithFee({
 			genericErrorHandlerTemplate(
 				"Insufficient Funds",
 				"The current balance is not sufficient to lower the stated amount and pay the network fees.",
-				"Please top up your AVT balance or try a smaller amount."
+				`Please top up your ${PRIMARY_TOKEN} balance or try a smaller amount.`
 			);
 			return {
 				value: false,
@@ -70,8 +72,8 @@ async function proxyLowerTokenWithFee({
 			} else {
 				genericErrorHandlerTemplate(
 					"Insufficient Funds",
-					"The current AVT balance is not sufficient to pay the network fees.",
-					"Please top up your AVT balance or try a smaller amount."
+					`The current ${PRIMARY_TOKEN} balance is not sufficient to pay the network fees.`,
+					`Please top up your ${PRIMARY_TOKEN} balance or try a smaller amount.`
 				);
 			}
 		} else {

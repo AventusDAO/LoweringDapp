@@ -5,7 +5,7 @@ import { connectSpecificWallet } from "../../utils/polkadotUtils/walletUtils";
 import { WalletAccounts } from "./WalletAccounts";
 import GenerateNewToken from "./GenerateNewToken";
 
-function ModalExtensions() {
+function DesktopModalExtensions() {
 	const {
 		setSubstrateAccounts,
 		substrateAccounts,
@@ -80,4 +80,4 @@ function ModalExtensions() {
 	);
 }
 
-export { ModalExtensions };
+export { DesktopModalExtensions };

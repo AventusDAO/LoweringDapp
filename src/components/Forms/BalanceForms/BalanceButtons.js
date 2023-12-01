@@ -35,7 +35,7 @@ const BalanceButtons = () => {
 			aria-labelledby="bal-non-token-tab"
 			tabIndex="0"
 		>
-			{tokenTabsKeys.includes("MAIN_TOKEN") && (
+			{tokenTabsKeys.includes("PRIMARY_TOKEN") && (
 				<button
 					className="btn submit-button custom-balance-tab-width"
 					disabled={
@@ -49,7 +49,7 @@ const BalanceButtons = () => {
 						setIsShown(false);
 						setMainTokenQueryLoading(true);
 						balanceHandler({
-							tokenType: SUPPORTED_TOKENS.MAIN_TOKEN.value,
+							tokenType: SUPPORTED_TOKENS.PRIMARY_TOKEN.value,
 							substrateUser,
 							_hasPayer,
 							api,
@@ -64,7 +64,7 @@ const BalanceButtons = () => {
 					{mainTokenQueryLoading ? (
 						<Spinner />
 					) : (
-						SUPPORTED_TOKENS.MAIN_TOKEN.value
+						SUPPORTED_TOKENS.PRIMARY_TOKEN.value
 					)}
 				</button>
 			)}

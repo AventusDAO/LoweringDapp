@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import greenIcon from "../../assets/img/green-icon.png";
-import { addressSlicer } from "../../utils/randomFunctions";
 
 export const ConnectToEthereum = () => {
 	const { ethereumAccount, EVM_NETWORK_NAME } = useContext(stateContext);
@@ -41,7 +40,7 @@ export const ConnectToEthereum = () => {
 							id="account"
 							style={{ fontSize: "11px" }}
 						>
-							{addressSlicer(ethereumAccount, 15, 40)}
+							{ethereumAccount}
 						</span>
 					</div>
 				</div>

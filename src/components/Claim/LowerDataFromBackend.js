@@ -9,7 +9,7 @@ export const LowerDataFromBackend = ({ tx }) => {
 		ethereumAccount,
 		metamaskNetworkId,
 		bridgeContract,
-		MAIN_TOKEN_ADDRESS,
+		PRIMARY_TOKEN_ADDRESS,
 		ETHERSCAN_TOKEN_LINK,
 	} = useContext(stateContext);
 
@@ -93,7 +93,7 @@ export const LowerDataFromBackend = ({ tx }) => {
 						<div className="input-group mb-3">
 							<a
 								href={`${ETHERSCAN_TOKEN_LINK}${
-									tx.token ? tx.token : MAIN_TOKEN_ADDRESS
+									tx.token ? tx.token : PRIMARY_TOKEN_ADDRESS
 								}`}
 								target="_blank"
 								rel="noopener noreferrer"

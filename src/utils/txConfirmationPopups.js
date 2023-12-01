@@ -65,7 +65,7 @@ export async function cannotConfirmTxStatus({ polledState, explorerTxUrl }) {
 		allowOutsideClick: false,
 		showConfirmButton: false,
 		icon: "success",
-		footer: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
+		footer: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on the Explorer</a>`,
 	});
 	return "complete";
 }

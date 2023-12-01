@@ -27,7 +27,7 @@ function App() {
 	const [metamaskNetworkId, setMetamaskNetworkId] = useState("");
 	const EVM_NETWORK_NAME = NETWORK_CONFIG.EVM_NETWORK_NAME;
 	const BRIDGE_CONTRACT_ADDRESS = NETWORK_CONFIG.BRIDGE_CONTRACT_ADDRESS;
-	const MAIN_TOKEN_ADDRESS = NETWORK_CONFIG.MAIN_TOKEN_ADDRESS;
+	const PRIMARY_TOKEN_ADDRESS = NETWORK_CONFIG.PRIMARY_TOKEN_ADDRESS;
 	const NETWORK_ID = NETWORK_CONFIG.NETWORK_ID;
 	const AVN_GATEWAY_URL = NETWORK_CONFIG.GATEWAY;
 	const AVN_RELAYER = NETWORK_CONFIG.RELAYER;
@@ -70,7 +70,7 @@ function App() {
 				setBridgeContract,
 				setMainTokenContract,
 				BRIDGE_CONTRACT_ADDRESS,
-				MAIN_TOKEN_ADDRESS,
+				PRIMARY_TOKEN_ADDRESS,
 				EVM_NETWORK_NAME,
 				isAppPage: true,
 			});
@@ -80,7 +80,7 @@ function App() {
 		setMetamaskNetworkId,
 		NETWORK_ID,
 		EVM_NETWORK_NAME,
-		MAIN_TOKEN_ADDRESS,
+		PRIMARY_TOKEN_ADDRESS,
 	]);
 
 	const setSdkCode = useCallback(async () => {
@@ -125,7 +125,7 @@ function App() {
 					bridgeContract,
 					setBridgeContract,
 					mainTokenContract,
-					MAIN_TOKEN_ADDRESS,
+					PRIMARY_TOKEN_ADDRESS,
 					BRIDGE_CONTRACT_ADDRESS,
 					COMPANY_NAME,
 					switchChecked,
@@ -161,8 +161,8 @@ function App() {
 					<Route path="/FAQ" element={<Faq />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
+				<Footer />
 			</stateContext.Provider>
-			<Footer />
 		</div>
 	);
 }

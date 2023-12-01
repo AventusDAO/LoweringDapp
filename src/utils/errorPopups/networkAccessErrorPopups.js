@@ -1,16 +1,17 @@
 import swal from "sweetalert2";
+const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
 
 export async function gatewayAccessError(_hasPayer) {
 	if (_hasPayer) {
 		gatewayAccessErrorForNoPayer();
 	} else {
-		gatewayAccessErrorForNoMinimumAVT();
+		gatewayAccessErrorForNoMinimumBalance();
 	}
 }
 
 export async function gatewayAccessErrorForNoPayer() {
 	const { isConfirmed: isGenerateNewToken } = await swal.fire({
-		title: "AvN Gateway Access Block",
+		title: "Gateway Access Block",
 		html: `<strong> It appears you're not part of a registered payer program.</strong>You'll need to sign to generate a new token.`,
 		allowOutsideClick: false,
 		icon: "error",
@@ -24,10 +25,10 @@ export async function gatewayAccessErrorForNoPayer() {
 	return isGenerateNewToken;
 }
 
-export async function gatewayAccessErrorForNoMinimumAVT() {
+export async function gatewayAccessErrorForNoMinimumBalance() {
 	const { isDenied: isGenerateNewToken } = await swal.fire({
-		title: "AvN Gateway Access Block",
-		html: `You need to have at least 1 AVT in your balance <strong> on this network </strong> to gain access.`,
+		title: "Gateway Access Block",
+		html: `You need to have at least 1 ${PRIMARY_TOKEN} in your balance <strong> on this network </strong> to gain access.`,
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonText: "Okay",
@@ -45,7 +46,7 @@ export async function gatewayAccessErrorForNoMinimumAVT() {
 export async function regenerateGatewayToken() {
 	const { isConfirmed: isGenerateNewToken } = await swal.fire({
 		title: "Regenerate Gateway Token",
-		text: "This operation will generate a new AWT token for you to access the AvN parachain via the AvN Gateway.",
+		text: "This operation will generate a new AWT token for you to access the chain via the Gateway.",
 		allowOutsideClick: false,
 		icon: "info",
 		confirmButtonText: "Confirm",

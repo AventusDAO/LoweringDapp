@@ -1,7 +1,6 @@
 import { genericErrorHandlerTemplate } from "../errorPopups/genericErrorPopups";
 import { balanceAdjustedNotification } from "../someUIpopups";
 import BigNumber from "big-number/big-number";
-import balanceConverter from "ethereum-unit-converter";
 
 export const hasPayerBalanceChecker = (method, params) =>
 	calculate[method](Object.assign({}, params));
@@ -9,6 +8,8 @@ export const hasPayerBalanceChecker = (method, params) =>
 const calculate = {
 	proxyLowerTokenWithoutFee: (params) => proxyLowerTokenWithoutFee(params),
 };
+
+const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
 
 async function proxyLowerTokenWithoutFee({ userFreeBalance, amount }) {
 	userFreeBalance = BigNumber(userFreeBalance);
@@ -25,7 +26,7 @@ async function proxyLowerTokenWithoutFee({ userFreeBalance, amount }) {
 	} else if (userFreeBalance.lt(amount) && userFreeBalance.gte(0)) {
 		const balanceAdjusted = await balanceAdjustedNotification(
 			"Adjustment Required",
-			"Choosing 'Continue' will lower 100% of your AVT balance.",
+			`Choosing 'Continue' will lower 100% of your ${PRIMARY_TOKEN} balance.`,
 			`You are not paying transaction fee for this transaction.`
 		).then();
 		if (balanceAdjusted) {
@@ -43,7 +44,7 @@ async function proxyLowerTokenWithoutFee({ userFreeBalance, amount }) {
 		genericErrorHandlerTemplate(
 			"Insufficient Funds",
 			"The current balance is not sufficient to lower the stated amount and pay the network fees.",
-			"Please top up your AVT balance or try a smaller amount."
+			`Please top up your ${PRIMARY_TOKEN} balance or try a smaller amount.`
 		);
 		return { value: false, amount: 0 };
 	}

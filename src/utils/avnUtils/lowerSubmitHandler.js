@@ -3,7 +3,7 @@ import { checkRequestId, sleep } from "./pollTransaction";
 import { TxSubmitted } from "../txConfirmationPopups";
 import {
 	gatewayAccessErrorForNoPayer,
-	gatewayAccessErrorForNoMinimumAVT,
+	gatewayAccessErrorForNoMinimumBalance,
 } from "../errorPopups/networkAccessErrorPopups";
 
 /*
@@ -22,7 +22,7 @@ export async function lowerSubmitHandler({
 	set_HasPayer,
 	AVN_RELAYER,
 	EXPLORER_TX_URL,
-	MAIN_TOKEN_ADDRESS,
+	PRIMARY_TOKEN_ADDRESS,
 }) {
 	const params = {
 		relayer: AVN_RELAYER,
@@ -36,7 +36,7 @@ export async function lowerSubmitHandler({
 		amount,
 		method: "proxyTokenLower",
 		EXPLORER_TX_URL,
-		MAIN_TOKEN_ADDRESS,
+		PRIMARY_TOKEN_ADDRESS,
 	};
 	try {
 		const requestId = await sendTransaction(params);
@@ -54,7 +54,7 @@ export async function lowerSubmitHandler({
 		if (err.message.includes("403")) {
 			const result = _hasPayer
 				? await gatewayAccessErrorForNoPayer()
-				: await gatewayAccessErrorForNoMinimumAVT();
+				: await gatewayAccessErrorForNoMinimumBalance();
 			set_HasPayer(result);
 		}
 	}

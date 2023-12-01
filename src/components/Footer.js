@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { stateContext } from "../Contexts/Context";
 import { Link } from "react-router-dom";
-const COMPANY_NAME = window?.appConfig?.NETWORK?.COMPANY_NAME;
 
 function Footer() {
+	const { COMPANY_NAME } = useContext(stateContext);
 	return (
 		<div className="footer">
 			<div className="text-center">
@@ -22,7 +23,8 @@ function Footer() {
 				className="text-center font-weight-bold  my-2"
 				style={{ backgroundColor: "white", color: "#1D2733" }}
 			>
-				&copy; {COMPANY_NAME} {new Date().getFullYear()}
+				&copy; {COMPANY_NAME} {new Date().getFullYear()}. Powered by
+				Aventus Network.
 			</div>
 		</div>
 	);

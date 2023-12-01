@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
-import tryGetAvnAccountAddress from "../../utils/polkadotUtils/polkaKey";
+import tryGetSubstrateAccountAddress from "../../utils/polkadotUtils/polkaKey";
 import toggleSwitch from "../../assets/img/toggleSwitch.svg";
 
 export function SenderDetails({ tx }) {
@@ -32,7 +32,7 @@ export function SenderDetails({ tx }) {
 							}}
 							className="mobile-ext form-control"
 							value={addressSlicer(
-								tryGetAvnAccountAddress(tx.from),
+								tryGetSubstrateAccountAddress(tx.from),
 								10,
 								38
 							)}
@@ -50,7 +50,7 @@ export function SenderDetails({ tx }) {
 								weight: "bold",
 							}}
 							className="desktop-ext form-control"
-							value={tryGetAvnAccountAddress(tx.from)}
+							value={tryGetSubstrateAccountAddress(tx.from)}
 							aria-label="Username"
 							aria-describedby="basic-addon1"
 						/>

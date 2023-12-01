@@ -1,4 +1,5 @@
 import swal from "sweetalert2";
+const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
 
 export async function balanceAdjustedNotification(title, message, footer) {
 	const { isConfirmed: result } = await swal.fire({
@@ -38,7 +39,7 @@ export const userBalance = async ({ tokenType, message, decAmount }) => {
 		confirmButtonColor: "#5100FF",
 		confirmButtonText: "Okay",
 		footer: `<p class="text-center">${
-			tokenType === "AVT"
+			tokenType === PRIMARY_TOKEN
 				? `${message}`
 				: tokenType === "TOKEN"
 				? "Confirm the decimals for this token on the token's Ethereum smart contract"
