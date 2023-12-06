@@ -1,12 +1,12 @@
+/*  fonts are at the bottom of this page */
 :root {
   --primary-color: #5100FF;
   --off-color: white;
   --background-color: #F2F1F1;
-  --pop-color: #F65925;
 }
 
 .popText {
-  color: var(--pop-color, orange);
+  color: var(--primary-color, blue);
 }
 
 .navbar-toggler {
@@ -55,7 +55,7 @@ body {
   margin: 0;
   background-color: var(--background-color, rgb(217, 215, 215));;
   color: #1d2733;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'MonaSans-Regular';
   font-weight: 500;
   display: flex;
   flex-direction: column;
@@ -67,9 +67,9 @@ body {
 }
 
 .maintitle {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 40px
+  font-family: "MonaSans-Bold";
+  font-weight: 900;
+  font-size: 40px;
 }
 
 /* Dark mode styling */
@@ -120,7 +120,7 @@ body {
   background-color: var(--primary-color, blue);;
   border-radius: 15px;
   color: var(--off-color, white);;
-  font-weight: bold;
+  font-family: "MonaSans-Bold";
   padding: 5px
 }
 
@@ -157,9 +157,9 @@ body {
 
 .connect-button {
   font-weight: bold;
-  background-color: var(--pop-color, orange);;
+  background-color: var(--primary-color, blue);
   color: #ffffff;
-  border-color: var(--pop-color, orange);
+  border-color: var(--primary-color, blue);
 }
 
 .submit-button {
@@ -197,13 +197,13 @@ body {
 }
 
 .btn:hover {
-  border-color: var(--pop-color, orange);;
+  border-color: var(--primary-color, blue);
   color: black;
   border-radius: 5px;
 }
 
 .active {
-  background-color: var(--off-color, white);;
+  background-color: var(--off-color, white);
   border-radius: 5px;
 }
 
@@ -230,8 +230,8 @@ body {
 }
 
 .pageLinks:hover {
-  border-color: var(--pop-color, orange);;
-  color: var(--pop-color, orange);;
+  border-color: var(--primary-color, blue);
+  color: var(--primary-color, blue);
   border-radius: 5px;
 }
 
@@ -239,8 +239,8 @@ body {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--pop-color, orange);;
-  border-color: var(--pop-color, orange);;
+  color: var(--primary-color, blue);
+  border-color: var(--primary-color, blue);
   font-weight: bold;
   padding: -5px
 }
@@ -256,8 +256,8 @@ body {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--pop-color, orange);;
-  border-color: var(--pop-color, orange);;
+  color: var(--primary-color, blue);
+  border-color: var(--primary-color, blue);
   font-weight: bold;
   padding: -5px
 }
@@ -588,4 +588,86 @@ screen and (max-width: 420px) {
     font-size: 5px;
     margin: 1px
   }
+}
+
+/* fonts */
+
+@font-face {
+  font-family: "MonaSans-Black";
+  src: url("../fonts/MonaSans-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-BlackItalic";
+  src: url("../fonts/MonaSans-BlackItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Bold";
+  src: url("../fonts/MonaSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-BoldItalic";
+  src: url("../fonts/MonaSans-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraBold";
+  src: url("../fonts/MonaSans-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraBoldItalic";
+  src: url("../fonts/MonaSans-ExtraBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-SemiBold";
+  src: url("../fonts/MonaSans-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-SemiBoldItalic";
+  src: url("../fonts/MonaSans-SemiBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Light";
+  src: url("../fonts/MonaSans-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-LightItalic";
+  src: url("../fonts/MonaSans-LightItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraLight";
+  src: url("../fonts/MonaSans-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraLightItalic";
+  src: url("../fonts/MonaSans-ExtraLightItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Medium";
+  src: url("../fonts/MonaSans-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-MediumItalic";
+  src: url("../fonts/MonaSans-MediumItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Regular";
+  src: url("../fonts/MonaSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Italic";
+  src: url("../fonts/MonaSans-Italic.ttf") format("truetype");
 }

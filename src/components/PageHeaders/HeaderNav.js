@@ -5,7 +5,6 @@ import { stateContext } from "../../Contexts/Context";
 import CompanyLogo from "../Extras/CompanyLogo";
 
 export function HeaderNav() {
-	// const { COMPANY_URL } = useContext(stateContext);
 	const { COMPANY_SUPPORT_URL } = useContext(stateContext);
 
 	return (

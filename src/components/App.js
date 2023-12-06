@@ -16,7 +16,7 @@ const NETWORK_CONFIG = window?.appConfig;
 const COMPANY_NAME_WITH_UNDERSCORE =
 	NETWORK_CONFIG.COMPANY_NAME_WITH_UNDERSCORE;
 
-require(`../styles/${COMPANY_NAME_WITH_UNDERSCORE}.css`);
+require(`../assets/company_${COMPANY_NAME_WITH_UNDERSCORE}/css/styles.css`);
 
 function App() {
 	const [bridgeContract, setBridgeContract] = useState(null);
