@@ -19,11 +19,15 @@ export default async function checkEthereumConnection({
 		setEthereumAccount(account);
 		setMetamaskNetworkId(netId);
 		setBridgeContract(new web3.eth.Contract(ABI, BRIDGE_CONTRACT_ADDRESS));
-		setMainTokenContract(new web3.eth.Contract(ABI, PRIMARY_TOKEN_ADDRESS));
+		if (PRIMARY_TOKEN_ADDRESS) {
+			setMainTokenContract(
+				new web3.eth.Contract(ABI, PRIMARY_TOKEN_ADDRESS)
+			);
+		}
 	} else {
 		if (!isAppPage)
 			networkErrorHandler(
-				`Please set your network to ${EVM_NETWORK_NAME} on your Ethereum wallet`
+				`Please set your EVM network to ${EVM_NETWORK_NAME} on your wallet`
 			);
 	}
 }

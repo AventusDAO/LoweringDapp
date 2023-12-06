@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { queryBalanceContext, stateContext } from "../../../Contexts/Context";
-import { balanceHandler } from "../../../utils/avnUtils/queryBalance";
+import { ercTokenBalanceHandler } from "../../../utils/avnUtils/queryBalance";
 
 export default function TokenBalanceForm() {
 	const [token, setToken] = useState("");
@@ -27,10 +27,11 @@ export default function TokenBalanceForm() {
 				onSubmit={(event) => {
 					event.preventDefault();
 					setErcQueryLoading(true);
-					balanceHandler({
+					ercTokenBalanceHandler({
 						tokenType: "TOKEN",
 						substrateUser,
 						PRIMARY_TOKEN_ADDRESS,
+						isMain: false,
 						_hasPayer,
 						api,
 						set_HasPayer,

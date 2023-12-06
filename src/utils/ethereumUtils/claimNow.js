@@ -23,9 +23,7 @@ export async function claimNow({
 				.catch((e) => {
 					transactionErrorHandler(e.message);
 				});
-		} catch (err) {
-			console.log(err);
-		}
+		} catch (err) {}
 	} else {
 		metamaskConnectionErrorHandler();
 	}

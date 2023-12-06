@@ -22,7 +22,6 @@ export async function lowerSubmitHandler({
 	set_HasPayer,
 	AVN_RELAYER,
 	EXPLORER_TX_URL,
-	PRIMARY_TOKEN_ADDRESS,
 }) {
 	const params = {
 		relayer: AVN_RELAYER,
@@ -36,7 +35,6 @@ export async function lowerSubmitHandler({
 		amount,
 		method: "proxyTokenLower",
 		EXPLORER_TX_URL,
-		PRIMARY_TOKEN_ADDRESS,
 	};
 	try {
 		const requestId = await sendTransaction(params);

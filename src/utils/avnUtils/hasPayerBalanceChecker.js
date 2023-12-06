@@ -9,7 +9,7 @@ const calculate = {
 	proxyLowerTokenWithoutFee: (params) => proxyLowerTokenWithoutFee(params),
 };
 
-const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
+const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN;
 
 async function proxyLowerTokenWithoutFee({ userFreeBalance, amount }) {
 	userFreeBalance = BigNumber(userFreeBalance);

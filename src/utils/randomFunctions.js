@@ -14,19 +14,17 @@ export function addressSlicer(address, num1, num2) {
 	}
 }
 
-export const balanceFormatter = ({ tokenType, balance }) => {
+export const balanceFormatter = async ({ tokenType, balance }) => {
 	const message = "This is your FREE balance. See FAQ for more.";
-	const SUPPORTED_TOKENS = window?.appConfig?.NETWORK?.SUPPORTED_TOKENS;
-	const mainToken = SUPPORTED_TOKENS.PRIMARY_TOKEN.value;
-	if (tokenType === mainToken || tokenType === "ETH") {
-		const resValue = Number(balance);
-		const result = balanceConverter(resValue, "wei", "ether");
-		return userBalance({ tokenType, decAmount: result, message });
-	} else {
+	if (tokenType === "TOKEN") {
 		return userBalance({
 			tokenType,
 			decAmount: balance,
 		});
+	} else {
+		const resValue = Number(balance);
+		const result = balanceConverter(resValue, "wei", "ether");
+		return await userBalance({ tokenType, decAmount: result, message });
 	}
 };
 
@@ -49,7 +47,7 @@ export function copyTxDetails(value) {
 }
 
 export function txLinkInAlert({ hash }) {
-	const NETWORK_CONFIG = window?.appConfig?.NETWORK;
+	const NETWORK_CONFIG = window?.appConfig;
 	const ETHERSCAN_TX_LINK = NETWORK_CONFIG?.ETHERSCAN_TX_LINK;
 	const EVM_NETWORK_NAME = NETWORK_CONFIG?.EVM_NETWORK_NAME;
 

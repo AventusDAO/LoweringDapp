@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
-import { DesktopPolkadotExtensions } from "../Extras/DesktopPolkadotExtensions";
-import { MobilePolkadotExtensions } from "../Extras/MobilePolkadotExtensions";
+import { DesktopPolkadotExtensions } from "./DesktopPolkadotExtensions";
+import { MobilePolkadotExtensions } from "./MobilePolkadotExtensions";
 import greenIcon from "../../assets/img/green-icon.png";
 import wallet from "../../assets/img/wallet.svg";
 import arrowLeftRight from "../../assets/img/arrow-left-right-circle-black.svg";

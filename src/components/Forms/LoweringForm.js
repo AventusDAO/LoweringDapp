@@ -18,7 +18,7 @@ function LoweringForm() {
 	const title = "Lower";
 	const description = `Move funds from ${ENVIRONMENT_NAME} to ${EVM_NETWORK_NAME}`;
 	const isValidPage = true;
-	const SUPPORTED_TOKENS = window?.appConfig?.NETWORK?.SUPPORTED_TOKENS;
+	const SUPPORTED_TOKENS = window?.appConfig?.SUPPORTED_TOKENS;
 	const tokenTabsKeys = Object.keys(SUPPORTED_TOKENS);
 	const tokenTabs = Object.values(SUPPORTED_TOKENS).map(
 		(value, index) => value.value
@@ -71,17 +71,17 @@ function LoweringForm() {
 												id="myTabContent"
 											>
 												{tokenTabsKeys.includes(
-													"PRIMARY_TOKEN"
+													"MAIN_TOKEN"
 												) && (
 													<MainTokenLoweringForm
 														tokenType={
 															SUPPORTED_TOKENS
-																.PRIMARY_TOKEN
+																.MAIN_TOKEN
 																.value
 														}
 														position={
 															SUPPORTED_TOKENS
-																.PRIMARY_TOKEN
+																.MAIN_TOKEN
 																.position
 														}
 													/>

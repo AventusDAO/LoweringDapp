@@ -1,8 +1,8 @@
 :root {
-  --primary-color: #5100FF;
+  --primary-color: #7810FC;
   --off-color: white;
   --background-color: #F2F1F1;
-  --pop-color: #F65925;
+  --pop-color: #F68363;
 }
 
 .popText {
@@ -15,6 +15,10 @@
 
 .contact-us-button {
   background-color: var(--primary-color, blue);
+}
+
+.header-logo {
+  width: 200px;
 }
 
 .token {
@@ -425,6 +429,10 @@ screen and (max-width: 1100px) {
 
 @media screen and (max-width:767px) {
   /* Footer styles */
+
+  .header-logo {
+      width: 100px;
+    }
 
   .placement-position {
     text-align: center;

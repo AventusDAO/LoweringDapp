@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { capitaliseFirstLetter } from "../../utils/randomFunctions";
 import { connectSpecificWallet } from "../../utils/polkadotUtils/walletUtils";
-import { WalletAccounts } from "./WalletAccounts";
-import GenerateNewToken from "./GenerateNewToken";
+import { WalletAccounts } from "../Extras/WalletAccounts";
+import GenerateNewToken from "../Extras/GenerateNewToken";
 
 function DesktopModalExtensions() {
 	const {

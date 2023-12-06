@@ -42,7 +42,7 @@ export async function ercConfirmLowerDetails({
 				});
 				if (_amount) {
 					const ETHERSCAN_TOKEN_LINK =
-						window?.appConfig?.NETWORK?.ETHERSCAN_TOKEN_LINK;
+						window?.appConfig?.ETHERSCAN_TOKEN_LINK;
 
 					const { isConfirmed: userChoice } = await swal.fire({
 						title: "Confirm details",
@@ -60,14 +60,14 @@ export async function ercConfirmLowerDetails({
 					if (isERC20) {
 						genericErrorHandlerTemplate(
 							"Cannot Find Token Contract",
-							"Please confirm this token exists on your chosen Ethereum network.",
-							"Only Ethereum mainnet and Goerli contracts are supported."
+							`Please confirm this token exists on ${EVM_NETWORK_NAME}.`,
+							`Only ${EVM_NETWORK_NAME} contracts are supported.`
 						);
 					} else {
 						genericErrorHandlerTemplate(
 							"Is not ERC777",
-							"Please confirm that this token's contract exists on your chosen Ethereum network and is ERC777 standard.",
-							"Only Ethereum mainnet and Goerli contracts are supported."
+							`Please confirm that this token's contract exists on ${EVM_NETWORK_NAME} and is ERC777 standard.`,
+							`Only ${EVM_NETWORK_NAME} contracts are supported.`
 						);
 					}
 				}
@@ -107,8 +107,7 @@ export async function confirmLowerDetails({
 			isERC20: false,
 			isERC777: false,
 		});
-		const ETHERSCAN_TOKEN_LINK =
-			window?.appConfig?.NETWORK?.ETHERSCAN_TOKEN_LINK;
+		const ETHERSCAN_TOKEN_LINK = window?.appConfig?.ETHERSCAN_TOKEN_LINK;
 		const { isConfirmed: userChoice } = await swal.fire({
 			title: "Confirm details",
 			html: `<small>Lower ${amount} <a href=${ETHERSCAN_TOKEN_LINK}${tokenAddress} target="_blank"> ${tokenType} </a> to ${t1Recipient} ?</small>`,

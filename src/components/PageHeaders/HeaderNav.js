@@ -1,24 +1,18 @@
-import company_logo from "../../assets/img/company_logo.svg";
+// import company_logo from "../../assets/img/company_logo.svg";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
+import CompanyLogo from "../Extras/CompanyLogo";
 
 export function HeaderNav() {
-	const { COMPANY_URL } = useContext(stateContext);
+	// const { COMPANY_URL } = useContext(stateContext);
 	const { COMPANY_SUPPORT_URL } = useContext(stateContext);
 
 	return (
 		<>
 			<nav className="navbar">
 				<div className="container-fluid">
-					<a
-						href={COMPANY_URL}
-						className="navbar-brand"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<img src={company_logo} alt="logo" />
-					</a>
+					<CompanyLogo />
 					<button
 						className="navbar-toggler"
 						type="button"

@@ -9,7 +9,6 @@ export const LowerDataFromBackend = ({ tx }) => {
 		ethereumAccount,
 		metamaskNetworkId,
 		bridgeContract,
-		PRIMARY_TOKEN_ADDRESS,
 		ETHERSCAN_TOKEN_LINK,
 	} = useContext(stateContext);
 
@@ -89,19 +88,19 @@ export const LowerDataFromBackend = ({ tx }) => {
 							/>
 						</div>
 					</li>
-					<li className="d-flex">
-						<div className="input-group mb-3">
-							<a
-								href={`${ETHERSCAN_TOKEN_LINK}${
-									tx.token ? tx.token : PRIMARY_TOKEN_ADDRESS
-								}`}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								View token{" "}
-							</a>
-						</div>
-					</li>
+					{tx.token && (
+						<li className="d-flex">
+							<div className="input-group mb-3">
+								<a
+									href={`${ETHERSCAN_TOKEN_LINK}${tx.token}`}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									View token{" "}
+								</a>
+							</div>
+						</li>
+					)}
 				</ul>
 				{Object.keys(tx.claimData).length !== 0 ? (
 					<div

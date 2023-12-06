@@ -31,7 +31,6 @@ export default function Erc777LoweringForm({
 		AVN_RELAYER,
 		EVM_NETWORK_NAME,
 		EXPLORER_TX_URL,
-		PRIMARY_TOKEN_ADDRESS,
 	} = useContext(stateContext);
 
 	function submitTxRequest() {
@@ -62,7 +61,6 @@ export default function Erc777LoweringForm({
 						set_HasPayer,
 						AVN_RELAYER,
 						EXPLORER_TX_URL,
-						PRIMARY_TOKEN_ADDRESS,
 					}).then(() => setLowerLoading(false));
 				else {
 					setLowerLoading(false);

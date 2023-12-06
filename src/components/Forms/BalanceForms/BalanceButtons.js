@@ -1,5 +1,8 @@
 import { Spinner } from "../../Extras/Tools";
-import { balanceHandler } from "../../../utils/avnUtils/queryBalance";
+import {
+	mainTokenBalanceHandler,
+	nativeTokenBalanceHandler,
+} from "../../../utils/avnUtils/queryBalance";
 import React, { useContext, useState } from "react";
 import TokenBalanceForm from "./TokenBalanceForm";
 import {
@@ -15,6 +18,7 @@ const BalanceButtons = () => {
 		api,
 		set_HasPayer,
 		NATIVE_CONTRACT_ADDRESS,
+		PRIMARY_TOKEN,
 	} = useContext(stateContext);
 	const { isShown, setIsShown } = useContext(balanceButtonContext);
 	const [ercQueryLoading, setErcQueryLoading] = useState("");
@@ -24,7 +28,7 @@ const BalanceButtons = () => {
 	const [mainTokenQueryLoading, setMainTokenQueryLoading] = useState("");
 	const [nativeQueryLoading, setNativeQueryLoading] = useState("");
 
-	const SUPPORTED_TOKENS = window?.appConfig?.NETWORK?.SUPPORTED_TOKENS;
+	const SUPPORTED_TOKENS = window?.appConfig?.SUPPORTED_TOKENS;
 	const tokenTabsKeys = Object.keys(SUPPORTED_TOKENS);
 
 	return (
@@ -35,7 +39,7 @@ const BalanceButtons = () => {
 			aria-labelledby="bal-non-token-tab"
 			tabIndex="0"
 		>
-			{tokenTabsKeys.includes("PRIMARY_TOKEN") && (
+			{tokenTabsKeys.includes("MAIN_TOKEN") && (
 				<button
 					className="btn submit-button custom-balance-tab-width"
 					disabled={
@@ -48,8 +52,8 @@ const BalanceButtons = () => {
 						event.preventDefault();
 						setIsShown(false);
 						setMainTokenQueryLoading(true);
-						balanceHandler({
-							tokenType: SUPPORTED_TOKENS.PRIMARY_TOKEN.value,
+						mainTokenBalanceHandler({
+							tokenType: SUPPORTED_TOKENS.MAIN_TOKEN.value,
 							substrateUser,
 							_hasPayer,
 							api,
@@ -64,7 +68,7 @@ const BalanceButtons = () => {
 					{mainTokenQueryLoading ? (
 						<Spinner />
 					) : (
-						SUPPORTED_TOKENS.PRIMARY_TOKEN.value
+						SUPPORTED_TOKENS.MAIN_TOKEN.value
 					)}
 				</button>
 			)}
@@ -100,13 +104,14 @@ const BalanceButtons = () => {
 						event.preventDefault();
 						setNativeQueryLoading(true);
 						setIsShown(false);
-						balanceHandler({
+						nativeTokenBalanceHandler({
 							tokenType: SUPPORTED_TOKENS.NATIVE.value,
 							substrateUser,
 							_hasPayer,
 							api,
 							set_HasPayer,
 							method: ethMethod,
+							PRIMARY_TOKEN,
 							NATIVE_CONTRACT_ADDRESS,
 							tokenAddress: NATIVE_CONTRACT_ADDRESS,
 						}).then(() => setNativeQueryLoading(false));

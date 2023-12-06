@@ -1,5 +1,5 @@
 import swal from "sweetalert2";
-const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
+const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN;
 
 export async function gatewayAccessError(_hasPayer) {
 	if (_hasPayer) {

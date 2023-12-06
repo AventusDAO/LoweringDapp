@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { connectSpecificWallet } from "../../utils/polkadotUtils/walletUtils";
-import { WalletAccounts } from "./WalletAccounts";
+import { WalletAccounts } from "../Extras/WalletAccounts";
 
 function MobileModalExtensions() {
 	const {

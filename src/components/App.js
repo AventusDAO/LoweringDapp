@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
-import "../styles/App.css";
 import checkEthereumConnection from "../utils/ethereumUtils/checkEthereumConnection";
 import LoadWeb3 from "../utils/ethereumUtils/loadWeb3";
 import { stateContext } from "../Contexts/Context";
@@ -13,20 +12,24 @@ import { Faq } from "./Faq";
 import { AvnApi, SigningMode, SetupMode } from "avn-api";
 import Footer from "./Footer";
 
-const NETWORK_CONFIG = window?.appConfig?.NETWORK;
+const NETWORK_CONFIG = window?.appConfig;
+const COMPANY_NAME_WITH_UNDERSCORE =
+	NETWORK_CONFIG.COMPANY_NAME_WITH_UNDERSCORE;
+
+require(`../styles/${COMPANY_NAME_WITH_UNDERSCORE}.css`);
 
 function App() {
 	const [bridgeContract, setBridgeContract] = useState(null);
 	const [mainTokenContract, setMainTokenContract] = useState(null);
 	const [ethereumAccount, setEthereumAccount] = useState("");
 	const [loadWeb3, setLoadWeb3] = useState(null);
-	const [switchChecked, setSwitchChecked] = useState(null);
 	const [substrateAccounts, setSubstrateAccounts] = useState("");
 	const [walletName, setWalletName] = useState("");
 	const [substrateUser, setSubstrateUser] = useState("");
 	const [metamaskNetworkId, setMetamaskNetworkId] = useState("");
 	const EVM_NETWORK_NAME = NETWORK_CONFIG.EVM_NETWORK_NAME;
 	const BRIDGE_CONTRACT_ADDRESS = NETWORK_CONFIG.BRIDGE_CONTRACT_ADDRESS;
+	const PRIMARY_TOKEN = NETWORK_CONFIG.PRIMARY_TOKEN;
 	const PRIMARY_TOKEN_ADDRESS = NETWORK_CONFIG.PRIMARY_TOKEN_ADDRESS;
 	const NETWORK_ID = NETWORK_CONFIG.NETWORK_ID;
 	const AVN_GATEWAY_URL = NETWORK_CONFIG.GATEWAY;
@@ -39,6 +42,7 @@ function App() {
 	const ALTERNATE_NETWORK_URL = NETWORK_CONFIG.ALTERNATE_NETWORK_URL;
 	const SHOW_BALANCE_PAGE = NETWORK_CONFIG.SHOW_BALANCE_PAGE;
 	const COMPANY_NAME = NETWORK_CONFIG.COMPANY_NAME;
+	const COMPANY_URL = NETWORK_CONFIG.COMPANY_URL;
 	const NATIVE_CONTRACT_ADDRESS =
 		"0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
 
@@ -125,10 +129,11 @@ function App() {
 					bridgeContract,
 					setBridgeContract,
 					mainTokenContract,
+					PRIMARY_TOKEN,
 					PRIMARY_TOKEN_ADDRESS,
 					BRIDGE_CONTRACT_ADDRESS,
 					COMPANY_NAME,
-					switchChecked,
+					COMPANY_URL,
 					setMainTokenContract,
 					setSubstrateAccounts,
 					AVN_GATEWAY_URL,
@@ -141,8 +146,8 @@ function App() {
 					walletName,
 					_hasPayer,
 					set_HasPayer,
+					COMPANY_NAME_WITH_UNDERSCORE,
 					setWalletName,
-					setSwitchChecked,
 					ETHERSCAN_TOKEN_LINK,
 					ETHERSCAN_TX_LINK,
 					NATIVE_CONTRACT_ADDRESS,

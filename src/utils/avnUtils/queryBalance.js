@@ -11,7 +11,7 @@ Queries the balance of an account.
 */
 
 // This function ensures that the user can only lower from the free balance.
-export async function getPrimaryTokenFreeBalance({ params }) {
+export async function getMainTokenFreeBalance({ params }) {
 	try {
 		const bal = await params?.api.query.getAccountInfo(
 			params.substrateUser.address
@@ -46,9 +46,7 @@ export async function getTokenBalance({ params }) {
 	}
 }
 
-const SUPPORTED_TOKENS = window?.appConfig?.NETWORK?.SUPPORTED_TOKENS;
-
-export async function balanceHandler({
+export async function ercTokenBalanceHandler({
 	tokenType,
 	tokenAddress,
 	substrateUser,
@@ -66,19 +64,86 @@ export async function balanceHandler({
 		isBalanceTab,
 		set_HasPayer,
 	};
+	let balance;
+
 	try {
-		tokenType =
-			tokenAddress === PRIMARY_TOKEN_ADDRESS
-				? SUPPORTED_TOKENS.PRIMARY_TOKEN.value
-				: tokenType;
-		const balance =
-			tokenType === SUPPORTED_TOKENS.PRIMARY_TOKEN.value
-				? await getPrimaryTokenFreeBalance({
-						params,
-				  })
-				: await getTokenBalance({
-						params,
-				  });
+		if (PRIMARY_TOKEN_ADDRESS.length === 0) {
+			balance = await getTokenBalance({
+				params,
+			});
+		} else {
+			if (PRIMARY_TOKEN_ADDRESS === tokenAddress) {
+				balance = await getMainTokenFreeBalance({
+					params,
+				});
+			} else {
+				balance = await getTokenBalance({
+					params,
+				});
+			}
+		}
 		return balanceFormatter({ tokenType, balance });
-	} catch (error) {}
+	} catch (err) {}
+}
+
+export async function nativeTokenBalanceHandler({
+	tokenType,
+	tokenAddress,
+	substrateUser,
+	api,
+	isBalanceTab,
+	_hasPayer,
+	PRIMARY_TOKEN,
+	set_HasPayer,
+}) {
+	const params = {
+		tokenAddress,
+		substrateUser,
+		_hasPayer,
+		api,
+		isBalanceTab,
+		set_HasPayer,
+	};
+	let balance;
+
+	try {
+		if (PRIMARY_TOKEN === tokenType) {
+			balance = await getMainTokenFreeBalance({
+				params,
+			});
+		} else {
+			balance = await getTokenBalance({
+				params,
+			});
+		}
+		return await balanceFormatter({ tokenType, balance });
+	} catch (err) {}
+}
+
+export async function mainTokenBalanceHandler({
+	tokenType,
+	tokenAddress,
+	substrateUser,
+	api,
+	isBalanceTab,
+	_hasPayer,
+	set_HasPayer,
+}) {
+	const params = {
+		tokenAddress,
+		substrateUser,
+		_hasPayer,
+		api,
+		isBalanceTab,
+		set_HasPayer,
+	};
+	let balance;
+
+	try {
+		balance = await getMainTokenFreeBalance({
+			params,
+		});
+
+		return balanceFormatter({ tokenType, balance });
+	} catch (err) {}
 }

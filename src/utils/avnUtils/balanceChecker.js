@@ -10,7 +10,7 @@ const calculate = {
 	proxyLowerTokenWithFee: (params) => proxyLowerTokenWithFee(params),
 };
 
-const PRIMARY_TOKEN = window?.appConfig?.NETWORK.PRIMARY_TOKEN;
+const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN;
 
 async function proxyLowerTokenWithFee({
 	userFreeBalance,

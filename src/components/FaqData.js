@@ -1,6 +1,6 @@
-const ENVIRONMENT_NAME = window?.appConfig?.NETWORK.ENVIRONMENT_NAME;
-const COMPANY_NAME = window?.appConfig?.NETWORK.COMPANY_NAME;
-const EVM_NETWORK_NAME = window?.appConfig?.NETWORK.EVM_NETWORK_NAME;
+const ENVIRONMENT_NAME = window?.appConfig?.ENVIRONMENT_NAME;
+const COMPANY_NAME = window?.appConfig?.COMPANY_NAME;
+const EVM_NETWORK_NAME = window?.appConfig?.EVM_NETWORK_NAME;
 
 const FAQ = [
 	{
