@@ -6,7 +6,6 @@ const CompanyLogo = () => {
 		useContext(stateContext);
 	return (
 		<a
-			// href={COMPANY_URL}
 			href={COMPANY_URL}
 			className="navbar-brand"
 			target="_blank"
