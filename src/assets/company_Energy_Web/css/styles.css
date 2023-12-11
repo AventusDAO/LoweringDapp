@@ -1,5 +1,6 @@
 :root {
-  --primary-color: #7810FC;
+  --primary-dark-color: #7810FC;
+  --primary-light-color: #A466FF;
   --off-color: white;
   --background-color: #F2F1F1;
   --pop-color: #F68363;
@@ -10,11 +11,11 @@
 }
 
 .navbar-toggler {
-  background-color: var(--primary-color, blue);
+  background-color: var(--primary-light-color, blue);
 }
 
 .contact-us-button {
-  background-color: var(--primary-color, blue);
+  background-color: var(--primary-light-color, blue);
 }
 
 .header-logo {
@@ -34,7 +35,7 @@
 }
 
 .rectangle {
-  background: var(--primary-color, blue);;
+  background: linear-gradient(45deg, var(--primary-light-color), var(--primary-dark-color))
 }
 
 .small-line {
@@ -117,7 +118,7 @@ body {
 
 .card-status {
   font-size: small;
-  background-color: var(--primary-color, blue);;
+  background-color: var(--primary-light-color, blue);;
   border-radius: 15px;
   color: var(--off-color, white);;
   font-weight: bold;
@@ -125,7 +126,7 @@ body {
 }
 
 .card-author b {
-  color: var(--primary-color, blue);
+  color: var(--primary-light-color, blue);
 }
 
 .card-img-top {
@@ -145,9 +146,9 @@ body {
 
 /* Button Styling */
 .contact-btn {
-  background-color: var(--primary-color, blue);;
+  background-color: var(--primary-light-color, blue);;
   color: #ffffff;
-  border-color: var(--primary-color, blue);
+  border-color: var(--primary-light-color, blue);
 }
 
 .gear-button {
@@ -157,22 +158,22 @@ body {
 
 .connect-button {
   font-weight: bold;
-  background-color: var(--pop-color, orange);;
+  background-color: var(--primary-light-color, purple);;
   color: #ffffff;
-  border-color: var(--pop-color, orange);
+  border-color: var(--primary-light-color, purple);
 }
 
 .submit-button {
-  background-color: var(--primary-color, blue);;
+  background-color: var(--primary-light-color, blue);;
   color: #ffffff;
-  border-color: var(--primary-color, blue);;
+  border-color: var(--primary-light-color, blue);;
   border-radius: 5px;
 }
 
 .formNav-button{
-  background-color: var(--primary-color, blue);;
+  background-color: var(--primary-light-color, blue);;
   color: #ffffff;
-  border-color: var(--primary-color, blue);;
+  border-color: var(--primary-light-color, blue);;
   border-radius: 5px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -180,9 +181,9 @@ body {
 }
 
 .mobileFormNav-button {
-  background-color: var(--primary-color, blue);;
+  background-color: var(--primary-light-color, blue);;
   color: #ffffff;
-  border-color: var(--primary-color, blue);;
+  border-color: var(--primary-light-color, blue);;
   border-radius: 5px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -272,10 +273,10 @@ body {
 .disconnect-btn {
   font-size: small;
   border-radius: 15px;
-  background-color: var(--primary-color, blue);;
+  background-color: var(--primary-light-color, blue);;
   border-radius: 15px;
   color: var(--off-color, white);;
-  border-color: var(--primary-color, blue);;
+  border-color: var(--primary-light-color, blue);;
   font-weight: bold;
 }
 
@@ -578,9 +579,9 @@ screen and (max-width: 420px) {
   }
 
   .mobileFormNav-button {
-    background-color: var(--primary-color, blue);;
+    background-color: var(--primary-light-color, blue);;
     color: #ffffff;
-    border-color: var(--primary-color, blue);;
+    border-color: var(--primary-light-color, blue);;
     border-radius: 5px;
     font-weight: 700;
     margin-bottom: 10px;

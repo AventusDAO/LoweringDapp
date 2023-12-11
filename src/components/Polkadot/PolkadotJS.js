@@ -4,7 +4,6 @@ import { DesktopPolkadotExtensions } from "./DesktopPolkadotExtensions";
 import { MobilePolkadotExtensions } from "./MobilePolkadotExtensions";
 import greenIcon from "../../assets/img/green-icon.png";
 import wallet from "../../assets/img/wallet.svg";
-import arrowLeftRight from "../../assets/img/arrow-left-right-circle-black.svg";
 import { addressSlicer } from "../../utils/randomFunctions";
 
 export function PolkadotJS() {
@@ -60,15 +59,17 @@ function MobileHeaderButtons() {
 			) : (
 				<MobileNoAccount />
 			)}
-			<a
-				href={ALTERNATE_NETWORK_URL}
-				style={{ textDecoration: "none" }}
-				rel="noopener noreferrer"
-			>
-				<button className="btn connect-button mobile-bigButton">
-					Switch To {ALTERNATE_NETWORK_NAME}
-				</button>
-			</a>
+			{ALTERNATE_NETWORK_NAME && (
+				<a
+					href={ALTERNATE_NETWORK_URL}
+					style={{ textDecoration: "none" }}
+					rel="noopener noreferrer"
+				>
+					<button className="btn connect-button mobile-bigButton">
+						Switch To {ALTERNATE_NETWORK_NAME}
+					</button>
+				</a>
+			)}
 		</div>
 	);
 }
@@ -105,7 +106,7 @@ function DesktopHeaderButtons() {
 						data-bs-toggle="modal"
 						data-bs-target="#extensionsModal"
 					>
-						<img src={arrowLeftRight} alt="logo" /> Switch Account
+						<img src={wallet} alt="logo" /> Wallet
 					</button>
 					<DesktopPolkadotExtensions />
 				</div>
@@ -119,15 +120,17 @@ function DesktopHeaderButtons() {
 			<span className="col-sm text-end bottom">
 				<br />
 				<br />
-				<a
-					href={ALTERNATE_NETWORK_URL}
-					style={{ textDecoration: "none" }}
-					rel="noopener noreferrer"
-				>
-					<button className="btn text-end connect-button mobile-bigButton">
-						Switch To {ALTERNATE_NETWORK_NAME}
-					</button>
-				</a>
+				{ALTERNATE_NETWORK_NAME && (
+					<a
+						href={ALTERNATE_NETWORK_URL}
+						style={{ textDecoration: "none" }}
+						rel="noopener noreferrer"
+					>
+						<button className="btn text-end connect-button mobile-bigButton">
+							Switch To {ALTERNATE_NETWORK_NAME}
+						</button>
+					</a>
+				)}
 			</span>
 		</div>
 	);

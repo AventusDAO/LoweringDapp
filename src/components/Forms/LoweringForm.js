@@ -20,9 +20,15 @@ function LoweringForm() {
 	const isValidPage = true;
 	const SUPPORTED_TOKENS = window?.appConfig?.SUPPORTED_TOKENS;
 	const tokenTabsKeys = Object.keys(SUPPORTED_TOKENS);
-	const tokenTabs = Object.values(SUPPORTED_TOKENS).map(
-		(value, index) => value.value
-	);
+
+	let tokenTabs = [];
+	Object.values(SUPPORTED_TOKENS).map((token) => {
+		const tokenValue = token.value;
+		if (tokenValue.length > 0) {
+			tokenTabs.push(tokenValue);
+		}
+		return tokenValue;
+	});
 
 	return (
 		<>

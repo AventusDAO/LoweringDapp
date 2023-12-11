@@ -49,7 +49,7 @@ const FAQ = [
 	},
 	{
 		question: "Why do I need to have Metamask?",
-		answer: "To ensure we are lowering the right amount of your erc20 token with the right amount of decimals, we need to access the smart contract for that token to confirm the decimal number.",
+		answer: "To ensure we are lowering the right amount of your token with the right amount of decimals, we need to access the smart contract for that token to confirm the decimal number.",
 	},
 	{
 		question: "What is my FREE balance?",

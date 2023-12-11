@@ -25,29 +25,32 @@ function App() {
 	const [loadWeb3, setLoadWeb3] = useState(null);
 	const [substrateAccounts, setSubstrateAccounts] = useState("");
 	const [walletName, setWalletName] = useState("");
+	const [regenerateToken, setRegenerateToken] = useState("");
 	const [substrateUser, setSubstrateUser] = useState("");
 	const [metamaskNetworkId, setMetamaskNetworkId] = useState("");
-	const EVM_NETWORK_NAME = NETWORK_CONFIG.EVM_NETWORK_NAME;
-	const BRIDGE_CONTRACT_ADDRESS = NETWORK_CONFIG.BRIDGE_CONTRACT_ADDRESS;
-	const PRIMARY_TOKEN = NETWORK_CONFIG.PRIMARY_TOKEN;
-	const PRIMARY_TOKEN_ADDRESS = NETWORK_CONFIG.PRIMARY_TOKEN_ADDRESS;
-	const NETWORK_ID = NETWORK_CONFIG.NETWORK_ID;
+	const [api, setApi] = useState();
+	const [_hasPayer, set_HasPayer] = useState(false);
+
 	const AVN_GATEWAY_URL = NETWORK_CONFIG.GATEWAY;
 	const AVN_RELAYER = NETWORK_CONFIG.RELAYER;
+	const ALTERNATE_NETWORK_NAME = NETWORK_CONFIG.ALTERNATE_NETWORK_NAME;
+	const ALTERNATE_NETWORK_URL = NETWORK_CONFIG.ALTERNATE_NETWORK_URL;
+	const BRIDGE_CONTRACT_ADDRESS = NETWORK_CONFIG.BRIDGE_CONTRACT_ADDRESS;
+	const COMPANY_NAME = NETWORK_CONFIG.COMPANY_NAME;
+	const COMPANY_URL = NETWORK_CONFIG.COMPANY_URL;
 	const EXPLORER_TX_URL = NETWORK_CONFIG.EXPLORER_TX_URL;
 	const ETHERSCAN_TX_LINK = NETWORK_CONFIG.ETHERSCAN_TX_LINK;
 	const ETHERSCAN_TOKEN_LINK = NETWORK_CONFIG.ETHERSCAN_TOKEN_LINK;
 	const ENVIRONMENT_NAME = NETWORK_CONFIG.ENVIRONMENT_NAME;
-	const ALTERNATE_NETWORK_NAME = NETWORK_CONFIG.ALTERNATE_NETWORK_NAME;
-	const ALTERNATE_NETWORK_URL = NETWORK_CONFIG.ALTERNATE_NETWORK_URL;
+	const EVM_NETWORK_NAME = NETWORK_CONFIG.EVM_NETWORK_NAME;
+	const NETWORK_ID = NETWORK_CONFIG.NETWORK_ID;
+	const PRIMARY_TOKEN = NETWORK_CONFIG.PRIMARY_TOKEN;
+	const PRIMARY_TOKEN_ADDRESS = NETWORK_CONFIG.PRIMARY_TOKEN_ADDRESS;
 	const SHOW_BALANCE_PAGE = NETWORK_CONFIG.SHOW_BALANCE_PAGE;
-	const COMPANY_NAME = NETWORK_CONFIG.COMPANY_NAME;
-	const COMPANY_URL = NETWORK_CONFIG.COMPANY_URL;
+	const SUPPORTS_ENTERPRISE_USERS = NETWORK_CONFIG.SUPPORTS_ENTERPRISE_USERS;
+
 	const NATIVE_CONTRACT_ADDRESS =
 		"0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
-
-	const [api, setApi] = useState();
-	const [_hasPayer, set_HasPayer] = useState(false);
 
 	const checkForWeb3 = useCallback(async () => {
 		const web3 = await LoadWeb3();
@@ -93,7 +96,8 @@ function App() {
 				setupMode: SetupMode.SingleUser,
 				signingMode: SigningMode.RemoteSigner,
 				defaultLogLevel: "error",
-				hasPayer: _hasPayer,
+				hasPayer:
+					SUPPORTS_ENTERPRISE_USERS === false ? false : _hasPayer,
 				signer: {
 					sign: (data, address) =>
 						substrateUser
@@ -107,7 +111,13 @@ function App() {
 			await setupSdk.init();
 			setApi(await setupSdk.apis(substrateUser.address));
 		}
-	}, [substrateUser, setApi, _hasPayer, AVN_GATEWAY_URL]);
+	}, [
+		substrateUser,
+		setApi,
+		_hasPayer,
+		AVN_GATEWAY_URL,
+		SUPPORTS_ENTERPRISE_USERS,
+	]);
 
 	useEffect(() => {
 		checkForWeb3();
@@ -129,31 +139,34 @@ function App() {
 					bridgeContract,
 					setBridgeContract,
 					mainTokenContract,
-					PRIMARY_TOKEN,
-					PRIMARY_TOKEN_ADDRESS,
-					BRIDGE_CONTRACT_ADDRESS,
-					COMPANY_NAME,
-					COMPANY_URL,
 					setMainTokenContract,
 					setSubstrateAccounts,
+					walletName,
+					_hasPayer,
+					set_HasPayer,
+					loadWeb3,
+					regenerateToken,
+					setRegenerateToken,
+					setWalletName,
+					PRIMARY_TOKEN,
+					COMPANY_NAME,
+					COMPANY_URL,
+					COMPANY_NAME_WITH_UNDERSCORE,
 					AVN_GATEWAY_URL,
 					EXPLORER_TX_URL,
 					ENVIRONMENT_NAME,
 					EVM_NETWORK_NAME,
-					NETWORK_ID,
+					PRIMARY_TOKEN_ADDRESS,
+					BRIDGE_CONTRACT_ADDRESS,
+					SUPPORTS_ENTERPRISE_USERS,
 					SHOW_BALANCE_PAGE,
+					NETWORK_ID,
 					AVN_RELAYER,
-					walletName,
-					_hasPayer,
-					set_HasPayer,
-					COMPANY_NAME_WITH_UNDERSCORE,
-					setWalletName,
 					ETHERSCAN_TOKEN_LINK,
 					ETHERSCAN_TX_LINK,
 					NATIVE_CONTRACT_ADDRESS,
 					ALTERNATE_NETWORK_NAME,
 					ALTERNATE_NETWORK_URL,
-					loadWeb3,
 				}}
 			>
 				<Routes>

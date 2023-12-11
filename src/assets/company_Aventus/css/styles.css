@@ -28,6 +28,10 @@
   display: inline-block;
 }
 
+.card-balance {
+  font-size: 12px;
+}
+
 .copy-icon {
   width: 15px;
   height: 15px;
@@ -266,6 +270,25 @@ body {
   background-color: red;
   border-color: var(--off-color, white);;
   color: var(--off-color, white);;
+  border-radius: 15px;
+}
+
+.set-enterprise-token-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--primary-color, blue);
+  border-color: var(--primary-color, blue);
+  font-weight: bold;
+  padding: -5px
+}
+
+.set-enterprise-token-button:hover {
+  background-color: var(--primary-color, blue);
+  border-color: var(--off-color, white);
+  ;
+  color: var(--off-color, white);
+  ;
   border-radius: 15px;
 }
 

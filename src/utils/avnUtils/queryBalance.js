@@ -1,9 +1,5 @@
-// import { weiToEthConverter } from "../randomFunctions";
 import { balanceFormatter } from "../randomFunctions";
-import {
-	gatewayAccessErrorForNoMinimumBalance,
-	gatewayAccessErrorForNoPayer,
-} from "../errorPopups/networkAccessErrorPopups";
+import { gatewayAccessError } from "../errorPopups/networkAccessErrorPopups";
 /*
 Constructs the params for the balance and the url...
 Requires a valid token to get the account balance.
@@ -20,9 +16,7 @@ export async function getMainTokenFreeBalance({ params }) {
 		return userFreeBalance;
 	} catch (err) {
 		if (err.message.includes("403")) {
-			const result = params._hasPayer
-				? await gatewayAccessErrorForNoPayer()
-				: await gatewayAccessErrorForNoMinimumBalance();
+			const result = await gatewayAccessError(params._hasPayer);
 			params.set_HasPayer(result);
 		}
 		return null;
@@ -38,9 +32,7 @@ export async function getTokenBalance({ params }) {
 		return tokenBalance;
 	} catch (err) {
 		if (err.message.includes("403")) {
-			const result = params._hasPayer
-				? await gatewayAccessErrorForNoPayer()
-				: await gatewayAccessErrorForNoMinimumBalance();
+			const result = await gatewayAccessError(params._hasPayer);
 			params.set_HasPayer(result);
 		}
 	}
@@ -82,7 +74,11 @@ export async function ercTokenBalanceHandler({
 				});
 			}
 		}
-		return balanceFormatter({ tokenType, balance });
+		if (balance) {
+			return await balanceFormatter({ tokenType, balance });
+		} else {
+			return null;
+		}
 	} catch (err) {}
 }
 
@@ -104,6 +100,7 @@ export async function nativeTokenBalanceHandler({
 		isBalanceTab,
 		set_HasPayer,
 	};
+
 	let balance;
 
 	try {
@@ -116,7 +113,11 @@ export async function nativeTokenBalanceHandler({
 				params,
 			});
 		}
-		return await balanceFormatter({ tokenType, balance });
+		if (balance) {
+			return await balanceFormatter({ tokenType, balance });
+		} else {
+			return null;
+		}
 	} catch (err) {}
 }
 
@@ -144,6 +145,10 @@ export async function mainTokenBalanceHandler({
 			params,
 		});
 
-		return balanceFormatter({ tokenType, balance });
+		if (balance) {
+			return await balanceFormatter({ tokenType, balance });
+		} else {
+			return null;
+		}
 	} catch (err) {}
 }

@@ -23,9 +23,20 @@ export const balanceFormatter = async ({ tokenType, balance }) => {
 		});
 	} else {
 		const resValue = Number(balance);
-		const result = balanceConverter(resValue, "wei", "ether");
+		const result = weiToEthConverter(resValue);
 		return await userBalance({ tokenType, decAmount: result, message });
 	}
+};
+
+export const weiToEthConverter = (res) => {
+	const result = balanceConverter(res, "wei", "ether");
+	return result;
+};
+
+export const truncateBalance = (res) => {
+	if (res.length > 5) {
+		return res.slice(0, 5);
+	} else return res;
 };
 
 export function copyUUID(value) {

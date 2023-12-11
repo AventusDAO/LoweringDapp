@@ -1,5 +1,7 @@
 import swal from "sweetalert2";
 
+const LOWER_DURATION = window?.appConfig?.LOWER_DURATION;
+
 export async function TxSubmitted(id) {
 	await swal
 		.fire({
@@ -22,7 +24,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
 		await swal.fire({
 			title: "Lower Successful",
 			showCloseButton: true,
-			text: "You'll need to complete Step-2 after 24 hours to claim your tokens on Ethereum.",
+			text: `You'll need to complete Step-2 after ${LOWER_DURATION} to claim your tokens on Ethereum.`,
 			allowOutsideClick: false,
 			confirmButtonColor: "#ffffff",
 			showConfirmButton: false,

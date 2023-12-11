@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { stateContext } from "../../Contexts/Context";
 import { connectSpecificWallet } from "../../utils/polkadotUtils/walletUtils";
 import { WalletAccounts } from "../Extras/WalletAccounts";
+import GenerateNewToken from "../Extras/GenerateNewToken";
+import SetEnterpriseStatus from "../Extras/SetEnterpriseStatus";
 
 function MobileModalExtensions() {
 	const {
@@ -67,7 +69,16 @@ function MobileModalExtensions() {
 				))}
 			</div>
 			<br />
-			<div className="text-start" style={{ margin: "5px" }}>
+			<div style={{ margin: "5px" }}>
+				<div className="row">
+					<div className="col text-start">
+						{substrateUser && <SetEnterpriseStatus />}
+					</div>
+					<div className="col text-end">
+						{substrateUser && <GenerateNewToken />}
+					</div>
+				</div>
+				<br />
 				<b>Accounts: </b>{" "}
 				{!substrateAccounts && "Select from the above extensions."}{" "}
 			</div>

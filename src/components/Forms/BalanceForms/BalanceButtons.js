@@ -20,6 +20,7 @@ const BalanceButtons = () => {
 		NATIVE_CONTRACT_ADDRESS,
 		PRIMARY_TOKEN,
 	} = useContext(stateContext);
+
 	const { isShown, setIsShown } = useContext(balanceButtonContext);
 	const [ercQueryLoading, setErcQueryLoading] = useState("");
 
@@ -30,6 +31,29 @@ const BalanceButtons = () => {
 
 	const SUPPORTED_TOKENS = window?.appConfig?.SUPPORTED_TOKENS;
 	const tokenTabsKeys = Object.keys(SUPPORTED_TOKENS);
+	const onlyOneButton = tokenTabsKeys.length === 1;
+	console.log(onlyOneButton);
+
+	const tokenButtons = (key1, key2) => {
+		let buttons;
+		if (key2) {
+			const button1 =
+				tokenTabsKeys.includes(key1) && SUPPORTED_TOKENS[key1]?.value
+					? true
+					: false;
+			const button2 =
+				tokenTabsKeys.includes(key2) && SUPPORTED_TOKENS[key2]?.value
+					? true
+					: false;
+			buttons = button1 || button2;
+		} else {
+			buttons =
+				tokenTabsKeys.includes(key1) && SUPPORTED_TOKENS[key1]?.value
+					? true
+					: false;
+		}
+		return buttons;
+	};
 
 	return (
 		<div
@@ -39,7 +63,7 @@ const BalanceButtons = () => {
 			aria-labelledby="bal-non-token-tab"
 			tabIndex="0"
 		>
-			{tokenTabsKeys.includes("MAIN_TOKEN") && (
+			{tokenButtons("MAIN_TOKEN") && (
 				<button
 					className="btn submit-button custom-balance-tab-width"
 					disabled={
@@ -67,14 +91,15 @@ const BalanceButtons = () => {
 				>
 					{mainTokenQueryLoading ? (
 						<Spinner />
+					) : onlyOneButton ? (
+						`Check ${SUPPORTED_TOKENS.MAIN_TOKEN.value} Balance `
 					) : (
 						SUPPORTED_TOKENS.MAIN_TOKEN.value
 					)}
 				</button>
 			)}
 			&nbsp;
-			{(tokenTabsKeys.includes("ERC20") ||
-				tokenTabsKeys.includes("ERC777")) && (
+			{tokenButtons("ERC20", "ERC777") && (
 				<button
 					className="btn submit-button custom-balance-tab-width"
 					disabled={
@@ -92,7 +117,7 @@ const BalanceButtons = () => {
 				</button>
 			)}
 			&nbsp;
-			{tokenTabsKeys.includes("NATIVE") && (
+			{tokenButtons("NATIVE") && (
 				<button
 					className="btn submit-button custom-balance-tab-width"
 					disabled={
@@ -119,6 +144,8 @@ const BalanceButtons = () => {
 				>
 					{nativeQueryLoading ? (
 						<Spinner />
+					) : onlyOneButton ? (
+						`Check ${SUPPORTED_TOKENS.NATIVE.value} Balance `
 					) : (
 						SUPPORTED_TOKENS.NATIVE.value
 					)}
