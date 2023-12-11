@@ -2,6 +2,7 @@ import swal from "sweetalert2";
 import { regenerateGatewayToken } from "../someUIpopups";
 
 const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN;
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 
 export async function gatewayAccessError(_hasPayer) {
 	if (_hasPayer) {
@@ -18,7 +19,7 @@ export async function gatewayAccessErrorForNoPayer() {
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonText: "Okay",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		denyButtonColor: "green",
 	});
 	if (isGenerateNewToken) {
@@ -35,7 +36,7 @@ export async function gatewayAccessErrorForNoMinimumBalance(_hasPayer) {
 			allowOutsideClick: false,
 			icon: "error",
 			denyButtonText: "Okay",
-			confirmButtonColor: "#5100FF",
+			confirmButtonColor: BUTTON_COLOR,
 			denyButtonColor: "black",
 			showDenyButton: true,
 			confirmButtonText: "Generate New Token",

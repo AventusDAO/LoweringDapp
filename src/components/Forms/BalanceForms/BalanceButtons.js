@@ -32,7 +32,6 @@ const BalanceButtons = () => {
 	const SUPPORTED_TOKENS = window?.appConfig?.SUPPORTED_TOKENS;
 	const tokenTabsKeys = Object.keys(SUPPORTED_TOKENS);
 	const onlyOneButton = tokenTabsKeys.length === 1;
-	console.log(onlyOneButton);
 
 	const tokenButtons = (key1, key2) => {
 		let buttons;

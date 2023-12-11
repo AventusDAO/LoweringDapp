@@ -2,7 +2,7 @@ var appConfig = {
 	ALTERNATE_NETWORK_URL: "",
 	ALTERNATE_NETWORK_NAME: "", //leave empty if Mainnet is not deployed
 	BRIDGE_CONTRACT_ADDRESS: "",
-	COMPANY_NAME: "Aventus",
+	COMPANY_NAME: "",
 	COMPANY_URL: "",
 	COMPANY_SUPPORT_URL: "",
 	COMPANY_NAME_WITH_UNDERSCORE: "",

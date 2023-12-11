@@ -1,6 +1,7 @@
 import swal from "sweetalert2";
 
 const LOWER_DURATION = window?.appConfig?.LOWER_DURATION;
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 
 export async function TxSubmitted(id) {
 	await swal
@@ -11,7 +12,7 @@ export async function TxSubmitted(id) {
 			icon: "success",
 			showConfirmButton: true,
 			confirmButtonText: "Okay",
-			confirmButtonColor: "#5100FF",
+			confirmButtonColor: BUTTON_COLOR,
 			showCloseButton: true,
 		})
 		.then(() => {
@@ -51,7 +52,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
 			text: "Transaction not found. Please ensure you are querying the right network.",
 			allowOutsideClick: false,
 			showConfirmButton: true,
-			confirmButtonColor: "#5100FF",
+			confirmButtonColor: BUTTON_COLOR,
 			confirmButtonText: "Okay",
 			icon: "info",
 		});

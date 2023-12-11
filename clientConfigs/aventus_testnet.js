@@ -3,6 +3,7 @@ var appConfig = {
 	ALTERNATE_NETWORK_URL: "https://lower.aventus.io/",
 	ALTERNATE_NETWORK_NAME: "Mainnet", //leave empty if Mainnet is not deployed
 	BRIDGE_CONTRACT_ADDRESS: "0x8fa6cd9a275506d719c434335c0c9ffd15e05a87",
+	BUTTON_COLOR: "#5100FF",
 	COMPANY_NAME: "Aventus",
 	COMPANY_URL: "https://www.aventus.io/",
 	COMPANY_SUPPORT_URL: "https://www.aventus.io/contact/",

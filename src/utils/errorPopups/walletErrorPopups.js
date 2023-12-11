@@ -1,6 +1,8 @@
 import swal from "sweetalert2";
 import { capitaliseFirstLetter } from "../randomFunctions";
 
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
+
 export function substrateNotDetected(name) {
 	let url;
 	if (name === "talisman") {
@@ -31,7 +33,7 @@ export function substrateConnectFailure() {
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonText: "Close",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 	});
 }
 
@@ -53,7 +55,7 @@ export function metamaskConnectionErrorHandler(val) {
 		html: `Please connect to Metamask on the <a href="/claim">Claim Token</a> page and try again`,
 		allowOutsideClick: false,
 		icon: "error",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Close",
 		footer: val ? `<p class="text-center"> ${val}</p>` : "",
 	});
@@ -65,7 +67,7 @@ export function signingErrorHandler(err, more) {
 		text: err.toString(),
 		allowOutsideClick: false,
 		icon: "error",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Okay",
 		footer: more ? `<p class="text-center">${more}</p>` : "",
 	});
@@ -77,7 +79,7 @@ export function invalidSubstrateSignature() {
 		text: "The signature could not be generated. Please retry.",
 		allowOutsideClick: false,
 		icon: "error",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Okay",
 	});
 }
@@ -89,6 +91,6 @@ export function networkErrorHandler(err) {
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonText: "Okay",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 	});
 }

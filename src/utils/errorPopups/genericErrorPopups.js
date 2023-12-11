@@ -1,4 +1,5 @@
 import swal from "sweetalert2";
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 
 export function genericErrorHandlerTemplate(title, text, footText) {
 	return swal.fire({
@@ -8,6 +9,6 @@ export function genericErrorHandlerTemplate(title, text, footText) {
 		confirmButtonText: "Okay",
 		allowOutsideClick: false,
 		footer: footText ? `<p class="text-center">${footText}</p>` : "",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 	});
 }

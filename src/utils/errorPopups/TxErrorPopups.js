@@ -1,5 +1,7 @@
 import swal from "sweetalert2";
 
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
+
 export function lowerError(err) {
 	return swal.fire({
 		title: "Lower Status",
@@ -7,7 +9,7 @@ export function lowerError(err) {
 		allowOutsideClick: false,
 		icon: "info",
 		confirmButtonText: "Okay",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 	});
 }
 
@@ -18,7 +20,7 @@ export function transactionErrorHandler(err) {
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonText: "Okay",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 	});
 }
 
@@ -28,7 +30,7 @@ export function invalidTokenAmountHandler(tokenType) {
 		text: `Must be a valid ${tokenType} token existing on this network`,
 		allowOutsideClick: false,
 		icon: "error",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Okay",
 	});
 }
@@ -39,7 +41,7 @@ export function invalidAddressErrorHandler() {
 		text: "The Recipient account must be a valid SS58 address",
 		allowOutsideClick: false,
 		icon: "error",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Okay",
 	});
 }
@@ -50,7 +52,7 @@ export function isZeroErrorHandler() {
 		text: "Amount cannot be zero",
 		allowOutsideClick: false,
 		icon: "error",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Okay",
 	});
 }
@@ -62,6 +64,6 @@ export function invalidTokenErrorHandler(tokenType) {
 		allowOutsideClick: false,
 		icon: "error",
 		confirmButtonText: "Okay",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 	});
 }

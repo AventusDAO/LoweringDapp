@@ -1,5 +1,6 @@
 import swal from "sweetalert2";
 const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN;
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 
 export async function balanceAdjustedNotification(title, message, footer) {
 	const { isConfirmed: result } = await swal.fire({
@@ -36,7 +37,7 @@ export const userBalance = async ({ tokenType, message, decAmount }) => {
 		text: decAmount,
 		allowOutsideClick: false,
 		icon: "info",
-		confirmButtonColor: "#5100FF",
+		confirmButtonColor: BUTTON_COLOR,
 		confirmButtonText: "Okay",
 		footer: `<p class="text-center">${
 			tokenType === PRIMARY_TOKEN
@@ -58,7 +59,7 @@ export async function transactionSubmitted(id) {
 			icon: "success",
 			showConfirmButton: true,
 			confirmButtonText: "Okay",
-			confirmButtonColor: "#5100FF",
+			confirmButtonColor: BUTTON_COLOR,
 			showCloseButton: true,
 		})
 		.then(() => {
