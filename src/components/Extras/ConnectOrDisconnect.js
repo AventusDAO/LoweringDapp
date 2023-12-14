@@ -34,7 +34,7 @@ export function Disconnect() {
 	return (
 		<div className="text-end">
 			<button
-				className={`btn  ${COMPANY_NAME_WITH_UNDERSCORE}-disconnect-btn ${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+				className={`btn  ${COMPANY_NAME_WITH_UNDERSCORE}-disconnect-btn  ${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
 				data-bs-dismiss="modal"
 				onClick={disconnectSubstrateWallet}
 			>

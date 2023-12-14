@@ -104,12 +104,12 @@ body {
   color: var(--Aventus-primary-color);
 }
 
-.Energy-Web-card-author {
+.Energy_Web-card-author {
   font-size: small;
 }
 
-.Energy-Web-card-author b {
-  color: var(--Energy-Web-primary-light-color);
+.Energy_Web-card-author b {
+  color: var(--Energy_Web-primary-light-color);
 }
 
 .Aventus-card-status {
@@ -162,10 +162,10 @@ body {
   min-width: 130px;
 }
 
-.Energy-Web-formNav-button {
-  background-color: var(--Energy-Web-primary-light-color);
+.Energy_Web-formNav-button {
+  background-color: var(--Energy_Web-primary-light-color);
   color: #ffffff;
-  border-color: var(--Energy-Web-primary-light-color);
+  border-color: var(--Energy_Web-primary-light-color);
   border-radius: 5px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -260,34 +260,34 @@ body {
   border-radius: 15px;
 }
 
-.Energy-Web-set-enterprise-token-button {
+.Energy_Web-set-enterprise-token-button {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--Energy-Web-primary-light-color);
-  border-color: var(--Energy-Web-primary-light-color);
+  color: var(--Energy_Web-primary-light-color);
+  border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
   padding: -5px
 }
 
-.Energy-Web-set-enterprise-token-button:hover {
-  background-color: var(--Energy-Web-primary-light-color);
+.Energy_Web-set-enterprise-token-button:hover {
+  background-color: var(--Energy_Web-primary-light-color);
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
 }
 
-.Energy-Web-disconnect-btn {
+.Energy_Web-disconnect-btn {
   font-size: small;
   border-radius: 15px;
-  background-color: var(--Energy-Web-primary-light-color);
+  background-color: var(--Energy_Web-primary-light-color);
   border-radius: 15px;
-  color: var(--off-color, white);
-  border-color: var(--Energy-Web-primary-light-color);
+  color: var(--off-color);
+  border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
 }
 
-.Energy-Web-disconnect-btn:hover {
+.Energy_Web-disconnect-btn:hover {
   background-color: #eb1111;
   border-color: var(--off-color, white);
   color: var(--off-color, white);
@@ -470,7 +470,7 @@ body {
   color: var(--Energy_Web-pop-color);
 }
 
-.Energy-Web-mobileFormNav-button {
+.Energy_Web-mobileFormNav-button {
   background-color: var(--Energy_Web-primary-light-color);
   color: #ffffff;
   border-color: var(--Energy_Web-primary-light-color);
@@ -482,43 +482,43 @@ body {
   margin: 1px
 }
 
-.Energy-Web-account-connect-button {
+.Energy_Web-account-connect-button {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--Energy-Web-primary-light-color);
-  border-color: var(--Energy-Web-primary-light-color);
+  color: var(--Energy_Web-primary-light-color);
+  border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
   padding: -5px
 }
 
-.Energy-Web-account-connect-button:hover {
+.Energy_Web-account-connect-button:hover {
   background-color: #009a2c;
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
 }
 
-.Energy-Web-generate-new-token-button {
+.Energy_Web-generate-new-token-button {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--Energy-Web-primary-light-color);
-  border-color: var(--Energy-Web-primary-light-color);
+  color: var(--Energy_Web-primary-light-color);
+  border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
   padding: -5px
 }
 
-.Energy-Web-generate-new-token-button:hover {
+.Energy_Web-generate-new-token-button:hover {
   background-color: red;
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
 }
 
-.Energy-Web-card-status {
+.Energy_Web-card-status {
   font-size: small;
-  background-color: var(--Energy-Web-primary-color);
+  background-color: var(--Energy_Web-primary-light-color);
   border-radius: 15px;
   color: var(--off-color, white);
   font-family: "MonaSans-Bold";
@@ -629,7 +629,7 @@ screen and (max-width: 1100px) {
     font-size: 8px;
   }
 
-  .Energy-Web-set-enterprise-token-button {
+  .Energy_Web-set-enterprise-token-button {
   font-size: 8px;
   }
 
@@ -637,7 +637,7 @@ screen and (max-width: 1100px) {
     font-size: 8px;
   }
 
-  .Energy-Web-generate-new-token-button {
+  .Energy_Web-generate-new-token-button {
     font-size: 8px;
   }
 
