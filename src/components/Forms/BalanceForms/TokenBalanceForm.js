@@ -10,6 +10,7 @@ export default function TokenBalanceForm() {
 		_hasPayer,
 		set_HasPayer,
 		PRIMARY_TOKEN_ADDRESS,
+		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 	const method = "getTokenBalance";
 	const { ercQueryLoading, setErcQueryLoading } =
@@ -44,7 +45,10 @@ export default function TokenBalanceForm() {
 					<h3 className="text-start" style={{ fontWeight: "700" }}>
 						Balance
 					</h3>
-					<span style={{ color: "#F65925", fontWeight: "700" }}>
+					<span
+						className={`${COMPANY_NAME_WITH_UNDERSCORE}-popText`}
+						style={{ fontWeight: "700" }}
+					>
 						Token
 					</span>
 				</div>
@@ -82,7 +86,7 @@ export default function TokenBalanceForm() {
 				<div className="text-start">
 					<button
 						type="submit"
-						className="btn submit-button"
+						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
 						disabled={ercQueryLoading}
 						style={{ fontWeight: "bold" }}
 					>

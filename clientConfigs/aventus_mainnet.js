@@ -1,6 +1,6 @@
 var appConfig = {
 	// Aventus lowering dapp MAINNET config
-	ALTERNATE_NETWORK_URL: "https://lower.mainnet.aventus.io/",
+	ALTERNATE_NETWORK_URL: "https://lower.testnet.aventus.io/",
 	ALTERNATE_NETWORK_NAME: "Testnet", //leave empty if Testnet is not deployed
 	BRIDGE_CONTRACT_ADDRESS: "0xf05df39f745a240fb133cc4a11e42467fab10f1f",
 	BUTTON_COLOR: "#5100FF",

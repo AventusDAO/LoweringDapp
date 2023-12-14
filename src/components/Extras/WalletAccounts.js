@@ -5,7 +5,8 @@ import { addressSlicer } from "../../utils/randomFunctions";
 import { ConnectOrDisconnectAddressInCryptoWallet } from "./ConnectOrDisconnect";
 
 export const WalletAccounts = () => {
-	const { substrateAccounts } = useContext(stateContext);
+	const { substrateAccounts, COMPANY_NAME_WITH_UNDERSCORE } =
+		useContext(stateContext);
 
 	return (
 		<div>
@@ -15,7 +16,7 @@ export const WalletAccounts = () => {
 						<div className="row">
 							<div className="col">
 								<div
-									className="btn card-modal card"
+									className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-btn card-modal card`}
 									style={{
 										borderRadius: "15px",
 										backgroundColor: "white",
@@ -27,7 +28,9 @@ export const WalletAccounts = () => {
 											style={{ marginLeft: "-10px" }}
 										>
 											<div className="text-start">
-												<span className="card-author">
+												<span
+													className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+												>
 													<b>
 														{capitaliseFirstLetter(
 															account.name
@@ -41,7 +44,9 @@ export const WalletAccounts = () => {
 											style={{ marginLeft: "-10px" }}
 										>
 											<div className="text-start">
-												<span className="card-author">
+												<span
+													className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+												>
 													<b>
 														{addressSlicer(
 															account.address,

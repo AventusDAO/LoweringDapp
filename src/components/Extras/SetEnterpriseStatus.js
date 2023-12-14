@@ -3,15 +3,19 @@ import { stateContext } from "../../Contexts/Context";
 import { gotAnEnterpriseAccount } from "../../utils/someUIpopups";
 
 export default function SetEnterpriseStatus() {
-	const { set_HasPayer, _hasPayer, SUPPORTS_ENTERPRISE_USERS } =
-		useContext(stateContext);
+	const {
+		set_HasPayer,
+		_hasPayer,
+		SUPPORTS_ENTERPRISE_USERS,
+		COMPANY_NAME_WITH_UNDERSCORE,
+	} = useContext(stateContext);
 	return (
 		<>
 			{SUPPORTS_ENTERPRISE_USERS && (
 				<div>
 					<div className="text-start">
 						<button
-							className={`btn set-enterprise-token-button ${
+							className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-set-enterprise-token-button ${
 								_hasPayer ? "disabled" : ""
 							}`}
 							onClick={() => {

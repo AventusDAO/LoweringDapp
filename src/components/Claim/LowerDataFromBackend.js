@@ -10,6 +10,7 @@ export const LowerDataFromBackend = ({ tx }) => {
 		metamaskNetworkId,
 		bridgeContract,
 		ETHERSCAN_TOKEN_LINK,
+		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
 	return (
@@ -109,7 +110,7 @@ export const LowerDataFromBackend = ({ tx }) => {
 						}}
 					>
 						<button
-							className="submit-button mobile-bigButton btn justify-content-center items-align-center"
+							className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-btn justify-content-center items-align-center`}
 							onClick={() => {
 								claimNow({
 									leaf: tx.claimData.leaf,

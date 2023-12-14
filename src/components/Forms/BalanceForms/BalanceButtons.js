@@ -19,6 +19,7 @@ const BalanceButtons = () => {
 		set_HasPayer,
 		NATIVE_CONTRACT_ADDRESS,
 		PRIMARY_TOKEN,
+		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
 	const { isShown, setIsShown } = useContext(balanceButtonContext);
@@ -64,7 +65,7 @@ const BalanceButtons = () => {
 		>
 			{tokenButtons("MAIN_TOKEN") && (
 				<button
-					className="btn submit-button custom-balance-tab-width"
+					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
 					disabled={
 						mainTokenQueryLoading ||
 						nativeQueryLoading ||
@@ -100,7 +101,7 @@ const BalanceButtons = () => {
 			&nbsp;
 			{tokenButtons("ERC20", "ERC777") && (
 				<button
-					className="btn submit-button custom-balance-tab-width"
+					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
 					disabled={
 						mainTokenQueryLoading ||
 						nativeQueryLoading ||
@@ -118,7 +119,7 @@ const BalanceButtons = () => {
 			&nbsp;
 			{tokenButtons("NATIVE") && (
 				<button
-					className="btn submit-button custom-balance-tab-width"
+					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
 					disabled={
 						mainTokenQueryLoading ||
 						nativeQueryLoading ||

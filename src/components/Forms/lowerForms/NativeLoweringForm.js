@@ -24,6 +24,7 @@ export default function NativeLoweringForm({ tokenType, position }) {
 		EXPLORER_TX_URL,
 		metamaskNetworkId,
 		NATIVE_CONTRACT_ADDRESS,
+		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
 	return (
@@ -75,7 +76,10 @@ export default function NativeLoweringForm({ tokenType, position }) {
 					<h3 className="text-start" style={{ fontWeight: "700" }}>
 						Lower Token
 					</h3>
-					<span style={{ color: "#F65925", fontWeight: "700" }}>
+					<span
+						className={`${COMPANY_NAME_WITH_UNDERSCORE}-popText`}
+						style={{ fontWeight: "700" }}
+					>
 						{tokenType}
 					</span>
 				</div>
@@ -139,7 +143,7 @@ export default function NativeLoweringForm({ tokenType, position }) {
 				<div className="text-start">
 					<button
 						type="submit"
-						className="btn submit-button mobile-bigButton"
+						className={`btn mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
 						disabled={lowerLoading}
 						style={{ fontWeight: "bold" }}
 					>

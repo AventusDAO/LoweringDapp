@@ -12,7 +12,8 @@ Currentlh includes some dummy code until the backend is set up
 export default function LowerQueryForm() {
 	const navigate = useNavigate();
 	const [address, setAddress] = useState("");
-	const { COMPANY_NAME, EVM_NETWORK_NAME } = useContext(stateContext);
+	const { COMPANY_NAME, EVM_NETWORK_NAME, COMPANY_NAME_WITH_UNDERSCORE } =
+		useContext(stateContext);
 
 	function submit(address) {
 		if (toAddress(address)) {
@@ -76,7 +77,7 @@ export default function LowerQueryForm() {
 						</div>
 						<button
 							type="submit"
-							className="btn submit-button mobile-bigButton"
+							className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
 							style={{ fontWeight: "bold" }}
 						>
 							Search Lowers

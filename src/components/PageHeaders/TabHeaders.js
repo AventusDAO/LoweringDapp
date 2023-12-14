@@ -4,7 +4,7 @@ import { stateContext } from "../../Contexts/Context";
 
 export const TabHeaders = () => {
 	const navigate = useNavigate();
-	const { SHOW_BALANCE_PAGE } = useContext(stateContext);
+	const { SHOW_BALANCE_PAGE, COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext);
 
 	const pageLinks = [
 		{ "Step-1": "/" },
@@ -15,7 +15,7 @@ export const TabHeaders = () => {
 
 	return (
 		<>
-			<nav className="navbar rectangle">
+			<nav className={`navbar ${COMPANY_NAME_WITH_UNDERSCORE}-rectangle`}>
 				<div className="container-fluid align-self-center justify-center">
 					<ul
 						className="nav nav-tabs align-self-center mx-auto mobile-bigButton"

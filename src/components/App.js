@@ -7,16 +7,13 @@ import ClaimPage from "./Claim/ClaimPage";
 import LoweringForm from "./Forms/LoweringForm";
 import BalanceForm from "./Forms/BalanceForms/BalanceForm";
 import NotFound from "./Extras/NotFound";
+import "../styles.css"
 import Claim from "./Claim/Claim";
 import { Faq } from "./Faq";
 import { AvnApi, SigningMode, SetupMode } from "avn-api";
 import Footer from "./Footer";
 
 const NETWORK_CONFIG = window?.appConfig;
-const COMPANY_NAME_WITH_UNDERSCORE =
-	NETWORK_CONFIG.COMPANY_NAME_WITH_UNDERSCORE;
-
-require(`../assets/company_${COMPANY_NAME_WITH_UNDERSCORE}/css/styles.css`);
 
 function App() {
 	const [bridgeContract, setBridgeContract] = useState(null);
@@ -36,8 +33,11 @@ function App() {
 	const ALTERNATE_NETWORK_NAME = NETWORK_CONFIG.ALTERNATE_NETWORK_NAME;
 	const ALTERNATE_NETWORK_URL = NETWORK_CONFIG.ALTERNATE_NETWORK_URL;
 	const BRIDGE_CONTRACT_ADDRESS = NETWORK_CONFIG.BRIDGE_CONTRACT_ADDRESS;
+	const BUTTON_COLOR = NETWORK_CONFIG.BUTTON_COLOR;
 	const COMPANY_NAME = NETWORK_CONFIG.COMPANY_NAME;
 	const COMPANY_URL = NETWORK_CONFIG.COMPANY_URL;
+	const COMPANY_NAME_WITH_UNDERSCORE =
+	NETWORK_CONFIG.COMPANY_NAME_WITH_UNDERSCORE;
 	const EXPLORER_TX_URL = NETWORK_CONFIG.EXPLORER_TX_URL;
 	const ETHERSCAN_TX_LINK = NETWORK_CONFIG.ETHERSCAN_TX_LINK;
 	const ETHERSCAN_TOKEN_LINK = NETWORK_CONFIG.ETHERSCAN_TOKEN_LINK;
@@ -119,10 +119,20 @@ function App() {
 		SUPPORTS_ENTERPRISE_USERS,
 	]);
 
+	function fontPicker(companyName) {
+		const Aventus = "Monasans-Regular"
+		const Energy_Web = "'Montserrat', sans-serif"
+
+		if (companyName === "Energy_Web") return Energy_Web
+		if (companyName === "Aventus") return Aventus
+	}
+
 	useEffect(() => {
 		checkForWeb3();
 		setSdkCode();
-	}, [ethereumAccount, substrateUser, checkForWeb3, setSdkCode]);
+		document.body.style.setProperty("--font", fontPicker(COMPANY_NAME_WITH_UNDERSCORE))
+		document.body.style.setProperty("--swal-button", BUTTON_COLOR)
+	}, [ethereumAccount, substrateUser, checkForWeb3, BUTTON_COLOR, COMPANY_NAME_WITH_UNDERSCORE, setSdkCode]);
 
 	return (
 		<div>
@@ -162,6 +172,7 @@ function App() {
 					SHOW_BALANCE_PAGE,
 					NETWORK_ID,
 					AVN_RELAYER,
+					BUTTON_COLOR,
 					ETHERSCAN_TOKEN_LINK,
 					ETHERSCAN_TX_LINK,
 					NATIVE_CONTRACT_ADDRESS,

@@ -1,0 +1,872 @@
+/*  fonts are at the bottom of this page */
+:root {
+  --Aventus-primary-color: #5100FF;
+  --Energy_Web-primary-dark-color: #7810FC; 
+  --Energy_Web-primary-light-color: #A466FF;
+  --Energy_Web-pop-color: #F68363;
+  --Aventus-pop-color: black;
+  --off-color: white;
+  --background-color: #F2F1F1;
+}
+
+.header-logo {
+  width: 200px;
+}
+
+.token {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.card-balance {
+  font-size: 12px;
+}
+
+.copy-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.small-line {
+  line-height: 0.1;
+}
+
+.nav-tabs>.nav-item>.active {
+  background-color: #F2F1F1;
+}
+
+.nav-link {
+  color: none;
+  border: 0;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--background-color, rgb(217, 215, 215));
+  color: #1d2733;
+  font-family: var(--font);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* Dark mode styling */
+.white-content {
+  background: #292929;
+  color: var(--background-color, rgb(217, 215, 215));
+}
+
+.footer {
+  background-color: #1D2733;
+  width: 100%;
+  margin-top: auto;
+  color: var(--off-color, white);
+  ;
+  position: fixed;
+  bottom: 0;
+}
+
+
+.img-footer {
+  width: 100px
+}
+
+/* Card Styling */
+.card {
+  width: 100%;
+  margin-bottom: 5px;
+  padding-left: 0;
+}
+
+.card-header {
+  background-color: transparent;
+}
+
+.mobile-nav-card {
+  display: none;
+}
+
+.mobile-info-card {
+  display: none;
+}
+
+.Aventus-card-author {
+  font-size: small;
+}
+
+.Aventus-card-author b {
+  color: var(--Aventus-primary-color);
+}
+
+.Energy-Web-card-author {
+  font-size: small;
+}
+
+.Energy-Web-card-author b {
+  color: var(--Energy-Web-primary-light-color);
+}
+
+.Aventus-card-status {
+  font-size: small;
+  background-color: var(--Aventus-primary-color);
+  border-radius: 15px;
+  color: var(--off-color, white);
+  font-family: "MonaSans-Bold";
+  padding: 5px
+}
+
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
+.card-bottom-images img {
+  width: 20px;
+  margin-right: 15px;
+}
+
+.nav {
+  border-bottom: 0px
+}
+
+/* Button Styling */
+
+.gear-button {
+  background-color: transparent;
+  border: 0;
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 2px;
+  background-color: var(--swal-button);
+  font-size: 12px;
+  border: 1px solid var(--swal-button);
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
+}
+
+.Aventus-formNav-button {
+  background-color: var(--Aventus-primary-color);
+  color: #ffffff;
+  border-color: var(--Aventus-primary-color);
+  border-radius: 5px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  min-width: 130px;
+}
+
+.Energy-Web-formNav-button {
+  background-color: var(--Energy-Web-primary-light-color);
+  color: #ffffff;
+  border-color: var(--Energy-Web-primary-light-color);
+  border-radius: 5px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  min-width: 130px;
+}
+
+.btn {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.btn:hover {
+  border-color: black;
+  color: black;
+  border-radius: 5px;
+}
+
+.active {
+  background-color: var(--off-color, white);
+  border-radius: 5px;
+}
+
+.tabHeaderButtons {
+  background-color: none;
+  color: var(--off-color, white);
+  ;
+  border-radius: 5px;
+  border-color: var(--off-color, white);
+  ;
+  border-style: solid;
+  padding-right: 40px;
+  padding-left: 40px;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.tabHeaderButtons:hover {
+  background-color: none;
+  border-radius: 5px;
+  color: var(--off-color, white);
+  ;
+}
+
+.Aventus-account-connect-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--Aventus-primary-color);
+  border-color: var(--Aventus-primary-color);
+  font-weight: bold;
+  padding: -5px
+}
+
+.Aventus-account-connect-button:hover {
+  background-color: #009a2c;
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Aventus-generate-new-token-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--Aventus-primary-color);
+  border-color: var(--Aventus-primary-color);
+  font-weight: bold;
+  padding: -5px
+}
+
+.Aventus-generate-new-token-button:hover {
+  background-color: red;
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Aventus-set-enterprise-token-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--Aventus-primary-color);
+  border-color: var(--Aventus-primary-color);
+  font-weight: bold;
+  padding: -5px
+}
+
+.Aventus-set-enterprise-token-button:hover {
+  background-color: var(--Aventus-primary-color);
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Energy-Web-set-enterprise-token-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--Energy-Web-primary-light-color);
+  border-color: var(--Energy-Web-primary-light-color);
+  font-weight: bold;
+  padding: -5px
+}
+
+.Energy-Web-set-enterprise-token-button:hover {
+  background-color: var(--Energy-Web-primary-light-color);
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Energy-Web-disconnect-btn {
+  font-size: small;
+  border-radius: 15px;
+  background-color: var(--Energy-Web-primary-light-color);
+  border-radius: 15px;
+  color: var(--off-color, white);
+  border-color: var(--Energy-Web-primary-light-color);
+  font-weight: bold;
+}
+
+.Energy-Web-disconnect-btn:hover {
+  background-color: #eb1111;
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Aventus-disconnect-btn {
+  font-size: small;
+  border-radius: 15px;
+  background-color: var(--Aventus-primary-color);
+  border-radius: 15px;
+  color: var(--off-color, white);
+  border-color: var(--Aventus-primary-color);
+  font-weight: bold;
+}
+
+.Aventus-disconnect-btn:hover {
+  background-color: #eb1111;
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.buttonAnime {
+  position: relative;
+  user-select: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+}
+
+.buttonAnime:hover {
+  transition-duration: 0.2s;
+}
+
+.buttonAnime:after {
+  /* content: ""; */
+  display: block;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  box-shadow: 0 0 5px 10px black;
+}
+
+.buttonAnime:active:after {
+  box-shadow: 0 0 0 0 var(--off-color, white);
+  ;
+  position: absolute;
+  border-radius: 4em;
+  left: 0;
+  top: 0;
+  opacity: 0.7;
+  transition: 0s;
+}
+
+.buttonAnime:active {
+  top: 1px;
+}
+
+/* Header Styles */
+
+.headerLinks {
+  width: 35%;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.eth-account {
+  background-color: #FFD6C9;
+}
+
+.form-container {
+  max-width: 60%;
+  position: relative;
+}
+
+.fetch-container {
+  max-width: 60%;
+  position: relative;
+}
+
+.custom-stake-tab-width {
+  padding: 100px;
+}
+
+.custom-balance-tab-width {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.select-button {
+  background-color: var(--off-color, white);
+  ;
+  border-radius: 5px;
+  border-style: solid;
+  border-color: black;
+  font-weight: 700;
+  width: 30%;
+}
+
+.mobile-ext {
+  display: none
+}
+
+/* AVENTUS CUSTOM CODE */
+
+.Aventus-btn {
+  border-radius: 5px;
+}
+
+.Aventus-btn:hover {
+  background-color: none;
+  border: solid var(--Aventus-primary-color);
+}
+
+.Aventus-popText {
+  color: var(--Aventus-pop-color);
+}
+
+.Aventus-rectangle {
+  background: var(--Aventus-primary-color);
+}
+
+.Aventus-navbar-toggler {
+  background-color: var(--Aventus-primary-color);
+}
+
+.Aventus-contact-us-button {
+  background-color: var(--Aventus-primary-color);
+}
+
+.Aventus-popText {
+  color: var(--Aventus-pop-color);
+}
+
+.Aventus-maintitle {
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 40px
+}
+
+.Aventus-connect-button {
+  font-weight: bold;
+  background-color: var(--Aventus-primary-color);
+  color: #ffffff;
+  border-color: var(--Aventus-primary-color);
+}
+
+.Aventus-submit-button {
+  background-color: var(--Aventus-primary-color);
+  color: #ffffff;
+  border-color: var(--Aventus-primary-color);
+  border-radius: 5px;
+}
+
+  .Aventus-mobileFormNav-button {
+    background-color: var(--Aventus-primary-color);
+    color: #ffffff;
+    border-color: var(--Aventus-primary-color);
+    border-radius: 5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    max-width: 80px;
+    font-size: 8px;
+    margin: 1px
+  }
+
+
+/* ENERGY WEB CUSTOM CODE */
+
+.Energy_Web-popText {
+  color: var(--Energy_Web-pop-color);
+}
+
+.Energy-Web-mobileFormNav-button {
+  background-color: var(--Energy_Web-primary-light-color);
+  color: #ffffff;
+  border-color: var(--Energy_Web-primary-light-color);
+  border-radius: 5px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 80px;
+  font-size: 5px;
+  margin: 1px
+}
+
+.Energy-Web-account-connect-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--Energy-Web-primary-light-color);
+  border-color: var(--Energy-Web-primary-light-color);
+  font-weight: bold;
+  padding: -5px
+}
+
+.Energy-Web-account-connect-button:hover {
+  background-color: #009a2c;
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Energy-Web-generate-new-token-button {
+  font-size: small;
+  background-color: transparent;
+  border-radius: 15px;
+  color: var(--Energy-Web-primary-light-color);
+  border-color: var(--Energy-Web-primary-light-color);
+  font-weight: bold;
+  padding: -5px
+}
+
+.Energy-Web-generate-new-token-button:hover {
+  background-color: red;
+  border-color: var(--off-color, white);
+  color: var(--off-color, white);
+  border-radius: 15px;
+}
+
+.Energy-Web-card-status {
+  font-size: small;
+  background-color: var(--Energy-Web-primary-color);
+  border-radius: 15px;
+  color: var(--off-color, white);
+  font-family: "MonaSans-Bold";
+  padding: 5px
+}
+
+.Energy_Web-navbar-toggler {
+  background-color: var(--Energy_Web-primary-light-color);
+}
+
+.Energy_Web-contact-us-button {
+  background-color: var(--Energy_Web-primary-light-color);
+}
+
+.Energy_Web-rectangle {
+  background: linear-gradient(45deg, var(--Energy_Web-primary-light-color), var(--Energy_Web-primary-dark-color))
+}
+
+.Energy_Web-maintitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px
+}
+
+.Energy_Web-connect-button {
+  font-weight: bold;
+  background-color: var(--Energy_Web-primary-light-color);
+  color: #ffffff;
+  border-color: var(--Energy_Web-primary-light-color)
+}
+
+.Energy_Web-submit-button {
+  background-color: var(--Energy_Web-primary-light-color);
+  color: #ffffff;
+  border-color: var(--Energy_Web-primary-light-color);
+  border-radius: 5px;
+}
+
+.Energy_Web-btn {
+  border-radius: 5px;
+}
+
+.Energy_Web-btn:hover {
+  background-color: none;
+  border: solid var(--Energy_Web-primary-light-color)
+}
+
+
+
+@media print,
+screen and (max-width: 1400px) {
+  .form-container {
+    max-width: 80%;
+  }
+
+  .headerLinks {
+    width: 50%;
+    font-size: 90%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+}
+
+@media print,
+screen and (max-width: 1100px) {
+  .form-container {
+    max-width: 100%;
+  }
+
+  .select-button {
+    width: 65%
+  }
+
+}
+
+@media screen and (max-width: 912px) {
+
+  .mobile-tabheader {
+    font-size: 14px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  .custom-stake-tab-width {
+    padding: 20px;
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+
+  .headerLinks {
+    width: 100%;
+    font-size: 90%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 25px;
+  }
+}
+
+@media screen and (max-width:767px) {
+  /* Footer styles */
+
+  .Aventus-set-enterprise-token-button {
+    font-size: 8px;
+  }
+
+  .Energy-Web-set-enterprise-token-button {
+  font-size: 8px;
+  }
+
+  .Aventus-generate-new-token-button {
+    font-size: 8px;
+  }
+
+  .Energy-Web-generate-new-token-button {
+    font-size: 8px;
+  }
+
+  .header-logo {
+    width: 100px;
+  }
+
+  .placement-position {
+    text-align: center;
+  }
+
+  .desktop-ext {
+    display: none
+  }
+
+  .mobile-button {
+    font-size: 10px;
+  }
+
+  .mobile-ext {
+    display: block
+  }
+
+  .mobile-bigButton {
+    font-size: 12px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .bottom {
+    bottom: -30%;
+    margin-top: 20px;
+    position: relative;
+  }
+
+}
+
+
+@media screen and (max-width:500px) {
+  .select-button {
+    width: 70%
+  }
+
+  .swal2-footer {
+    font-size: 70% !important;
+  }
+
+  .tiny-mobile-ext {
+    font-size: 80%;
+  }
+}
+
+
+@media print,
+screen and (max-width: 420px) {
+
+  .body {
+    position: relative;
+  }
+
+  .headerLinks {
+    width: 100%;
+    font-size: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+  }
+
+  .account-info {
+    font-size: 10px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  /* Button styles */
+
+  .metamask-button {
+    margin-bottom: 20px;
+  }
+
+  /* Form Styles */
+
+  .form-container {
+    max-width: 100%;
+  }
+
+  .form-headers {
+    font-size: 80%;
+  }
+
+}
+
+@media screen and (max-width: 342px) {
+  .mobile-button {
+    font-size: 8px;
+  }
+
+  .mobile-bigButton {
+    font-size: 10px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .account-info {
+    font-size: 9px;
+    font-weight: 500;
+  }
+
+  .mobile-button {
+    font-size: 10px;
+  }
+
+  .mobile-bigButton {
+    font-size: 10px;
+  }
+
+  .tabHeaderButtons {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .tiny-mobile-ext {
+    font-size: 7px;
+  }
+
+  .swal2-footer {
+    font-size: 50% !important;
+  }
+
+  .headerLinks {
+    font-size: 10px;
+  }
+
+  .select-button {
+    width: 90%
+  }
+
+  .form-container {
+    max-width: 100%;
+    font-size: 10px;
+  }
+}
+
+/* fonts */
+
+@font-face {
+  font-family: "MonaSans-Black";
+  src: url("./assets/company_Aventus/fonts/MonaSans-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-BlackItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-BlackItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Bold";
+  src: url("./assets/company_Aventus/fonts/MonaSans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-BoldItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-BoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraBold";
+  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraBoldItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-SemiBold";
+  src: url("./assets/company_Aventus/fonts/MonaSans-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-SemiBoldItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-SemiBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Light";
+  src: url("./assets/company_Aventus/fonts/MonaSans-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-LightItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-LightItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraLight";
+  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-ExtraLightItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraLightItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Medium";
+  src: url("./assets/company_Aventus/fonts/MonaSans-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-MediumItalic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-MediumItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Regular";
+  src: url("./assets/company_Aventus/fonts/MonaSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MonaSans-Italic";
+  src: url("./assets/company_Aventus/fonts/MonaSans-Italic.ttf") format("truetype");
+}

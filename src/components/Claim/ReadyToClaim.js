@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
 import BackButton from "../Extras/BackButton";
 import { LowerDataFromBackend } from "./LowerDataFromBackend";
 import { Pagination } from "../Pagination";
+import { stateContext } from "../../Contexts/Context";
 
 const ReadyToClaim = ({ lowers }) => {
     const [currentPage, setCurrentPage] = useState(1);
+    const{COMPANY_NAME_WITH_UNDERSCORE} = useContext(stateContext)
     const lowersPerPage = 5;
     const indexOfLastPost = currentPage * lowersPerPage;
     const indexOfFirstPost = indexOfLastPost - lowersPerPage;
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
     var data;
     var currentLowers;
     if (lowers) {
@@ -33,7 +36,7 @@ const ReadyToClaim = ({ lowers }) => {
                     <div>
                         <div className="col"></div>
                         <BackButton />
-                        <h1 className="maintitle">Outstanding lowers</h1>
+                        <h1 className={`${COMPANY_NAME_WITH_UNDERSCORE}-maintitle`}>Outstanding lowers</h1>
                         <br />
                         {currentLowers.map((tx) => (
                             <div key={tx.id}>

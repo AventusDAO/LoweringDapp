@@ -11,6 +11,7 @@ function MobileModalExtensions() {
 		substrateAccounts,
 		substrateUser,
 		setWalletName,
+		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
 	const wallets = ["polkadot-js"];
@@ -41,11 +42,13 @@ function MobileModalExtensions() {
 							>
 								<div className="row">
 									<div
-										className="col text-start card-author"
+										className={`col text-start ${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
 										style={{ marginLeft: "-10px" }}
 									>
 										{/* This text implementation is specifically for Nova Wallet. */}
-										<span className="card-author">
+										<span
+											className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+										>
 											<b>Nova</b>
 										</span>
 									</div>
@@ -56,7 +59,9 @@ function MobileModalExtensions() {
 										{substrateUser &&
 											wallet === substrateUser.source && (
 												<div className="text-end">
-													<span className="card-status">
+													<span
+														className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+													>
 														Active
 													</span>
 												</div>

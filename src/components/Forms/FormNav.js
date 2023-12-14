@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import { formContext } from "../../Contexts/Context";
+import { formContext, stateContext } from "../../Contexts/Context";
 
 const FormNav = ({ tokenTabs }) => {
 	const { setTokenAddress, setAmount, setT1Recipient } =
 		useContext(formContext);
+	const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext);
 
 	function clearValues() {
 		setTokenAddress("");
@@ -27,13 +28,9 @@ const FormNav = ({ tokenTabs }) => {
 							role="presentation"
 						>
 							<button
-								className={`btn formNav-button
-                                                    ${
-														index === 0
-															? "active"
-															: ""
-													}
-                                                `}
+								className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-formNav-button
+								                    ${index === 0 ? "active" : ""}
+								                `}
 								id={`${value}-tab`}
 								data-bs-toggle="tab"
 								data-bs-target={`#${value}-tab-pane`}

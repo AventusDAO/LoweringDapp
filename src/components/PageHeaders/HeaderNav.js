@@ -5,7 +5,7 @@ import { stateContext } from "../../Contexts/Context";
 import CompanyLogo from "../Extras/CompanyLogo";
 
 export function HeaderNav() {
-	const { COMPANY_SUPPORT_URL } = useContext(stateContext);
+	const { COMPANY_SUPPORT_URL, COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext);
 
 	return (
 		<>
@@ -13,7 +13,7 @@ export function HeaderNav() {
 				<div className="container-fluid">
 					<CompanyLogo />
 					<button
-						className="navbar-toggler"
+						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-navbar-toggler`}
 						type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarToggleExternalContent"
@@ -50,7 +50,7 @@ export function HeaderNav() {
 								href={COMPANY_SUPPORT_URL}
 							>
 								<span
-									className="contact-us-button"
+									className={`${COMPANY_NAME_WITH_UNDERSCORE}-contact-us-button`}
 									style={{
 										padding: "10px",
 										borderRadius: "5px",

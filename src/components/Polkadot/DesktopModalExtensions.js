@@ -12,6 +12,7 @@ function DesktopModalExtensions() {
 		substrateAccounts,
 		substrateUser,
 		setWalletName,
+		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
 	const wallets = ["polkadot-js", "talisman", "subwallet-js"];
@@ -42,10 +43,12 @@ function DesktopModalExtensions() {
 							>
 								<div className="row">
 									<div
-										className="col text-start card-author"
+										className={`col text-start ${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
 										style={{ marginLeft: "-10px" }}
 									>
-										<span className="card-author">
+										<span
+											className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+										>
 											<b>
 												{capitaliseFirstLetter(wallet)}
 											</b>
@@ -58,7 +61,9 @@ function DesktopModalExtensions() {
 										{substrateUser &&
 											wallet === substrateUser.source && (
 												<div className="text-end">
-													<span className="card-status">
+													<span
+														className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+													>
 														Active
 													</span>
 												</div>

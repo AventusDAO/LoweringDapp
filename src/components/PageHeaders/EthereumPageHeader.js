@@ -5,6 +5,7 @@ import { TabHeaders } from "./TabHeaders";
 import { stateContext } from "../../Contexts/Context";
 
 function EthereumPageHeader({ title, description, isValidPage }) {
+	const {COMPANY_NAME_WITH_UNDERSCORE} = useContext(stateContext)
 	return (
 		<div className="header-background">
 			<section className="py-2 container">
@@ -12,7 +13,7 @@ function EthereumPageHeader({ title, description, isValidPage }) {
 				<div className="row py-lg-3 align-self-center mx-auto">
 					<div>
 						<div className="text-center" style={{ color: "black" }}>
-							<h1 className="maintitle align-self-center">
+							<h1 className={`${COMPANY_NAME_WITH_UNDERSCORE}-maintitle align-self-center`}>
 								{title}
 							</h1>
 							<p className="text-center">{description}</p>
@@ -29,7 +30,7 @@ function EthereumPageHeader({ title, description, isValidPage }) {
 }
 
 export function EthWalletAndNetwork() {
-	const { ALTERNATE_NETWORK_NAME, ALTERNATE_NETWORK_URL } =
+	const { ALTERNATE_NETWORK_NAME, ALTERNATE_NETWORK_URL, COMPANY_NAME_WITH_UNDERSCORE } =
 		useContext(stateContext);
 
 	return (
@@ -48,7 +49,8 @@ export function EthWalletAndNetwork() {
 							style={{ textDecoration: "none" }}
 							rel="noopener noreferrer"
 						>
-							<button className="btn connect-button mobile-bigButton">
+							<button 
+				className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}>
 								Switch To {ALTERNATE_NETWORK_NAME}
 							</button>
 						</a>
@@ -64,7 +66,8 @@ export function EthWalletAndNetwork() {
 							style={{ textDecoration: "none" }}
 							rel="noopener noreferrer"
 						>
-							<button className="btn connect-button mobile-bigButton">
+							<button 
+				className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}>
 								Switch To {ALTERNATE_NETWORK_NAME}
 							</button>
 						</a>
