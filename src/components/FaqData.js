@@ -57,7 +57,7 @@ const FAQ = [
 	},
 	{
 		question: "Why can't I find my transaction to lower my tokens?",
-		answer: `The 'Claim' page only shows tokens for transactions that were successful on the ${ENVIRONMENT_NAME} and are yet claimed on ${EVM_NETWORK_NAME}.`,
+		answer: `The 'Claim' page only shows tokens for transactions that were successful on the ${ENVIRONMENT_NAME} and are yet to be claimed on ${EVM_NETWORK_NAME}.`,
 	},
 	{
 		question:
