@@ -1,145 +1,114 @@
 import swal from "sweetalert2";
+const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN;
+const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 
 export async function balanceAdjustedNotification(title, message, footer) {
-    const { isConfirmed: result } = await swal.fire({
-        title,
-        text: message,
-        showDenyButton: true,
-        allowOutsideClick: false,
-        icon: "info",
-        confirmButtonText: "Continue",
-        denyButtonText: "Cancel",
-        confirmButtonColor: "green",
-        footer,
-    });
-    return result;
+	const { isConfirmed: result } = await swal.fire({
+		title,
+		text: message,
+		showDenyButton: true,
+		allowOutsideClick: false,
+		icon: "info",
+		confirmButtonText: "Continue",
+		denyButtonText: "Cancel",
+		confirmButtonColor: "green",
+		footer,
+	});
+	return result;
 }
 
-export const userBalance = async ({ type, message, decAmount }) => {
-    await swal.fire({
-        title: `${type} Balance`,
-        text: decAmount,
-        allowOutsideClick: false,
-        icon: "info",
-        confirmButtonColor: "#5100FF",
-        confirmButtonText: "Okay",
-        footer: `<p class="text-center">${
-            type === "AVT"
-                ? `${message}`
-                : type === "TOKEN"
-                ? "Confirm the decimals for this token on the token's Ethereum smart contract"
-                : ""
-        }
+export async function userConfirmation() {
+	const { isConfirmed: result } = await swal.fire({
+		title: "Signature Required",
+		html: `This may prompt multiple sign operations but <b> you only pay once </b>`,
+		showDenyButton: true,
+		allowOutsideClick: false,
+		icon: "info",
+		confirmButtonText: "Continue",
+		denyButtonText: "Cancel",
+		confirmButtonColor: "green",
+	});
+	return result;
+}
+
+export const userBalance = async ({ tokenType, message, decAmount }) => {
+	await swal.fire({
+		title: `${tokenType} Balance`,
+		text: decAmount,
+		allowOutsideClick: false,
+		icon: "info",
+		confirmButtonColor: BUTTON_COLOR,
+		confirmButtonText: "Okay",
+		footer: `<p class="text-center">${
+			tokenType === PRIMARY_TOKEN
+				? `${message}`
+				: tokenType === "TOKEN"
+				? "Confirm the decimals for this token on the token's smart contract"
+				: ""
+		}
                     </p>`,
-    });
+	});
 };
 
-export async function userConfirmation(message, feeMessage) {
-    const { isConfirmed: result } = await swal.fire({
-        title: "Signature Required",
-        text: `Sign to ${message}`,
-        showDenyButton: true,
-        allowOutsideClick: false,
-        icon: "info",
-        confirmButtonText: "Sign",
-        denyButtonText: "Don't Sign",
-        confirmButtonColor: "green",
-        footer: `<p class="text-center">${feeMessage}</p>`,
-    });
-    return result;
-}
-
 export async function transactionSubmitted(id) {
-    await swal
-        .fire({
-            title: `AvN Transaction Submitted`,
-            text: "Confirmation will follow shortly",
-            allowOutsideClick: false,
-            icon: "success",
-            showConfirmButton: true,
-            confirmButtonText: "Okay",
-            confirmButtonColor: "#5100FF",
-            showCloseButton: true,
-        })
-        .then(() => {
-            navigator.clipboard.writeText(id);
-        });
-}
-
-export async function showUserTransactionStatus(polledState, explorerTxUrl) {
-    if (polledState.status === "Processed") {
-        swal.fire({
-            title: "Lower Successful",
-            showCloseButton: true,
-            text: "You'll need to complete Step-2 after 24 hours to claim your tokens on Ethereum.",
-            allowOutsideClick: false,
-            confirmButtonColor: "#ffffff",
-            confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
-            icon: "success",
-        });
-        return "complete";
-    } else if (polledState.status === "Rejected") {
-        swal.fire({
-            title: "Lower failed",
-            showCloseButton: true,
-            text: "The transaction was rejected by the AvN, please check the details and retry",
-            confirmButtonColor: "#ffffff",
-            confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on AvN Explorer</a>`,
-            allowOutsideClick: false,
-            icon: "error",
-        });
-        return "complete";
-    } else if (polledState.status === "Transaction not found") {
-        swal.fire({
-            title: polledState.status,
-            showCloseButton: true,
-            text: "Transaction not found. Please ensure you are querying the right network.",
-            allowOutsideClick: false,
-            confirmButtonColor: "#5100FF",
-            confirmButtonText: "Okay",
-            icon: "info",
-        });
-        return "complete";
-    }
-}
-
-export async function userAWTGeneration() {
-    const { isConfirmed: result } = await swal.fire({
-        title: "Signature Required",
-        text: "Sign to validate your AvN account",
-        allowOutsideClick: false,
-        showDenyButton: true,
-        confirmButtonText: "Sign",
-        denyButtonText: "Don't Sign",
-        confirmButtonColor: "green",
-        footer: "This operation is free",
-    });
-    if (result) {
-        const { isConfirmed: hasPayer } = await swal.fire({
-            title: "Got A Payer?",
-            html: "Is there an <b>Enterprise account</b> designated to pay for your transactions?",
-            allowOutsideClick: false,
-            showDenyButton: true,
-            confirmButtonText: "Yes",
-            denyButtonText: "No",
-            confirmButtonColor: "green",
-            footer: "We can still authenticate you if you don't have a payer.",
-        });
-        return hasPayer;
-    }
+	await swal
+		.fire({
+			title: `Transaction Submitted`,
+			text: "Confirmation will follow shortly",
+			allowOutsideClick: false,
+			icon: "success",
+			showConfirmButton: true,
+			confirmButtonText: "Okay",
+			confirmButtonColor: BUTTON_COLOR,
+			showCloseButton: true,
+		})
+		.then(() => {
+			navigator.clipboard.writeText(id);
+		});
 }
 
 export async function confirmAWTTokenClearance() {
-    const { isConfirmed } = await swal.fire({
-        title: "Are you sure?",
-        text: "This action will clear your existing AWT token and generate a new token.",
-        showDenyButton: true,
-        showConfirmButton: true,
-        confirmButtonText: "Yes",
-        allowOutsideClick: false,
-        denyButtonText: "No",
-        confirmButtonColor: "green",
-        footer: "This action does not impact your account balance.",
-    });
-    return isConfirmed;
+	const { isConfirmed } = await swal.fire({
+		title: "Are you sure?",
+		text: "This action will clear your existing AWT token and generate a new token.",
+		showDenyButton: true,
+		showConfirmButton: true,
+		confirmButtonText: "Yes",
+		allowOutsideClick: false,
+		denyButtonText: "No",
+		confirmButtonColor: "green",
+		footer: "This action does not impact your account balance.",
+	});
+	return isConfirmed;
+}
+
+export async function gotAnEnterpriseAccount() {
+	const { isConfirmed: hasPayer } = await swal.fire({
+		title: "Got Enterprise Access?",
+		html: "Clicking Yes will generate a new access token for you with Enterprise access.",
+		allowOutsideClick: false,
+		icon: "info",
+		showDenyButton: true,
+		confirmButtonText: "Yes",
+		denyButtonText: "Cancel",
+		confirmButtonColor: "green",
+		footer: `Users with Enterprise access do not pay transaction fees or need ${PRIMARY_TOKEN} to access the network.`,
+	});
+	return hasPayer;
+}
+
+export async function regenerateGatewayToken() {
+	const { isConfirmed: isGenerateNewToken } = await swal.fire({
+		title: "Regenerate Gateway Token",
+		text: "This operation will generate a new AWT token for you to access the chain via the Gateway.",
+		allowOutsideClick: false,
+		icon: "warning",
+		confirmButtonText: "Confirm",
+		confirmButtonColor: "green",
+		denyButtonColor: "red",
+		showDenyButton: true,
+		denyButtonText: "Cancel",
+		footer: "Your Enterprise status will be retained.",
+	});
+	return isGenerateNewToken;
 }

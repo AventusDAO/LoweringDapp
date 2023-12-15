@@ -1,91 +1,105 @@
 import React, { useContext, useState } from "react";
 import { queryBalanceContext, stateContext } from "../../../Contexts/Context";
-import { balanceHandler } from "../../../utils/avnFunctions/queryBalance";
+import { ercTokenBalanceHandler } from "../../../utils/avnUtils/queryBalance";
 
 export default function TokenBalanceForm() {
-    const [token, setToken] = useState("");
-    const { aventusUser, AVN_GATEWAY_URL } = useContext(stateContext);
-    const method = "getTokenBalance";
-    const { ercQueryLoading, setErcQueryLoading } =
-        useContext(queryBalanceContext);
+	const [token, setToken] = useState("");
+	const {
+		substrateUser,
+		api,
+		_hasPayer,
+		set_HasPayer,
+		PRIMARY_TOKEN_ADDRESS,
+		COMPANY_NAME_WITH_UNDERSCORE,
+	} = useContext(stateContext);
+	const method = "getTokenBalance";
+	const { ercQueryLoading, setErcQueryLoading } =
+		useContext(queryBalanceContext);
 
-    return (
-        <div
-            id="bal-token-tab-pane"
-            role="tabpanel"
-            aria-labelledby="ERC20-tab"
-            tabIndex="0"
-        >
-            <hr />
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    setErcQueryLoading(true);
-                    balanceHandler({
-                        tokenType: "TOKEN",
-                        aventusUser,
-                        method,
-                        url: AVN_GATEWAY_URL,
-                        tokenAddress: token,
-                    }).then(() => setErcQueryLoading(false));
-                }}
-            >
-                <div className="text-start">
-                    <h3 className="text-start" style={{ fontWeight: "700" }}>
-                        Balance
-                    </h3>
-                    <span style={{ color: "#F65925", fontWeight: "700" }}>
-                        Token
-                    </span>
-                </div>
-                <div className="input-group mb-3">
-                    <span
-                        className="input-group-text"
-                        style={{ maxWidth: "100px" }}
-                        id="Token"
-                    >
-                        Token
-                    </span>
-                    <input
-                        type="text"
-                        style={{
-                            backgroundColor: "white",
-                            color: "black",
-                            weight: "bold",
-                        }}
-                        className="form-control"
-                        aria-label="Token"
-                        aria-describedby="Token"
-                        size="83"
-                        id="tokenAddress"
-                        maxLength="42"
-                        minLength="42"
-                        min={0}
-                        required
-                        pattern="0x[0-9a-fA-F]{40}"
-                        placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
-                        onChange={(e) => setToken(e.target.value)}
-                        value={token}
-                    />
-                </div>
+	return (
+		<div
+			id="bal-token-tab-pane"
+			role="tabpanel"
+			aria-labelledby="ERC20-tab"
+			tabIndex="0"
+		>
+			<hr />
+			<form
+				onSubmit={(event) => {
+					event.preventDefault();
+					setErcQueryLoading(true);
+					ercTokenBalanceHandler({
+						tokenType: "TOKEN",
+						substrateUser,
+						PRIMARY_TOKEN_ADDRESS,
+						isMain: false,
+						_hasPayer,
+						api,
+						set_HasPayer,
+						method,
+						tokenAddress: token,
+					}).then(() => setErcQueryLoading(false));
+				}}
+			>
+				<div className="text-start">
+					<h3 className="text-start" style={{ fontWeight: "700" }}>
+						Balance
+					</h3>
+					<span
+						className={`${COMPANY_NAME_WITH_UNDERSCORE}-popText`}
+						style={{ fontWeight: "700" }}
+					>
+						Token
+					</span>
+				</div>
+				<div className="input-group mb-3">
+					<span
+						className="input-group-text"
+						style={{ maxWidth: "100px" }}
+						id="Token"
+					>
+						Token
+					</span>
+					<input
+						type="text"
+						style={{
+							backgroundColor: "white",
+							color: "black",
+							weight: "bold",
+						}}
+						className="form-control"
+						aria-label="Token"
+						aria-describedby="Token"
+						size="83"
+						id="tokenAddress"
+						maxLength="42"
+						minLength="42"
+						min={0}
+						required
+						pattern="0x[0-9a-fA-F]{40}"
+						placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
+						onChange={(e) => setToken(e.target.value)}
+						value={token}
+					/>
+				</div>
 
-                <div className="text-start">
-                    <button
-                        type="submit"
-                        className="btn submit-button"
-                        disabled={ercQueryLoading}
-                        style={{ fontWeight: "bold" }}
-                    >
-                        Check
-                    </button>
-                    <div style={{ fontSize: "13px" }}>
-                        <br />
-                        Note: Your wallet may prompt you once to sign and
-                        approve the query operation required to query your
-                        balance.
-                    </div>
-                </div>
-            </form>
-        </div>
-    );
+				<div className="text-start">
+					<button
+						type="submit"
+						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
+						disabled={ercQueryLoading}
+						style={{ fontWeight: "bold" }}
+					>
+						Check
+					</button>
+					<div style={{ fontSize: "13px" }}>
+						<br />
+						Note: Your wallet may prompt you once to sign and
+						approve the query operation required to query your
+						balance.
+					</div>
+				</div>
+			</form>
+		</div>
+	);
 }

@@ -3,41 +3,42 @@ import { stateContext } from "../../Contexts/Context";
 import { NotConnected } from "./NotConnected";
 import { ConnectToEthereum } from "./ConnectToEthereum";
 
-const GOERLI_ID = 5;
-const ETHEREUM_MAINNET_ID = 1;
-
 function Ethereum() {
-    const {
-        loadWeb3,
-        ethereumAccount,
-        networkId,
-        setEthereumAccount,
-        setNetworkId,
-    } = useContext(stateContext);
+	const {
+		loadWeb3,
+		ethereumAccount,
+		setEthereumAccount,
+		setMetamaskNetworkId,
+		NETWORK_ID,
+		metamaskNetworkId,
+		setEVM_NETWORK_NAME,
+	} = useContext(stateContext);
 
-    // check if the user has changed the network or account on metamask and reload the window.
-    useEffect(() => {
-        if (loadWeb3 && ethereumAccount !== "") {
-            loadWeb3.currentProvider.on("chainChanged", () => {
-                loadWeb3.eth.net.getId().then(setNetworkId);
-            });
-            loadWeb3.currentProvider.on("accountsChanged", () => {
-                loadWeb3.eth.getAccounts().then(setEthereumAccount);
-            });
-        }
-    }, [ethereumAccount, setNetworkId, loadWeb3, setEthereumAccount]);
+	// check if the user has changed the network or account on metamask and reload the window.
+	useEffect(() => {
+		if (loadWeb3) {
+			loadWeb3.currentProvider.on("chainChanged", () => {
+				window.location.reload();
+			});
+			loadWeb3.currentProvider.on("accountsChanged", () => {
+				window.location.reload();
+			});
+		}
+	}, [
+		ethereumAccount,
+		setMetamaskNetworkId,
+		metamaskNetworkId,
+		loadWeb3,
+		setEthereumAccount,
+		setEVM_NETWORK_NAME,
+		NETWORK_ID,
+	]);
 
-    if (ethereumAccount) {
-        let networkName;
-        if (networkId === ETHEREUM_MAINNET_ID) {
-            networkName = "Mainnet";
-        } else if (networkId === GOERLI_ID) {
-            networkName = "Goerli Testnet";
-        }
-        return <ConnectToEthereum networkName={networkName} />;
-    } else {
-        return <NotConnected />;
-    }
+	if (ethereumAccount && metamaskNetworkId) {
+		return <ConnectToEthereum />;
+	} else {
+		return <NotConnected />;
+	}
 }
 
 export default Ethereum;
