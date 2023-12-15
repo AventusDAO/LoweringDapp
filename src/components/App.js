@@ -7,7 +7,7 @@ import ClaimPage from "./Claim/ClaimPage";
 import LoweringForm from "./Forms/LoweringForm";
 import BalanceForm from "./Forms/BalanceForms/BalanceForm";
 import NotFound from "./Extras/NotFound";
-import "../styles.css"
+import "../styles.css";
 import Claim from "./Claim/Claim";
 import { Faq } from "./Faq";
 import { AvnApi, SigningMode, SetupMode } from "avn-api";
@@ -36,8 +36,9 @@ function App() {
 	const BUTTON_COLOR = NETWORK_CONFIG.BUTTON_COLOR;
 	const COMPANY_NAME = NETWORK_CONFIG.COMPANY_NAME;
 	const COMPANY_URL = NETWORK_CONFIG.COMPANY_URL;
+	const COMPANY_SUPPORT_URL = NETWORK_CONFIG.COMPANY_SUPPORT_URL;
 	const COMPANY_NAME_WITH_UNDERSCORE =
-	NETWORK_CONFIG.COMPANY_NAME_WITH_UNDERSCORE;
+		NETWORK_CONFIG.COMPANY_NAME_WITH_UNDERSCORE;
 	const EXPLORER_TX_URL = NETWORK_CONFIG.EXPLORER_TX_URL;
 	const ETHERSCAN_TX_LINK = NETWORK_CONFIG.ETHERSCAN_TX_LINK;
 	const ETHERSCAN_TOKEN_LINK = NETWORK_CONFIG.ETHERSCAN_TOKEN_LINK;
@@ -120,19 +121,29 @@ function App() {
 	]);
 
 	function fontPicker(companyName) {
-		const Aventus = "Monasans-Regular"
-		const Energy_Web = "'Montserrat', sans-serif"
+		const Aventus = "Monasans-Regular";
+		const Energy_Web = "'Montserrat', sans-serif";
 
-		if (companyName === "Energy_Web") return Energy_Web
-		if (companyName === "Aventus") return Aventus
+		if (companyName === "Energy_Web") return Energy_Web;
+		if (companyName === "Aventus") return Aventus;
 	}
 
 	useEffect(() => {
 		checkForWeb3();
 		setSdkCode();
-		document.body.style.setProperty("--font", fontPicker(COMPANY_NAME_WITH_UNDERSCORE))
-		document.body.style.setProperty("--swal-button", BUTTON_COLOR)
-	}, [ethereumAccount, substrateUser, checkForWeb3, BUTTON_COLOR, COMPANY_NAME_WITH_UNDERSCORE, setSdkCode]);
+		document.body.style.setProperty(
+			"--font",
+			fontPicker(COMPANY_NAME_WITH_UNDERSCORE)
+		);
+		document.body.style.setProperty("--swal-button", BUTTON_COLOR);
+	}, [
+		ethereumAccount,
+		substrateUser,
+		checkForWeb3,
+		BUTTON_COLOR,
+		COMPANY_NAME_WITH_UNDERSCORE,
+		setSdkCode,
+	]);
 
 	return (
 		<div>
@@ -168,6 +179,7 @@ function App() {
 					EVM_NETWORK_NAME,
 					PRIMARY_TOKEN_ADDRESS,
 					BRIDGE_CONTRACT_ADDRESS,
+					COMPANY_SUPPORT_URL,
 					SUPPORTS_ENTERPRISE_USERS,
 					SHOW_BALANCE_PAGE,
 					NETWORK_ID,
