@@ -86,7 +86,7 @@ export function invalidSubstrateSignature() {
 
 export function networkErrorHandler(err) {
 	return swal.fire({
-		title: "Unsupported Ethereum Network",
+		title: "Unsupported EVM Network",
 		text: err,
 		allowOutsideClick: false,
 		icon: "error",

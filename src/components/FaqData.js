@@ -19,7 +19,7 @@ const FAQ = [
 	},
 	{
 		question: "How to use this dapp on Mobile",
-		answer: "This dapp can be used within mobile crypto wallets that have embedded browsers. For example, MetaMask / Nova Wallet. However, note that the initial lowering operation is Substrate-based and thus cannot be done using an EVM wallet such as Metamask, but Metamask can be used to carryout the claiming transaction once the tokens are ready to be claimed on Ethereum. You can see a walkthrough of using it on Mobile here",
+		answer: `This dapp can be used within mobile crypto wallets that have embedded browsers. For example, MetaMask / Nova Wallet. However, note that the initial lowering operation is Substrate-based and thus cannot be done using an EVM wallet such as Metamask, but Metamask can be used to carryout the claiming transaction once the tokens are ready to be claimed on ${EVM_NETWORK_NAME}. You can see a walkthrough of using it on Mobile here`,
 		link: "https://youtu.be/g96OrRNEUSI",
 	},
 	{
@@ -57,7 +57,7 @@ const FAQ = [
 	},
 	{
 		question: "Why can't I find my transaction to lower my tokens?",
-		answer: `The 'Claim' page only shows tokens for transactions that were successful on the ${ENVIRONMENT_NAME} and are yet claimed on Ethereum.`,
+		answer: `The 'Claim' page only shows tokens for transactions that were successful on the ${ENVIRONMENT_NAME} and are yet claimed on ${EVM_NETWORK_NAME}.`,
 	},
 	{
 		question:

@@ -124,7 +124,7 @@ export default function Erc20LoweringForm({
 						min={0}
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
+						placeholder="Contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
 						onChange={(e) => setTokenAddress(e.target.value)}
 						value={tokenAddress}
 					/>
@@ -181,7 +181,7 @@ export default function Erc20LoweringForm({
 						minLength="42"
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="Ethereum Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+						placeholder={`${EVM_NETWORK_NAME} Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)`}
 						id="t1Recipient"
 						value={t1Recipient}
 						onChange={(e) => setT1Recipient(e.target.value)}
