@@ -23,6 +23,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 		EXPLORER_TX_URL,
 		PRIMARY_TOKEN_ADDRESS,
 		COMPANY_NAME_WITH_UNDERSCORE,
+		EVM_NETWORK_NAME,
 	} = useContext(stateContext);
 
 	return (
@@ -131,7 +132,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 						minLength="42"
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="Ethereum Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)"
+						placeholder={`${EVM_NETWORK_NAME} Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)`}
 						id="t1Recipient"
 						value={t1Recipient}
 						onChange={(e) => setT1Recipient(e.target.value)}

@@ -18,8 +18,7 @@ export const ConnectToEthereum = () => {
 								alt="logo"
 							/>
 							<span className="fw-bold">
-								Connected Ethereum account (on{" "}
-								{EVM_NETWORK_NAME}
+								Connected account (on {EVM_NETWORK_NAME}
 								):
 							</span>
 							<br />

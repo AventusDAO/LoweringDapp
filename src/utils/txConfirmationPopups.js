@@ -2,6 +2,7 @@ import swal from "sweetalert2";
 
 const LOWER_DURATION = window?.appConfig?.LOWER_DURATION;
 const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
+const EVM_NETWORK_NAME = window?.appConfig?.EVM_NETWORK_NAME;
 
 export async function TxSubmitted(id) {
 	await swal
@@ -25,7 +26,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
 		await swal.fire({
 			title: "Lower Successful",
 			showCloseButton: true,
-			text: `You'll need to complete Step-2 after ${LOWER_DURATION} to claim your tokens on Ethereum.`,
+			text: `You'll need to complete Step-2 after ${LOWER_DURATION} to claim your tokens on ${EVM_NETWORK_NAME}.`,
 			allowOutsideClick: false,
 			confirmButtonColor: "#ffffff",
 			showConfirmButton: false,

@@ -77,7 +77,7 @@ export default function TokenBalanceForm() {
 						min={0}
 						required
 						pattern="0x[0-9a-fA-F]{40}"
-						placeholder="contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
+						placeholder="Contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)"
 						onChange={(e) => setToken(e.target.value)}
 						value={token}
 					/>

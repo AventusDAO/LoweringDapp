@@ -2,7 +2,7 @@ import { metamaskConnectionErrorHandler } from "../errorPopups/walletErrorPopups
 import { transactionErrorHandler } from "../errorPopups/TxErrorPopups";
 import { txLinkInAlert } from "../randomFunctions";
 
-// Handles the ethereum transaction submission
+// Handles the EVM transaction submission
 export async function claimNow({
 	leaf,
 	merklePath,

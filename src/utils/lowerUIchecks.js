@@ -29,8 +29,8 @@ export async function ercConfirmLowerDetails({
 			const isCorrectEthereumNetwork = metamaskNetworkId === NETWORK_ID;
 			if (!isCorrectEthereumNetwork) {
 				genericErrorHandlerTemplate(
-					"Switch Ethereum Network",
-					`Please ensure your Ethereum wallet network is set to ${EVM_NETWORK_NAME}.`,
+					"Switch EVM Network",
+					`Please ensure your EVM wallet network is set to ${EVM_NETWORK_NAME}.`,
 					"Metamask is required to confirm the token contract's details."
 				);
 			} else {
