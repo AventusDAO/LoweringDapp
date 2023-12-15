@@ -5,7 +5,8 @@ import { stateContext } from "../../Contexts/Context";
 import CompanyLogo from "../Extras/CompanyLogo";
 
 export function HeaderNav() {
-	const { COMPANY_SUPPORT_URL, COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext);
+	const { COMPANY_SUPPORT_URL, COMPANY_NAME_WITH_UNDERSCORE } =
+		useContext(stateContext);
 
 	return (
 		<>
@@ -48,6 +49,8 @@ export function HeaderNav() {
 							<a
 								className="nav-link text-decoration-none text-white"
 								href={COMPANY_SUPPORT_URL}
+								target="_blank"
+								rel="noreferrer"
 							>
 								<span
 									className={`${COMPANY_NAME_WITH_UNDERSCORE}-contact-us-button`}
