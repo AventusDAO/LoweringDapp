@@ -117,7 +117,7 @@ body {
   background-color: var(--Aventus-primary-color);
   border-radius: 15px;
   color: var(--off-color, white);
-  font-family: "MonaSans-Bold";
+  font-family: var(--font);
   padding: 5px
 }
 
@@ -521,7 +521,7 @@ body {
   background-color: var(--Energy_Web-primary-light-color);
   border-radius: 15px;
   color: var(--off-color, white);
-  font-family: "MonaSans-Bold";
+  font-family: var(--font);
   padding: 5px
 }
 
@@ -538,7 +538,7 @@ body {
 }
 
 .Energy_Web-maintitle {
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font);
   font-weight: 700;
   font-size: 40px
 }

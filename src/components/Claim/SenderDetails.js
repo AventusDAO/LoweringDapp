@@ -29,6 +29,8 @@ export function SenderDetails({ tx }) {
 								backgroundColor: "white",
 								color: "black",
 								weight: "bold",
+								borderTopRightRadius: "5px",
+								borderBottomRightRadius: "5px",
 							}}
 							className="mobile-ext form-control"
 							value={addressSlicer(
@@ -47,6 +49,8 @@ export function SenderDetails({ tx }) {
 							style={{
 								backgroundColor: "white",
 								color: "black",
+								borderTopRightRadius: "5px",
+								borderBottomRightRadius: "5px",
 								weight: "bold",
 							}}
 							className="desktop-ext form-control"
@@ -72,6 +76,8 @@ export function SenderDetails({ tx }) {
 								backgroundColor: "white",
 								color: "black",
 								weight: "bold",
+								borderTopRightRadius: "5px",
+								borderBottomRightRadius: "5px",
 							}}
 							className="desktop-ext form-control"
 							value={tx.from}
@@ -85,6 +91,8 @@ export function SenderDetails({ tx }) {
 							style={{
 								backgroundColor: "white",
 								color: "black",
+								borderTopRightRadius: "5px",
+								borderBottomRightRadius: "5px",
 								weight: "bold",
 							}}
 							className="mobile-ext form-control"

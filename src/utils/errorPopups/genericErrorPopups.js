@@ -1,8 +1,8 @@
 import swal from "sweetalert2";
 const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 
-export function genericErrorHandlerTemplate(title, text, footText) {
-	return swal.fire({
+export async function genericErrorHandlerTemplate(title, text, footText) {
+	await swal.fire({
 		title,
 		text,
 		icon: "error",

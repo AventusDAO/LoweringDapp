@@ -14,7 +14,10 @@ const Claim = () => {
 	let { account } = useParams();
 	const { AVN_GATEWAY_URL, ENVIRONMENT_NAME, EVM_NETWORK_NAME } =
 		useContext(stateContext);
-	account = toAddress(account).toLowerCase();
+	if (toAddress(account)) {
+		account = toAddress(account).toLowerCase();
+	}
+
 	const baseUrl = `${AVN_GATEWAY_URL}lowers`;
 	const url = `${baseUrl}?account=${account}`;
 	const { data, error, isPending } = useFetch(url);

@@ -5,13 +5,7 @@ import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
 
 export const LowerDataFromBackend = ({ tx }) => {
-	const {
-		ethereumAccount,
-		metamaskNetworkId,
-		bridgeContract,
-		ETHERSCAN_TOKEN_LINK,
-		COMPANY_NAME_WITH_UNDERSCORE,
-	} = useContext(stateContext);
+	const { ETHERSCAN_TOKEN_LINK } = useContext(stateContext);
 
 	return (
 		<div
@@ -43,6 +37,8 @@ export const LowerDataFromBackend = ({ tx }) => {
 									backgroundColor: "white",
 									color: "black",
 									weight: "bold",
+									borderTopRightRadius: "5px",
+									borderBottomRightRadius: "5px",
 								}}
 								className="mobile-ext form-control"
 								value={addressSlicer(tx.to, 8, 34)}
@@ -57,6 +53,8 @@ export const LowerDataFromBackend = ({ tx }) => {
 								style={{
 									backgroundColor: "white",
 									color: "black",
+									borderTopRightRadius: "5px",
+									borderBottomRightRadius: "5px",
 									weight: "bold",
 								}}
 								className="desktop-ext form-control"
@@ -66,29 +64,60 @@ export const LowerDataFromBackend = ({ tx }) => {
 							/>
 						</div>
 					</li>
-					<li className="d-flex">
-						<div className="input-group mb-3">
-							<span
-								className="input-group-text"
-								style={{ minWidth: "100px" }}
-								id="basic-addon1"
-							>
-								Amount
-							</span>
-							<input
-								type="text"
-								disabled
-								readOnly
-								style={{
-									backgroundColor: "white",
-								}}
-								className="form-control"
-								value={tx.amount}
-								aria-label="Username"
-								aria-describedby="basic-addon1"
-							/>
-						</div>
-					</li>
+					<div className="row">
+						<li className="d-flex col-sm">
+							<div className="input-group mb-3">
+								<span
+									className="input-group-text"
+									style={{ minWidth: "100px" }}
+									id="basic-addon1"
+								>
+									Amount
+								</span>
+								<input
+									type="text"
+									disabled
+									readOnly
+									style={{
+										backgroundColor: "white",
+										borderTopRightRadius: "5px",
+										borderBottomRightRadius: "5px",
+									}}
+									className="form-control"
+									value={tx.amount}
+									aria-label="Username"
+									aria-describedby="basic-addon1"
+								/>
+							</div>
+						</li>
+						{tx.lowerId && (
+							<li className="d-flex col-sm-4">
+								<div className="input-group mb-3">
+									<span
+										className="input-group-text"
+										style={{ minWidth: "100px" }}
+										id="basic-addon1"
+									>
+										Lower ID
+									</span>
+									<input
+										type="text"
+										disabled
+										readOnly
+										style={{
+											borderTopRightRadius: "5px",
+											borderBottomRightRadius: "5px",
+											backgroundColor: "white",
+										}}
+										className="form-control"
+										value={tx.lowerId}
+										aria-label="Username"
+										aria-describedby="basic-addon1"
+									/>
+								</div>
+							</li>
+						)}
+					</div>
 					{tx.token && (
 						<li className="d-flex">
 							<div className="input-group mb-3">
@@ -103,27 +132,12 @@ export const LowerDataFromBackend = ({ tx }) => {
 						</li>
 					)}
 				</ul>
-				{Object.keys(tx.claimData).length !== 0 ? (
-					<div
-						style={{
-							justifyContent: "space-between",
-						}}
-					>
-						<button
-							className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-btn justify-content-center items-align-center`}
-							onClick={() => {
-								claimNow({
-									leaf: tx.claimData.leaf,
-									merklePath: tx.claimData.merklePath,
-									ethereumAccount,
-									bridgeContract,
-									metamaskNetworkId,
-								});
-							}}
-						>
-							Claim
-						</button>
-					</div>
+				{tx.claimData ? (
+					typeof tx.claimData === "string" ? (
+						<NewLowerMethod claimData={tx.claimData} />
+					) : (
+						<OldLowerMethod claimData={tx.claimData} />
+					)
 				) : (
 					""
 				)}
@@ -131,3 +145,80 @@ export const LowerDataFromBackend = ({ tx }) => {
 		</div>
 	);
 };
+
+function OldLowerMethod({ claimData }) {
+	const {
+		ethereumAccount,
+		metamaskNetworkId,
+		bridgeContract,
+		COMPANY_NAME_WITH_UNDERSCORE,
+	} = useContext(stateContext);
+
+	return (
+		<>
+			{Object.keys(claimData).length !== 0 ? (
+				<div
+					style={{
+						justifyContent: "space-between",
+					}}
+				>
+					<button
+						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-btn justify-content-center items-align-center`}
+						onClick={() => {
+							claimNow({
+								leaf: claimData.leaf,
+								merklePath: claimData.merklePath,
+								ethereumAccount,
+								bridgeContract,
+								metamaskNetworkId,
+								method: "old",
+							});
+						}}
+					>
+						Claim
+					</button>
+				</div>
+			) : (
+				""
+			)}
+		</>
+	);
+}
+
+function NewLowerMethod({ claimData }) {
+	const {
+		ethereumAccount,
+		metamaskNetworkId,
+		bridgeContract,
+		COMPANY_NAME_WITH_UNDERSCORE,
+	} = useContext(stateContext);
+
+	return (
+		<>
+			{Object.keys(claimData).length !== 0 ? (
+				<div
+					style={{
+						justifyContent: "space-between",
+					}}
+				>
+					<button
+						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-btn justify-content-center items-align-center`}
+						onClick={() => {
+							claimNow({
+								claimData,
+								ethereumAccount,
+								bridgeContract,
+								metamaskNetworkId,
+								method: "new",
+							});
+						}}
+					>
+						Claim
+					</button>
+				</div>
+			) : (
+				""
+			)}
+		</>
+	);
+}
