@@ -8,7 +8,7 @@ const ABI = [
 				type: "bytes32[]",
 			},
 		],
-		name: "lower",
+		name: "legacyLower",
 		outputs: [],
 		stateMutability: "nonpayable",
 		type: "function",
@@ -35,6 +35,19 @@ const ABI = [
 			{ internalType: "bytes", name: "_data", type: "bytes" },
 		],
 		name: "send",
+		outputs: [],
+		stateMutability: "nonpayable",
+		type: "function",
+	},
+	{
+		inputs: [
+			{
+				internalType: "bytes",
+				name: "proof",
+				type: "bytes",
+			},
+		],
+		name: "claimLower",
 		outputs: [],
 		stateMutability: "nonpayable",
 		type: "function",

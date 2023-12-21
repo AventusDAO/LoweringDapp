@@ -14,7 +14,7 @@ var appConfig = {
 	EVM_NETWORK_NAME: "Ethereum Mainnet",
 	ENVIRONMENT_NAME: "AvN Mainnet",
 	GATEWAY: "https://mainnet.gateway.aventus.io/",
-	LOWER_DURATION: "24 hours",
+	LOWER_DURATION: "12 hours",
 	NETWORK_ID: 1,
 	PRIMARY_TOKEN: "AVT",
 	PRIMARY_TOKEN_ADDRESS: "0x0d88eD6E74bbFD96B831231638b66C05571e824F", //if native token, leave empty

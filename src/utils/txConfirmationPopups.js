@@ -1,6 +1,5 @@
 import swal from "sweetalert2";
 
-const LOWER_DURATION = window?.appConfig?.LOWER_DURATION;
 const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 const EVM_NETWORK_NAME = window?.appConfig?.EVM_NETWORK_NAME;
 
@@ -24,21 +23,25 @@ export async function TxSubmitted(id) {
 export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
 	if (polledState.status === "Processed") {
 		await swal.fire({
-			title: "Lower Successful",
+			title: "Lower Scheduled Successfully",
 			showCloseButton: true,
-			text: `You'll need to complete Step-2 after ${LOWER_DURATION} to claim your tokens on ${EVM_NETWORK_NAME}.`,
 			allowOutsideClick: false,
-			confirmButtonColor: "#ffffff",
-			showConfirmButton: false,
-			footer: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on Explorer</a>`,
+			text: `Your Lower ID is: ${polledState.eventArgs.lowerId}`,
+			confirmButtonColor: "#DFF2FF",
+			showConfirmButton: true,
+			confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on Explorer</a>`,
 			icon: "success",
+			footer: `<span style="text-align: center"> You'll need to complete Step-2 once your lower is ready to be claimed on ${EVM_NETWORK_NAME}.</span>`,
 		});
 		return "complete";
 	} else if (polledState.status === "Rejected") {
+		const lowerId = polledState.eventArgs.lowerId
+			? polledState.eventArgs.lowerId
+			: "";
 		await swal.fire({
 			title: "Lower failed",
 			showCloseButton: true,
-			text: "The transaction was rejected by the Chain, please check the details and retry",
+			text: `The transaction was rejected by the Chain, please check the details and retry. ${lowerId}`,
 			confirmButtonColor: "#ffffff",
 			showConfirmButton: false,
 			footer: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on Explorer</a>`,

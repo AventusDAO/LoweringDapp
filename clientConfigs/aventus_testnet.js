@@ -14,7 +14,7 @@ var appConfig = {
 	EVM_NETWORK_NAME: "Goerli Testnet",
 	EXPLORER_TX_URL: "https://explorer.testnet.aventus.io/transaction/",
 	GATEWAY: "https://testnet.gateway.aventus.io/",
-	LOWER_DURATION: "24 hours",
+	LOWER_DURATION: "12 hours",
 	NETWORK_ID: 5,
 	PRIMARY_TOKEN_ADDRESS: "0x97d9b397189e8b771ffac3cb04cf26c780a93431", //if native token, leave empty
 	PRIMARY_TOKEN: "AVT",
