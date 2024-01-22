@@ -15,7 +15,7 @@ var appConfig = {
 	EXPLORER_TX_URL: "https://explorer.dev.aventus.io/transaction/",
 	GATEWAY: "https://uat.gateway.aventus.io/",
 	LOWER_DURATION: "12 hours",
-	NETWORK_ID: 5,
+	NETWORK_ID: 11155111,
 	PRIMARY_TOKEN_ADDRESS: "0x93ba86eCfDDD9CaAAc29bE83aCE5A3188aC47730", //if native token, leave empty
 	PRIMARY_TOKEN: "AVT",
 	RELAYER: "5FbUQ2kJWLoqHuSTSNNqBwKwdQnBVe4HF3TeGyu6UoZaryTh",
