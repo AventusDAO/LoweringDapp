@@ -2,7 +2,7 @@ var appConfig = {
 	// Aventus lowering dapp DEV/uat config
 	ALTERNATE_NETWORK_URL: "https://lower.testnet.aventus.io/",
 	ALTERNATE_NETWORK_NAME: "Testnet", //leave empty if Testnet is not deployed
-	BRIDGE_CONTRACT_ADDRESS: "0xc37c7b51ca698be58aad8dcd0e7b2568d03ea69b",
+	BRIDGE_CONTRACT_ADDRESS: "0x0Dd31348e68b6400bf8BdE84a1AaF733D9fCBf9B",
 	BUTTON_COLOR: "#5100FF",
 	COMPANY_NAME: "Aventus",
 	COMPANY_URL: "https://www.aventus.io/",
@@ -15,8 +15,8 @@ var appConfig = {
 	EXPLORER_TX_URL: "https://explorer.dev.aventus.io/transaction/",
 	GATEWAY: "https://uat.gateway.aventus.io/",
 	LOWER_DURATION: "12 hours",
-	NETWORK_ID: 5,
-	PRIMARY_TOKEN_ADDRESS: "0xe0a9e4f2591be648f18001e21db16ddab114fef9", //if native token, leave empty
+	NETWORK_ID: 11155111,
+	PRIMARY_TOKEN_ADDRESS: "0x93ba86eCfDDD9CaAAc29bE83aCE5A3188aC47730", //if native token, leave empty
 	PRIMARY_TOKEN: "AVT",
 	RELAYER: "5FbUQ2kJWLoqHuSTSNNqBwKwdQnBVe4HF3TeGyu6UoZaryTh",
 	SUPPORTS_ENTERPRISE_USERS: true,
