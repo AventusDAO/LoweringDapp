@@ -76,7 +76,6 @@ module.exports = function override(config, env) {
             optimization: {
                 minimize: true,
                 minimizer: [
-                  // This is only used in production mode
                   new TerserPlugin({
                     terserOptions: {
                       parse: {
@@ -91,28 +90,20 @@ module.exports = function override(config, env) {
                       mangle: {
                         safari10: true,
                       },
-                      // Added for profiling in devtools
                       keep_classnames: false,
                       keep_fnames: false,
                       output: {
                         ecma: 5,
                         comments: false,
-                        // Turned on because emoji and regex is not minified properly using default
-                        // https://github.com/facebook/create-react-app/issues/2488
                         ascii_only: true,
                       },
                     },
                   }),
-                  // This is only used in production mode
                   new CssMinimizerPlugin(),
                 ],
               },
            
         }
-
-        
-        
-        console.log("HELP !!!!!!!", overrideConfig.optimization)
         return overrideConfig;
     }
     return overrideConfig
