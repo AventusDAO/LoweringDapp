@@ -39,6 +39,7 @@
 		"big-number": "^2.0.0",
 		"bootstrap": "^5.2.0-beta1",
 		"buffer": "^6.0.3",
+		"css-minimizer-webpack-plugin": "^6.0.0",
 		"ethereum-unit-converter": "^0.0.17",
 		"ethers": "^5.7.1",
 		"npm": "^8.13.2",
@@ -53,7 +54,9 @@
 		"sass": "^1.53.0",
 		"stream-browserify": "^3.0.0",
 		"sweetalert2": "^11.4.28",
-		"web3": "^1.7.4"
+		"terser-webpack-plugin": "^5.3.10",
+		"web3": "^1.7.4",
+		"webpack-obfuscator": "^3.5.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.18.6",
