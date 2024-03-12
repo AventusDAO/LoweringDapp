@@ -9,7 +9,7 @@ var appConfig = {
 	COMPANY_SUPPORT_URL: "https://www.aventus.io/contact/",
 	COMPANY_NAME_WITH_UNDERSCORE: "Aventus",
 	ENVIRONMENT_NAME: "AvN UAT",
-	ETHERSCAN_TOKEN_LINK: "https://sepolia.etherscan.io/token/",
+	ETHERSCAN_TOKEN_LINK: "https://sepolia.etherscan.io/address/",
 	ETHERSCAN_TX_LINK: "https://sepolia.etherscan.io/tx/",
 	EVM_NETWORK_NAME: "Sepolia UAT Testnet",
 	EXPLORER_TX_URL: "https://explorer.dev.aventus.io/transaction/",

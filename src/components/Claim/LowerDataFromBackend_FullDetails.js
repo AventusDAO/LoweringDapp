@@ -4,9 +4,10 @@ import { claimNow } from "../../utils/ethereumUtils/claimNow";
 import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
 
-export const LowerDataFromBackend = ({ tx }) => {
+export const LowerDataFromBackendFullDetails = ({ tx }) => {
 	const { ETHERSCAN_TOKEN_LINK } = useContext(stateContext);
 
+	console.log(tx);
 	return (
 		<div
 			id={`lowersCollapse${tx.id}`}
@@ -16,54 +17,58 @@ export const LowerDataFromBackend = ({ tx }) => {
 		>
 			<div className="accordion-body">
 				<ul className="list-group">
-					<li className="d-flex">
-						<SenderDetails tx={tx} />
-					</li>
-					<li className="d-flex">
-						<div className="input-group mb-3">
-							<span
-								className="input-group-text"
-								style={{ maxWidth: "100px" }}
-								id="Recipient"
-							>
-								Recipient
-							</span>
-							<input
-								type="text"
-								id="recipientAddressTip"
-								disabled
-								readOnly
-								style={{
-									backgroundColor: "white",
-									color: "black",
-									weight: "bold",
-									borderTopRightRadius: "5px",
-									borderBottomRightRadius: "5px",
-								}}
-								className="mobile-ext form-control"
-								value={addressSlicer(tx.to, 8, 34)}
-								aria-label="Recipient"
-								aria-describedby="Recipient"
-							/>
-							<input
-								type="text"
-								id="recipientAddressTip"
-								disabled
-								readOnly
-								style={{
-									backgroundColor: "white",
-									color: "black",
-									borderTopRightRadius: "5px",
-									borderBottomRightRadius: "5px",
-									weight: "bold",
-								}}
-								className="desktop-ext form-control"
-								value={tx.to}
-								aria-label="Recipient"
-								aria-describedby="Recipient"
-							/>
-						</div>
-					</li>
+					{tx.from && (
+						<li className="d-flex">
+							<SenderDetails tx={tx} />
+						</li>
+					)}
+					{tx.to && (
+						<li className="d-flex">
+							<div className="input-group mb-3">
+								<span
+									className="input-group-text"
+									style={{ maxWidth: "100px" }}
+									id="Recipient"
+								>
+									Recipient
+								</span>
+								<input
+									type="text"
+									id="recipientAddressTip"
+									disabled
+									readOnly
+									style={{
+										backgroundColor: "white",
+										color: "black",
+										weight: "bold",
+										borderTopRightRadius: "5px",
+										borderBottomRightRadius: "5px",
+									}}
+									className="mobile-ext form-control"
+									value={addressSlicer(tx.to, 8, 34)}
+									aria-label="Recipient"
+									aria-describedby="Recipient"
+								/>
+								<input
+									type="text"
+									id="recipientAddressTip"
+									disabled
+									readOnly
+									style={{
+										backgroundColor: "white",
+										color: "black",
+										borderTopRightRadius: "5px",
+										borderBottomRightRadius: "5px",
+										weight: "bold",
+									}}
+									className="desktop-ext form-control"
+									value={tx.to}
+									aria-label="Recipient"
+									aria-describedby="Recipient"
+								/>
+							</div>
+						</li>
+					)}
 					<div className="row">
 						<li className="d-flex col-sm">
 							<div className="input-group mb-3">
