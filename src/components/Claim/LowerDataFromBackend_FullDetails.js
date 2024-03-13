@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
-import { claimNow } from "../../utils/ethereumUtils/claimNow";
 import { stateContext } from "../../Contexts/Context";
 import { SenderDetails } from "./SenderDetails";
+import { OldLowerMethod } from "./OldLowerMethod";
+import { NewLowerMethod } from "./NewLowerMethod";
 
 export const LowerDataFromBackendFullDetails = ({ tx }) => {
 	const { ETHERSCAN_TOKEN_LINK } = useContext(stateContext);
 
-	console.log(tx);
 	return (
 		<div
 			id={`lowersCollapse${tx.id}`}
@@ -150,80 +150,3 @@ export const LowerDataFromBackendFullDetails = ({ tx }) => {
 		</div>
 	);
 };
-
-function OldLowerMethod({ claimData }) {
-	const {
-		ethereumAccount,
-		metamaskNetworkId,
-		bridgeContract,
-		COMPANY_NAME_WITH_UNDERSCORE,
-	} = useContext(stateContext);
-
-	return (
-		<>
-			{Object.keys(claimData).length !== 0 ? (
-				<div
-					style={{
-						justifyContent: "space-between",
-					}}
-				>
-					<button
-						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-btn justify-content-center items-align-center`}
-						onClick={() => {
-							claimNow({
-								leaf: claimData.leaf,
-								merklePath: claimData.merklePath,
-								ethereumAccount,
-								bridgeContract,
-								metamaskNetworkId,
-								method: "old",
-							});
-						}}
-					>
-						Claim
-					</button>
-				</div>
-			) : (
-				""
-			)}
-		</>
-	);
-}
-
-function NewLowerMethod({ claimData }) {
-	const {
-		ethereumAccount,
-		metamaskNetworkId,
-		bridgeContract,
-		COMPANY_NAME_WITH_UNDERSCORE,
-	} = useContext(stateContext);
-
-	return (
-		<>
-			{Object.keys(claimData).length !== 0 ? (
-				<div
-					style={{
-						justifyContent: "space-between",
-					}}
-				>
-					<button
-						className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-btn justify-content-center items-align-center`}
-						onClick={() => {
-							claimNow({
-								claimData,
-								ethereumAccount,
-								bridgeContract,
-								metamaskNetworkId,
-								method: "new",
-							});
-						}}
-					>
-						Claim
-					</button>
-				</div>
-			) : (
-				""
-			)}
-		</>
-	);
-}
