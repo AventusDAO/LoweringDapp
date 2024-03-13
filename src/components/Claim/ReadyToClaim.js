@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { addressSlicer } from "../../utils/randomFunctions";
 import BackButton from "../Extras/BackButton";
-import { LowerDataFromBackend } from "./LowerDataFromBackend";
+import { LowerDataFromBackendFullDetails } from "./LowerDataFromBackend_FullDetails";
+import { LowerDataFromBackendOnlyLowerID } from "./LowerDataFromBackend_OnlyLowerID";
 import { Pagination } from "../Pagination";
 import { stateContext } from "../../Contexts/Context";
 import { NoLowers } from "./NoLowers";
@@ -43,19 +44,14 @@ const ReadyToClaim = ({ lowers }) => {
 					<div>
 						<div className="col"></div>
 						<BackButton />
-						<h1
-							className={`${COMPANY_NAME_WITH_UNDERSCORE}-maintitle`}
-						>
+						<h1 className={`${COMPANY_NAME_WITH_UNDERSCORE}-maintitle`}>
 							Outstanding lowers
 						</h1>
 						<br />
 						{currentLowers.map((tx) => (
 							<div key={tx.id}>
 								<div className="accordion-item">
-									<h2
-										className="accordion-header"
-										id="lowersFromBackend"
-									>
+									<h2 className="accordion-header" id="lowersFromBackend">
 										<button
 											className="accordion-button collapsed"
 											type="button"
@@ -65,8 +61,7 @@ const ReadyToClaim = ({ lowers }) => {
 											aria-controls="lowersFromBackend"
 										>
 											{tx.claimData ? (
-												Object.keys(tx.claimData)
-													.length !== 0 ? (
+												Object.keys(tx.claimData).length !== 0 ? (
 													<div>
 														<span className="badge bg-success rounded-pill">
 															Available
@@ -89,21 +84,28 @@ const ReadyToClaim = ({ lowers }) => {
 													&nbsp;
 												</div>
 											)}
-
-											<span className="desktop-ext">
-												{`Recipient: ${tx.to}`}
-											</span>
-											<span className="mobile-ext">
-												{`Recipient: ${addressSlicer(
-													tx.to,
-													8,
-													34
-												)}`}
-											</span>
+											{tx.to ? (
+												<span className="desktop-ext">
+													{`Recipient: ${tx.to}`}
+												</span>
+											) : (
+												<span className="desktop-ext">
+													{`Lower Id: ${tx.lowerId}`}
+												</span>
+											)}
+											{tx.to && (
+												<span className="mobile-ext">
+													{`Recipient: ${addressSlicer(tx.to, 8, 34)}`}
+												</span>
+											)}
 											<br />
 										</button>
 									</h2>
-									<LowerDataFromBackend tx={tx} />
+									{Object.keys(tx).length <= 5 ? (
+										<LowerDataFromBackendOnlyLowerID tx={tx} />
+									) : (
+										<LowerDataFromBackendFullDetails tx={tx} />
+									)}
 								</div>
 								<br />
 							</div>
