@@ -16,6 +16,7 @@ const ReadyToClaim = ({ lowers }) => {
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
+	console.log(lowers);
 
 	var data;
 	var currentLowers;
