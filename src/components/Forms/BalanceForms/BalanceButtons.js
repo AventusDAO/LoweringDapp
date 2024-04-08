@@ -67,26 +67,27 @@ const BalanceButtons = () => {
 				<button
 					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
 					disabled={
-						mainTokenQueryLoading ||
-						nativeQueryLoading ||
-						ercQueryLoading
+						mainTokenQueryLoading || nativeQueryLoading || ercQueryLoading
 					}
 					type="button"
-					onClick={(event) => {
-						event.preventDefault();
-						setIsShown(false);
-						setMainTokenQueryLoading(true);
-						mainTokenBalanceHandler({
-							tokenType: SUPPORTED_TOKENS.MAIN_TOKEN.value,
-							substrateUser,
-							_hasPayer,
-							api,
-							set_HasPayer,
-							method: mainTokenMethod,
-							NATIVE_CONTRACT_ADDRESS,
-						}).then(() => {
+					onClick={async (event) => {
+						try {
+							event.preventDefault();
+							setIsShown(false);
+							setMainTokenQueryLoading(true);
+							await mainTokenBalanceHandler({
+								tokenType: SUPPORTED_TOKENS.MAIN_TOKEN.value,
+								substrateUser,
+								_hasPayer,
+								api,
+								set_HasPayer,
+								method: mainTokenMethod,
+								NATIVE_CONTRACT_ADDRESS,
+							});
 							setMainTokenQueryLoading(false);
-						});
+						} catch (err) {
+							console.log(err);
+						}
 					}}
 				>
 					{mainTokenQueryLoading ? (
@@ -103,9 +104,7 @@ const BalanceButtons = () => {
 				<button
 					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
 					disabled={
-						mainTokenQueryLoading ||
-						nativeQueryLoading ||
-						ercQueryLoading
+						mainTokenQueryLoading || nativeQueryLoading || ercQueryLoading
 					}
 					type="button"
 					onClick={(event) => {
@@ -121,25 +120,28 @@ const BalanceButtons = () => {
 				<button
 					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
 					disabled={
-						mainTokenQueryLoading ||
-						nativeQueryLoading ||
-						ercQueryLoading
+						mainTokenQueryLoading || nativeQueryLoading || ercQueryLoading
 					}
-					onClick={(event) => {
+					onClick={async (event) => {
 						event.preventDefault();
-						setNativeQueryLoading(true);
-						setIsShown(false);
-						nativeTokenBalanceHandler({
-							tokenType: SUPPORTED_TOKENS.NATIVE.value,
-							substrateUser,
-							_hasPayer,
-							api,
-							set_HasPayer,
-							method: ethMethod,
-							PRIMARY_TOKEN,
-							NATIVE_CONTRACT_ADDRESS,
-							tokenAddress: NATIVE_CONTRACT_ADDRESS,
-						}).then(() => setNativeQueryLoading(false));
+						try {
+							setNativeQueryLoading(true);
+							setIsShown(false);
+							await nativeTokenBalanceHandler({
+								tokenType: SUPPORTED_TOKENS.NATIVE.value,
+								substrateUser,
+								_hasPayer,
+								api,
+								set_HasPayer,
+								method: ethMethod,
+								PRIMARY_TOKEN,
+								NATIVE_CONTRACT_ADDRESS,
+								tokenAddress: NATIVE_CONTRACT_ADDRESS,
+							});
+							setNativeQueryLoading(false);
+						} catch (err) {
+							console.log(err);
+						}
 					}}
 				>
 					{nativeQueryLoading ? (

@@ -10,10 +10,9 @@ export default function GenerateNewToken() {
 			<div className="text-end">
 				<button
 					className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-generate-new-token-button`}
-					onClick={() => {
-						regenerateGatewayToken().then((result) => {
-							setRegenerateToken(result);
-						});
+					onClick={async () => {
+						const isTrue = await regenerateGatewayToken();
+						setRegenerateToken(isTrue);
 					}}
 				>
 					Generate New Token

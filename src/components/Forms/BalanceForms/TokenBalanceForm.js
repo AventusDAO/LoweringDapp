@@ -25,20 +25,25 @@ export default function TokenBalanceForm() {
 		>
 			<hr />
 			<form
-				onSubmit={(event) => {
+				onSubmit={async (event) => {
 					event.preventDefault();
-					setErcQueryLoading(true);
-					ercTokenBalanceHandler({
-						tokenType: "TOKEN",
-						substrateUser,
-						PRIMARY_TOKEN_ADDRESS,
-						isMain: false,
-						_hasPayer,
-						api,
-						set_HasPayer,
-						method,
-						tokenAddress: token,
-					}).then(() => setErcQueryLoading(false));
+					try {
+						setErcQueryLoading(true);
+						ercTokenBalanceHandler({
+							tokenType: "TOKEN",
+							substrateUser,
+							PRIMARY_TOKEN_ADDRESS,
+							isMain: false,
+							_hasPayer,
+							api,
+							set_HasPayer,
+							method,
+							tokenAddress: token,
+						});
+						setErcQueryLoading(false);
+					} catch (err) {
+						console.log(err);
+					}
 				}}
 			>
 				<div className="text-start">
@@ -94,9 +99,8 @@ export default function TokenBalanceForm() {
 					</button>
 					<div style={{ fontSize: "13px" }}>
 						<br />
-						Note: Your wallet may prompt you once to sign and
-						approve the query operation required to query your
-						balance.
+						Note: Your wallet may prompt you once to sign and approve the query
+						operation required to query your balance.
 					</div>
 				</div>
 			</form>

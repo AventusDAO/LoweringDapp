@@ -4,20 +4,17 @@ const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR;
 const EVM_NETWORK_NAME = window?.appConfig?.EVM_NETWORK_NAME;
 
 export async function TxSubmitted(id) {
-	await swal
-		.fire({
-			title: `Transaction Submitted`,
-			text: "Confirmation will follow shortly",
-			allowOutsideClick: false,
-			icon: "success",
-			showConfirmButton: true,
-			confirmButtonText: "Okay",
-			confirmButtonColor: BUTTON_COLOR,
-			showCloseButton: true,
-		})
-		.then(() => {
-			navigator.clipboard.writeText(id);
-		});
+	await swal.fire({
+		title: `Transaction Submitted`,
+		text: "Confirmation will follow shortly",
+		allowOutsideClick: false,
+		icon: "success",
+		showConfirmButton: true,
+		confirmButtonText: "Okay",
+		confirmButtonColor: BUTTON_COLOR,
+		showCloseButton: true,
+	});
+	navigator.clipboard.writeText(id);
 }
 
 export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {

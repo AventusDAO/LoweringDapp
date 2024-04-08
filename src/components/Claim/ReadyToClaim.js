@@ -16,13 +16,16 @@ const ReadyToClaim = ({ lowers }) => {
 	const paginate = (pageNumber) => {
 		setCurrentPage(pageNumber);
 	};
-	console.log(lowers);
-
-	var data;
-	var currentLowers;
+	let reversedLowers;
 	if (lowers) {
+		reversedLowers = [...lowers.lowerData].reverse();
+	}
+
+	const data = reversedLowers ? reversedLowers : [];
+	let currentLowers;
+
+	if (reversedLowers) {
 		try {
-			data = lowers.lowerData;
 			if (data.values().next().value !== null) {
 				data.forEach((tx, index) => {
 					tx.id = index;
