@@ -18,17 +18,14 @@ export default function SetEnterpriseStatus() {
 							className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-set-enterprise-token-button ${
 								_hasPayer ? "disabled" : ""
 							}`}
-							onClick={() => {
-								gotAnEnterpriseAccount().then((result) => {
-									if (result) {
-										set_HasPayer(result);
-									}
-								});
+							onClick={async () => {
+								const result = await gotAnEnterpriseAccount();
+								if (result) {
+									set_HasPayer(result);
+								}
 							}}
 						>
-							{_hasPayer
-								? "Refresh to Reset"
-								: "Set Enterprise Status"}
+							{_hasPayer ? "Refresh to Reset" : "Set Enterprise Status"}
 						</button>
 						<br />
 					</div>

@@ -34,58 +34,52 @@ export default function Erc20LoweringForm({
 		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
-	function submitTxRequest() {
-		setLowerLoading(true);
-		ercConfirmLowerDetails({
-			substrateUserAddress: substrateUser.address,
-			ethereumAccount,
-			tokenType,
-			tokenAddress,
-			metamaskNetworkId,
-			amount,
-			NETWORK_ID,
-			EVM_NETWORK_NAME,
-			t1Recipient,
-			isERC20,
-			isERC777,
-		}).then((result) => {
-			if (result) {
-				if (result.userChoice) {
-					lowerSubmitHandler({
-						substrateUser,
-						tokenAddress,
-						tokenType,
-						amount: result._amount,
-						t1Recipient,
-						_hasPayer,
-						api,
-						set_HasPayer,
-						AVN_RELAYER,
-						EXPLORER_TX_URL,
-					}).then(() => setLowerLoading(false));
-				} else {
-					setLowerLoading(false);
-				}
-			} else {
-				setLowerLoading(false);
-			}
-		});
-	}
-
 	return (
 		<div
-			className={`tab-pane py-3 fade ${
-				position === "1" ? "show active" : ""
-			}`}
+			className={`tab-pane py-3 fade ${position === "1" ? "show active" : ""}`}
 			id={`${tokenType}-tab-pane`}
 			role="tabpanel"
 			aria-labelledby={`${tokenType}-tab`}
 			tabIndex="0"
 		>
 			<form
-				onSubmit={(event) => {
+				onSubmit={async (event) => {
 					event.preventDefault();
-					submitTxRequest();
+					try {
+						setLowerLoading(true);
+						const result = await ercConfirmLowerDetails({
+							substrateUserAddress: substrateUser.address,
+							ethereumAccount,
+							tokenType,
+							tokenAddress,
+							metamaskNetworkId,
+							amount,
+							NETWORK_ID,
+							EVM_NETWORK_NAME,
+							t1Recipient,
+							isERC20,
+							isERC777,
+						});
+						if (result?.userChoice) {
+							await lowerSubmitHandler({
+								substrateUser,
+								tokenAddress,
+								tokenType,
+								amount: result._amount,
+								t1Recipient,
+								_hasPayer,
+								api,
+								set_HasPayer,
+								AVN_RELAYER,
+								EXPLORER_TX_URL,
+							});
+							setLowerLoading(false);
+						} else {
+							setLowerLoading(false);
+						}
+					} catch (err) {
+						console.log(err);
+					}
 				}}
 			>
 				<div className="text-start">
@@ -198,8 +192,8 @@ export default function Erc20LoweringForm({
 					</button>
 					<div style={{ fontSize: "13px" }}>
 						<br />
-						Note: Lowering requires multiple signatures, please
-						follow all wallet prompts
+						Note: Lowering requires multiple signatures, please follow all
+						wallet prompts
 					</div>
 				</div>
 			</form>

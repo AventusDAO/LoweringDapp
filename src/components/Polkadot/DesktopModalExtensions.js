@@ -32,13 +32,10 @@ function DesktopModalExtensions() {
 									borderRadius: "15px",
 									backgroundColor: "white",
 								}}
-								onClick={() => {
-									connectSpecificWallet(wallet).then(
-										(accounts) => {
-											setWalletName(wallet);
-											setSubstrateAccounts(accounts);
-										}
-									);
+								onClick={async () => {
+									const accounts = await connectSpecificWallet(wallet);
+									setWalletName(wallet);
+									setSubstrateAccounts(accounts);
 								}}
 							>
 								<div className="row">
@@ -49,25 +46,19 @@ function DesktopModalExtensions() {
 										<span
 											className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
 										>
-											<b>
-												{capitaliseFirstLetter(wallet)}
-											</b>
+											<b>{capitaliseFirstLetter(wallet)}</b>
 										</span>
 									</div>
-									<div
-										className="col"
-										style={{ marginRight: "-15px" }}
-									>
-										{substrateUser &&
-											wallet === substrateUser.source && (
-												<div className="text-end">
-													<span
-														className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
-													>
-														Active
-													</span>
-												</div>
-											)}
+									<div className="col" style={{ marginRight: "-15px" }}>
+										{substrateUser && wallet === substrateUser.source && (
+											<div className="text-end">
+												<span
+													className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+												>
+													Active
+												</span>
+											</div>
+										)}
 									</div>
 								</div>
 							</div>

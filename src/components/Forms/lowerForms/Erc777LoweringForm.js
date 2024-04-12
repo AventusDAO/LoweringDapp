@@ -20,6 +20,7 @@ export default function Erc777LoweringForm({
 		lowerLoading,
 		setLowerLoading,
 	} = useContext(formContext);
+
 	const {
 		substrateUser,
 		ethereumAccount,
@@ -34,58 +35,52 @@ export default function Erc777LoweringForm({
 		COMPANY_NAME_WITH_UNDERSCORE,
 	} = useContext(stateContext);
 
-	function submitTxRequest() {
-		setLowerLoading(true);
-		ercConfirmLowerDetails({
-			substrateUserAddress: substrateUser.address,
-			ethereumAccount,
-			tokenType,
-			tokenAddress,
-			amount,
-			metamaskNetworkId,
-			NETWORK_ID,
-			t1Recipient,
-			EVM_NETWORK_NAME,
-			isERC20,
-			isERC777,
-		}).then((result) => {
-			if (result) {
-				if (result.userChoice)
-					lowerSubmitHandler({
-						substrateUser,
-						tokenAddress,
-						amount: result._amount,
-						tokenType,
-						t1Recipient,
-						_hasPayer,
-						api,
-						set_HasPayer,
-						AVN_RELAYER,
-						EXPLORER_TX_URL,
-					}).then(() => setLowerLoading(false));
-				else {
-					setLowerLoading(false);
-				}
-			} else {
-				setLowerLoading(false);
-			}
-		});
-	}
-
 	return (
 		<div
-			className={`tab-pane py-3 fade ${
-				position === "1" ? "show active" : ""
-			}`}
+			className={`tab-pane py-3 fade ${position === "1" ? "show active" : ""}`}
 			id={`${tokenType}-tab-pane`}
 			role="tabpanel"
 			aria-labelledby={`${tokenType}-tab`}
 			tabIndex="0"
 		>
 			<form
-				onSubmit={(event) => {
+				onSubmit={async (event) => {
 					event.preventDefault();
-					submitTxRequest();
+					setLowerLoading(true);
+					try {
+						const result = await ercConfirmLowerDetails({
+							substrateUserAddress: substrateUser.address,
+							ethereumAccount,
+							tokenType,
+							tokenAddress,
+							amount,
+							metamaskNetworkId,
+							NETWORK_ID,
+							t1Recipient,
+							EVM_NETWORK_NAME,
+							isERC20,
+							isERC777,
+						});
+						if (result?.userChoice) {
+							await lowerSubmitHandler({
+								substrateUser,
+								tokenAddress,
+								amount: result._amount,
+								tokenType,
+								t1Recipient,
+								_hasPayer,
+								api,
+								set_HasPayer,
+								AVN_RELAYER,
+								EXPLORER_TX_URL,
+							});
+							setLowerLoading(false);
+						} else {
+							setLowerLoading(false);
+						}
+					} catch (err) {
+						console.log(err);
+					}
 				}}
 			>
 				<div className="text-start">
@@ -198,8 +193,8 @@ export default function Erc777LoweringForm({
 					</button>
 					<div style={{ fontSize: "13px" }}>
 						<br />
-						Note: Lowering requires multiple signatures, please
-						follow all wallet prompts
+						Note: Lowering requires multiple signatures, please follow all
+						wallet prompts
 					</div>
 				</div>
 			</form>

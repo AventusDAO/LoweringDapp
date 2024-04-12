@@ -46,25 +46,22 @@ export const userBalance = async ({ tokenType, message, decAmount }) => {
 				? "Confirm the decimals for this token on the token's smart contract"
 				: ""
 		}
-                    </p>`,
+    	</p>`,
 	});
 };
 
 export async function transactionSubmitted(id) {
-	await swal
-		.fire({
-			title: `Transaction Submitted`,
-			text: "Confirmation will follow shortly",
-			allowOutsideClick: false,
-			icon: "success",
-			showConfirmButton: true,
-			confirmButtonText: "Okay",
-			confirmButtonColor: BUTTON_COLOR,
-			showCloseButton: true,
-		})
-		.then(() => {
-			navigator.clipboard.writeText(id);
-		});
+	await swal.fire({
+		title: `Transaction Submitted`,
+		text: "Confirmation will follow shortly",
+		allowOutsideClick: false,
+		icon: "success",
+		showConfirmButton: true,
+		confirmButtonText: "Okay",
+		confirmButtonColor: BUTTON_COLOR,
+		showCloseButton: true,
+	});
+	navigator.clipboard.writeText(id);
 }
 
 export async function confirmAWTTokenClearance() {

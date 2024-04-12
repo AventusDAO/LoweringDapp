@@ -28,46 +28,45 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 
 	return (
 		<div
-			className={`tab-pane py-3 fade ${
-				position === "1" ? "show active" : ""
-			}`}
+			className={`tab-pane py-3 fade ${position === "1" ? "show active" : ""}`}
 			id={`${tokenType}-tab-pane`}
 			role="tabpanel"
 			aria-labelledby={`${tokenType}-tab`}
 			tabIndex="0"
 		>
 			<form
-				onSubmit={(event) => {
+				onSubmit={async (event) => {
 					event.preventDefault();
-					setLowerLoading(true);
-					confirmLowerDetails({
-						substrateUserAddress: substrateUser.address,
-						tokenType,
-						tokenAddress: PRIMARY_TOKEN_ADDRESS,
-						amount,
-						t1Recipient,
-					}).then((result) => {
-						if (result) {
-							if (result.userChoice)
-								lowerSubmitHandler({
-									substrateUser,
-									api,
-									_hasPayer,
-									set_HasPayer,
-									tokenAddress: PRIMARY_TOKEN_ADDRESS,
-									amount: result._amount,
-									t1Recipient,
-									tokenType,
-									AVN_RELAYER,
-									EXPLORER_TX_URL,
-								}).then(() => setLowerLoading(false));
-							else {
-								setLowerLoading(false);
-							}
+					try {
+						setLowerLoading(true);
+						const result = await confirmLowerDetails({
+							substrateUserAddress: substrateUser.address,
+							tokenType,
+							tokenAddress: PRIMARY_TOKEN_ADDRESS,
+							amount,
+							t1Recipient,
+						});
+
+						if (result?.userChoice) {
+							await lowerSubmitHandler({
+								substrateUser,
+								api,
+								_hasPayer,
+								set_HasPayer,
+								tokenAddress: PRIMARY_TOKEN_ADDRESS,
+								amount: result._amount,
+								t1Recipient,
+								tokenType,
+								AVN_RELAYER,
+								EXPLORER_TX_URL,
+							});
+							setLowerLoading(false);
 						} else {
 							setLowerLoading(false);
 						}
-					});
+					} catch (err) {
+						console.log(err);
+					}
 				}}
 			>
 				<div className="text-start">
@@ -149,8 +148,8 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
 					</button>
 					<div style={{ fontSize: "13px" }}>
 						<br />
-						Note: Lowering requires multiple signatures, please
-						follow all wallet prompts
+						Note: Lowering requires multiple signatures, please follow all
+						wallet prompts
 					</div>
 				</div>
 			</form>

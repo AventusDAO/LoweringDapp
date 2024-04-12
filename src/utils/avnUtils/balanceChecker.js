@@ -39,7 +39,7 @@ async function proxyLowerTokenWithFee({
 					"wei",
 					"eth"
 				)} ${PRIMARY_TOKEN}), the amount you specified is larger than your ${PRIMARY_TOKEN} balance.`
-			).then();
+			);
 			if (balanceAdjusted) {
 				return {
 					value: true,

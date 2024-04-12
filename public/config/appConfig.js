@@ -1,24 +1,24 @@
 var appConfig = {
-	// Aventus lowering dapp MAINNET config
-	ALTERNATE_NETWORK_URL: "https://lower.testnet.aventus.io/",
-	ALTERNATE_NETWORK_NAME: "Testnet", //leave empty if Testnet is not deployed
-	BRIDGE_CONTRACT_ADDRESS: "0xf05df39f745a240fb133cc4a11e42467fab10f1f",
+	// Aventus lowering dapp TESTNET config
+	ALTERNATE_NETWORK_URL: "https://lower.aventus.io/",
+	ALTERNATE_NETWORK_NAME: "Mainnet", //leave empty if Mainnet is not deployed
+	BRIDGE_CONTRACT_ADDRESS: "0x8fa6cd9a275506d719c434335c0c9ffd15e05a87",
 	BUTTON_COLOR: "#5100FF",
 	COMPANY_NAME: "Aventus",
-	COMPANY_NAME_WITH_UNDERSCORE: "Aventus",
 	COMPANY_URL: "https://www.aventus.io/",
 	COMPANY_SUPPORT_URL: "https://www.aventus.io/contact/",
-	EXPLORER_TX_URL: "https://explorer.mainnet.aventus.io/transaction/",
-	ETHERSCAN_TOKEN_LINK: "https://etherscan.io/address/",
-	ETHERSCAN_TX_LINK: "https://etherscan.io/tx/",
-	EVM_NETWORK_NAME: "Ethereum Mainnet",
-	ENVIRONMENT_NAME: "AvN Mainnet",
-	GATEWAY: "https://mainnet.gateway.aventus.io/",
+	COMPANY_NAME_WITH_UNDERSCORE: "Aventus",
+	ENVIRONMENT_NAME: "AvN Testnet",
+	ETHERSCAN_TX_LINK: "https://sepolia.etherscan.io/tx/",
+	ETHERSCAN_TOKEN_LINK: "https://sepolia.etherscan.io/address/",
+	EVM_NETWORK_NAME: "Sepolia Testnet",
+	EXPLORER_TX_URL: "https://explorer.testnet.aventus.io/transaction/",
+	GATEWAY: "https://testnet.gateway.aventus.io/",
 	LOWER_DURATION: "12 hours",
-	NETWORK_ID: 1,
+	NETWORK_ID: 11155111,
+	PRIMARY_TOKEN_ADDRESS: "0x97d9b397189e8b771ffac3cb04cf26c780a93431", //if native token, leave empty
 	PRIMARY_TOKEN: "AVT",
-	PRIMARY_TOKEN_ADDRESS: "0x0d88eD6E74bbFD96B831231638b66C05571e824F", //if native token, leave empty
-	RELAYER: "5Gh6CfQUNDzsk7TQ8Tt8SR9h8mAQXpEpeZjNKFoVxYWqLAEB",
+	RELAYER: "5EcAFwVcBo8s2D3ZSTnx2sq49wVDF3rc1yGJMx5nRp2GsK62",
 	SUPPORTS_ENTERPRISE_USERS: true,
 	SHOW_BALANCE_PAGE: true,
 	SUPPORTED_TOKENS: {

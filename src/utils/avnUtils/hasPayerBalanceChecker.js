@@ -28,7 +28,7 @@ async function proxyLowerTokenWithoutFee({ userFreeBalance, amount }) {
 			"Adjustment Required",
 			`Choosing 'Continue' will lower 100% of your ${PRIMARY_TOKEN} balance.`,
 			`You are not paying transaction fee for this transaction.`
-		).then();
+		);
 		if (balanceAdjusted) {
 			return {
 				value: true,
