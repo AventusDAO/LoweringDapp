@@ -1,19 +1,19 @@
 var appConfig = {
 	// Aventus lowering dapp TESTNET config
-	ALTERNATE_NETWORK_URL: "https://lower.aventus.io/",
+	ALTERNATE_NETWORK_URL: "https://lower.mainnet.aventus.network/",
 	ALTERNATE_NETWORK_NAME: "Mainnet", //leave empty if Mainnet is not deployed
 	BRIDGE_CONTRACT_ADDRESS: "0x8fa6cd9a275506d719c434335c0c9ffd15e05a87",
 	BUTTON_COLOR: "#5100FF",
 	COMPANY_NAME: "Aventus",
-	COMPANY_URL: "https://www.aventus.io/",
-	COMPANY_SUPPORT_URL: "https://www.aventus.io/contact/",
+	COMPANY_URL: "https://www.aventus.network/",
+	COMPANY_SUPPORT_URL: "https://www.aventus.network/contact/",
 	COMPANY_NAME_WITH_UNDERSCORE: "Aventus",
 	ENVIRONMENT_NAME: "AvN Testnet",
 	ETHERSCAN_TX_LINK: "https://sepolia.etherscan.io/tx/",
 	ETHERSCAN_TOKEN_LINK: "https://sepolia.etherscan.io/address/",
 	EVM_NETWORK_NAME: "Sepolia Testnet",
-	EXPLORER_TX_URL: "https://explorer.testnet.aventus.io/transaction/",
-	GATEWAY: "https://testnet.gateway.aventus.io/",
+	EXPLORER_TX_URL: "https://explorer.testnet.aventus.network/transaction/",
+	GATEWAY: "https://gateway.testnet.aventus.network/",
 	LOWER_DURATION: "12 hours",
 	NETWORK_ID: 11155111,
 	PRIMARY_TOKEN_ADDRESS: "0x97d9b397189e8b771ffac3cb04cf26c780a93431", //if native token, leave empty
