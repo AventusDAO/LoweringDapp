@@ -32,7 +32,7 @@ function MobileModalExtensions() {
 									backgroundColor: "white",
 								}}
 								onClick={async () => {
-									const accounts = connectSpecificWallet(wallet);
+									const accounts = await connectSpecificWallet(wallet);
 									setWalletName(wallet);
 									setSubstrateAccounts(accounts);
 								}}
@@ -42,11 +42,11 @@ function MobileModalExtensions() {
 										className={`col text-start ${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
 										style={{ marginLeft: "-10px" }}
 									>
-										{/* This text implementation is specifically for Nova Wallet. */}
+										{/* This hardcoded-text implementation is specifically for Nova Wallet. */}
 										<span
 											className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
 										>
-											<b>Nova</b>
+											<b>Mobile Wallet</b>
 										</span>
 									</div>
 									<div className="col" style={{ marginRight: "-15px" }}>
