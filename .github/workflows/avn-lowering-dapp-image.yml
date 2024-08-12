@@ -13,13 +13,12 @@ jobs:
     name: (AVN) build docker lowering-dapp
     uses: ./.github/workflows/docker-build.yaml
     with:
-      aws_region: eu-west-2
-      aws_account_id: 189013141504
-      short_image_name: avn-lowering-dapp
+      runner: avn-runner-ubuntu-2204-x64
+      config_creds: false
+      aws_region: eu-west-1
+      aws_account_id: 931945598683
+      short_image_name: lowering
       ecr_repository_prefix: dapps
-    secrets:
-      aws_access_key: ${{ secrets.TESTNET_AWS_ACCESS_KEY_ID }}
-      aws_secret_key: ${{ secrets.TESTNET_AWS_SECRET_ACCESS_KEY }}
 
   ew-docker-dapp:
     name: (EW) build docker lowering-dapp
@@ -27,7 +26,7 @@ jobs:
     #if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'master' }}
     uses: ./.github/workflows/docker-build.yaml
     with:
-      runner: avn-runner
+      runner: avn-runner-ubuntu-2204-x64
       config_creds: false
       aws_region: us-east-1
       aws_account_id: 541507968610
