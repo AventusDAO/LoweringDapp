@@ -102,7 +102,7 @@ export default function LowerQueryForm() {
             </li>
             <button
               type='submit'
-              className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
+              className={`btn submit-button mobile-bigButton`}
               style={{ fontWeight: 'bold' }}
             >
               Search Lowers

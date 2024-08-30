@@ -51,7 +51,7 @@ export default function TokenBalanceForm() {
             Balance
           </h3>
           <span
-            className={`${COMPANY_NAME_WITH_UNDERSCORE}-popText`}
+            className={`popText`}
             style={{ fontWeight: '700' }}
           >
             Token
@@ -91,7 +91,7 @@ export default function TokenBalanceForm() {
         <div className='text-start'>
           <button
             type='submit'
-            className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
+            className={`btn submit-button `}
             disabled={ercQueryLoading}
             style={{ fontWeight: 'bold' }}
           >

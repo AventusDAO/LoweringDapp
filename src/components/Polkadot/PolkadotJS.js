@@ -24,8 +24,7 @@ function MobileHeaderButtons() {
     ALTERNATE_NETWORK_URL,
     ALTERNATE_NETWORK_NAME,
     COMPANY_NAME,
-    substrateUser,
-    COMPANY_NAME_WITH_UNDERSCORE
+    substrateUser
   } = useContext(stateContext)
 
   return (
@@ -48,7 +47,7 @@ function MobileHeaderButtons() {
           </span>
           <button
             type='button'
-            className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
+            className={`btn connect-button mobile-bigButton`}
             data-bs-toggle='modal'
             data-bs-target='#extensionsMobileModal'
           >
@@ -66,9 +65,7 @@ function MobileHeaderButtons() {
           style={{ textDecoration: 'none' }}
           rel='noopener noreferrer'
         >
-          <button
-            className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
-          >
+          <button className={`btn connect-button mobile-bigButton`}>
             Switch To {ALTERNATE_NETWORK_NAME}
           </button>
         </a>
@@ -82,8 +79,7 @@ function DesktopHeaderButtons() {
     ALTERNATE_NETWORK_URL,
     ALTERNATE_NETWORK_NAME,
     COMPANY_NAME,
-    substrateUser,
-    COMPANY_NAME_WITH_UNDERSCORE
+    substrateUser
   } = useContext(stateContext)
 
   return (
@@ -106,7 +102,7 @@ function DesktopHeaderButtons() {
 
           <button
             type='button'
-            className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
+            className={`btn connect-button `}
             data-bs-toggle='modal'
             data-bs-target='#extensionsModal'
           >
@@ -130,9 +126,7 @@ function DesktopHeaderButtons() {
             style={{ textDecoration: 'none' }}
             rel='noopener noreferrer'
           >
-            <button
-              className={`btn text-end ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
-            >
+            <button className={`btn text-end connect-button  mobile-bigButton`}>
               Switch To {ALTERNATE_NETWORK_NAME}
             </button>
           </a>
@@ -143,7 +137,6 @@ function DesktopHeaderButtons() {
 }
 
 function DesktopNoAccount() {
-  const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext)
   return (
     <>
       <div style={{ fontSize: '11px' }}>
@@ -151,7 +144,7 @@ function DesktopNoAccount() {
       </div>
       <button
         type='button'
-        className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
+        className={`btn connect-button `}
         data-bs-toggle='modal'
         data-bs-target='#extensionsModal'
       >
@@ -163,7 +156,6 @@ function DesktopNoAccount() {
 }
 
 function MobileNoAccount() {
-  const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext)
   return (
     <>
       <div style={{ fontSize: '11px' }}>
@@ -171,7 +163,7 @@ function MobileNoAccount() {
       </div>
       <button
         type='button'
-        className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
+        className={`btn connect-button  mobile-bigButton`}
         data-bs-toggle='modal'
         data-bs-target='#extensionsMobileModal'
       >

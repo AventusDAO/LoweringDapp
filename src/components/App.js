@@ -12,6 +12,7 @@ import Claim from './Claim/Claim'
 import { Faq } from './Faq'
 import { AvnApi, SigningMode, SetupMode } from 'avn-api'
 import Footer from './Footer'
+import { setCssVariables } from '../utils/cssVariables'
 
 const NETWORK_CONFIG = window?.appConfig
 
@@ -145,6 +146,10 @@ function App() {
     COMPANY_NAME_WITH_UNDERSCORE,
     setSdkCode
   ])
+
+  useEffect(() => {
+    setCssVariables()
+  }, [])
 
   return (
     <div>

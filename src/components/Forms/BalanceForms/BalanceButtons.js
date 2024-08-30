@@ -65,7 +65,7 @@ const BalanceButtons = () => {
     >
       {tokenButtons('MAIN_TOKEN') && (
         <button
-          className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
+          className={`btn submit-button  custom-balance-tab-width`}
           disabled={
             mainTokenQueryLoading || nativeQueryLoading || ercQueryLoading
           }
@@ -102,7 +102,7 @@ const BalanceButtons = () => {
       &nbsp;
       {tokenButtons('ERC20', 'ERC777') && (
         <button
-          className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
+          className={`btn submit-button  custom-balance-tab-width`}
           disabled={
             mainTokenQueryLoading || nativeQueryLoading || ercQueryLoading
           }
@@ -118,7 +118,7 @@ const BalanceButtons = () => {
       &nbsp;
       {tokenButtons('NATIVE') && (
         <button
-          className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn custom-balance-tab-width`}
+          className={`btn submit-button  custom-balance-tab-width`}
           disabled={
             mainTokenQueryLoading || nativeQueryLoading || ercQueryLoading
           }

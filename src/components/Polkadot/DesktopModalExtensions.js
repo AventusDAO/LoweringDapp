@@ -40,11 +40,11 @@ function DesktopModalExtensions() {
               >
                 <div className='row'>
                   <div
-                    className={`col text-start ${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+                    className={`col text-start card-author`}
                     style={{ marginLeft: '-10px' }}
                   >
                     <span
-                      className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+                      className={`card-author`}
                     >
                       <b>{capitaliseFirstLetter(wallet)}</b>
                     </span>
@@ -53,7 +53,7 @@ function DesktopModalExtensions() {
                     {substrateUser && wallet === substrateUser.source && (
                       <div className='text-end'>
                         <span
-                          className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+                          className={`card-status`}
                         >
                           Active
                         </span>

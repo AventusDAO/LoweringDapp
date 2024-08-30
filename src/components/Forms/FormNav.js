@@ -23,7 +23,7 @@ const FormNav = ({ tokenTabs }) => {
           {tokenTabs.map((value, index) => (
             <li key={index} className='nav-item' role='presentation'>
               <button
-                className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-formNav-button
+                className={`btn formNav-button
 								                    ${index === 0 ? 'active' : ''}
 								                `}
                 id={`${value}-tab`}

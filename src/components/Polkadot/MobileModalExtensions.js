@@ -39,12 +39,12 @@ function MobileModalExtensions() {
               >
                 <div className='row'>
                   <div
-                    className={`col text-start ${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+                    className={`col text-start card-author`}
                     style={{ marginLeft: '-10px' }}
                   >
                     {/* This hardcoded-text implementation is specifically for Nova Wallet. */}
                     <span
-                      className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-author`}
+                      className={`card-author`}
                     >
                       <b>Mobile Wallet</b>
                     </span>
@@ -53,7 +53,7 @@ function MobileModalExtensions() {
                     {substrateUser && wallet === substrateUser.source && (
                       <div className='text-end'>
                         <span
-                          className={`${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+                          className={`card-status`}
                         >
                           Active
                         </span>

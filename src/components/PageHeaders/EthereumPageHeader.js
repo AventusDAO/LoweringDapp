@@ -14,7 +14,7 @@ function EthereumPageHeader({ title, description, isValidPage }) {
           <div>
             <div className='text-center' style={{ color: 'black' }}>
               <h1
-                className={`${COMPANY_NAME_WITH_UNDERSCORE}-maintitle align-self-center`}
+                className={`maintitle align-self-center`}
               >
                 {title}
               </h1>
@@ -32,11 +32,8 @@ function EthereumPageHeader({ title, description, isValidPage }) {
 }
 
 export function EthWalletAndNetwork() {
-  const {
-    ALTERNATE_NETWORK_NAME,
-    ALTERNATE_NETWORK_URL,
-    COMPANY_NAME_WITH_UNDERSCORE
-  } = useContext(stateContext)
+  const { ALTERNATE_NETWORK_NAME, ALTERNATE_NETWORK_URL } =
+    useContext(stateContext)
 
   return (
     <>
@@ -54,9 +51,7 @@ export function EthWalletAndNetwork() {
               style={{ textDecoration: 'none' }}
               rel='noopener noreferrer'
             >
-              <button
-                className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
-              >
+              <button className={`btn connect-button mobile-bigButton`}>
                 Switch To {ALTERNATE_NETWORK_NAME}
               </button>
             </a>
@@ -72,9 +67,7 @@ export function EthWalletAndNetwork() {
               style={{ textDecoration: 'none' }}
               rel='noopener noreferrer'
             >
-              <button
-                className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
-              >
+              <button className={`btn connect-button mobile-bigButton`}>
                 Switch To {ALTERNATE_NETWORK_NAME}
               </button>
             </a>

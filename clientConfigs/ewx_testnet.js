@@ -3,7 +3,9 @@ var appConfig = {
   ALTERNATE_NETWORK_URL: 'https://lower.mainnet.energywebx.com/',
   ALTERNATE_NETWORK_NAME: '', //leave empty if Mainnet is not deployed
   BRIDGE_CONTRACT_ADDRESS: '0x8fa6cd9a275506d719c434335c0c9ffd15e05a87',
-  BUTTON_COLOR: '#A466FF',
+  BRAND_COLOR: '#A466FF',
+  BRAND_COLOR_LIGHT: '#A466FF',
+  BRAND_POP_COLOR: 'black',
   COMPANY_NAME: 'Energy Web',
   COMPANY_URL: 'https://www.energyweb.org/',
   COMPANY_SUPPORT_URL: 'https://www.energyweb.org/book-a-demo/',

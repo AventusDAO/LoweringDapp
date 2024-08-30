@@ -3,7 +3,9 @@ var appConfig = {
   ALTERNATE_NETWORK_URL: 'https://lower.testnet.aventus.network/',
   ALTERNATE_NETWORK_NAME: 'Testnet', //leave empty if Testnet is not deployed
   BRIDGE_CONTRACT_ADDRESS: '0x0Dd31348e68b6400bf8BdE84a1AaF733D9fCBf9B',
-  BUTTON_COLOR: '#5100FF',
+  BRAND_COLOR: '#5100FF',
+  BRAND_COLOR_LIGHT: '#5100FF',
+  BRAND_POP_COLOR: 'black',
   COMPANY_NAME: 'Aventus',
   COMPANY_URL: 'https://www.aventus.network/',
   COMPANY_SUPPORT_URL: 'https://www.aventus.network/contact/',

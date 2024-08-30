@@ -19,11 +19,7 @@ export function ConnectOrDisconnectAddressInCryptoWallet({ account }) {
 }
 
 export function Disconnect() {
-  const {
-    setSubstrateAccounts,
-    setSubstrateUser,
-    COMPANY_NAME_WITH_UNDERSCORE
-  } = useContext(stateContext)
+  const { setSubstrateAccounts, setSubstrateUser } = useContext(stateContext)
 
   function disconnectSubstrateWallet() {
     setSubstrateUser('')
@@ -34,7 +30,7 @@ export function Disconnect() {
   return (
     <div className='text-end'>
       <button
-        className={`btn  ${COMPANY_NAME_WITH_UNDERSCORE}-disconnect-btn  ${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+        className={`btn disconnect-btn card-status`}
         data-bs-dismiss='modal'
         onClick={disconnectSubstrateWallet}
       >
@@ -45,12 +41,11 @@ export function Disconnect() {
 }
 
 export function Connect({ account }) {
-  const { setSubstrateUser, walletName, COMPANY_NAME_WITH_UNDERSCORE } =
-    useContext(stateContext)
+  const { setSubstrateUser, walletName } = useContext(stateContext)
   return (
     <div className='text-end'>
       <button
-        className={`${COMPANY_NAME_WITH_UNDERSCORE}-account-connect-button`}
+        className={`account-connect-button`}
         data-bs-dismiss='modal'
         onClick={() => {
           setSubstrateUser(account)

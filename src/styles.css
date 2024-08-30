@@ -1,10 +1,5 @@
 /*  fonts are at the bottom of this page */
 :root {
-  --Aventus-primary-color: #5100ff;
-  --Energy_Web-primary-dark-color: #7810fc;
-  --Energy_Web-primary-light-color: #a466ff;
-  --Energy_Web-pop-color: #f68363;
-  --Aventus-pop-color: black;
   --off-color: white;
   --background-color: #f2f1f1;
 }
@@ -93,25 +88,17 @@ body {
   display: none;
 }
 
-.Aventus-card-author {
+.card-author {
   font-size: small;
 }
 
-.Aventus-card-author b {
-  color: var(--Aventus-primary-color);
+.card-author b {
+  color: var(--brand-primary);
 }
 
-.Energy_Web-card-author {
+.card-status {
   font-size: small;
-}
-
-.Energy_Web-card-author b {
-  color: var(--Energy_Web-primary-light-color);
-}
-
-.Aventus-card-status {
-  font-size: small;
-  background-color: var(--Aventus-primary-color);
+  background-color: var(--brand-primary);
   border-radius: 15px;
   color: var(--off-color, white);
   font-family: var(--font);
@@ -149,20 +136,10 @@ body {
   text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);
 }
 
-.Aventus-formNav-button {
-  background-color: var(--Aventus-primary-color);
+.formNav-button {
+  background-color: var(--brand-primary);
   color: #ffffff;
-  border-color: var(--Aventus-primary-color);
-  border-radius: 5px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  min-width: 130px;
-}
-
-.Energy_Web-formNav-button {
-  background-color: var(--Energy_Web-primary-light-color);
-  color: #ffffff;
-  border-color: var(--Energy_Web-primary-light-color);
+  border-color: var(--brand-primary);
   border-radius: 5px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -172,12 +149,13 @@ body {
 .btn {
   padding-left: 20px;
   padding-right: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--brand-primary);
 }
 
 .btn:hover {
-  border-color: black;
-  color: black;
-  border-radius: 5px;
+  color: var(--brand-primary);
+  border: 2px solid var(--brand-primary);
 }
 
 .active {
@@ -203,102 +181,68 @@ body {
   color: var(--off-color, white);
 }
 
-.Aventus-account-connect-button {
+.account-connect-button {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--Aventus-primary-color);
-  border-color: var(--Aventus-primary-color);
+  color: var(--brand-primary);
+  border-color: var(--brand-primary);
   font-weight: bold;
   padding: -5px;
 }
 
-.Aventus-account-connect-button:hover {
+.account-connect-button:hover {
   background-color: #009a2c;
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
 }
 
-.Aventus-generate-new-token-button {
+.generate-new-token-button {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--Aventus-primary-color);
-  border-color: var(--Aventus-primary-color);
+  color: var(--brand-primary-light);
+  border-color: var(--brand-primary-light);
   font-weight: bold;
   padding: -5px;
 }
 
-.Aventus-generate-new-token-button:hover {
+.generate-new-token-button:hover {
   background-color: red;
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
 }
 
-.Aventus-set-enterprise-token-button {
+.set-enterprise-token-button {
   font-size: small;
   background-color: transparent;
   border-radius: 15px;
-  color: var(--Aventus-primary-color);
-  border-color: var(--Aventus-primary-color);
+  color: var(--brand-color-light);
+  border-color: var(--brand-color-light);
   font-weight: bold;
   padding: -5px;
 }
 
-.Aventus-set-enterprise-token-button:hover {
-  background-color: var(--Aventus-primary-color);
+.set-enterprise-token-button:hover {
+  background-color: var(--brand-color-light);
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
 }
 
-.Energy_Web-set-enterprise-token-button {
-  font-size: small;
-  background-color: transparent;
-  border-radius: 15px;
-  color: var(--Energy_Web-primary-light-color);
-  border-color: var(--Energy_Web-primary-light-color);
-  font-weight: bold;
-  padding: -5px;
-}
-
-.Energy_Web-set-enterprise-token-button:hover {
-  background-color: var(--Energy_Web-primary-light-color);
-  border-color: var(--off-color, white);
-  color: var(--off-color, white);
-  border-radius: 15px;
-}
-
-.Energy_Web-disconnect-btn {
+.disconnect-btn {
   font-size: small;
   border-radius: 15px;
-  background-color: var(--Energy_Web-primary-light-color);
+  background-color: var(--brand-primary-light);
   border-radius: 15px;
   color: var(--off-color);
-  border-color: var(--Energy_Web-primary-light-color);
+  border-color: var(--brand-primary-light);
   font-weight: bold;
 }
 
-.Energy_Web-disconnect-btn:hover {
-  background-color: #eb1111;
-  border-color: var(--off-color, white);
-  color: var(--off-color, white);
-  border-radius: 15px;
-}
-
-.Aventus-disconnect-btn {
-  font-size: small;
-  border-radius: 15px;
-  background-color: var(--Aventus-primary-color);
-  border-radius: 15px;
-  color: var(--off-color, white);
-  border-color: var(--Aventus-primary-color);
-  font-weight: bold;
-}
-
-.Aventus-disconnect-btn:hover {
+.disconnect-btn:hover {
   background-color: #eb1111;
   border-color: var(--off-color, white);
   color: var(--off-color, white);
@@ -394,59 +338,46 @@ body {
 
 /* AVENTUS CUSTOM CODE */
 
-.Aventus-btn {
-  border-radius: 5px;
+.popText {
+  color: var(--brand-pop);
 }
 
-.Aventus-btn:hover {
-  background-color: none;
-  border: solid var(--Aventus-primary-color);
+.rectangle {
+  background: var(--brand-primary);
 }
 
-.Aventus-popText {
-  color: var(--Aventus-pop-color);
+.navbar-toggler {
+  background-color: var(--brand-primary);
 }
 
-.Aventus-rectangle {
-  background: var(--Aventus-primary-color);
+.contact-us-button {
+  background-color: var(--brand-primary-light);
 }
 
-.Aventus-navbar-toggler {
-  background-color: var(--Aventus-primary-color);
-}
-
-.Aventus-contact-us-button {
-  background-color: var(--Aventus-primary-color);
-}
-
-.Aventus-popText {
-  color: var(--Aventus-pop-color);
-}
-
-.Aventus-maintitle {
+.maintitle {
   font-family: var(--font);
   font-weight: 700;
   font-size: 40px;
 }
 
-.Aventus-connect-button {
+.connect-button {
   font-weight: bold;
-  background-color: var(--Aventus-primary-color);
+  background-color: var(--brand-primary-light);
   color: #ffffff;
-  border-color: var(--Aventus-primary-color);
+  border-color: var(--brand-primary-light);
 }
 
-.Aventus-submit-button {
-  background-color: var(--Aventus-primary-color);
+.submit-button {
+  background-color: var(--brand-primary);
   color: #ffffff;
-  border-color: var(--Aventus-primary-color);
+  border-color: var(--brand-primary);
   border-radius: 5px;
 }
 
-.Aventus-mobileFormNav-button {
-  background-color: var(--Aventus-primary-color);
+.mobileFormNav-button {
+  background-color: var(--brand-primary);
   color: #ffffff;
-  border-color: var(--Aventus-primary-color);
+  border-color: var(--brand-primary);
   border-radius: 5px;
   font-weight: 700;
   margin-bottom: 10px;
@@ -456,110 +387,6 @@ body {
 }
 
 /* ENERGY WEB CUSTOM CODE */
-
-.Energy_Web-popText {
-  color: var(--Energy_Web-pop-color);
-}
-
-.Energy_Web-mobileFormNav-button {
-  background-color: var(--Energy_Web-primary-light-color);
-  color: #ffffff;
-  border-color: var(--Energy_Web-primary-light-color);
-  border-radius: 5px;
-  font-weight: 700;
-  margin-bottom: 10px;
-  max-width: 80px;
-  font-size: 5px;
-  margin: 1px;
-}
-
-.Energy_Web-account-connect-button {
-  font-size: small;
-  background-color: transparent;
-  border-radius: 15px;
-  color: var(--Energy_Web-primary-light-color);
-  border-color: var(--Energy_Web-primary-light-color);
-  font-weight: bold;
-  padding: -5px;
-}
-
-.Energy_Web-account-connect-button:hover {
-  background-color: #009a2c;
-  border-color: var(--off-color, white);
-  color: var(--off-color, white);
-  border-radius: 15px;
-}
-
-.Energy_Web-generate-new-token-button {
-  font-size: small;
-  background-color: transparent;
-  border-radius: 15px;
-  color: var(--Energy_Web-primary-light-color);
-  border-color: var(--Energy_Web-primary-light-color);
-  font-weight: bold;
-  padding: -5px;
-}
-
-.Energy_Web-generate-new-token-button:hover {
-  background-color: red;
-  border-color: var(--off-color, white);
-  color: var(--off-color, white);
-  border-radius: 15px;
-}
-
-.Energy_Web-card-status {
-  font-size: small;
-  background-color: var(--Energy_Web-primary-light-color);
-  border-radius: 15px;
-  color: var(--off-color, white);
-  font-family: var(--font);
-  padding: 5px;
-}
-
-.Energy_Web-navbar-toggler {
-  background-color: var(--Energy_Web-primary-light-color);
-}
-
-.Energy_Web-contact-us-button {
-  background-color: var(--Energy_Web-primary-light-color);
-}
-
-.Energy_Web-rectangle {
-  background: linear-gradient(
-    45deg,
-    var(--Energy_Web-primary-light-color),
-    var(--Energy_Web-primary-dark-color)
-  );
-}
-
-.Energy_Web-maintitle {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 40px;
-}
-
-.Energy_Web-connect-button {
-  font-weight: bold;
-  background-color: var(--Energy_Web-primary-light-color);
-  color: #ffffff;
-  border-color: var(--Energy_Web-primary-light-color);
-}
-
-.Energy_Web-submit-button {
-  background-color: var(--Energy_Web-primary-light-color);
-  color: #ffffff;
-  border-color: var(--Energy_Web-primary-light-color);
-  border-radius: 5px;
-}
-
-.Energy_Web-btn {
-  border-radius: 5px;
-}
-
-.Energy_Web-btn:hover {
-  background-color: none;
-  border: solid var(--Energy_Web-primary-light-color);
-}
 
 @media print, screen and (max-width: 1400px) {
   .form-container {
@@ -614,19 +441,11 @@ body {
 @media screen and (max-width: 767px) {
   /* Footer styles */
 
-  .Aventus-set-enterprise-token-button {
+  .set-enterprise-token-button {
     font-size: 8px;
   }
 
-  .Energy_Web-set-enterprise-token-button {
-    font-size: 8px;
-  }
-
-  .Aventus-generate-new-token-button {
-    font-size: 8px;
-  }
-
-  .Energy_Web-generate-new-token-button {
+  .generate-new-token-button {
     font-size: 8px;
   }
 

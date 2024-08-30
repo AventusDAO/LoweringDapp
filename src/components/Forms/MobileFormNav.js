@@ -28,7 +28,7 @@ const MobileFormNav = ({ tokenTabs }) => {
             {tokenTabs.map((value, index) => (
               <li key={index} className='nav-item' role='presentation'>
                 <button
-                  className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-btn ${COMPANY_NAME_WITH_UNDERSCORE}-mobileFormNav-button
+                  className={`btn  mobileFormNav-button
 									                ${index === 0 ? 'active' : ''}
 									            `}
                   id={`${value}-tab`}

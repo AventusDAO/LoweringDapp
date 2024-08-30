@@ -74,7 +74,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
             Lower Token
           </h3>
           <span
-            className={`${COMPANY_NAME_WITH_UNDERSCORE}-popText`}
+            className={`popText`}
             style={{ fontWeight: '700' }}
           >
             {tokenType}
@@ -140,7 +140,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
         <div className='text-start'>
           <button
             type='submit'
-            className={`btn mobile-bigButton ${COMPANY_NAME_WITH_UNDERSCORE}-submit-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn`}
+            className={`btn mobile-bigButton submit-button `}
             disabled={lowerLoading}
             style={{ fontWeight: 'bold' }}
           >

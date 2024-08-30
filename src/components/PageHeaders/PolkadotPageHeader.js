@@ -18,7 +18,7 @@ export default function PolkadotPageHeader({
         <div className='row py-lg-3 align-self-center mx-auto'>
           <div className='text-center' style={{ color: 'black' }}>
             <h1
-              className={`${COMPANY_NAME_WITH_UNDERSCORE}-maintitle align-self-center`}
+              className={`maintitle align-self-center`}
             >
               {title}
             </h1>

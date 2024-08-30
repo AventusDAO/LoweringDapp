@@ -13,8 +13,7 @@ export const NotConnected = () => {
     BRIDGE_CONTRACT_ADDRESS,
     PRIMARY_TOKEN_ADDRESS,
     EVM_NETWORK_NAME,
-    setEVM_NETWORK_NAME,
-    COMPANY_NAME_WITH_UNDERSCORE
+    setEVM_NETWORK_NAME
   } = useContext(stateContext)
   return (
     <div className='metamask-button'>
@@ -24,7 +23,7 @@ export const NotConnected = () => {
       </div>
       <button
         type='button'
-        className={`btn ${COMPANY_NAME_WITH_UNDERSCORE}-connect-button ${COMPANY_NAME_WITH_UNDERSCORE}-btn mobile-bigButton`}
+        className={`btn connect-button mobile-bigButton`}
         onClick={() => {
           connectMetamaskButton({
             loadWeb3,
