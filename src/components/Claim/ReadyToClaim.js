@@ -48,9 +48,7 @@ const ReadyToClaim = ({ lowers }) => {
           <div>
             <div className='col'></div>
             <BackButton />
-            <h1 className={`maintitle`}>
-              Outstanding lowers
-            </h1>
+            <h1 className={`maintitle`}>Outstanding lowers</h1>
             <br />
             {currentLowers.map(tx => (
               <div key={tx.id}>

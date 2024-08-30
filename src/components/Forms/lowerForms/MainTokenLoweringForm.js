@@ -73,10 +73,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
           <h3 className='text-start' style={{ fontWeight: '700' }}>
             Lower Token
           </h3>
-          <span
-            className={`popText`}
-            style={{ fontWeight: '700' }}
-          >
+          <span className={`popText`} style={{ fontWeight: '700' }}>
             {tokenType}
           </span>
         </div>

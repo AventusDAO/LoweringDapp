@@ -43,20 +43,14 @@ function DesktopModalExtensions() {
                     className={`col text-start card-author`}
                     style={{ marginLeft: '-10px' }}
                   >
-                    <span
-                      className={`card-author`}
-                    >
+                    <span className={`card-author`}>
                       <b>{capitaliseFirstLetter(wallet)}</b>
                     </span>
                   </div>
                   <div className='col' style={{ marginRight: '-15px' }}>
                     {substrateUser && wallet === substrateUser.source && (
                       <div className='text-end'>
-                        <span
-                          className={`card-status`}
-                        >
-                          Active
-                        </span>
+                        <span className={`card-status`}>Active</span>
                       </div>
                     )}
                   </div>

@@ -50,10 +50,7 @@ export default function TokenBalanceForm() {
           <h3 className='text-start' style={{ fontWeight: '700' }}>
             Balance
           </h3>
-          <span
-            className={`popText`}
-            style={{ fontWeight: '700' }}
-          >
+          <span className={`popText`} style={{ fontWeight: '700' }}>
             Token
           </span>
         </div>

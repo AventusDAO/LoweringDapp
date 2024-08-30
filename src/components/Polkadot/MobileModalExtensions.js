@@ -43,20 +43,14 @@ function MobileModalExtensions() {
                     style={{ marginLeft: '-10px' }}
                   >
                     {/* This hardcoded-text implementation is specifically for Nova Wallet. */}
-                    <span
-                      className={`card-author`}
-                    >
+                    <span className={`card-author`}>
                       <b>Mobile Wallet</b>
                     </span>
                   </div>
                   <div className='col' style={{ marginRight: '-15px' }}>
                     {substrateUser && wallet === substrateUser.source && (
                       <div className='text-end'>
-                        <span
-                          className={`card-status`}
-                        >
-                          Active
-                        </span>
+                        <span className={`card-status`}>Active</span>
                       </div>
                     )}
                   </div>
