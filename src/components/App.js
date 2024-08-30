@@ -121,12 +121,17 @@ function App() {
 	]);
 
 	function fontPicker(companyName) {
-		const Aventus = "Monasans-Regular";
-		const Energy_Web = "'Montserrat', sans-serif";
-
-		if (companyName === "Energy_Web") return Energy_Web;
-		if (companyName === "Aventus") return Aventus;
-	}
+		switch (companyName) {
+      case 'Energy_Web':
+        return "'Montserrat', sans-serif"
+      case 'Aventus':
+        return 'Monasans-Regular'
+      case 'VOW':
+        return 'Plus Jakarta Sans, sans-serif'
+      default:
+        return "'Montserrat', sans-serif"
+    }
+  }
 
 	useEffect(() => {
 		checkForWeb3();
