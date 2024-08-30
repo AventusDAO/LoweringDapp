@@ -1,4 +1,4 @@
-# This is the Lowering dapp  
+# This is the Lowering dapp
 
 ## To run locally
 

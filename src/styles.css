@@ -1,12 +1,12 @@
 /*  fonts are at the bottom of this page */
 :root {
-  --Aventus-primary-color: #5100FF;
-  --Energy_Web-primary-dark-color: #7810FC; 
-  --Energy_Web-primary-light-color: #A466FF;
-  --Energy_Web-pop-color: #F68363;
+  --Aventus-primary-color: #5100ff;
+  --Energy_Web-primary-dark-color: #7810fc;
+  --Energy_Web-primary-light-color: #a466ff;
+  --Energy_Web-pop-color: #f68363;
   --Aventus-pop-color: black;
   --off-color: white;
-  --background-color: #F2F1F1;
+  --background-color: #f2f1f1;
 }
 
 .header-logo {
@@ -33,8 +33,8 @@
   line-height: 0.1;
 }
 
-.nav-tabs>.nav-item>.active {
-  background-color: #F2F1F1;
+.nav-tabs > .nav-item > .active {
+  background-color: #f2f1f1;
 }
 
 .nav-link {
@@ -55,7 +55,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 /* Dark mode styling */
 .white-content {
   background: #292929;
@@ -63,18 +62,16 @@ body {
 }
 
 .footer {
-  background-color: #1D2733;
+  background-color: #1d2733;
   width: 100%;
   margin-top: auto;
   color: var(--off-color, white);
-  ;
   position: fixed;
   bottom: 0;
 }
 
-
 .img-footer {
-  width: 100px
+  width: 100px;
 }
 
 /* Card Styling */
@@ -118,7 +115,7 @@ body {
   border-radius: 15px;
   color: var(--off-color, white);
   font-family: var(--font);
-  padding: 5px
+  padding: 5px;
 }
 
 .card-img-top {
@@ -133,7 +130,7 @@ body {
 }
 
 .nav {
-  border-bottom: 0px
+  border-bottom: 0px;
 }
 
 /* Button Styling */
@@ -191,10 +188,8 @@ body {
 .tabHeaderButtons {
   background-color: none;
   color: var(--off-color, white);
-  ;
   border-radius: 5px;
   border-color: var(--off-color, white);
-  ;
   border-style: solid;
   padding-right: 40px;
   padding-left: 40px;
@@ -206,7 +201,6 @@ body {
   background-color: none;
   border-radius: 5px;
   color: var(--off-color, white);
-  ;
 }
 
 .Aventus-account-connect-button {
@@ -216,7 +210,7 @@ body {
   color: var(--Aventus-primary-color);
   border-color: var(--Aventus-primary-color);
   font-weight: bold;
-  padding: -5px
+  padding: -5px;
 }
 
 .Aventus-account-connect-button:hover {
@@ -233,7 +227,7 @@ body {
   color: var(--Aventus-primary-color);
   border-color: var(--Aventus-primary-color);
   font-weight: bold;
-  padding: -5px
+  padding: -5px;
 }
 
 .Aventus-generate-new-token-button:hover {
@@ -250,7 +244,7 @@ body {
   color: var(--Aventus-primary-color);
   border-color: var(--Aventus-primary-color);
   font-weight: bold;
-  padding: -5px
+  padding: -5px;
 }
 
 .Aventus-set-enterprise-token-button:hover {
@@ -267,7 +261,7 @@ body {
   color: var(--Energy_Web-primary-light-color);
   border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
-  padding: -5px
+  padding: -5px;
 }
 
 .Energy_Web-set-enterprise-token-button:hover {
@@ -341,7 +335,6 @@ body {
 
 .buttonAnime:active:after {
   box-shadow: 0 0 0 0 var(--off-color, white);
-  ;
   position: absolute;
   border-radius: 4em;
   left: 0;
@@ -364,7 +357,7 @@ body {
 }
 
 .eth-account {
-  background-color: #FFD6C9;
+  background-color: #ffd6c9;
 }
 
 .form-container {
@@ -388,7 +381,6 @@ body {
 
 .select-button {
   background-color: var(--off-color, white);
-  ;
   border-radius: 5px;
   border-style: solid;
   border-color: black;
@@ -397,7 +389,7 @@ body {
 }
 
 .mobile-ext {
-  display: none
+  display: none;
 }
 
 /* AVENTUS CUSTOM CODE */
@@ -434,7 +426,7 @@ body {
 .Aventus-maintitle {
   font-family: var(--font);
   font-weight: 700;
-  font-size: 40px
+  font-size: 40px;
 }
 
 .Aventus-connect-button {
@@ -451,18 +443,17 @@ body {
   border-radius: 5px;
 }
 
-  .Aventus-mobileFormNav-button {
-    background-color: var(--Aventus-primary-color);
-    color: #ffffff;
-    border-color: var(--Aventus-primary-color);
-    border-radius: 5px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    max-width: 80px;
-    font-size: 8px;
-    margin: 1px
-  }
-
+.Aventus-mobileFormNav-button {
+  background-color: var(--Aventus-primary-color);
+  color: #ffffff;
+  border-color: var(--Aventus-primary-color);
+  border-radius: 5px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 80px;
+  font-size: 8px;
+  margin: 1px;
+}
 
 /* ENERGY WEB CUSTOM CODE */
 
@@ -479,7 +470,7 @@ body {
   margin-bottom: 10px;
   max-width: 80px;
   font-size: 5px;
-  margin: 1px
+  margin: 1px;
 }
 
 .Energy_Web-account-connect-button {
@@ -489,7 +480,7 @@ body {
   color: var(--Energy_Web-primary-light-color);
   border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
-  padding: -5px
+  padding: -5px;
 }
 
 .Energy_Web-account-connect-button:hover {
@@ -506,7 +497,7 @@ body {
   color: var(--Energy_Web-primary-light-color);
   border-color: var(--Energy_Web-primary-light-color);
   font-weight: bold;
-  padding: -5px
+  padding: -5px;
 }
 
 .Energy_Web-generate-new-token-button:hover {
@@ -522,7 +513,7 @@ body {
   border-radius: 15px;
   color: var(--off-color, white);
   font-family: var(--font);
-  padding: 5px
+  padding: 5px;
 }
 
 .Energy_Web-navbar-toggler {
@@ -534,20 +525,24 @@ body {
 }
 
 .Energy_Web-rectangle {
-  background: linear-gradient(45deg, var(--Energy_Web-primary-light-color), var(--Energy_Web-primary-dark-color))
+  background: linear-gradient(
+    45deg,
+    var(--Energy_Web-primary-light-color),
+    var(--Energy_Web-primary-dark-color)
+  );
 }
 
 .Energy_Web-maintitle {
   font-family: var(--font);
   font-weight: 700;
-  font-size: 40px
+  font-size: 40px;
 }
 
 .Energy_Web-connect-button {
   font-weight: bold;
   background-color: var(--Energy_Web-primary-light-color);
   color: #ffffff;
-  border-color: var(--Energy_Web-primary-light-color)
+  border-color: var(--Energy_Web-primary-light-color);
 }
 
 .Energy_Web-submit-button {
@@ -563,13 +558,10 @@ body {
 
 .Energy_Web-btn:hover {
   background-color: none;
-  border: solid var(--Energy_Web-primary-light-color)
+  border: solid var(--Energy_Web-primary-light-color);
 }
 
-
-
-@media print,
-screen and (max-width: 1400px) {
+@media print, screen and (max-width: 1400px) {
   .form-container {
     max-width: 80%;
   }
@@ -582,20 +574,17 @@ screen and (max-width: 1400px) {
   }
 }
 
-@media print,
-screen and (max-width: 1100px) {
+@media print, screen and (max-width: 1100px) {
   .form-container {
     max-width: 100%;
   }
 
   .select-button {
-    width: 65%
+    width: 65%;
   }
-
 }
 
 @media screen and (max-width: 912px) {
-
   .mobile-tabheader {
     font-size: 14px;
   }
@@ -622,7 +611,7 @@ screen and (max-width: 1100px) {
   }
 }
 
-@media screen and (max-width:767px) {
+@media screen and (max-width: 767px) {
   /* Footer styles */
 
   .Aventus-set-enterprise-token-button {
@@ -630,7 +619,7 @@ screen and (max-width: 1100px) {
   }
 
   .Energy_Web-set-enterprise-token-button {
-  font-size: 8px;
+    font-size: 8px;
   }
 
   .Aventus-generate-new-token-button {
@@ -650,7 +639,7 @@ screen and (max-width: 1100px) {
   }
 
   .desktop-ext {
-    display: none
+    display: none;
   }
 
   .mobile-button {
@@ -658,7 +647,7 @@ screen and (max-width: 1100px) {
   }
 
   .mobile-ext {
-    display: block
+    display: block;
   }
 
   .mobile-bigButton {
@@ -675,13 +664,11 @@ screen and (max-width: 1100px) {
     margin-top: 20px;
     position: relative;
   }
-
 }
 
-
-@media screen and (max-width:500px) {
+@media screen and (max-width: 500px) {
   .select-button {
-    width: 70%
+    width: 70%;
   }
 
   .swal2-footer {
@@ -693,10 +680,7 @@ screen and (max-width: 1100px) {
   }
 }
 
-
-@media print,
-screen and (max-width: 420px) {
-
+@media print, screen and (max-width: 420px) {
   .body {
     position: relative;
   }
@@ -730,7 +714,6 @@ screen and (max-width: 420px) {
   .form-headers {
     font-size: 80%;
   }
-
 }
 
 @media screen and (max-width: 342px) {
@@ -780,7 +763,7 @@ screen and (max-width: 420px) {
   }
 
   .select-button {
-    width: 90%
+    width: 90%;
   }
 
   .form-container {
@@ -792,81 +775,97 @@ screen and (max-width: 420px) {
 /* fonts */
 
 @font-face {
-  font-family: "MonaSans-Black";
-  src: url("./assets/company_Aventus/fonts/MonaSans-Black.ttf") format("truetype");
+  font-family: 'MonaSans-Black';
+  src: url('./assets/company_Aventus/fonts/MonaSans-Black.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-BlackItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-BlackItalic.ttf") format("truetype");
+  font-family: 'MonaSans-BlackItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-BlackItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-Bold";
-  src: url("./assets/company_Aventus/fonts/MonaSans-Bold.ttf") format("truetype");
+  font-family: 'MonaSans-Bold';
+  src: url('./assets/company_Aventus/fonts/MonaSans-Bold.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-BoldItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-BoldItalic.ttf") format("truetype");
+  font-family: 'MonaSans-BoldItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-BoldItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-ExtraBold";
-  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraBold.ttf") format("truetype");
+  font-family: 'MonaSans-ExtraBold';
+  src: url('./assets/company_Aventus/fonts/MonaSans-ExtraBold.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-ExtraBoldItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraBoldItalic.ttf") format("truetype");
+  font-family: 'MonaSans-ExtraBoldItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-ExtraBoldItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-SemiBold";
-  src: url("./assets/company_Aventus/fonts/MonaSans-SemiBold.ttf") format("truetype");
+  font-family: 'MonaSans-SemiBold';
+  src: url('./assets/company_Aventus/fonts/MonaSans-SemiBold.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-SemiBoldItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-SemiBoldItalic.ttf") format("truetype");
+  font-family: 'MonaSans-SemiBoldItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-SemiBoldItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-Light";
-  src: url("./assets/company_Aventus/fonts/MonaSans-Light.ttf") format("truetype");
+  font-family: 'MonaSans-Light';
+  src: url('./assets/company_Aventus/fonts/MonaSans-Light.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-LightItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-LightItalic.ttf") format("truetype");
+  font-family: 'MonaSans-LightItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-LightItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-ExtraLight";
-  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraLight.ttf") format("truetype");
+  font-family: 'MonaSans-ExtraLight';
+  src: url('./assets/company_Aventus/fonts/MonaSans-ExtraLight.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-ExtraLightItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-ExtraLightItalic.ttf") format("truetype");
+  font-family: 'MonaSans-ExtraLightItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-ExtraLightItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-Medium";
-  src: url("./assets/company_Aventus/fonts/MonaSans-Medium.ttf") format("truetype");
+  font-family: 'MonaSans-Medium';
+  src: url('./assets/company_Aventus/fonts/MonaSans-Medium.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-MediumItalic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-MediumItalic.ttf") format("truetype");
+  font-family: 'MonaSans-MediumItalic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-MediumItalic.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-Regular";
-  src: url("./assets/company_Aventus/fonts/MonaSans-Regular.ttf") format("truetype");
+  font-family: 'MonaSans-Regular';
+  src: url('./assets/company_Aventus/fonts/MonaSans-Regular.ttf')
+    format('truetype');
 }
 
 @font-face {
-  font-family: "MonaSans-Italic";
-  src: url("./assets/company_Aventus/fonts/MonaSans-Italic.ttf") format("truetype");
+  font-family: 'MonaSans-Italic';
+  src: url('./assets/company_Aventus/fonts/MonaSans-Italic.ttf')
+    format('truetype');
 }

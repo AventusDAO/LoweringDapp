@@ -1,64 +1,64 @@
-import React, { useContext } from "react";
-import { setStorageItems } from "../../utils/polkadotUtils/walletUtils";
-import { stateContext } from "../../Contexts/Context";
+import React, { useContext } from 'react'
+import { setStorageItems } from '../../utils/polkadotUtils/walletUtils'
+import { stateContext } from '../../Contexts/Context'
 
 // Allows a user connect or disconnect an account from an available crypto wallet.
 
 export function ConnectOrDisconnectAddressInCryptoWallet({ account }) {
-	const { substrateUser } = useContext(stateContext);
-	return (
-		<div className="col" style={{ marginRight: "-15px" }}>
-			{substrateUser.address === account.address &&
-			substrateUser.source === account.source ? (
-				<Disconnect />
-			) : (
-				<Connect account={account} />
-			)}
-		</div>
-	);
+  const { substrateUser } = useContext(stateContext)
+  return (
+    <div className='col' style={{ marginRight: '-15px' }}>
+      {substrateUser.address === account.address &&
+      substrateUser.source === account.source ? (
+        <Disconnect />
+      ) : (
+        <Connect account={account} />
+      )}
+    </div>
+  )
 }
 
 export function Disconnect() {
-	const {
-		setSubstrateAccounts,
-		setSubstrateUser,
-		COMPANY_NAME_WITH_UNDERSCORE,
-	} = useContext(stateContext);
+  const {
+    setSubstrateAccounts,
+    setSubstrateUser,
+    COMPANY_NAME_WITH_UNDERSCORE
+  } = useContext(stateContext)
 
-	function disconnectSubstrateWallet() {
-		setSubstrateUser("");
-		setSubstrateAccounts("");
-		localStorage.clear("user");
-		localStorage.clear("activeExtension");
-	}
-	return (
-		<div className="text-end">
-			<button
-				className={`btn  ${COMPANY_NAME_WITH_UNDERSCORE}-disconnect-btn  ${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
-				data-bs-dismiss="modal"
-				onClick={disconnectSubstrateWallet}
-			>
-				Disconnect
-			</button>
-		</div>
-	);
+  function disconnectSubstrateWallet() {
+    setSubstrateUser('')
+    setSubstrateAccounts('')
+    localStorage.clear('user')
+    localStorage.clear('activeExtension')
+  }
+  return (
+    <div className='text-end'>
+      <button
+        className={`btn  ${COMPANY_NAME_WITH_UNDERSCORE}-disconnect-btn  ${COMPANY_NAME_WITH_UNDERSCORE}-card-status`}
+        data-bs-dismiss='modal'
+        onClick={disconnectSubstrateWallet}
+      >
+        Disconnect
+      </button>
+    </div>
+  )
 }
 
 export function Connect({ account }) {
-	const { setSubstrateUser, walletName, COMPANY_NAME_WITH_UNDERSCORE } =
-		useContext(stateContext);
-	return (
-		<div className="text-end">
-			<button
-				className={`${COMPANY_NAME_WITH_UNDERSCORE}-account-connect-button`}
-				data-bs-dismiss="modal"
-				onClick={() => {
-					setSubstrateUser(account);
-					setStorageItems(account.address, walletName);
-				}}
-			>
-				Connect
-			</button>
-		</div>
-	);
+  const { setSubstrateUser, walletName, COMPANY_NAME_WITH_UNDERSCORE } =
+    useContext(stateContext)
+  return (
+    <div className='text-end'>
+      <button
+        className={`${COMPANY_NAME_WITH_UNDERSCORE}-account-connect-button`}
+        data-bs-dismiss='modal'
+        onClick={() => {
+          setSubstrateUser(account)
+          setStorageItems(account.address, walletName)
+        }}
+      >
+        Connect
+      </button>
+    </div>
+  )
 }

@@ -1,55 +1,52 @@
-import { balanceChecker } from "./balanceChecker";
-import { hasPayerBalanceChecker } from "./hasPayerBalanceChecker";
-import { getMainTokenFreeBalance, getTokenBalance } from "./queryBalance";
+import { balanceChecker } from './balanceChecker'
+import { hasPayerBalanceChecker } from './hasPayerBalanceChecker'
+import { getMainTokenFreeBalance, getTokenBalance } from './queryBalance'
 /*
 Constructs the params for the balance and the url...
 Requires a valid token to get the account balance.
 Queries the balance of an account. 
 */
-const token = window?.appConfig?.SUPPORTED_TOKENS[0];
+const token = window?.appConfig?.SUPPORTED_TOKENS[0]
 
 export async function isBalanceSufficient({ params }) {
-	try {
-		const userFreeBalance = await getMainTokenFreeBalance({
-			params,
-		});
-		let ercTokenBalance;
+  try {
+    const userFreeBalance = await getMainTokenFreeBalance({
+      params
+    })
+    let ercTokenBalance
 
-		if (params.tokenType !== "TOKEN") {
-			ercTokenBalance =
-				params.tokenType === token
-					? await getMainTokenFreeBalance({
-							params,
-					  })
-					: await getTokenBalance({
-							params,
-					  });
-		}
+    if (params.tokenType !== 'TOKEN') {
+      ercTokenBalance =
+        params.tokenType === token
+          ? await getMainTokenFreeBalance({
+              params
+            })
+          : await getTokenBalance({
+              params
+            })
+    }
 
-		let relayerFee;
-		if (!params._hasPayer) {
-			relayerFee = await params?.api.query.getRelayerFees(
-				params.relayer,
-				params.substrateUser.address,
-				params.method
-			);
-		}
+    let relayerFee
+    if (!params._hasPayer) {
+      relayerFee = await params?.api.query.getRelayerFees(
+        params.relayer,
+        params.substrateUser.address,
+        params.method
+      )
+    }
 
-		const calcParams = {
-			userFreeBalance,
-			amount: params.amount,
-			relayerFee,
-			tokenType: params.tokenType,
-			ercTokenBalance,
-		};
-		const hasSufficientBalance = params._hasPayer
-			? await hasPayerBalanceChecker(
-					"proxyLowerTokenWithoutFee",
-					calcParams
-			  )
-			: await balanceChecker("proxyLowerTokenWithFee", calcParams);
-		return hasSufficientBalance;
-	} catch (err) {
-		console.error(err);
-	}
+    const calcParams = {
+      userFreeBalance,
+      amount: params.amount,
+      relayerFee,
+      tokenType: params.tokenType,
+      ercTokenBalance
+    }
+    const hasSufficientBalance = params._hasPayer
+      ? await hasPayerBalanceChecker('proxyLowerTokenWithoutFee', calcParams)
+      : await balanceChecker('proxyLowerTokenWithFee', calcParams)
+    return hasSufficientBalance
+  } catch (err) {
+    console.error(err)
+  }
 }

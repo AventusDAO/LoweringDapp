@@ -25,6 +25,6 @@ var appConfig = {
     MAIN_TOKEN: { value: 'VOW', position: '1' },
     ERC20: { value: 'ERC20', position: '0' },
     ERC777: { value: 'ERC777', position: '0' },
-    NATIVE: { value: 'ETH', position: '0' },
-  },
+    NATIVE: { value: 'ETH', position: '0' }
+  }
 }
