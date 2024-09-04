@@ -13,6 +13,7 @@ import { Faq } from './Faq'
 import { AvnApi, SigningMode, SetupMode } from 'avn-api'
 import Footer from './Footer'
 import { setCssVariables } from '../utils/cssVariables'
+import { addFavicon } from '../utils/addFavicon'
 
 const NETWORK_CONFIG = window?.appConfig
 
@@ -149,6 +150,7 @@ function App() {
 
   useEffect(() => {
     setCssVariables()
+    addFavicon()
   }, [])
 
   return (
