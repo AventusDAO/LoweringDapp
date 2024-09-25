@@ -4,7 +4,7 @@ import { getMainTokenFreeBalance, getTokenBalance } from './queryBalance'
 /*
 Constructs the params for the balance and the url...
 Requires a valid token to get the account balance.
-Queries the balance of an account. 
+Queries the balance of an account.
 */
 const token = window?.appConfig?.SUPPORTED_TOKENS[0]
 
@@ -28,8 +28,10 @@ export async function isBalanceSufficient({ params }) {
 
     let relayerFee
     if (!params._hasPayer) {
+      const nativeCurrency = await params?.api.query.getNativeCurrencyToken();
       relayerFee = await params?.api.query.getRelayerFees(
         params.relayer,
+        nativeCurrency,
         params.substrateUser.address,
         params.method
       )
