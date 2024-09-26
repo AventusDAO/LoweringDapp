@@ -29,6 +29,7 @@ function App() {
   const [metamaskNetworkId, setMetamaskNetworkId] = useState('')
   const [api, setApi] = useState()
   const [_hasPayer, set_HasPayer] = useState(false)
+  const [lowerEnabled, setLowerEnabled] = useState(true)
 
   const AVN_GATEWAY_URL = NETWORK_CONFIG.GATEWAY
   const AVN_RELAYER = NETWORK_CONFIG.RELAYER
@@ -108,7 +109,12 @@ function App() {
         }
       })
       await setupSdk.init()
-      setApi(await setupSdk.apis(substrateUser.address))
+      const apis = await setupSdk.apis(substrateUser.address)
+      setApi(apis)
+
+      const lowerEnabled = (await apis.query.getLoweringStatus() === 'Enabled')
+      console.log("Lower enabled: ", lowerEnabled);
+      setLowerEnabled(lowerEnabled)
     }
   }, [
     substrateUser,
@@ -197,7 +203,8 @@ function App() {
           ETHERSCAN_TX_LINK,
           NATIVE_CONTRACT_ADDRESS,
           ALTERNATE_NETWORK_NAME,
-          ALTERNATE_NETWORK_URL
+          ALTERNATE_NETWORK_URL,
+          lowerEnabled
         }}
       >
         <Routes>
