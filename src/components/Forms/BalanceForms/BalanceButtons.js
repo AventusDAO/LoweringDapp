@@ -18,8 +18,7 @@ const BalanceButtons = () => {
     api,
     set_HasPayer,
     NATIVE_CONTRACT_ADDRESS,
-    PRIMARY_TOKEN,
-    COMPANY_NAME_WITH_UNDERSCORE
+    PRIMARY_TOKEN
   } = useContext(stateContext)
 
   const { isShown, setIsShown } = useContext(balanceButtonContext)

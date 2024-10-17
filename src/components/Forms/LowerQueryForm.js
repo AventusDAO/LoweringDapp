@@ -12,8 +12,7 @@ export default function LowerQueryForm() {
   const navigate = useNavigate()
   const [account, setAccount] = useState('')
   const [userLowerId, setUserLowerId] = useState('')
-  const { COMPANY_NAME, EVM_NETWORK_NAME, COMPANY_NAME_WITH_UNDERSCORE } =
-    useContext(stateContext)
+  const { COMPANY_NAME, EVM_NETWORK_NAME } = useContext(stateContext)
 
   async function submit({ account, userLowerId }) {
     const result = await validateInput({ account, userLowerId })

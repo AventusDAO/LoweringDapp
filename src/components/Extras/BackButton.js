@@ -1,12 +1,12 @@
 import blackArrowLeft from '../../assets/img/arrow-left-circle-black.svg'
-import whiteArrowLeft from '../../assets/img/arrow-left-circle-white.svg'
+import aventusArrowLeft from '../../assets/company_Aventus/icons/left_direction.svg'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
-import { ThemeContext } from '../../Contexts/Context'
+import { stateContext } from '../../Contexts/Context'
 
 const BackButton = () => {
   const navigate = useNavigate()
-  const { theme } = useContext(ThemeContext)
+  const { COMPANY_NAME } = useContext(stateContext)
 
   return (
     <div
@@ -16,7 +16,7 @@ const BackButton = () => {
       }}
     >
       <img
-        src={theme ? whiteArrowLeft : blackArrowLeft}
+        src={COMPANY_NAME === 'Aventus' ? aventusArrowLeft : blackArrowLeft}
         alt=''
         style={{
           width: '32px',

@@ -5,7 +5,6 @@ import { TabHeaders } from './TabHeaders'
 import { stateContext } from '../../Contexts/Context'
 
 function EthereumPageHeader({ title, description, isValidPage }) {
-  const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext)
   return (
     <div className='header-background'>
       <section className='py-2 container'>

@@ -11,7 +11,7 @@ const CompanyLogo = () => {
       rel='noopener noreferrer'
     >
       <img
-        src={require(`../../assets/company_${COMPANY_NAME_WITH_UNDERSCORE}/logo/company_logo.png`)}
+        src={require(`../../assets/company_${COMPANY_NAME_WITH_UNDERSCORE}/logo/company_logo.svg`)}
         className='header-logo'
         alt='logo'
       />

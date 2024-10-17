@@ -31,8 +31,7 @@ export default function Erc777LoweringForm({
     NETWORK_ID,
     AVN_RELAYER,
     EVM_NETWORK_NAME,
-    EXPLORER_TX_URL,
-    COMPANY_NAME_WITH_UNDERSCORE
+    EXPLORER_TX_URL
   } = useContext(stateContext)
 
   return (

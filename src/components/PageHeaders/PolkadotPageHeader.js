@@ -1,15 +1,12 @@
-import React, { useContext } from 'react'
 import { PolkadotJS } from '../Polkadot/PolkadotJS'
 import { HeaderNav } from './HeaderNav'
 import { TabHeaders } from './TabHeaders'
-import { stateContext } from '../../Contexts/Context'
 
 export default function PolkadotPageHeader({
   title,
   description,
   isValidPage
 }) {
-  const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext)
   return (
     <div>
       <section className='py-2 container'>

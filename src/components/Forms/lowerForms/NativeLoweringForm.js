@@ -23,8 +23,7 @@ export default function NativeLoweringForm({ tokenType, position }) {
     EVM_NETWORK_NAME,
     EXPLORER_TX_URL,
     metamaskNetworkId,
-    NATIVE_CONTRACT_ADDRESS,
-    COMPANY_NAME_WITH_UNDERSCORE
+    NATIVE_CONTRACT_ADDRESS
   } = useContext(stateContext)
 
   return (

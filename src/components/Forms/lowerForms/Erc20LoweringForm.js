@@ -30,8 +30,7 @@ export default function Erc20LoweringForm({
     NETWORK_ID,
     AVN_RELAYER,
     EXPLORER_TX_URL,
-    EVM_NETWORK_NAME,
-    COMPANY_NAME_WITH_UNDERSCORE
+    EVM_NETWORK_NAME
   } = useContext(stateContext)
 
   return (
