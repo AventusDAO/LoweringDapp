@@ -4,14 +4,8 @@ import { ercTokenBalanceHandler } from '../../../utils/avnUtils/queryBalance'
 
 export default function TokenBalanceForm() {
   const [token, setToken] = useState('')
-  const {
-    substrateUser,
-    api,
-    _hasPayer,
-    set_HasPayer,
-    PRIMARY_TOKEN_ADDRESS,
-    COMPANY_NAME_WITH_UNDERSCORE
-  } = useContext(stateContext)
+  const { substrateUser, api, _hasPayer, set_HasPayer, PRIMARY_TOKEN_ADDRESS } =
+    useContext(stateContext)
   const method = 'getTokenBalance'
   const { ercQueryLoading, setErcQueryLoading } =
     useContext(queryBalanceContext)

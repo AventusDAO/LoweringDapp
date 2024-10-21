@@ -11,8 +11,7 @@ function DesktopModalExtensions() {
     setSubstrateAccounts,
     substrateAccounts,
     substrateUser,
-    setWalletName,
-    COMPANY_NAME_WITH_UNDERSCORE
+    setWalletName
   } = useContext(stateContext)
 
   const wallets = ['polkadot-js', 'talisman', 'subwallet-js']

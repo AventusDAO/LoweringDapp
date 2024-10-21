@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
-import { formContext, stateContext } from '../../Contexts/Context'
+import { formContext } from '../../Contexts/Context'
 
 const FormNav = ({ tokenTabs }) => {
   const { setTokenAddress, setAmount, setT1Recipient } = useContext(formContext)
-  const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext)
 
   function clearValues() {
     setTokenAddress('')

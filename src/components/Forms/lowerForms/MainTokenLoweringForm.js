@@ -22,7 +22,6 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
     AVN_RELAYER,
     EXPLORER_TX_URL,
     PRIMARY_TOKEN_ADDRESS,
-    COMPANY_NAME_WITH_UNDERSCORE,
     EVM_NETWORK_NAME
   } = useContext(stateContext)
 
@@ -32,7 +31,7 @@ export default function MainTokenLoweringForm({ tokenType, position }) {
       id={`${tokenType}-tab-pane`}
       role='tabpanel'
       aria-labelledby={`${tokenType}-tab`}
-      tabIndex='0'
+      tabIndex={0}
     >
       <form
         onSubmit={async event => {

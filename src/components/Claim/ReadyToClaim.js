@@ -1,15 +1,13 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import { addressSlicer } from '../../utils/randomFunctions'
 import BackButton from '../Extras/BackButton'
 import { LowerDataFromBackendFullDetails } from './LowerDataFromBackend_FullDetails'
 import { LowerDataFromBackendOnlyLowerID } from './LowerDataFromBackend_OnlyLowerID'
 import { Pagination } from '../Pagination'
-import { stateContext } from '../../Contexts/Context'
 import { NoLowers } from './NoLowers'
 
 const ReadyToClaim = ({ lowers }) => {
   const [currentPage, setCurrentPage] = useState(1)
-  const { COMPANY_NAME_WITH_UNDERSCORE } = useContext(stateContext)
   const lowersPerPage = 5
   const indexOfLastPost = currentPage * lowersPerPage
   const indexOfFirstPost = indexOfLastPost - lowersPerPage
