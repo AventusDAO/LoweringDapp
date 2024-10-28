@@ -18,12 +18,14 @@ var appConfig = {
   GATEWAY: 'https://gateway.testnet.energywebx.com/',
   LOWER_DURATION: '24 hours',
   NETWORK_ID: 73799,
-  PRIMARY_TOKEN_ADDRESS: '', //if native token, leave empty
   PRIMARY_TOKEN: 'VT',
   RELAYER: '5FCUNi68YguqXdzdDzpdfz6jYQhMEif4GKLyVavGkB1Fmd6C',
   SUPPORTS_ENTERPRISE_USERS: false,
-  SHOW_BALANCE_PAGE: true,
+  SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
-    NATIVE: { value: 'VT', position: '1' }
+    NATIVE: {
+      name: 'VT',
+      address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+    }
   }
 }

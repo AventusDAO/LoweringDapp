@@ -18,15 +18,15 @@ var appConfig = {
   GATEWAY: 'https://gateway.dev.aventus.network/',
   LOWER_DURATION: '12 hours',
   NETWORK_ID: 11155111,
-  PRIMARY_TOKEN_ADDRESS: '0x93ba86eCfDDD9CaAAc29bE83aCE5A3188aC47730', //if native token, leave empty
   PRIMARY_TOKEN: 'AVT',
   RELAYER: '5FbUQ2kJWLoqHuSTSNNqBwKwdQnBVe4HF3TeGyu6UoZaryTh',
   SUPPORTS_ENTERPRISE_USERS: true,
-  SHOW_BALANCE_PAGE: true,
+  SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
-    MAIN_TOKEN: { value: 'AVT', position: '1' },
-    ERC20: { value: 'ERC20', position: '0' },
-    ERC777: { value: 'ERC777', position: '0' },
-    NATIVE: { value: 'ETH', position: '0' }
+    AVT: { name: 'AVT', address: '0x93ba86eCfDDD9CaAAc29bE83aCE5A3188aC47730' },
+    NATIVE: {
+      name: 'ETH',
+      address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+    }
   }
 }

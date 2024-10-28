@@ -19,14 +19,14 @@ var appConfig = {
   LOWER_DURATION: '12 hours',
   NETWORK_ID: 1,
   PRIMARY_TOKEN: 'AVT',
-  PRIMARY_TOKEN_ADDRESS: '0x0d88eD6E74bbFD96B831231638b66C05571e824F', //if native token, leave empty
   RELAYER: '5Gh6CfQUNDzsk7TQ8Tt8SR9h8mAQXpEpeZjNKFoVxYWqLAEB',
   SUPPORTS_ENTERPRISE_USERS: true,
-  SHOW_BALANCE_PAGE: true,
+  SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
-    MAIN_TOKEN: { value: 'AVT', position: '1' },
-    ERC20: { value: 'ERC20', position: '0' },
-    ERC777: { value: 'ERC777', position: '0' },
-    NATIVE: { value: 'ETH', position: '0' }
+    AVT: { name: 'AVT', address: '0x0d88eD6E74bbFD96B831231638b66C05571e824F' },
+    NATIVE: {
+      name: 'ETH',
+      address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+    }
   }
 }

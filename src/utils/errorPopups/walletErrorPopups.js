@@ -1,7 +1,7 @@
 import swal from 'sweetalert2'
 import { capitaliseFirstLetter } from '../randomFunctions'
 
-const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR
+const BUTTON_COLOR = window?.appConfig?.BRAND_COLOR
 
 export function substrateNotDetected(name) {
   let url

@@ -1,6 +1,6 @@
 import swal from 'sweetalert2'
 
-const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR
+const BUTTON_COLOR = window?.appConfig?.BRAND_COLOR
 const EVM_NETWORK_NAME = window?.appConfig?.EVM_NETWORK_NAME
 
 export async function TxSubmitted(id) {

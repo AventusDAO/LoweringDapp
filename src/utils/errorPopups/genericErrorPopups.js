@@ -1,5 +1,5 @@
 import swal from 'sweetalert2'
-const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR
+const BUTTON_COLOR = window?.appConfig?.BRAND_COLOR
 
 export async function genericErrorHandlerTemplate(title, text, footText) {
   await swal.fire({

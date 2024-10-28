@@ -166,7 +166,6 @@ body {
 .tabHeaderButtons {
   background-color: none;
   color: var(--off-color, white);
-  border-radius: 5px;
   border-color: var(--off-color, white);
   border-style: solid;
   padding-right: 40px;
@@ -177,7 +176,7 @@ body {
 
 .tabHeaderButtons:hover {
   background-color: none;
-  border-radius: 5px;
+  border-style: solid;
   color: var(--off-color, white);
 }
 
@@ -234,7 +233,6 @@ body {
 
 .disconnect-btn {
   font-size: small;
-  border-radius: 15px;
   background-color: var(--brand-primary-light);
   border-radius: 15px;
   color: var(--off-color);
