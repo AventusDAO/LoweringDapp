@@ -36,6 +36,7 @@ export async function lowerSubmitHandler({
     method: 'proxyTokenLower',
     EXPLORER_TX_URL
   }
+
   try {
     const requestId = await sendTransaction(params)
     if (requestId) {

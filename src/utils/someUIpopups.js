@@ -1,6 +1,6 @@
 import swal from 'sweetalert2'
 const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN
-const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR
+const BUTTON_COLOR = window?.appConfig?.BRAND_COLOR
 
 export async function balanceAdjustedNotification(title, message, footer) {
   const { isConfirmed: result } = await swal.fire({

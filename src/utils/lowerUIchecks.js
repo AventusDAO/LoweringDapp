@@ -107,9 +107,16 @@ export async function confirmLowerDetails({
       isERC777: false
     })
     const ETHERSCAN_TOKEN_LINK = window?.appConfig?.ETHERSCAN_TOKEN_LINK
+
+    let tokenLink = `<a href=${ETHERSCAN_TOKEN_LINK}${tokenAddress} target="_blank"> ${tokenType} </a>`
+    tokenLink =
+      tokenAddress === '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+        ? tokenType
+        : tokenLink
+
     const { isConfirmed: userChoice } = await swal.fire({
       title: 'Confirm details',
-      html: `<small>Lower ${amount} <a href=${ETHERSCAN_TOKEN_LINK}${tokenAddress} target="_blank"> ${tokenType} </a> to ${t1Recipient} ?</small>`,
+      html: `<small>Lower ${amount} ${tokenLink} to ${t1Recipient} ?</small>`,
       showDenyButton: true,
       showConfirmButton: true,
       confirmButtonText: 'Yes',

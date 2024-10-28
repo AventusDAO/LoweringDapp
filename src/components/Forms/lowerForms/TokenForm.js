@@ -1,75 +1,64 @@
 import React, { useContext } from 'react'
 import { formContext, stateContext } from '../../../Contexts/Context'
 import { lowerSubmitHandler } from '../../../utils/avnUtils/lowerSubmitHandler'
-import { ercConfirmLowerDetails } from '../../../utils/lowerUIchecks'
+import { confirmLowerDetails } from '../../../utils/lowerUIchecks'
 import { Spinner } from '../../Extras/Tools'
+import TokenNav from './TokenNav'
 
-export default function Erc777LoweringForm({
-  tokenType,
-  position,
-  isERC20,
-  isERC777
-}) {
+export default function TokenForm() {
   const {
-    tokenAddress,
-    setTokenAddress,
     amount,
     setAmount,
     t1Recipient,
     setT1Recipient,
     lowerLoading,
-    setLowerLoading
+    setLowerLoading,
+    customToken,
+    selectedToken,
+    tokenAddress,
+    setTokenAddress
   } = useContext(formContext)
 
   const {
     substrateUser,
-    ethereumAccount,
     _hasPayer,
     api,
     set_HasPayer,
-    metamaskNetworkId,
-    NETWORK_ID,
     AVN_RELAYER,
-    EVM_NETWORK_NAME,
-    EXPLORER_TX_URL
+    EXPLORER_TX_URL,
+    EVM_NETWORK_NAME
   } = useContext(stateContext)
 
   return (
     <div
-      className={`tab-pane py-3 fade ${position === '1' ? 'show active' : ''}`}
-      id={`${tokenType}-tab-pane`}
+      className={'tab-pane py-3 fade show active'}
+      id={'lift-form-tab-pane'}
       role='tabpanel'
-      aria-labelledby={`${tokenType}-tab`}
-      tabIndex='0'
+      aria-labelledby={'lower-form-tab'}
     >
       <form
         onSubmit={async event => {
           event.preventDefault()
-          setLowerLoading(true)
           try {
-            const result = await ercConfirmLowerDetails({
+            setLowerLoading(true)
+            const result = await confirmLowerDetails({
               substrateUserAddress: substrateUser.address,
-              ethereumAccount,
-              tokenType,
+              tokenType: selectedToken,
               tokenAddress,
               amount,
-              metamaskNetworkId,
-              NETWORK_ID,
-              t1Recipient,
-              EVM_NETWORK_NAME,
-              isERC20,
-              isERC777
+              t1Recipient
             })
+
             if (result?.userChoice) {
               await lowerSubmitHandler({
                 substrateUser,
+                api,
+                _hasPayer,
+                set_HasPayer,
                 tokenAddress,
                 amount: result._amount,
-                tokenType,
                 t1Recipient,
-                _hasPayer,
-                api,
-                set_HasPayer,
+                tokenType: selectedToken,
                 AVN_RELAYER,
                 EXPLORER_TX_URL
               })
@@ -78,49 +67,44 @@ export default function Erc777LoweringForm({
               setLowerLoading(false)
             }
           } catch (err) {
-            console.log(err)
+            return err
           }
         }}
       >
-        <div className='text-start'>
-          <h3 className='text-start' style={{ fontWeight: '700' }}>
-            Lower Token
-          </h3>
-          <span className={`popText`} style={{ fontWeight: '700' }}>
-            {tokenType}
-          </span>
-        </div>
-        <div className='input-group mb-3'>
-          <span
-            className='input-group-text'
-            style={{ maxWidth: '100px' }}
-            id='Token'
-          >
-            Token
-          </span>
-          <input
-            type='text'
-            style={{
-              backgroundColor: 'white',
-              color: 'black',
-              weight: 'bold'
-            }}
-            className='form-control'
-            aria-label='Token'
-            aria-describedby='Token'
-            size='83'
-            id='tokenAddress'
-            maxLength='42'
-            minLength='42'
-            min={0}
-            required
-            pattern='0x[0-9a-fA-F]{40}'
-            placeholder='Contract address (eg: 0x46a1a476d02f4a79b7a38fa0863a954ae252251d)'
-            onChange={e => setTokenAddress(e.target.value)}
-            value={tokenAddress}
-          />
-        </div>
-
+        <TokenNav />
+        <br />
+        {customToken && (
+          <div className='input-group mb-3'>
+            <span
+              className='input-group-text'
+              style={{ maxWidth: '100px' }}
+              htmlFor='tokenAddress'
+              id='tokenAddress'
+            >
+              Token
+            </span>
+            <input
+              type='text'
+              style={{
+                backgroundColor: 'white',
+                color: 'black',
+                weight: 'bold'
+              }}
+              className='form-control'
+              aria-label='token'
+              aria-describedby='token'
+              size='83'
+              maxLength='42'
+              minLength='42'
+              pattern='0x[0-9a-fA-F]{40}'
+              required
+              placeholder='Contract Address (eg: 0xA899f9a78f222fF8ED36DBBDb72A62Dd92EF025A)'
+              value={tokenAddress}
+              onChange={e => setTokenAddress(e.target.value)}
+              id='tokenAddress'
+            />
+          </div>
+        )}
         <div className='input-group mb-3'>
           <span
             className='input-group-text'
@@ -142,6 +126,7 @@ export default function Erc777LoweringForm({
             size='83'
             min={0}
             required
+            disabled={selectedToken === ''}
             pattern='^[0-9]\d*(\.\d+)?$'
             placeholder='Whole or Fractional (eg: 10 or 1.053)'
             id='tokenAmount'
@@ -171,6 +156,7 @@ export default function Erc777LoweringForm({
             maxLength='42'
             minLength='42'
             required
+            disabled={selectedToken === ''}
             pattern='0x[0-9a-fA-F]{40}'
             placeholder={`${EVM_NETWORK_NAME} Address (eg: 0x405df1b38510c455ef81500a3dc7e9ae599e18f6)`}
             id='t1Recipient'
@@ -182,7 +168,7 @@ export default function Erc777LoweringForm({
           <button
             type='submit'
             className={`btn mobile-bigButton submit-button `}
-            disabled={lowerLoading}
+            disabled={lowerLoading || selectedToken === ''}
             style={{ fontWeight: 'bold' }}
           >
             {lowerLoading ? <Spinner /> : 'Submit'}

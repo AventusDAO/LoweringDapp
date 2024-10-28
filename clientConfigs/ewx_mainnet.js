@@ -19,11 +19,13 @@ var appConfig = {
   LOWER_DURATION: '24 hours',
   NETWORK_ID: 246,
   RELAYER: '5Gh6CfQUNDzsk7TQ8Tt8SR9h8mAQXpEpeZjNKFoVxYWqLAEB',
-  PRIMARY_TOKEN_ADDRESS: '', //if native token, leave empty
   PRIMARY_TOKEN: 'EWT',
   SUPPORTS_ENTERPRISE_USERS: false,
   SHOW_BALANCE_PAGE: true,
   SUPPORTED_TOKENS: {
-    NATIVE: { value: 'EWT', position: '1' }
+    NATIVE: {
+      name: 'EWT',
+      address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+    }
   }
 }

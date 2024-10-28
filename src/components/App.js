@@ -19,7 +19,6 @@ const NETWORK_CONFIG = window?.appConfig
 
 function App() {
   const [bridgeContract, setBridgeContract] = useState(null)
-  const [mainTokenContract, setMainTokenContract] = useState(null)
   const [ethereumAccount, setEthereumAccount] = useState('')
   const [loadWeb3, setLoadWeb3] = useState(null)
   const [substrateAccounts, setSubstrateAccounts] = useState('')
@@ -35,7 +34,7 @@ function App() {
   const ALTERNATE_NETWORK_NAME = NETWORK_CONFIG.ALTERNATE_NETWORK_NAME
   const ALTERNATE_NETWORK_URL = NETWORK_CONFIG.ALTERNATE_NETWORK_URL
   const BRIDGE_CONTRACT_ADDRESS = NETWORK_CONFIG.BRIDGE_CONTRACT_ADDRESS
-  const BUTTON_COLOR = NETWORK_CONFIG.BUTTON_COLOR
+  const BUTTON_COLOR = NETWORK_CONFIG.BRAND_COLOR
   const COMPANY_NAME = NETWORK_CONFIG.COMPANY_NAME
   const COMPANY_URL = NETWORK_CONFIG.COMPANY_URL
   const COMPANY_SUPPORT_URL = NETWORK_CONFIG.COMPANY_SUPPORT_URL
@@ -48,7 +47,6 @@ function App() {
   const EVM_NETWORK_NAME = NETWORK_CONFIG.EVM_NETWORK_NAME
   const NETWORK_ID = NETWORK_CONFIG.NETWORK_ID
   const PRIMARY_TOKEN = NETWORK_CONFIG.PRIMARY_TOKEN
-  const PRIMARY_TOKEN_ADDRESS = NETWORK_CONFIG.PRIMARY_TOKEN_ADDRESS
   const SHOW_BALANCE_PAGE = NETWORK_CONFIG.SHOW_BALANCE_PAGE
   const SUPPORTS_ENTERPRISE_USERS = NETWORK_CONFIG.SUPPORTS_ENTERPRISE_USERS
 
@@ -77,9 +75,7 @@ function App() {
         netId,
         setMetamaskNetworkId,
         setBridgeContract,
-        setMainTokenContract,
         BRIDGE_CONTRACT_ADDRESS,
-        PRIMARY_TOKEN_ADDRESS,
         EVM_NETWORK_NAME,
         isAppPage: true
       })
@@ -88,8 +84,7 @@ function App() {
     BRIDGE_CONTRACT_ADDRESS,
     setMetamaskNetworkId,
     NETWORK_ID,
-    EVM_NETWORK_NAME,
-    PRIMARY_TOKEN_ADDRESS
+    EVM_NETWORK_NAME
   ])
 
   const setSdkCode = useCallback(async () => {
@@ -167,8 +162,6 @@ function App() {
           setSubstrateUser,
           bridgeContract,
           setBridgeContract,
-          mainTokenContract,
-          setMainTokenContract,
           setSubstrateAccounts,
           walletName,
           _hasPayer,
@@ -185,7 +178,6 @@ function App() {
           EXPLORER_TX_URL,
           ENVIRONMENT_NAME,
           EVM_NETWORK_NAME,
-          PRIMARY_TOKEN_ADDRESS,
           BRIDGE_CONTRACT_ADDRESS,
           COMPANY_SUPPORT_URL,
           SUPPORTS_ENTERPRISE_USERS,

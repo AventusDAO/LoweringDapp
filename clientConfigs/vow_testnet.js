@@ -1,5 +1,5 @@
 var appConfig = {
-  // Aventus lowering dapp MAINNET config
+  // Aventus lowering dapp TESTNET config
   ALTERNATE_NETWORK_URL: 'https://lower.voucherledger.com/',
   ALTERNATE_NETWORK_NAME: 'Mainnet',
   BRIDGE_CONTRACT_ADDRESS: '0xb7480b6e5223beb2cdc8f6338ccc831b69453ab3',
@@ -18,15 +18,24 @@ var appConfig = {
   GATEWAY: 'https://gateway.testnet.voucherledger.com/',
   LOWER_DURATION: '24 hours',
   NETWORK_ID: 11155111,
-  PRIMARY_TOKEN_ADDRESS: '0xbFaffD8001493Dfeb51C26748d2AfF53C2984190',
   PRIMARY_TOKEN: 'VOW',
   RELAYER: '5HGqmPWVyR6krAAgjy98t2aPmgw3ugZgKFzWoyKL9R4TQxA6',
   SUPPORTS_ENTERPRISE_USERS: true,
   SHOW_BALANCE_PAGE: true,
   SUPPORTED_TOKENS: {
-    MAIN_TOKEN: { value: 'VOW', position: '1' },
-    ERC20: { value: 'ERC20', position: '0' },
-    ERC777: { value: 'ERC777', position: '0' },
-    NATIVE: { value: 'ETH', position: '0' }
+    VOW: { name: 'VOW', address: '0xbfaffd8001493dfeb51c26748d2aff53c2984190' },
+    vUSD: {
+      name: 'v$',
+      address: '0x6e0e39d23563382e76107a2fa6bca119dec30134'
+    },
+    vKr: { name: 'vKr', address: '0xe18e92cc7bd5694d9369bfd8288cb24c1abc4439' },
+    TOKEN20: {
+      name: 'TOKEN20',
+      address: '0xea5da4fd16cc61ffc4235874d6ff05216e3e038e'
+    },
+    NATIVE: {
+      name: 'ETH',
+      address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
+    }
   }
 }

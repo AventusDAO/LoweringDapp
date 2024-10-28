@@ -2,7 +2,7 @@ import swal from 'sweetalert2'
 import { regenerateGatewayToken } from '../someUIpopups'
 
 const PRIMARY_TOKEN = window?.appConfig?.PRIMARY_TOKEN
-const BUTTON_COLOR = window?.appConfig?.BUTTON_COLOR
+const BUTTON_COLOR = window?.appConfig?.BRAND_COLOR
 
 export async function gatewayAccessError(_hasPayer) {
   if (_hasPayer) {
