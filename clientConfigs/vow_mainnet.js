@@ -21,7 +21,7 @@ var appConfig = {
   PRIMARY_TOKEN: 'VOW',
   RELAYER: '5HGqmPWVyR6krAAgjy98t2aPmgw3ugZgKFzWoyKL9R4TQxA6',
   SUPPORTS_ENTERPRISE_USERS: true,
-  SHOW_BALANCE_PAGE: true,
+  SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
     VOW: { name: 'VOW', address: '0x1BBf25e71EC48B84d773809B4bA55B6F4bE946Fb' },
     DKK: { name: 'DKK', address: '0x40a07abd0da20d9ec859c564727c10ce5cb7600e' },

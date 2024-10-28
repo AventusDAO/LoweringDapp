@@ -21,7 +21,7 @@ var appConfig = {
   PRIMARY_TOKEN: 'VT',
   RELAYER: '5FCUNi68YguqXdzdDzpdfz6jYQhMEif4GKLyVavGkB1Fmd6C',
   SUPPORTS_ENTERPRISE_USERS: false,
-  SHOW_BALANCE_PAGE: true,
+  SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
     NATIVE: {
       name: 'VT',
