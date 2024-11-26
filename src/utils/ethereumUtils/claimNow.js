@@ -13,7 +13,6 @@ export async function claimNow({
 }) {
   merklePath = merklePath ? merklePath.replace(/\[|\]/g, '').split(',') : ''
 
-  console.debug("Params: (leaf,merklePath,claimData,ethereumAccount,bridgeContract,method): ", leaf,merklePath,claimData,ethereumAccount,bridgeContract,method);
   if (ethereumAccount) {
     // Calls the claim submit handler to submit the claim transaction and output the result to the user
     if (method === 'old') {
