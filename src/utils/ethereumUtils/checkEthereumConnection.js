@@ -17,6 +17,7 @@ export default async function checkEthereumConnection({
   if (netId === NETWORK_ID) {
     setEthereumAccount(account)
     setMetamaskNetworkId(netId)
+    setBridgeContract(new web3.eth.Contract(ABI, BRIDGE_CONTRACT_ADDRESS))
   } else {
     if (!isAppPage)
       networkErrorHandler(

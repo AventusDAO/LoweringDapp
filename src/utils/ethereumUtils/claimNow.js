@@ -26,7 +26,9 @@ export async function claimNow({
           .catch(e => {
             transactionErrorHandler(e.message)
           })
-      } catch (err) {}
+      } catch (err) {
+        console.error("Error claiming tokens: ", err);
+      }
     } else if (method === 'new') {
       try {
         await bridgeContract.methods
@@ -38,7 +40,9 @@ export async function claimNow({
           .catch(e => {
             transactionErrorHandler(e.message)
           })
-      } catch (err) {}
+      } catch (err) {
+        console.error("Error claiming tokens: ", err);
+      }
     }
   } else {
     metamaskConnectionErrorHandler()
