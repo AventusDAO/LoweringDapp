@@ -13,6 +13,7 @@ export async function claimNow({
 }) {
   merklePath = merklePath ? merklePath.replace(/\[|\]/g, '').split(',') : ''
 
+  console.debug("Params: (leaf,merklePath,claimData,ethereumAccount,bridgeContract,method): ", leaf,merklePath,claimData,ethereumAccount,bridgeContract,method);
   if (ethereumAccount) {
     // Calls the claim submit handler to submit the claim transaction and output the result to the user
     if (method === 'old') {
@@ -26,7 +27,9 @@ export async function claimNow({
           .catch(e => {
             transactionErrorHandler(e.message)
           })
-      } catch (err) {}
+      } catch (err) {
+        console.error("Error claiming tokens: ", err);
+      }
     } else if (method === 'new') {
       try {
         await bridgeContract.methods
@@ -38,7 +41,9 @@ export async function claimNow({
           .catch(e => {
             transactionErrorHandler(e.message)
           })
-      } catch (err) {}
+      } catch (err) {
+        console.error("Error claiming tokens: ", err);
+      }
     }
   } else {
     metamaskConnectionErrorHandler()
