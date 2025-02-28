@@ -7,5 +7,9 @@ export const setCssVariables = () => {
     '--brand-primary-light',
     NETWORK_CONFIG.BRAND_COLOR_LIGHT
   )
+  root.style.setProperty(
+    '--brand-text-color',
+    NETWORK_CONFIG.BRAND_TEXT_COLOR || '#ffffff'
+  )
   root.style.setProperty('--brand-pop', NETWORK_CONFIG.BRAND_POP_COLOR)
 }

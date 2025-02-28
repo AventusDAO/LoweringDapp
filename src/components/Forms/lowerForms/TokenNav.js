@@ -5,7 +5,7 @@ export default function TokenNav() {
   const { setTokenAddress, selectedToken, setSelectedToken, setCustomToken } =
     useContext(formContext)
 
-  const { BUTTON_COLOR } = useContext(stateContext)
+  const { BUTTON_COLOR, TEXT_COLOR } = useContext(stateContext)
   const SUPPORTED_TOKENS = window?.appConfig?.SUPPORTED_TOKENS
 
   return (
@@ -17,8 +17,9 @@ export default function TokenNav() {
           style={{
             borderRadius: '3px',
             border: 'solid',
-            color: BUTTON_COLOR,
-            fontWeight: 'bold'
+            "backgroundColor": BUTTON_COLOR,
+            "borderColor": BUTTON_COLOR,
+            color: TEXT_COLOR,
           }}
           data-bs-toggle='dropdown'
           aria-expanded='false'
@@ -31,8 +32,8 @@ export default function TokenNav() {
               <button
                 className={'dropdown-item'}
                 style={{
-                  color: BUTTON_COLOR,
-                  fontWeight: 'bold'
+                  "backgroundColor": BUTTON_COLOR,
+                  color: TEXT_COLOR,
                 }}
                 id={`${token.name}-tab`}
                 type='button'
@@ -51,8 +52,8 @@ export default function TokenNav() {
             <button
               className={'dropdown-item'}
               style={{
-                color: BUTTON_COLOR,
-                fontWeight: 'bold'
+                color: TEXT_COLOR,
+                "backgroundColor": BUTTON_COLOR,
               }}
               id={`custom-token`}
               onClick={() => {
