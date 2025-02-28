@@ -14,7 +14,7 @@ var appConfig = {
   ETHERSCAN_TX_LINK: 'https://sepolia.etherscan.io/tx/',
   ETHERSCAN_TOKEN_LINK: 'https://sepolia.etherscan.io/token/',
   EVM_NETWORK_NAME: 'Sepolia',
-  EXPLORER_TX_URL: 'https://explorer.testnet.voucherledger.com/transaction/',
+  EXPLORER_TX_URL: 'https://explorer.testnet.voucherledger.com/extrinsic/',
   GATEWAY: 'https://gateway.testnet.voucherledger.com/',
   LOWER_DURATION: '24 hours',
   NETWORK_ID: 11155111,

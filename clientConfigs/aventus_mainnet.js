@@ -10,7 +10,7 @@ var appConfig = {
   COMPANY_NAME_WITH_UNDERSCORE: 'Aventus',
   COMPANY_URL: 'https://www.aventus.network/',
   COMPANY_SUPPORT_URL: 'https://www.aventus.network/contact/',
-  EXPLORER_TX_URL: 'https://explorer.mainnet.aventus.network/transaction/',
+  EXPLORER_TX_URL: 'https://explorer.mainnet.aventus.network/extrinsic/',
   ETHERSCAN_TOKEN_LINK: 'https://etherscan.io/address/',
   ETHERSCAN_TX_LINK: 'https://etherscan.io/tx/',
   EVM_NETWORK_NAME: 'Ethereum Mainnet',

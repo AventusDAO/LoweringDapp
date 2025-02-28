@@ -10,7 +10,7 @@ var appConfig = {
   COMPANY_URL: 'https://www.energyweb.org/',
   COMPANY_SUPPORT_URL: 'https://www.energyweb.org/book-a-demo/',
   COMPANY_NAME_WITH_UNDERSCORE: 'Energy_Web',
-  EXPLORER_TX_URL: 'https://explorer.testnet.energywebx.com/transaction/',
+  EXPLORER_TX_URL: 'https://explorer.testnet.energywebx.com/extrinsic/',
   ETHERSCAN_TOKEN_LINK: 'https://volta-explorer.energyweb.org/address/',
   ETHERSCAN_TX_LINK: 'https://volta-explorer.energyweb.org/tx/',
   ENVIRONMENT_NAME: 'EW Testnet',

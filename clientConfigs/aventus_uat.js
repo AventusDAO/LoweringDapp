@@ -14,7 +14,7 @@ var appConfig = {
   ETHERSCAN_TOKEN_LINK: 'https://sepolia.etherscan.io/address/',
   ETHERSCAN_TX_LINK: 'https://sepolia.etherscan.io/tx/',
   EVM_NETWORK_NAME: 'Sepolia UAT Testnet',
-  EXPLORER_TX_URL: 'https://explorer.dev.aventus.network/transaction/',
+  EXPLORER_TX_URL: 'https://explorer.dev.aventus.network/extrinsic/',
   GATEWAY: 'https://gateway.dev.aventus.network/',
   LOWER_DURATION: '12 hours',
   NETWORK_ID: 11155111,

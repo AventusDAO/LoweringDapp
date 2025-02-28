@@ -17,7 +17,7 @@ export async function TxSubmitted(id) {
   navigator.clipboard.writeText(id)
 }
 
-export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
+export async function showUserStakeTxStatus({ polledState, explorerTxUrl, explorerTxId}) {
   if (polledState.status === 'Processed') {
     await swal.fire({
       title: 'Lower Scheduled Successfully',
@@ -26,7 +26,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
       text: `Your Lower ID is: ${polledState.eventArgs.lowerId}`,
       confirmButtonColor: '#DFF2FF',
       showConfirmButton: true,
-      confirmButtonText: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on Explorer</a>`,
+      confirmButtonText: `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>`,
       icon: 'success',
       footer: `<span style="text-align: center"> You'll need to complete Step-2 once your lower is ready to be claimed on ${EVM_NETWORK_NAME}.</span>`
     })
@@ -41,7 +41,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
       text: `The transaction was rejected by the Chain, please check the details and retry. ${lowerId}`,
       confirmButtonColor: '#ffffff',
       showConfirmButton: false,
-      footer: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on Explorer</a>`,
+      footer: `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>`,
       allowOutsideClick: false,
       icon: 'error'
     })
@@ -61,7 +61,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl }) {
   }
 }
 
-export async function cannotConfirmTxStatus({ polledState, explorerTxUrl }) {
+export async function cannotConfirmTxStatus({ polledState, explorerTxUrl, explorerTxId }) {
   await swal.fire({
     title: `Unconfirmed Transaction Status`,
     text: `Please monitor your transaction using the transaction hash below: ${polledState.txHash}`,
@@ -69,7 +69,7 @@ export async function cannotConfirmTxStatus({ polledState, explorerTxUrl }) {
     allowOutsideClick: false,
     showConfirmButton: false,
     icon: 'success',
-    footer: `<a href="${explorerTxUrl}${polledState.txHash}" target="_blank">View transaction on the Explorer</a>`
+    footer: `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on the Explorer</a>`
   })
   return 'complete'
 }
