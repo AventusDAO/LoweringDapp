@@ -103,7 +103,7 @@ export async function confirmLowerDetails({
     const _amount = await amountChecker({
       amount,
       tokenAddress,
-      isERC20: false,
+      isERC20: tokenAddress !== '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
       isERC777: false
     })
     const ETHERSCAN_TOKEN_LINK = window?.appConfig?.ETHERSCAN_TOKEN_LINK
