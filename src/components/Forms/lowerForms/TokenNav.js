@@ -17,8 +17,8 @@ export default function TokenNav() {
           style={{
             borderRadius: '3px',
             border: 'solid',
-            "background-color": BUTTON_COLOR,
-            "border-color": BUTTON_COLOR,
+            "backgroundColor": BUTTON_COLOR,
+            "borderColor": BUTTON_COLOR,
             color: TEXT_COLOR,
           }}
           data-bs-toggle='dropdown'
@@ -32,7 +32,7 @@ export default function TokenNav() {
               <button
                 className={'dropdown-item'}
                 style={{
-                  "background-color": BUTTON_COLOR,
+                  "backgroundColor": BUTTON_COLOR,
                   color: TEXT_COLOR,
                 }}
                 id={`${token.name}-tab`}
@@ -53,7 +53,7 @@ export default function TokenNav() {
               className={'dropdown-item'}
               style={{
                 color: TEXT_COLOR,
-                "background-color": BUTTON_COLOR,
+                "backgroundColor": BUTTON_COLOR,
               }}
               id={`custom-token`}
               onClick={() => {
