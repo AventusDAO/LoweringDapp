@@ -225,7 +225,7 @@ body {
 }
 
 .set-enterprise-token-button:hover {
-  background-color: var(--brand-color-light);
+  background-color: var(--brand-primary-light);
   border-color: var(--off-color, white);
   color: var(--off-color, white);
   border-radius: 15px;
@@ -348,6 +348,10 @@ body {
   background-color: var(--brand-primary);
 }
 
+.navbar-toggler-icon {
+  background-color: var(--brand-text-color);
+}
+
 .contact-us-button {
   background-color: var(--brand-primary-light);
 }
@@ -361,20 +365,25 @@ body {
 .connect-button {
   font-weight: bold;
   background-color: var(--brand-primary-light);
-  color: #ffffff;
+  color: var(--brand-text-color);
   border-color: var(--brand-primary-light);
+}
+
+.connect-button-img {
+  background-color: var(--brand-primary-light);
+  color: var(--brand-text-color);
 }
 
 .submit-button {
   background-color: var(--brand-primary);
-  color: #ffffff;
+  color: var(--brand-text-color);
   border-color: var(--brand-primary);
   border-radius: 5px;
 }
 
 .mobileFormNav-button {
   background-color: var(--brand-primary);
-  color: #ffffff;
+  color: var(--brand-text-color);
   border-color: var(--brand-primary);
   border-radius: 5px;
   font-weight: 700;

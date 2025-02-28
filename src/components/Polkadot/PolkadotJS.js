@@ -106,7 +106,7 @@ function DesktopHeaderButtons() {
             data-bs-toggle='modal'
             data-bs-target='#extensionsModal'
           >
-            <img src={wallet} alt='logo' /> Wallet
+            <img className={`connect-button-img`} src={wallet} alt='logo' /> Wallet
           </button>
           <DesktopPolkadotExtensions />
         </div>
