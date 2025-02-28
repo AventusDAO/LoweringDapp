@@ -16,6 +16,7 @@ var appConfig = {
   ETHERSCAN_TX_LINK: 'https://etherscan.io/tx/',
   EVM_NETWORK_NAME: 'Ethereum',
   EXPLORER_TX_URL: 'https://explorer.truth-network.io/extrinsic/',
+  ARCHIVE_EXPLORER_URL: 'https://archive-explorer.truth-network.io/graphql',
   GATEWAY: 'https://gateway.truth-network.io/',
   LOWER_DURATION: '12 hours',
   NETWORK_ID: 1,

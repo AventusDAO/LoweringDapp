@@ -15,7 +15,7 @@ var appConfig = {
   ETHERSCAN_TX_LINK: 'https://sepolia.etherscan.io/tx/',
   ETHERSCAN_TOKEN_LINK: 'https://sepolia.etherscan.io/token/',
   EVM_NETWORK_NAME: 'Sepolia',
-  EXPLORER_TX_URL: 'https://explorer.testnet.truth-network.io/transaction/',
+  EXPLORER_TX_URL: 'https://explorer.testnet.truth-network.io/extrinsic/',
   GATEWAY: 'https://gateway.testnet.truth-network.io/',
   LOWER_DURATION: '12 hours',
   NETWORK_ID: 11155111,

@@ -13,12 +13,13 @@ async function sleep(ms) {
 
 async function checkRequestId({ api, requestId, params }) {
   const explorerTxUrl = params.EXPLORER_TX_URL
+  const archiveUrl = params.ARCHIVE_EXPLORER_URL
 
   for (let i = 0; i < 100; i++) {
     await sleep(6000)
     const polledState = await api.poll.requestState(requestId)
     if (i === 19 && polledState?.status === 'Pending') {
-      const transactionId = getTransactionIdByHash(polledState.txHash, explorerTxUrl)
+      const transactionId = getTransactionIdByHash(polledState.txHash, archiveUrl)
       await cannotConfirmTxStatus({
         polledState,
         explorerTxUrl,
@@ -27,7 +28,7 @@ async function checkRequestId({ api, requestId, params }) {
       break
     }
     if (polledState?.status === 'Processed') {
-      const transactionId = getTransactionIdByHash(polledState.txHash, explorerTxUrl)
+      const transactionId = getTransactionIdByHash(polledState.txHash, archiveUrl)
       await showUserStakeTxStatus({
         polledState,
         explorerTxUrl,
