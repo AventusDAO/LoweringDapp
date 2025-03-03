@@ -1,6 +1,6 @@
 import {
   cannotConfirmTxStatus,
-  showUserStakeTxStatus
+  showUserTxStatus
 } from '../txConfirmationPopups'
 
 /*
@@ -18,7 +18,7 @@ async function checkRequestId({ api, requestId, params }) {
   for (let i = 0; i < 100; i++) {
     await sleep(6000)
     const polledState = await api.poll.requestState(requestId)
-    if (i === 19 && polledState?.status === 'Pending') {
+    if (i === 30 && polledState?.status === 'Pending') {
       const explorerTxId = await getTransactionIdByHash(polledState.txHash, archiveUrl)
       await cannotConfirmTxStatus({
         polledState,
@@ -27,9 +27,9 @@ async function checkRequestId({ api, requestId, params }) {
       })
       break
     }
-    if (polledState?.status === 'Processed') {
+    if (["Processed", "Rejected", "Transaction not found"].includes(polledState?.status)) {
       const explorerTxId = await getTransactionIdByHash(polledState.txHash, archiveUrl)
-      await showUserStakeTxStatus({
+      await showUserTxStatus({
         polledState,
         explorerTxUrl,
         explorerTxId
