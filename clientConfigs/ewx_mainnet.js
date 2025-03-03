@@ -10,7 +10,7 @@ var appConfig = {
   COMPANY_URL: 'https://www.energyweb.org/',
   COMPANY_NAME_WITH_UNDERSCORE: 'Energy_Web',
   COMPANY_SUPPORT_URL: 'https://t.me/energyweb',
-  EXPLORER_TX_URL: 'https://explorer.mainnet.energywebx.com/transaction/',
+  EXPLORER_TX_URL: 'https://explorer.mainnet.energywebx.com/extrinsic/',
   ETHERSCAN_TOKEN_LINK: 'https://explorer.energyweb.org/address/',
   ETHERSCAN_TX_LINK: 'https://explorer.energyweb.org/tx/',
   EVM_NETWORK_NAME: 'Energy Web EVM Mainnet',
