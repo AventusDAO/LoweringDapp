@@ -17,7 +17,7 @@ export async function TxSubmitted(id) {
   navigator.clipboard.writeText(id)
 }
 
-export async function showUserStakeTxStatus({ polledState, explorerTxUrl, explorerTxId}) {
+export async function showUserTxStatus({ polledState, explorerTxUrl, explorerTxId}) {
   if (polledState.status === 'Processed') {
     await swal.fire({
       title: 'Lower Scheduled Successfully',
