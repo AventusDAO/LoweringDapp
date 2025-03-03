@@ -26,6 +26,7 @@ export default function TokenForm() {
     set_HasPayer,
     AVN_RELAYER,
     EXPLORER_TX_URL,
+    ARCHIVE_EXPLORER_URL,
     EVM_NETWORK_NAME
   } = useContext(stateContext)
 
@@ -60,7 +61,8 @@ export default function TokenForm() {
                 t1Recipient,
                 tokenType: selectedToken,
                 AVN_RELAYER,
-                EXPLORER_TX_URL
+                EXPLORER_TX_URL,
+                ARCHIVE_EXPLORER_URL
               })
               setLowerLoading(false)
             } else {

@@ -25,7 +25,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl, explor
       allowOutsideClick: false,
       text: `Your Lower ID is: ${polledState.eventArgs.lowerId}`,
       confirmButtonColor: '#DFF2FF',
-      showConfirmButton: true,
+      showConfirmButton: explorerTxId ? true : false,
       confirmButtonText: `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>`,
       icon: 'success',
       footer: `<span style="text-align: center"> You'll need to complete Step-2 once your lower is ready to be claimed on ${EVM_NETWORK_NAME}.</span>`
@@ -41,7 +41,7 @@ export async function showUserStakeTxStatus({ polledState, explorerTxUrl, explor
       text: `The transaction was rejected by the Chain, please check the details and retry. ${lowerId}`,
       confirmButtonColor: '#ffffff',
       showConfirmButton: false,
-      footer: `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>`,
+      footer: explorerTxId ? `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>` : '',
       allowOutsideClick: false,
       icon: 'error'
     })
@@ -69,7 +69,7 @@ export async function cannotConfirmTxStatus({ polledState, explorerTxUrl, explor
     allowOutsideClick: false,
     showConfirmButton: false,
     icon: 'success',
-    footer: `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on the Explorer</a>`
+    footer: explorerTxId ? `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on the Explorer</a>` : ''
   })
   return 'complete'
 }

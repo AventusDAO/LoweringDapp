@@ -21,7 +21,8 @@ export async function lowerSubmitHandler({
   _hasPayer,
   set_HasPayer,
   AVN_RELAYER,
-  EXPLORER_TX_URL
+  EXPLORER_TX_URL,
+  ARCHIVE_EXPLORER_URL
 }) {
   const params = {
     relayer: AVN_RELAYER,
@@ -34,7 +35,8 @@ export async function lowerSubmitHandler({
     tokenType,
     amount,
     method: 'proxyTokenLower',
-    EXPLORER_TX_URL
+    EXPLORER_TX_URL,
+    ARCHIVE_EXPLORER_URL
   }
 
   try {

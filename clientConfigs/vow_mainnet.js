@@ -15,6 +15,7 @@ var appConfig = {
   ETHERSCAN_TOKEN_LINK: 'https://etherscan.io/token/',
   EVM_NETWORK_NAME: 'Ethereum',
   EXPLORER_TX_URL: 'https://explorer.voucherledger.com/extrinsic/',
+  ARCHIVE_EXPLORER_URL: 'https://archive-explorer.voucherledger.com/graphql',
   GATEWAY: 'https://gateway.voucherledger.com/',
   LOWER_DURATION: '24 hours',
   NETWORK_ID: 11155111,

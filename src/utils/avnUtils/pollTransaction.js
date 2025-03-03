@@ -19,20 +19,20 @@ async function checkRequestId({ api, requestId, params }) {
     await sleep(6000)
     const polledState = await api.poll.requestState(requestId)
     if (i === 19 && polledState?.status === 'Pending') {
-      const transactionId = getTransactionIdByHash(polledState.txHash, archiveUrl)
+      const explorerTxId = await getTransactionIdByHash(polledState.txHash, archiveUrl)
       await cannotConfirmTxStatus({
         polledState,
         explorerTxUrl,
-        transactionId
+        explorerTxId
       })
       break
     }
     if (polledState?.status === 'Processed') {
-      const transactionId = getTransactionIdByHash(polledState.txHash, archiveUrl)
+      const explorerTxId = await getTransactionIdByHash(polledState.txHash, archiveUrl)
       await showUserStakeTxStatus({
         polledState,
         explorerTxUrl,
-        transactionId
+        explorerTxId
       })
       break
     }
@@ -50,7 +50,7 @@ async function getTransactionIdByHash(transactionHash, archiveUrl) {
 
   const query = `
     query ExtrinsicQuery {
-      extrinsics(where: {hash_eq: "${transactionHash}"}, limit: 10) {
+      extrinsics(where: {hash_eq: "${transactionHash}"}, limit: 1) {
         id
       }
     }
@@ -67,7 +67,10 @@ async function getTransactionIdByHash(transactionHash, archiveUrl) {
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      // At this point the lower may have succeeded, so we don't want to throw an error
+      // and make it look like the lower failed.
+      console.error(`HTTP error fetching transaction data. Status: ${response.status}`);
+      return undefined;
     }
 
     const data = await response.json();
