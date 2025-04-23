@@ -1,9 +1,11 @@
 import { balanceFormatter } from '../randomFunctions'
 import { gatewayAccessError } from '../errorPopups/networkAccessErrorPopups'
+import { genericErrorHandlerTemplate } from '../errorPopups/genericErrorPopups'
+import BigNumber from 'big-number/big-number'
 /*
 Constructs the params for the balance and the url...
 Requires a valid token to get the account balance.
-Queries the balance of an account. 
+Queries the balance of an account.
 */
 
 // This function ensures that the user can only lower from the free balance.
@@ -31,6 +33,50 @@ export async function getTokenBalance({ params }) {
     )
     return tokenBalance
   } catch (err) {
+    if (err.message.includes('403')) {
+      const result = await gatewayAccessError(params._hasPayer)
+      params.set_HasPayer(result)
+    }
+  }
+}
+
+export async function getPreditionMarketTokenBalance({ params }) {
+  try {
+    const tokenBalance =
+      await params?.api.query.getPredictionMarketTokenBalance(
+        params.substrateUser.address,
+        params.tokenAddress
+      )
+
+    const metadata = await params?.api.query.getAssetMetadata(
+      params.tokenAddress
+    )
+    if (!metadata) {
+      genericErrorHandlerTemplate(
+        'Unknown token',
+        `The token ${params.tokenAddress} does not exist in Prediction Market.`,
+        'Please check the token address and try again.'
+      )
+
+      return 0
+    }
+
+    let decimalAdjustedBalance = BigNumber(tokenBalance.free)
+    if (metadata.decimals > 10) {
+      // we need to scale up amount to `decimals` places
+      decimalAdjustedBalance = decimalAdjustedBalance.multiply(
+        BigNumber(10).power(BigNumber(metadata.decimals - 10))
+      )
+    } else if (metadata.decimals < 10) {
+      // we need to scale down amount to `decimals` places
+      decimalAdjustedBalance = decimalAdjustedBalance.divide(
+        BigNumber(10).power(BigNumber(10 - metadata.decimals))
+      )
+    }
+
+    return decimalAdjustedBalance
+  } catch (err) {
+    console.error(`Error getting PM token balance: ${err}`)
     if (err.message.includes('403')) {
       const result = await gatewayAccessError(params._hasPayer)
       params.set_HasPayer(result)

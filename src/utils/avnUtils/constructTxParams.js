@@ -19,7 +19,7 @@ export default async function sendTransaction(params) {
       }
       params.amount = hasSufficientBalance.amount.toString()
       if (hasSufficientBalance.value) {
-        const requestId = await params?.api.send.lowerToken(
+        const requestId = await params?.api.send[params.method](
           params.t1Recipient,
           params.tokenAddress,
           params.amount
@@ -32,6 +32,7 @@ export default async function sendTransaction(params) {
       }
     }
   } catch (err) {
+    console.error(err)
     signingErrorHandler(
       'Authentication expired',
       'User cancelled authorisation'
