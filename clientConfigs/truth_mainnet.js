@@ -25,6 +25,6 @@ var appConfig = {
   SUPPORTS_ENTERPRISE_USERS: true,
   SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
-    TRU: { name: 'TRUU', address: '0xdae0fafd65385e7775cf75b1398735155ef6acd2' },
+    TRU: { name: 'TRUU', address: '0xdae0fafd65385e7775cf75b1398735155ef6acd2' }
   }
 }

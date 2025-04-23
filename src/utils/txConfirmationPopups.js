@@ -17,7 +17,11 @@ export async function TxSubmitted(id) {
   navigator.clipboard.writeText(id)
 }
 
-export async function showUserTxStatus({ polledState, explorerTxUrl, explorerTxId}) {
+export async function showUserTxStatus({
+  polledState,
+  explorerTxUrl,
+  explorerTxId
+}) {
   if (polledState.status === 'Processed') {
     await swal.fire({
       title: 'Lower Scheduled Successfully',
@@ -41,7 +45,9 @@ export async function showUserTxStatus({ polledState, explorerTxUrl, explorerTxI
       text: `The transaction was rejected by the Chain, please check the details and retry. ${lowerId}`,
       confirmButtonColor: '#ffffff',
       showConfirmButton: false,
-      footer: explorerTxId ? `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>` : '',
+      footer: explorerTxId
+        ? `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on Explorer</a>`
+        : '',
       allowOutsideClick: false,
       icon: 'error'
     })
@@ -61,7 +67,11 @@ export async function showUserTxStatus({ polledState, explorerTxUrl, explorerTxI
   }
 }
 
-export async function cannotConfirmTxStatus({ polledState, explorerTxUrl, explorerTxId }) {
+export async function cannotConfirmTxStatus({
+  polledState,
+  explorerTxUrl,
+  explorerTxId
+}) {
   await swal.fire({
     title: `Unconfirmed Transaction Status`,
     text: `Please monitor your transaction using the transaction hash below: ${polledState.txHash}`,
@@ -69,7 +79,9 @@ export async function cannotConfirmTxStatus({ polledState, explorerTxUrl, explor
     allowOutsideClick: false,
     showConfirmButton: false,
     icon: 'success',
-    footer: explorerTxId ? `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on the Explorer</a>` : ''
+    footer: explorerTxId
+      ? `<a href="${explorerTxUrl}${explorerTxId}" target="_blank">View transaction on the Explorer</a>`
+      : ''
   })
   return 'complete'
 }

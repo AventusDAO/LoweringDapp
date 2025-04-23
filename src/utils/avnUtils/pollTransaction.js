@@ -19,7 +19,10 @@ async function checkRequestId({ api, requestId, params }) {
     await sleep(6000)
     const polledState = await api.poll.requestState(requestId)
     if (i === 30 && polledState?.status === 'Pending') {
-      const explorerTxId = await getTransactionIdByHash(polledState.txHash, archiveUrl)
+      const explorerTxId = await getTransactionIdByHash(
+        polledState.txHash,
+        archiveUrl
+      )
       await cannotConfirmTxStatus({
         polledState,
         explorerTxUrl,
@@ -27,8 +30,15 @@ async function checkRequestId({ api, requestId, params }) {
       })
       break
     }
-    if (["Processed", "Rejected", "Transaction not found"].includes(polledState?.status)) {
-      const explorerTxId = await getTransactionIdByHash(polledState.txHash, archiveUrl)
+    if (
+      ['Processed', 'Rejected', 'Transaction not found'].includes(
+        polledState?.status
+      )
+    ) {
+      const explorerTxId = await getTransactionIdByHash(
+        polledState.txHash,
+        archiveUrl
+      )
       await showUserTxStatus({
         polledState,
         explorerTxUrl,
@@ -45,7 +55,7 @@ async function checkRequestId({ api, requestId, params }) {
 
 async function getTransactionIdByHash(transactionHash, archiveUrl) {
   if (!transactionHash || typeof transactionHash !== 'string') {
-    throw new Error('Transaction hash must be a valid string');
+    throw new Error('Transaction hash must be a valid string')
   }
 
   const query = `
@@ -54,30 +64,32 @@ async function getTransactionIdByHash(transactionHash, archiveUrl) {
         id
       }
     }
-  `;
+  `
 
   try {
     const response = await fetch(archiveUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
+        Accept: 'application/json'
       },
-      body: JSON.stringify({ query }),
-    });
+      body: JSON.stringify({ query })
+    })
 
     if (!response.ok) {
       // At this point the lower may have succeeded, so we don't want to throw an error
       // and make it look like the lower failed.
-      console.error(`HTTP error fetching transaction data. Status: ${response.status}`);
-      return undefined;
+      console.error(
+        `HTTP error fetching transaction data. Status: ${response.status}`
+      )
+      return undefined
     }
 
-    const data = await response.json();
-    return data.data.extrinsics[0].id;
+    const data = await response.json()
+    return data.data.extrinsics[0].id
   } catch (error) {
-    console.error('Error fetching transaction data:', error);
-    throw error;
+    console.error('Error fetching transaction data:', error)
+    throw error
   }
 }
 

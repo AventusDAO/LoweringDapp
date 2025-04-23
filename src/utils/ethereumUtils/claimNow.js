@@ -27,7 +27,7 @@ export async function claimNow({
             transactionErrorHandler(e.message)
           })
       } catch (err) {
-        console.error("Error claiming tokens: ", err);
+        console.error('Error claiming tokens: ', err)
       }
     } else if (method === 'new') {
       try {
@@ -41,7 +41,7 @@ export async function claimNow({
             transactionErrorHandler(e.message)
           })
       } catch (err) {
-        console.error("Error claiming tokens: ", err);
+        console.error('Error claiming tokens: ', err)
       }
     }
   } else {
