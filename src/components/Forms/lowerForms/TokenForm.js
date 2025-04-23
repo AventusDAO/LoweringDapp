@@ -27,7 +27,8 @@ export default function TokenForm() {
     AVN_RELAYER,
     EXPLORER_TX_URL,
     ARCHIVE_EXPLORER_URL,
-    EVM_NETWORK_NAME
+    EVM_NETWORK_NAME,
+    PM_Token
   } = useContext(stateContext)
 
   return (
@@ -62,7 +63,11 @@ export default function TokenForm() {
                 tokenType: selectedToken,
                 AVN_RELAYER,
                 EXPLORER_TX_URL,
-                ARCHIVE_EXPLORER_URL
+                ARCHIVE_EXPLORER_URL,
+                method:
+                  selectedToken === PM_Token
+                    ? 'lowerFromPredictionMarket'
+                    : 'lowerToken'
               })
               setLowerLoading(false)
             } else {

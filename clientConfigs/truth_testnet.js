@@ -16,7 +16,8 @@ var appConfig = {
   ETHERSCAN_TOKEN_LINK: 'https://sepolia.etherscan.io/token/',
   EVM_NETWORK_NAME: 'Sepolia',
   EXPLORER_TX_URL: 'https://explorer.testnet.truth-network.io/extrinsic/',
-  ARCHIVE_EXPLORER_URL: 'https://archive-explorer.testnet.truth-network.io/graphql',
+  ARCHIVE_EXPLORER_URL:
+    'https://archive-explorer.testnet.truth-network.io/graphql',
   GATEWAY: 'https://gateway.testnet.truth-network.io/',
   LOWER_DURATION: '12 hours',
   NETWORK_ID: 11155111,
@@ -25,6 +26,6 @@ var appConfig = {
   SUPPORTS_ENTERPRISE_USERS: true,
   SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
-    TRU: { name: 'TRUU', address: '0x6caefa7446e967018330ccec5ba7a43956a45137' },
+    TRU: { name: 'TRUU', address: '0x6caefa7446e967018330ccec5ba7a43956a45137' }
   }
 }
