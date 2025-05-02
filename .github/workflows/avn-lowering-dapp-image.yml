@@ -13,7 +13,6 @@ jobs:
     name: (AVN) build docker lowering-dapp
     uses: ./.github/workflows/docker-build.yaml
     with:
-      runner: avn-runner-ubuntu-2204-x64
       config_creds: false
       aws_region: eu-west-1
       aws_account_id: 931945598683
@@ -26,7 +25,6 @@ jobs:
     #if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'master' }}
     uses: ./.github/workflows/docker-build.yaml
     with:
-      runner: avn-runner-ubuntu-2204-x64
       config_creds: false
       aws_region: us-east-1
       aws_account_id: 541507968610
