@@ -100,6 +100,11 @@ export async function confirmLowerDetails({
   t1Recipient
 }) {
   if (substrateUserAddress) {
+    // First check if the recipient address is valid
+    if (!(await isValidRecipientAddress(t1Recipient))) {
+      return { userChoice: false }
+    }
+
     const _amount = await amountChecker({
       amount,
       tokenAddress,
@@ -129,4 +134,43 @@ export async function confirmLowerDetails({
   } else {
     substrateConnectFailure()
   }
+}
+
+async function isValidRecipientAddress(recipientAddress) {
+  const supportedTokens = window?.appConfig?.SUPPORTED_TOKENS
+  const additionalInvalidRecipients =
+    window?.appConfig?.INVALID_RECIPIENT_ADDRESSES || []
+
+  // Join the known tokens and invalid recipients
+  const invalidRecipients = Object.values(supportedTokens)
+    .map(token => token.address)
+    .concat(additionalInvalidRecipients)
+
+  // Check if address is in the known addresses. Make sure to check the address in lowercase
+  const isInvalidRecipient = invalidRecipients.some(
+    invalidRecipient =>
+      invalidRecipient.toLowerCase() === recipientAddress.toLowerCase()
+  )
+
+  if (isInvalidRecipient) {
+    await swal.fire({
+      title: 'Invalid recipient address',
+      html: `<div style="text-align: left;"><small>Please enter a valid Ethereum wallet address that you control (i.e., one for which you own the private keys).
+      <br /><br />Sending funds to an inaccessible address will result in permanent loss.
+      <style>
+      .swal2-icon.swal2-error {
+        margin: 1.5em auto .2em;
+      }
+      </style>`,
+      showDenyButton: false,
+      showConfirmButton: true,
+      confirmButtonText: 'Ok',
+      allowOutsideClick: false,
+      confirmButtonColor: window?.appConfig?.BRAND_COLOR,
+      icon: 'error'
+    })
+    return false
+  }
+
+  return true
 }

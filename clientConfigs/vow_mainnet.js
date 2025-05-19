@@ -36,5 +36,6 @@ var appConfig = {
       address: '0x547649976443cd3b6ad8c9781f17f8ad6f061f2f'
     },
     NATIVE: { name: 'ETH', address: '0x' }
-  }
+  },
+  INVALID_RECIPIENT_ADDRESSES: ['0xf2e6e9e5b35a951b003bb560e66377e685a4718c']
 }

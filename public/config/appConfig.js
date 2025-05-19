@@ -26,5 +26,6 @@ var appConfig = {
   SHOW_BALANCE_PAGE: false,
   SUPPORTED_TOKENS: {
     TRU: { name: 'TRUU', address: '0x25560bd4fd693922450d99188fab23472e59015f' }
-  }
+  },
+  INVALID_RECIPIENT_ADDRESSES: ['0x5816cedff9de7c5fb13dcfb1ce9038014b929b7e']
 }

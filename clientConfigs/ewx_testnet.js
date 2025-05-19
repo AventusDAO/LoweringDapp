@@ -27,5 +27,6 @@ var appConfig = {
       name: 'VT',
       address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
     }
-  }
+  },
+  INVALID_RECIPIENT_ADDRESSES: ['0x8fa6cd9a275506d719c434335c0c9ffd15e05a87']
 }
