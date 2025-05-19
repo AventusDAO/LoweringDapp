@@ -33,5 +33,6 @@ var appConfig = {
       name: 'ETH',
       address: '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE'
     }
-  }
+  },
+  INVALID_RECIPIENT_ADDRESSES: ['0x83359ecb73e869174b09221f4460b68fd8b0a42f']
 }

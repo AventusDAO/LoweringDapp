@@ -100,6 +100,11 @@ export async function confirmLowerDetails({
   t1Recipient
 }) {
   if (substrateUserAddress) {
+    // First check if the recipient address is valid
+    if (!(await isValidRecipientAddress(t1Recipient))) {
+      return { userChoice: false }
+    }
+
     const _amount = await amountChecker({
       amount,
       tokenAddress,
@@ -129,4 +134,48 @@ export async function confirmLowerDetails({
   } else {
     substrateConnectFailure()
   }
+}
+
+async function isValidRecipientAddress(recipientAddress) {
+  const supportedTokens = window?.appConfig?.SUPPORTED_TOKENS
+  const additionalInvalidRecipients =
+    window?.appConfig?.INVALID_RECIPIENT_ADDRESSES || []
+
+  // Join the known tokens and invalid recipients
+  const invalidRecipients = Object.values(supportedTokens)
+    .map(token => token.address)
+    .concat(additionalInvalidRecipients)
+
+  // Check if address is in the known addresses. Make sure to check the address in lowercase
+  const isInvalidRecipient = invalidRecipients.some(
+    invalidRecipient =>
+      invalidRecipient.toLowerCase() === recipientAddress.toLowerCase()
+  )
+
+  if (isInvalidRecipient) {
+    const { isConfirmed: userChoice } = await swal.fire({
+      title: 'Invalid recipient address',
+      html: `<div style="text-align: left;"><small>The recipient address you are lowering to is not valid because it looks like this is not a user account.
+      <br /><br />Please make sure you have access to the private keys of this address. If you lower to the wrong address, <strong>you may lose all your funds</strong>I.
+      <br /><br />Are you sure you want to continue lowering?</small></div>
+      <style>
+      .swal2-icon.swal2-warning {
+        width: 4em !important;
+        height: 4em !important;
+      }
+      </style>`,
+      showDenyButton: true,
+      showConfirmButton: true,
+      confirmButtonText: 'Yes, I understand the risks',
+      allowOutsideClick: false,
+      denyButtonText: 'No, cancel lower',
+      confirmButtonColor: 'red',
+      denyButtonColor: 'green',
+      icon: 'warning',
+      footer: `<strong>Invalid recipient detected</strong>&nbsp`
+    })
+    return userChoice
+  }
+
+  return true
 }
