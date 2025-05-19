@@ -153,28 +153,23 @@ async function isValidRecipientAddress(recipientAddress) {
   )
 
   if (isInvalidRecipient) {
-    const { isConfirmed: userChoice } = await swal.fire({
+    await swal.fire({
       title: 'Invalid recipient address',
-      html: `<div style="text-align: left;"><small>The recipient address you are lowering to is not valid because it looks like this is not a user account.
-      <br /><br />Please make sure you have access to the private keys of this address. If you lower to the wrong address, <strong>you may lose all your funds</strong>I.
-      <br /><br />Are you sure you want to continue lowering?</small></div>
+      html: `<div style="text-align: left;"><small>Please enter a valid Ethereum wallet address that you control (i.e., one for which you own the private keys).
+      <br /><br />Sending funds to an inaccessible address will result in permanent loss.
       <style>
-      .swal2-icon.swal2-warning {
-        width: 4em !important;
-        height: 4em !important;
+      .swal2-icon.swal2-error {
+        margin: 1.5em auto .2em;
       }
       </style>`,
-      showDenyButton: true,
+      showDenyButton: false,
       showConfirmButton: true,
-      confirmButtonText: 'Yes, I understand the risks',
+      confirmButtonText: 'Ok',
       allowOutsideClick: false,
-      denyButtonText: 'No, cancel lower',
-      confirmButtonColor: 'red',
-      denyButtonColor: 'green',
-      icon: 'warning',
-      footer: `<strong>Invalid recipient detected</strong>&nbsp`
+      confirmButtonColor: window?.appConfig?.BRAND_COLOR,
+      icon: 'error'
     })
-    return userChoice
+    return false
   }
 
   return true
