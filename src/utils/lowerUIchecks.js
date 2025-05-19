@@ -155,7 +155,7 @@ async function isValidRecipientAddress(recipientAddress) {
   if (isInvalidRecipient) {
     await swal.fire({
       title: 'Invalid recipient address',
-      html: `<div style="text-align: left;"><small>Please enter a valid Ethereum wallet address that you control (i.e., one for which you own the private keys).
+      html: `<div style="text-align: left;"><small>Please enter a valid Ethereum wallet address which you control (i.e. one for which you own the private keys).
       <br /><br />Sending funds to an inaccessible address will result in permanent loss.
       <style>
       .swal2-icon.swal2-error {
