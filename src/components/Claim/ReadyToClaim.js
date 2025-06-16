@@ -6,6 +6,12 @@ import { LowerDataFromBackendOnlyLowerID } from './LowerDataFromBackend_OnlyLowe
 import { Pagination } from '../Pagination'
 import { NoLowers } from './NoLowers'
 
+const ClaimStatus = {
+  ready: 'ready',
+  waiting: 'waiting',
+  failed: 'failed'
+}
+
 const ReadyToClaim = ({ lowers }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const lowersPerPage = 5
@@ -29,6 +35,13 @@ const ReadyToClaim = ({ lowers }) => {
       if (data.values().next().value !== null) {
         data.forEach((tx, index) => {
           tx.id = index
+          if (tx.name === "LowerFailed") {
+            tx.claimStatus = ClaimStatus.failed
+          } else if (!tx.claimData || Object.keys(tx.claimData).length === 0) {
+            tx.claimStatus = ClaimStatus.waiting
+          } else {
+            tx.claimStatus = ClaimStatus.ready
+          }
         })
         currentLowers = data.slice(indexOfFirstPost, indexOfLastPost)
       }
@@ -61,26 +74,26 @@ const ReadyToClaim = ({ lowers }) => {
                     aria-expanded='false'
                     aria-controls='lowersFromBackend'
                   >
-                    {tx.claimData ? (
-                      Object.keys(tx.claimData).length !== 0 ? (
-                        <div>
-                          <span className='badge bg-success rounded-pill'>
-                            Available
-                          </span>
-                          &nbsp;
-                        </div>
-                      ) : (
-                        <div>
-                          <span className='badge bg-danger rounded-pill'>
-                            Awaiting data
-                          </span>
-                          &nbsp;
-                        </div>
-                      )
-                    ) : (
+                    {tx.claimStatus === ClaimStatus.ready && (
+                      <div>
+                        <span className='badge bg-success rounded-pill'>
+                          Available
+                        </span>
+                        &nbsp;
+                      </div>
+                    )}
+                    {tx.claimStatus === ClaimStatus.waiting && (
+                      <div>
+                        <span className='badge bg-warning rounded-pill'>
+                          Awaiting data
+                        </span>
+                        &nbsp;
+                      </div>
+                    )}
+                    {tx.claimStatus === ClaimStatus.failed && (
                       <div>
                         <span className='badge bg-danger rounded-pill'>
-                          Awaiting data
+                          Lower failed
                         </span>
                         &nbsp;
                       </div>
