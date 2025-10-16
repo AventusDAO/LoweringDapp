@@ -1,0 +1,14 @@
+name: Automatic Lowering Dapp Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  github-release:
+    uses: Aventus-Network-Services/shared-workflows/.github/workflows/automatic-releases.yaml@v5.1.0
+    with:
+      default_bump: minor
+    secrets:
+      envPat: ${{ secrets.VERENFT_CI_AGENT_TOKEN }}
