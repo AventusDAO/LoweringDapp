@@ -14,6 +14,7 @@ import { AvnApi, SigningMode, SetupMode } from 'avn-api'
 import Footer from './Footer'
 import { setCssVariables } from '../utils/cssVariables'
 import { addFavicon } from '../utils/addFavicon'
+import { sleep } from '../utils/randomFunctions'
 
 const NETWORK_CONFIG = window?.appConfig
 
@@ -97,10 +98,14 @@ function App() {
         defaultLogLevel: 'error',
         hasPayer: SUPPORTS_ENTERPRISE_USERS === false ? false : _hasPayer,
         signer: {
-          sign: (data, address) =>
-            substrateUser.signer({ data, address }).then(result => {
-              return result.signature
-            }),
+          sign: async (data, address) => {
+              // This sleep is needed to prevent rate limiting issues with polkadot-js extension
+              // https://github.com/polkadot-js/extension/pull/1562/files
+              await sleep(3000);
+              return substrateUser.signer({ data, address }).then(result => {
+                return result.signature
+              })
+          },
           address: substrateUser.address
         }
       })
