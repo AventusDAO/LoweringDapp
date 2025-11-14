@@ -73,3 +73,7 @@ export function txLinkInAlert({ hash }) {
     showCloseButton: true
   })
 }
+
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}

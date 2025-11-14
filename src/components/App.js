@@ -14,6 +14,7 @@ import { AvnApi, SigningMode, SetupMode } from 'avn-api'
 import Footer from './Footer'
 import { setCssVariables } from '../utils/cssVariables'
 import { addFavicon } from '../utils/addFavicon'
+import { sleep } from '../utils/randomFunctions'
 
 const NETWORK_CONFIG = window?.appConfig
 
@@ -88,10 +89,6 @@ function App() {
     NETWORK_ID,
     EVM_NETWORK_NAME
   ])
-
-  async function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
 
   const setSdkCode = useCallback(async () => {
     if (substrateUser) {
