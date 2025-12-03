@@ -46,7 +46,7 @@ const ReadyToClaim = ({ lowers }) => {
         currentLowers = data.slice(indexOfFirstPost, indexOfLastPost)
       }
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   }
 

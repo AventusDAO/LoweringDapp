@@ -20,7 +20,7 @@ export default function LowerQueryForm() {
       try {
         navigate(`/lowers/${result}`)
       } catch (err) {
-        console.log(err)
+        console.error(err)
       }
     }
   }

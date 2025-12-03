@@ -36,7 +36,7 @@ export default function TokenBalanceForm() {
             })
             setErcQueryLoading(false)
           } catch (err) {
-            console.log(err)
+            console.error(err)
           }
         }}
       >

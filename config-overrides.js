@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const WebpackObfuscator = require('webpack-obfuscator')
 
 module.exports = function override(config, env) {
   let overrideConfig = {
@@ -58,18 +57,6 @@ module.exports = function override(config, env) {
   if (env == 'production') {
     overrideConfig = {
       ...overrideConfig,
-      plugins: [
-        ...overrideConfig.plugins,
-        new WebpackObfuscator(
-          {
-            rotateStringArray: true
-          },
-          ['excluded_bundle_name.js']
-        )
-      ],
-      module: {
-        ...config.module
-      },
       devtool: false,
       optimization: {
         minimize: true,

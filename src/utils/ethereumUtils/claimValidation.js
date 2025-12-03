@@ -18,7 +18,7 @@ export async function validateInput({ account, userLowerId }) {
       return userLowerId
     }
   } catch (err) {
-    console.log(err)
+    console.error(err)
   }
 }
 
