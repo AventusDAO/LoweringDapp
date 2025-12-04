@@ -12,10 +12,10 @@ on:
 jobs:
   build-dapp:
     name: Build docker lowering-dapp
-    uses: Aventus-Network-Services/shared-workflows/.github/workflows/docker-build.yaml@v5.16.0
+    uses: Aventus-Network-Services/shared-workflows/.github/workflows/docker-build.yaml@v5.17.0
     with:
       ecr_registry_type: public
-      config_creds: true
+      config_creds: false
       aws_region: us-east-1
       aws_account_id: 931945598683
       ecr_repository_name: dapps/lowering
