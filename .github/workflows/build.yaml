@@ -4,37 +4,20 @@ on:
   workflow_dispatch:
   push:
     branches: [main, feat/*, bug/*]
-  pull_request:
+  pull_request_target:
     branches:
       - main
 
 
 jobs:
   build-dapp:
-    name: (AVN) build docker lowering-dapp
-    uses: Aventus-Network-Services/shared-workflows/.github/workflows/docker-build.yaml@v5.10.0
+    name: Build docker lowering-dapp
+    uses: Aventus-Network-Services/shared-workflows/.github/workflows/docker-build.yaml@v5.17.0
     with:
-      config_creds: false
-      aws_region: eu-west-1
-      aws_account_id: 931945598683
-      ecr_repository_name: dapps/lowering
-      default_branch: main
-      create_pr_dtag: ${{ startsWith(github.ref, 'refs/pull/') }}
-      create_latest_dtag: ${{ github.ref == 'refs/heads/main' }}
-      create_commit_hash_dtag: true
-      create_git_ref_dtag: ${{ startsWith(github.ref, 'refs/tags/') }}
-      docker_args_list: VERSION=${{ github.ref_name }}
-    secrets: inherit
-
-  ew-docker-dapp:
-    name: (EW) build docker lowering-dapp
-    #TODO: re-add the 'if' as soon as the dapp is tested on EW
-    if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'main' }}
-    uses: Aventus-Network-Services/shared-workflows/.github/workflows/docker-build.yaml@v5.10.0
-    with:
+      ecr_registry_type: public
       config_creds: false
       aws_region: us-east-1
-      aws_account_id: 541507968610
+      aws_account_id: 931945598683
       ecr_repository_name: dapps/lowering
       default_branch: main
       create_pr_dtag: ${{ startsWith(github.ref, 'refs/pull/') }}
