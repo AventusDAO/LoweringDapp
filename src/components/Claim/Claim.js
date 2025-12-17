@@ -48,7 +48,7 @@ const Claim = () => {
           ''
         )}
         {data &&
-          (data == '' ? (
+          (data === '' ? (
             <NotFound />
           ) : data.lowerData.length === 0 ? (
             <NoLowers />

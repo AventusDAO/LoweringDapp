@@ -85,7 +85,7 @@ const BalanceButtons = () => {
               })
               setMainTokenQueryLoading(false)
             } catch (err) {
-              console.log(err)
+              console.error(err)
             }
           }}
         >
@@ -139,7 +139,7 @@ const BalanceButtons = () => {
               })
               setNativeQueryLoading(false)
             } catch (err) {
-              console.log(err)
+              console.error(err)
             }
           }}
         >
