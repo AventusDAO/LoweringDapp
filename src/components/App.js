@@ -99,12 +99,12 @@ function App() {
         hasPayer: SUPPORTS_ENTERPRISE_USERS === false ? false : _hasPayer,
         signer: {
           sign: async (data, address) => {
-              // This sleep is needed to prevent rate limiting issues with polkadot-js extension
-              // https://github.com/polkadot-js/extension/pull/1562/files
-              await sleep(3000);
-              return substrateUser.signer({ data, address }).then(result => {
-                return result.signature
-              })
+            // This sleep is needed to prevent rate limiting issues with polkadot-js extension
+            // https://github.com/polkadot-js/extension/pull/1562/files
+            await sleep(3000)
+            return substrateUser.signer({ data, address }).then(result => {
+              return result.signature
+            })
           },
           address: substrateUser.address
         }

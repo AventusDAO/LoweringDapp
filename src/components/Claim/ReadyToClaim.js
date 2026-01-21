@@ -35,7 +35,7 @@ const ReadyToClaim = ({ lowers }) => {
       if (data.values().next().value !== null) {
         data.forEach((tx, index) => {
           tx.id = index
-          if (tx.name === "LowerFailed") {
+          if (tx.name === 'LowerFailed') {
             tx.claimStatus = ClaimStatus.failed
           } else if (!tx.claimData || Object.keys(tx.claimData).length === 0) {
             tx.claimStatus = ClaimStatus.waiting

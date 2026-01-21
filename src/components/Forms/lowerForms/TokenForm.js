@@ -42,8 +42,8 @@ export default function TokenForm() {
     >
       {COMPANY_NAME_WITH_UNDERSCORE === 'Truth' && (
         <div style={{ fontSize: '13px' }} className='bg-warning banner'>
-            <img src={info} alt='info' className='icon'/>
-            Lowering is disabled for Q1
+          <img src={info} alt='info' className='icon' />
+          Lowering is disabled for Q1
         </div>
       )}
       <form
