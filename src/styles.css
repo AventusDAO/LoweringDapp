@@ -4,6 +4,17 @@
   --background-color: #f2f1f1;
 }
 
+.banner {
+  border-radius: 2px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.icon {
+  margin-right: 5px;
+  height: 25px;
+}
+
 .header-logo {
   width: 200px;
 }

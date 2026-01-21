@@ -4,6 +4,7 @@ import { lowerSubmitHandler } from '../../../utils/avnUtils/lowerSubmitHandler'
 import { confirmLowerDetails } from '../../../utils/lowerUIchecks'
 import { Spinner } from '../../Extras/Tools'
 import TokenNav from './TokenNav'
+import info from '../../../assets/img/info.svg'
 
 export default function TokenForm() {
   const {
@@ -28,7 +29,8 @@ export default function TokenForm() {
     EXPLORER_TX_URL,
     ARCHIVE_EXPLORER_URL,
     EVM_NETWORK_NAME,
-    PM_Token
+    PM_Token,
+    COMPANY_NAME_WITH_UNDERSCORE
   } = useContext(stateContext)
 
   return (
@@ -38,6 +40,12 @@ export default function TokenForm() {
       role='tabpanel'
       aria-labelledby={'lower-form-tab'}
     >
+      {COMPANY_NAME_WITH_UNDERSCORE === 'Truth' && (
+        <div style={{ fontSize: '13px' }} className='bg-warning banner'>
+            <img src={info} alt='info' className='icon'/>
+            Lowering is disabled for Q1
+        </div>
+      )}
       <form
         onSubmit={async event => {
           event.preventDefault()
