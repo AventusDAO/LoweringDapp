@@ -9,7 +9,6 @@ on:
     branches:
       - main
 
-
 jobs:
   build-dapp:
     name: Build docker lowering-dapp
