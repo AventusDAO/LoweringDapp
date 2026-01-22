@@ -24,7 +24,7 @@ jobs:
       create_latest_dtag: ${{ github.ref == 'refs/heads/main' }}
       create_commit_hash_dtag: true
       create_git_ref_dtag: ${{ startsWith(github.ref, 'refs/tags/') }}
-      docker_args_list: VERSION=${{ github.ref_name }}
+      docker_args_list: VERSION=${{ github.event.pull_request.head.ref }}
       checkout_repository: ${{github.event.pull_request.head.repo.full_name}}
       checkout_ref: ${{github.event.pull_request.head.ref}}
     secrets: inherit
