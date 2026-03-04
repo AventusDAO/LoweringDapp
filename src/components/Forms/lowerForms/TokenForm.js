@@ -40,12 +40,12 @@ export default function TokenForm() {
       role='tabpanel'
       aria-labelledby={'lower-form-tab'}
     >
-      {/* {COMPANY_NAME_WITH_UNDERSCORE === 'Truth' && (
+      {COMPANY_NAME_WITH_UNDERSCORE === 'Truth' && (
         <div className='bg-warning banner'>
           <img src={info} alt='info' className='icon' />
           Lowering is disabled for Q1 2026
         </div>
-      )} */}
+      )}
       <form
         onSubmit={async event => {
           event.preventDefault()
